@@ -1,0 +1,51 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+* {
+	--light-blue: #B2BDCF;
+	--blue: #396B97;
+	--dark-blue: #1E3760;
+	--green: #44A748;
+	--red: #DA3848;
+	--white: #FFFFFF;
+	--almost-white: #F5F5F5;
+	--silver: #F0F0F0;
+}
+
+* {
+	--serif-font: 'Merriweather';
+	--sans-font: 'Montserrat';
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	min-height: 100%;
+	font-family: var(--sans-font), sans-serif;
+	font-weight: normal;
+	color: var(--dark-blue);
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+	margin: 0 0 20px 0;
+	font-family: var(--serif-font), serif;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+.block {
+	display: block;
+}
