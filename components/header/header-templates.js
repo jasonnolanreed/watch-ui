@@ -1,7 +1,17 @@
 const makeCss = (component) => (
 `
 <style>
-@import "/global-styles.css";
+@import "/styles/global-styles.css";
+
+header {
+	padding: 2em;
+	background-color: var(--almost-white);
+}
+
+img {
+	max-width: 450px;
+	margin: 0 auto;
+}
 </style>
 `
 );
@@ -9,7 +19,7 @@ const makeCss = (component) => (
 const makeHtml = (component) => (
 `
 <header>
-	<h1>Good Watch Bad Watch</h1>
+	<img src="/assets/images/logo.png" alt="Good Watch Bad Watch Logo">
 </header>
 `
 );

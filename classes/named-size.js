@@ -2,16 +2,16 @@ export class NamedSizeElement extends HTMLElement {
 	constructor() {
 		super();
 		this.updateNamedSize = this.updateNamedSize.bind(this);
-	}
-
-	connectedCallback() {
-		this.classList.add(`block`);
 		this.namedSizes = [
 			{name: `small`, width: 600},
 			{name: `medium`, width: 900},
 			{name: `large`, width: 1200},
 			{name: `huge`, width: 1600},
 		];
+	}
+
+	connectedCallback() {
+		this.classList.add(`block`);
 		this.setupResizeListener();
 	}
 
@@ -19,6 +19,10 @@ export class NamedSizeElement extends HTMLElement {
 		if (this.resizeObserver) {
 			this.resizeObserver.disconnect();
 		}
+	}
+
+	setNamedSizes(sizes) {
+		this.namedSizes = sizes;
 	}
 
 	setupResizeListener() {

@@ -1,14 +1,7 @@
 *, *:before, *:after { box-sizing: border-box; }
 
-* {
-	--light-blue: #B2BDCF;
-	--blue: #396B97;
-	--dark-blue: #1E3760;
-	--green: #44A748;
-	--red: #DA3848;
-	--white: #FFFFFF;
-	--almost-white: #F5F5F5;
-	--silver: #F0F0F0;
+*, *:before, *:after {
+	box-sizing: border-box;
 }
 
 * {
@@ -16,8 +9,16 @@
 	--sans-font: 'Montserrat';
 }
 
-*, *:before, *:after {
-	box-sizing: border-box;
+* {
+	--light-blue: #B2BDCF;
+	--blue: #396B97;
+	--dark-blue: #1E3760;
+	--bright-blue: #86D9ED;
+	--green: #44A748;
+	--red: #DA3848;
+	--white: #FFFFFF;
+	--almost-white: #F5F5F5;
+	--silver: #F0F0F0;
 }
 
 html, body {
@@ -32,7 +33,7 @@ html, body {
 
 img {
 	display: block;
-	max-width: 100%;
+	width: 100%;
 }
 
 a, a:hover {
@@ -48,4 +49,8 @@ h1, h2, h3, h4, h5 {
 
 .block {
 	display: block;
+}
+
+.content-container {
+	padding: 2em;
 }

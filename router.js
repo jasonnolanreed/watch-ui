@@ -1,21 +1,35 @@
 import Navigo from './node_modules/navigo/lib/navigo.es.js';
-import {LoadView} from './classes/load-view.js';
+import {LoadView} from './utilities/load-view.js';
+import {Auth} from './api-helpers/auth.js';
 
-import HomeView from './views/home/home-view.js';
-import WatchesView from './views/watches/watches-view.js';
-import NotFoundView from './views/not-found/not-found-view.js';
-
+export const router = new Navigo(null, true, `#`);
 const $view = document.getElementById(`view`);
-const router = new Navigo(null, true, `#`);
+const layouts = {
+	main: `/layouts/layout-main.html`
+};
 
 router
-.on((query) => {
-	LoadView.load($view, HomeView);
+.on(async (query) => {
+	if (await Auth.isLoggedIn()) {
+		router.navigate(`/watches`);
+	} else {
+		router.navigate(`/login`);
+	}
 })
-.on(`/watches`, (params, query) => {
-	LoadView.load($view, WatchesView);
+.on(`/register`, (params, query) => {
+	LoadView.layout($view, layouts.main, `./views/register/register-view.html`);
+})
+.on(`/login`, (params, query) => {
+	LoadView.layout($view, layouts.main, `./views/login/login-view.html`);
+})
+.on(`/watches`, async (params, query) => {
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `/views/watches/watches-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
 })
 .notFound((query) => {
-	LoadView.load($view, NotFoundView);
+	LoadView.layout($view, layouts.main, `./views/not-found/not-found-view.html`);
 })
 .resolve();
