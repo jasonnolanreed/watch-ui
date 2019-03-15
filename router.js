@@ -1,4 +1,4 @@
-import Navigo from './node_modules/navigo/lib/navigo.es.js';
+import Navigo from './vendor/navigo.js';
 import {LoadView} from './utilities/load-view.js';
 import {Auth} from './api-helpers/auth.js';
 

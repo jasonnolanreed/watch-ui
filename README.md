@@ -4,7 +4,6 @@
 * Is stored in GitHub (public) to make use of free static hosting
 * Consumes an API (watch-api repo on BitBucket), which is hosted on Heroku
 * Is built on bleeding edge web technologies and strives not to make heavy use of frameworks or libraries
-* Commits node_modules to repo since GHP can't npm install
 
 # About GitHub Pages
 
@@ -14,6 +13,7 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 # Initial project setup
 
 * Only `npm install` is needed
+* Postinstall moves necessary node_modules files into /vendor
 
 # Development flow
 
