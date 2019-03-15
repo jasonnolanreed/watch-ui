@@ -1,0 +1,45 @@
+form {
+	max-width: 400px;
+}
+
+form label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+form label:after {
+	content: ":"
+}
+
+.form-input {
+	margin-bottom: 20px;
+}
+
+.form-controls {
+	margin: 30px 0;
+}
+
+
+.form-controls > .button + .button {
+	margin-left: 0.35em;
+}
+
+input {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0.5em;
+	color: var(--blue);
+	font-size: 1em;
+	font-family: var(--sans-font);
+	border: none;
+	border-radius: 2px;
+	outline: none;
+	background-color: var(--almost-white);
+	box-shadow: 0 0 0 1px var(--silver);
+	-webkit-appearance: none;
+}
+
+input:focus {
+	box-shadow: 0 0 0 1px var(--blue);
+}

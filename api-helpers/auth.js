@@ -16,7 +16,7 @@ export class Auth {
 			return Promise.resolve(true);
 		} else {
 			return new Promise((resolve, reject) => {
-				fetch(`${apiHost}watch`, getOptionsForBasicGet())
+				fetch(`${apiHost}user`, getOptionsForBasicGet())
 				.then(response => {
 					if (response && response.ok) {
 						this.isLoggedInCache = true;
@@ -47,14 +47,31 @@ export class Auth {
 			})
 			.catch(_ => {
 				this.isLoggedInCache = false;
-				resolve(false)
+				resolve(false);
+			});
+		});
+	}
+
+	// Always resolves, with boolean payload
+	static logout() {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}logout`, getOptionsForBasicGet())
+			.then(response => {
+				this.isLoggedInCache = false;
+				if (response && response.ok) {
+					resolve(true);
+				}
+				resolve(false);
+			})
+			.catch(_ => {
+				this.isLoggedInCache = false;
+				resolve(false);
 			});
 		});
 	}
 
 	// Always resolves, with boolean payload
 	static register(data) {
-		// TODO -- set isLoggedInCache
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}user`, getOptionsForPost(data))
 			.then(response => {
@@ -67,7 +84,7 @@ export class Auth {
 			})
 			.catch(_ => {
 				this.isLoggedInCache = false;
-				resolve(false)
+				resolve(false);
 			});
 		});
 	}

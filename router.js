@@ -29,6 +29,21 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/watches/add`, async (params, query) => {
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `/views/watch-add/watch-add-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
+.on(`/watches/detail/:watchId`, async (params, query) => {
+	router.params = params;
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `/views/watch-detail/watch-detail-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `./views/not-found/not-found-view.html`);
 })

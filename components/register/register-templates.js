@@ -1,19 +1,21 @@
 const makeHtml = (component) => (
 `
 <h1>Register</h1>
-<form>
+<form novalidate>
 	<div class="form-input">
 		<label>Email</label>
-		<input type="text" name="email" autocomplete="email">
+		<input type="text" name="email">
 	</div>
 	<div class="form-input">
 		<label>Password</label>
-		<input type="password" name="password" autocomplete="new-password">
+		<input type="password" name="password">
 	</div>
 	<div class="form-controls">
-		<button type="submit">Register</button>
+		<button type="submit" class="button positive">Register</button>
 	</div>
 </form>
+<hr>
+<a href="/#/login" data-navigo>Already have an account? Login here.</a>
 `
 );
 

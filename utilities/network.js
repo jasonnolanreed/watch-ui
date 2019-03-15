@@ -21,3 +21,9 @@ export const getOptionsForPost = (data) => {
 		}
 	};
 };
+
+export const getOptionsForDelete = (data) => {
+	let options = getOptionsForPost(data);
+	options.method = `DELETE`;
+	return options;
+};

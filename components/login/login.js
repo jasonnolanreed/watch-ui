@@ -24,8 +24,8 @@ export class Login extends NamedSizeElement {
 	}
 
 	disconnectedCallback() {
-		super.disconnectedCallback();
 		if (this.$form) { this.$form.removeEventListener(`submit`, this.onLogin); }
+		super.disconnectedCallback();
 	}
 
 	render() {

@@ -24,8 +24,8 @@ export class Register extends NamedSizeElement {
 	}
 
 	disconnectedCallback() {
-		super.disconnectedCallback();
 		if (this.$form) { this.$form.removeEventListener(`submit`, this.onRegister); }
+		super.disconnectedCallback();
 	}
 
 	render() {

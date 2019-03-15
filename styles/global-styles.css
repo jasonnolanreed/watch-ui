@@ -1,3 +1,8 @@
+@import "buttons.css";
+@import "forms.css";
+@import "lists.css";
+@import "material-icons.css";
+
 *, *:before, *:after { box-sizing: border-box; }
 
 *, *:before, *:after {
@@ -16,7 +21,6 @@
 	--bright-blue: #86D9ED;
 	--green: #44A748;
 	--red: #DA3848;
-	--white: #FFFFFF;
 	--almost-white: #F5F5F5;
 	--silver: #F0F0F0;
 }
@@ -36,8 +40,14 @@ img {
 	width: 100%;
 }
 
-a, a:hover {
-	text-decoration: none;
+a, a:visited {
+	color: var(--blue);
+	text-decoration: underline;
+}
+
+a:hover {
+	color: var(--light-blue);
+	text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5 {
@@ -47,10 +57,29 @@ h1, h2, h3, h4, h5 {
 	letter-spacing: 0.5px;
 }
 
+p {
+	margin: 0 0 20px 0;
+}
+
+hr {
+	display: block;
+	height: 2px;
+	margin: 20px 0;
+	background-color: var(--light-blue);
+	border: none;
+}
+
 .block {
 	display: block;
 }
 
+.nowrap {
+	white-space: nowrap;
+}
+
 .content-container {
+	max-width: 800px;
+	margin: 0 auto;
 	padding: 2em;
 }
+
