@@ -5,7 +5,7 @@ import {Auth} from './api-helpers/auth.js';
 export const router = new Navigo(null, true, `#`);
 const $view = document.getElementById(`view`);
 const layouts = {
-	main: `/layouts/layout-main.html`
+	main: `layouts/layout-main.html`
 };
 
 router
