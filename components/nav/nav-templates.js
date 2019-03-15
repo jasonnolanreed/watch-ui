@@ -60,7 +60,7 @@ a:active {
 const getLinks = component => {
 	if (!component.loggedIn) { return ``; }
 	return `
-	<a class="watches" href="/#/watches"><i class="material-icons">access_time</i> Watches</a>
+	<a class="watches" href="#/watches"><i class="material-icons">access_time</i> Watches</a>
 	<a class="logout" href="javascript:void(0);">Logout <i class="material-icons">exit_to_app</i></a>
 	`;
 };

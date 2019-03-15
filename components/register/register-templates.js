@@ -15,7 +15,7 @@ const makeHtml = (component) => (
 	</div>
 </form>
 <hr>
-<a href="/#/login" data-navigo>Already have an account? Login here.</a>
+<a href="#/login" data-navigo>Already have an account? Login here.</a>
 `
 );
 

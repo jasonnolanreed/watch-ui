@@ -8,7 +8,7 @@ const makeHtml = (component) => (
 		</h2>
 	</div>
 	<div class="form-controls">
-		<a href="/#/watches/detail/${component.watch._id}" class="button negative">Cancel</a>
+		<a href="#/watches/detail/${component.watch._id}" class="button negative">Cancel</a>
 		<button type="button" class="button positive">Now!</button>
 	</div>
 </form>

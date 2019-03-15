@@ -3,7 +3,7 @@ const makeHtml = (component) => (
 <h1>Watches</h1>
 ${listWatches(component)}
 <div class="form-controls">
-	<a class="button" href="/#/watches/add">Add a Watch</a>
+	<a class="button" href="#/watches/add">Add a Watch</a>
 </div>
 `
 );
