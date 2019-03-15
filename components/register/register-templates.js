@@ -22,7 +22,7 @@ const makeHtml = (component) => (
 const makeCss = (component) => (
 `
 <style>
-@import "/styles/global-styles.css";
+@import "styles/global-styles.css";
 </style>
 `
 );

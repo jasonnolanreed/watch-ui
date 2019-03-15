@@ -1,7 +1,7 @@
 const makeCss = (component) => (
 `
 <style>
-@import "/styles/global-styles.css";
+@import "styles/global-styles.css";
 
 header {
 	padding: 2em;
@@ -19,7 +19,7 @@ img {
 const makeHtml = (component) => (
 `
 <header>
-	<img src="/assets/images/logo.png" alt="Good Watch Bad Watch Logo">
+	<img src="assets/images/logo.png" alt="Good Watch Bad Watch Logo">
 </header>
 `
 );
