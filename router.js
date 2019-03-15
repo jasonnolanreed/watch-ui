@@ -17,21 +17,21 @@ router
 	}
 })
 .on(`/register`, (params, query) => {
-	LoadView.layout($view, layouts.main, `./views/register/register-view.html`);
+	LoadView.layout($view, layouts.main, `views/register/register-view.html`);
 })
 .on(`/login`, (params, query) => {
-	LoadView.layout($view, layouts.main, `./views/login/login-view.html`);
+	LoadView.layout($view, layouts.main, `views/login/login-view.html`);
 })
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `/views/watches/watches-view.html`);
+		LoadView.layout($view, layouts.main, `views/watches/watches-view.html`);
 	} else {
 		router.navigate(`/login`);
 	}
 })
 .on(`/watches/add`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `/views/watch-add/watch-add-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-add/watch-add-view.html`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -39,7 +39,7 @@ router
 .on(`/watches/detail/:watchId`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `/views/watch-detail/watch-detail-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -47,12 +47,12 @@ router
 .on(`/watches/measure/:watchId`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `/views/watch-measure/watch-measure-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-measure/watch-measure-view.html`);
 	} else {
 		router.navigate(`/login`);
 	}
 })
 .notFound((query) => {
-	LoadView.layout($view, layouts.main, `./views/not-found/not-found-view.html`);
+	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
 })
 .resolve();
