@@ -44,6 +44,14 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/watches/measure/:watchId`, async (params, query) => {
+	router.params = params;
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `/views/watch-measure/watch-measure-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `./views/not-found/not-found-view.html`);
 })

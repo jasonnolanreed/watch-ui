@@ -61,3 +61,11 @@ export class Watch {
 		});
 	}
 }
+
+const idea = {
+	userId: `abc`,
+	watchId: `xyz`,
+	reference: 123,
+	measured: 123,
+	new: true
+};
