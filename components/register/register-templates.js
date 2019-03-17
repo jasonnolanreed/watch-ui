@@ -4,11 +4,11 @@ const makeHtml = (component) => (
 <form novalidate>
 	<div class="form-input">
 		<label>Email</label>
-		<input type="text" name="email">
+		<input type="text" name="email" autocomplete="email">
 	</div>
 	<div class="form-input">
 		<label>Password</label>
-		<input type="password" name="password">
+		<input type="password" name="password" autocomplete="new-password">
 	</div>
 	<div class="form-controls">
 		<button type="submit" class="button positive">Register</button>
