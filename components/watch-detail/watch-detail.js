@@ -58,6 +58,8 @@ export class WatchDetail extends NamedSizeElement {
 	}
 
 	async removeMeasure(measureId) {
+		const confirmDelete = confirm(`Do you really want to delete this measure?`);
+		if (!confirmDelete) { return; }
 		const didRemove = Measure.removeMeasure({measureId});
 		if (!didRemove) {
 			alert(`Failed to remove measure. Try again?`);
