@@ -3,6 +3,19 @@
 	padding: 0;
 }
 
+.list-headers {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: -1em;
+	padding: 0 1em;
+	color: var(--blue);
+	opacity: 0.5;
+}
+
+.list-headers > * {
+	margin-top: auto;
+}
+
 .list-item {
 	display: flex;
 	justify-content: space-between;

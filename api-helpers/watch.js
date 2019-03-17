@@ -6,12 +6,8 @@ export class Watch {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForBasicGet())
 			.then(response => response.json())
-			.then(response => {
-				resolve(response);
-			})
-			.catch(_ => {
-				resolve([]);
-			});
+			.then(response => resolve(response))
+			.catch(_ => resolve([]));
 		});
 	}
 
@@ -20,12 +16,8 @@ export class Watch {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch/${watchId}`, getOptionsForBasicGet())
 			.then(response => response.json())
-			.then(response => {
-				resolve(response);
-			})
-			.catch(_ => {
-				resolve([]);
-			});
+			.then(response => resolve(response))
+			.catch(_ => resolve([]));
 		});
 	}
 
@@ -39,9 +31,7 @@ export class Watch {
 				}
 				resolve(false);
 			})
-			.catch(_ => {
-				resolve(false);
-			});
+			.catch(_ => resolve(false));
 		});
 	}
 
@@ -55,17 +45,7 @@ export class Watch {
 				}
 				resolve(false);
 			})
-			.catch(_ => {
-				resolve(false);
-			});
+			.catch(_ => resolve(false));
 		});
 	}
 }
-
-const idea = {
-	userId: `abc`,
-	watchId: `xyz`,
-	reference: 123,
-	measured: 123,
-	new: true
-};

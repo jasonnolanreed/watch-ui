@@ -2,12 +2,12 @@ form {
 	max-width: 400px;
 }
 
-form label {
+form label:not(.wrap) {
 	display: block;
 	margin-bottom: 5px;
 }
 
-form label:after {
+form label:not(.wrap):after {
 	content: ":"
 }
 
@@ -42,4 +42,10 @@ input {
 
 input:focus {
 	box-shadow: 0 0 0 1px var(--blue);
+}
+
+input[type=checkbox] {
+	display: inline-block;
+	width: auto;
+	-webkit-appearance: checkbox;
 }

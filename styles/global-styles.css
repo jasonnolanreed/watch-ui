@@ -61,6 +61,12 @@ p {
 	margin: 0 0 20px 0;
 }
 
+em {
+	font-family: var(--serif-font);
+	font-weight: 800;
+	font-style: normal;
+}
+
 hr {
 	display: block;
 	height: 2px;
