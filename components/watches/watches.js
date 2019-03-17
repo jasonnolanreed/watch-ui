@@ -41,11 +41,13 @@ export class Watches extends NamedSizeElement {
 		if (!event || !event.path || !event.path.length) { return; }
 		for (let target of event.path) {
 			if (typeof target.matches !== `function`) { continue; }
-			if (target.matches(`.view-watch`)) {
+			if (target.matches(`.view-watch`) || target.matches(`.list-item`)) {
+				event.preventDefault();
 				this.onView(target.getAttribute(`watch-id`));
 				break;
 			}
 			if (target.matches(`.delete-watch`)) {
+				event.preventDefault();
 				this.onDelete(target.getAttribute(`watch-id`));
 				break;
 			}

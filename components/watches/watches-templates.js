@@ -12,6 +12,8 @@ const makeCss = (component) => (
 `
 <style>
 @import "styles/global-styles.css";
+
+.list-item { cursor: default; }
 </style>
 `
 );
@@ -23,7 +25,7 @@ const listWatches = component => {
 	let htmlString = `<ul class="list">`;
 	for (const watch of component.watches) {
 		htmlString += `
-		<li class="list-item">
+		<li class="list-item" watch-id="${watch._id}">
 			<div>${watch.name}</div>
 			<div class="nowrap">
 				<button class="view-watch button compact" watch-id="${watch._id}">
