@@ -19,6 +19,10 @@ const makeCss = (component) => (
 .slow { color: var(--red); }
 .fast { color: var(--green); }
 .fast:before { content: "+"; }
+.deviation { display: flex; align-items: flex-end; }
+.controls { display: flex; align-items: center; }
+.delete-measure { margin-left: 1em !important; font-size: 0.15em !important; }
+.delete-measure i { font-size: 8em; }
 </style>
 `
 );
@@ -57,7 +61,12 @@ const showMeasures = component => {
 	html += `
 	<div class="list-headers">
 		<div>Date, Time</div>
-		<div>Deviation</div>
+		<div class="deviation">
+			Deviation
+			<button class="invisible button negative compact delete-measure">
+				<i class="material-icons">delete</i>
+			</button>
+		</div>
 	</div>
 	`;
 	html += `<ul class="list">`;
@@ -65,7 +74,12 @@ const showMeasures = component => {
 		html += `
 		<li class="list-item">
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
-			<div class="${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">${component.getMomentDiff(measure)}s</div>
+			<div class="controls ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
+				${component.getMomentDiff(measure)}s
+				<button class="button negative compact delete-measure" measure-id="${measure._id}">
+					<i class="material-icons">delete</i>
+				</button>
+			</div>
 		</li>
 		`;
 	});

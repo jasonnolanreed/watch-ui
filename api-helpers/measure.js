@@ -24,4 +24,18 @@ export class Measure {
 			.catch(_ => resolve(false));
 		});
 	}
+
+	// Always resolves, with boolean payload
+	static removeMeasure(data) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}measure`, getOptionsForDelete(data))
+			.then(response => {
+				if (response && response.ok) {
+					resolve(true);
+				}
+				resolve(false);
+			})
+			.catch(_ => resolve(false));
+		});
+	}
 }

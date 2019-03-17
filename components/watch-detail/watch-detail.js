@@ -50,6 +50,19 @@ export class WatchDetail extends NamedSizeElement {
 				this.render();
 				break;
 			}
+			if (target.matches(`.delete-measure`)) {
+				this.removeMeasure(target.getAttribute(`measure-id`));
+				break;
+			}
+		}
+	}
+
+	async removeMeasure(measureId) {
+		const didRemove = Measure.removeMeasure({measureId});
+		if (!didRemove) {
+			alert(`Failed to remove measure. Try again?`);
+		} else {
+			this.getData();
 		}
 	}
 
