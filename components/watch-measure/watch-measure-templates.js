@@ -15,8 +15,7 @@ const makeHtml = (component) => (
 	</div>
 	<p><em>Step 3)</em> Check the box if this is the first measure after having set your watch</p>
 	<div class="form-input">
-		<label class="wrap"><input type="checkbox" name="firstOfSet"> First measure since setting watch</label>
-
+		<label class="wrap"><input type="checkbox" name="firstOfSet"> Start new session</label>
 	</div>
 	<p><em>Step 4)</em> Hit the "Now!" button at the exact moment your watch matches the above time</p>
 	<div class="form-controls">

@@ -11,6 +11,7 @@ export class WatchDetail extends NamedSizeElement {
 		super();
 
 		this.render = this.render.bind(this);
+		this.onClick = this.onClick.bind(this);
 
 		this.attachShadow({mode: `open`});
 		this.setNamedSizes([
@@ -21,14 +22,35 @@ export class WatchDetail extends NamedSizeElement {
 
 	connectedCallback() {
 		super.connectedCallback();
+		this.addEventListener(`click`, this.onClick);
 	}
 
 	disconnectedCallback() {
+		this.removeEventListener(`click`, this.onClick);
 		super.disconnectedCallback();
 	}
 
 	render() {
 		this.shadowRoot.innerHTML = makeTemplate(this);
+	}
+
+	onClick(event) {
+		if (!event || !event.path || !event.path.length) { return; }
+		for (let target of event.path) {
+			if (typeof target.matches !== `function`) { continue; }
+			if (target.matches(`.previous-session`)) {
+				this.currentSessionIndex = this.currentSessionIndex - 1;
+				this.currentSession = this.sessions[this.currentSessionIndex];
+				this.render();
+				break;
+			}
+			if (target.matches(`.next-session`)) {
+				this.currentSessionIndex = this.currentSessionIndex + 1;
+				this.currentSession = this.sessions[this.currentSessionIndex];
+				this.render();
+				break;
+			}
+		}
 	}
 
 	getData() {
@@ -39,30 +61,46 @@ export class WatchDetail extends NamedSizeElement {
 		.then(responses => {
 			this.watch = responses[0];
 			this.measures = responses[1];
+			this.sessions = this.parseSessionsFromMeasures();
+			this.currentSession = this.sessions[this.sessions.length - 1];
+			this.currentSessionIndex = this.sessions.length - 1;
 			this.render();
 		})
 		.catch(error => null);
 	}
 
-	getTimestamp(measure) {
-		return moment(+measure.moment).format("MMM Do, hh:mm a");
+	parseSessionsFromMeasures() {
+		const allMeasures = this.measures;
+		let isFirstMeasure = true;
+		let sessions = [];
+		let measuresOfSession = [];
+		for (const measure of allMeasures) {
+			if (isFirstMeasure) {
+				isFirstMeasure = false;
+				measure.firstOfSet = true;
+			}
+			if (!measure.firstOfSet) {
+				measuresOfSession.push(measure);
+			} else {
+				if (measuresOfSession.length) { sessions.push(measuresOfSession); }
+				measuresOfSession = [measure];
+			}
+		}
+		if (measuresOfSession.length) { sessions.push(measuresOfSession); }
+		return sessions;
 	}
 
 	getMomentDiff(measure) {
 		return Math.round(moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true) * 100) / 100;
 	}
 
-	getMomentDiffClass(measure) {
-		return (this.getMomentDiff(measure) < 0) ? `slow` : `fast`;
-	}
-
 	getSessionTotal() {
-		if (!this.measures || this.measures.length < 2) { return ``; }
+		if (!this.currentSession || this.currentSession.length < 2) { return ``; }
 		const sessionDistance =
-			moment(+this.measures[this.measures.length - 1].moment).diff(+this.measures[0].moment, `days`, true);
+			moment(+this.currentSession[this.currentSession.length - 1].moment).diff(+this.currentSession[0].moment, `days`, true);
 		if (sessionDistance < 0.5) { return ``;}
 		const sessionDrift =
-			this.getMomentDiff(this.measures[this.measures.length - 1]) - this.getMomentDiff(this.measures[0]);
+			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
 		return `Average: ${sessionDrift/sessionDistance} seconds/day`;
 	}
 }
