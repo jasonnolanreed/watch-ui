@@ -98,7 +98,6 @@ const showMeasures = component => {
 const showSessionTotal = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	const sessionTotalData = component.getSessionTotalData();
-	console.log(`sessionTotalData`, sessionTotalData);
 	if (sessionTotalData) {
 		let html = `<h2 class="total ${(_ => sessionTotalData.averageRate < 0 ? 'slow' : 'fast')()}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>`;
 		if (sessionTotalData.sessionDistance < 0.5) {

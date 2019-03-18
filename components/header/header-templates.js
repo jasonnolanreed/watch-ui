@@ -8,7 +8,9 @@ header {
 	background-color: var(--almost-white);
 }
 
-img {
+picture {
+	display: block;
+	width: 65%;
 	max-width: 450px;
 	margin: 0 auto;
 }
@@ -19,7 +21,15 @@ img {
 const makeHtml = (component) => (
 `
 <header>
-	<img src="assets/images/logo.png" alt="Good Watch Bad Watch Logo">
+	<picture>
+		<source srcset="assets/images/logo-small.png"
+				media="(max-width: 600px)" alt="God Watch Bad Watch Logo">
+		<source srcset="assets/images/logo-medium.png"
+				media="(max-width: 1000px)" alt="God Watch Bad Watch Logo">
+		<source srcset="assets/images/logo.png"
+				media="(min-width: 1000px)" alt="God Watch Bad Watch Logo">
+		<img src="assets/images/logo.png" alt="Good Watch Bad Watch Logo">
+	</picture>
 </header>
 `
 );
