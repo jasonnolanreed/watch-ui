@@ -30,9 +30,18 @@ html, body {
 	padding: 0;
 	height: 100%;
 	min-height: 100%;
+	font-size: 16px;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: normal;
 	color: var(--dark-blue);
+}
+
+@media (max-width: 1000px) {
+	body{ font-size: 14px; }
+}
+
+@media (max-width: 600px) {
+	body{ font-size: 12px; }
 }
 
 img {
@@ -93,4 +102,3 @@ hr {
 	margin: 0 auto;
 	padding: 2em;
 }
-
