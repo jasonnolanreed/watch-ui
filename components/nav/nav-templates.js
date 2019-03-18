@@ -28,7 +28,6 @@ nav {
 }
 
 a, a:visited {
-	margin-right: 1em;
 	font-weight: 700;
 	color: #fff;
 	text-decoration: none;

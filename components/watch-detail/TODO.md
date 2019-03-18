@@ -1,0 +1,11 @@
+- Fix WWW -- redirect to non-WWW
+- Email validation on registration
+- Change password/reset password
+- Fix auto fill on login/register
+- Google Analytics
+- On app load, get offset between device and atomic time (study time.is?)
+- Add measure details view where user can select position and add notes
+- Show indicators for measure details on larger screens
+- Show rate between measures with start/stop stakes
+- New watch setting for goal accuracy to start with "good/bad" theme
+- Animations for measure for more fun with user interactivity
