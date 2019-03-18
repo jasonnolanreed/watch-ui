@@ -1,11 +1,11 @@
-- Fix WWW -- redirect to non-WWW
 - Email validation on registration
 - Change password/reset password
+- Pass data into custom elements where possible -- router params?
 - Fix auto fill on login/register
 - Google Analytics
 - FAQ page
 - Footer with some info
-- On app load, get offset between device and atomic time (study time.is?)
+- On app load, get offset between device and atomic time (time.is?)
 - Add measure details view where user can select position and add notes
 - Show indicators for measure details on larger screens
 - Show rate between measures with start/stop stakes

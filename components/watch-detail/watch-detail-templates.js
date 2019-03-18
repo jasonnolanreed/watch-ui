@@ -23,6 +23,14 @@ const makeCss = (component) => (
 .deviation .delete-measure { margin-left: 0.5em; }
 .controls { display: flex; align-items: center; }
 .total.fast .number:before { content: "+"; }
+.short-session-alert {
+	display: flex;
+	justify-items: flex-start;
+	align-items: center;
+	margin-top: -10px;
+	color: var(--red);
+}
+.short-session-alert i { margin-right: 0.5em; }
 </style>
 `
 );
@@ -89,10 +97,21 @@ const showMeasures = component => {
 
 const showSessionTotal = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
-	if (component.getSessionTotal()) {
-		return `<h2 class="total ${component.getSessionTotalClass()}">Average: <span class="number">${component.getSessionTotal()}</span> seconds/day</h2>`;
+	const sessionTotalData = component.getSessionTotalData();
+	console.log(`sessionTotalData`, sessionTotalData);
+	if (sessionTotalData) {
+		let html = `<h2 class="total ${(_ => sessionTotalData.averageRate < 0 ? 'slow' : 'fast')()}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>`;
+		if (sessionTotalData.sessionDistance < 0.5) {
+			html += `
+			<p class="short-session-alert">
+				<i class="material-icons">warning</i>
+				<span>This average is prone to inaccuracy because of the short session. Sessions of 12+ hours provide better results.</span>
+			</p>
+			`;
+		}
+		return html;
 	} else {
-		return `<p>Average rate for session will be shown here when multiple measurements are taken over a 12+ hour period</p>`;
+		return `<p>Average rate will be shown here when multiple measurements are taken within this session.</p>`;
 	}
 };
 

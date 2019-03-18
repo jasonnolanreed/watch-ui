@@ -2,7 +2,6 @@ import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Measure} from '../../api-helpers/measure.js';
-import {getFormData} from '../../utilities/form.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
@@ -110,18 +109,16 @@ export class WatchDetail extends NamedSizeElement {
 		return roundToTwoDecimals(moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true));
 	}
 
-	getSessionTotal() {
+	getSessionTotalData() {
 		if (!this.currentSession || this.currentSession.length < 2) { return null; }
 		const sessionDistance =
 			moment(+this.currentSession[this.currentSession.length - 1].moment).diff(+this.currentSession[0].moment, `days`, true);
-		if (sessionDistance < 0.5) { return null;}
 		const sessionDrift =
 			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
-		return roundToTwoDecimals(sessionDrift/sessionDistance);
-	}
-
-	getSessionTotalClass() {
-		return (this.getSessionTotal() < 0) ? `slow` : `fast`;
+		return {
+			averageRate: roundToTwoDecimals(sessionDrift/sessionDistance),
+			sessionDistance
+		};
 	}
 }
 
