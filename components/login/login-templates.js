@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1>Login</h1>
+<h1><i class="material-icons inline">exit_to_app</i> Login</h1>
 <form novalidate>
 	<div class="form-input">
 		<label>Email</label>

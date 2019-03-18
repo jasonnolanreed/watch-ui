@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1>Measure ${component.watch.name}</h1>
+<h1><i class="material-icons inline">timeline</i> Measure ${component.watch.name}</h1>
 <form>
 	<p><em>Step 1)</em> Make sure this device has its time set accurately</p>
 	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>

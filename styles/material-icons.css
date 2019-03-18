@@ -21,3 +21,9 @@
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 }
+
+.material-icons.inline {
+	font-size: 1em;
+	position: relative;
+	top: 0.15em;
+}

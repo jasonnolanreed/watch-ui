@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1>${component.watch.name}</h1>
+<h1><i class="material-icons inline">timeline</i> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
 ${showMeasures(component)}
