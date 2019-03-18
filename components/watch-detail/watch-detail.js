@@ -3,6 +3,7 @@ import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Measure} from '../../api-helpers/measure.js';
 import {getFormData} from '../../utilities/form.js';
+import {roundToTwoDecimals} from '../../utilities/number.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
 
@@ -106,7 +107,7 @@ export class WatchDetail extends NamedSizeElement {
 	}
 
 	getMomentDiff(measure) {
-		return Math.round(moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true) * 100) / 100;
+		return roundToTwoDecimals(moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true));
 	}
 
 	getSessionTotal() {
@@ -116,7 +117,7 @@ export class WatchDetail extends NamedSizeElement {
 		if (sessionDistance < 0.5) { return ``;}
 		const sessionDrift =
 			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
-		return `Average: ${sessionDrift/sessionDistance} seconds/day`;
+		return `Average: ${roundToTwoDecimals(sessionDrift/sessionDistance)} seconds/day`;
 	}
 }
 
