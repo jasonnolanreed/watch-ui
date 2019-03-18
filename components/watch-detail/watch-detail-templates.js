@@ -16,8 +16,8 @@ const makeCss = (component) => (
 
 .session-selection { margin: -16px 0 30px 0; }
 .session-selection i { font-weight: 900; }
-.slow { color: var(--red); }
-.fast { color: var(--green); }
+.controls.slow { color: var(--red); }
+.controls.fast { color: var(--green); }
 .controls.fast:before { content: "+"; }
 .deviation { display: flex; align-items: flex-end; }
 .deviation .delete-measure { margin-left: 0.5em; }
