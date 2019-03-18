@@ -40,6 +40,10 @@
 	margin-left: 0.2em;
 }
 
+.list-item .button.ultra-compact {
+	margin-left: 0.5em;
+}
+
 .list-item:nth-of-type(even) {
 	background-color: var(--silver);
 }

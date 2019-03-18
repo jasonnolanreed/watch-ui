@@ -111,13 +111,17 @@ export class WatchDetail extends NamedSizeElement {
 	}
 
 	getSessionTotal() {
-		if (!this.currentSession || this.currentSession.length < 2) { return ``; }
+		if (!this.currentSession || this.currentSession.length < 2) { return null; }
 		const sessionDistance =
 			moment(+this.currentSession[this.currentSession.length - 1].moment).diff(+this.currentSession[0].moment, `days`, true);
-		if (sessionDistance < 0.5) { return ``;}
+		if (sessionDistance < 0.5) { return null;}
 		const sessionDrift =
 			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
-		return `Average: ${roundToTwoDecimals(sessionDrift/sessionDistance)} seconds/day`;
+		return roundToTwoDecimals(sessionDrift/sessionDistance);
+	}
+
+	getSessionTotalClass() {
+		return (this.getSessionTotal() < 0) ? `slow` : `fast`;
 	}
 }
 

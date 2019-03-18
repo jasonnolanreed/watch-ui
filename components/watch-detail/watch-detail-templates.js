@@ -18,11 +18,11 @@ const makeCss = (component) => (
 .session-selection i { font-weight: 900; }
 .slow { color: var(--red); }
 .fast { color: var(--green); }
-.fast:before { content: "+"; }
+.controls.fast:before { content: "+"; }
 .deviation { display: flex; align-items: flex-end; }
+.deviation .delete-measure { margin-left: 0.5em; }
 .controls { display: flex; align-items: center; }
-.delete-measure { margin-left: 1em !important; font-size: 0.15em !important; }
-.delete-measure i { font-size: 8em; }
+.total.fast .number:before { content: "+"; }
 </style>
 `
 );
@@ -63,7 +63,7 @@ const showMeasures = component => {
 		<div>Date, Time</div>
 		<div class="deviation">
 			Deviation
-			<button class="invisible button negative compact delete-measure">
+			<button class="invisible button negative ultra-compact delete-measure">
 				<i class="material-icons">delete</i>
 			</button>
 		</div>
@@ -76,7 +76,7 @@ const showMeasures = component => {
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
 			<div class="controls ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
-				<button class="button negative compact delete-measure" measure-id="${measure._id}">
+				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
 					<i class="material-icons">delete</i>
 				</button>
 			</div>
@@ -90,7 +90,7 @@ const showMeasures = component => {
 const showSessionTotal = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	if (component.getSessionTotal()) {
-		return `<h2 class="total">${component.getSessionTotal()}</h2>`;
+		return `<h2 class="total ${component.getSessionTotalClass()}">Average: <span class="number">${component.getSessionTotal()}</span> seconds/day</h2>`;
 	} else {
 		return `<p>Average rate for session will be shown here when multiple measurements are taken over a 12+ hour period</p>`;
 	}
