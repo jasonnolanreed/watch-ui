@@ -15,7 +15,6 @@ export class Nav extends NamedSizeElement {
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
-		this.render();
 	}
 
 	async connectedCallback() {

@@ -2,13 +2,22 @@ form {
 	max-width: 400px;
 }
 
-form label:not(.wrap) {
+form label:not(.check) {
 	display: block;
 	margin-bottom: 5px;
 }
 
-form label:not(.wrap):after {
+form label:not(.check):after {
 	content: ":"
+}
+
+label.check {
+	display: flex;
+	align-items: center;
+}
+
+label.check [type=checkbox] {
+	margin-right: 0.5em;
 }
 
 .form-input {
