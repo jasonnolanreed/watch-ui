@@ -49,7 +49,7 @@ a:active {
 	line-height: 0;
 }
 
-.logout {
+.login, .logout {
 	margin-left: auto;
 }
 </style>
@@ -57,7 +57,9 @@ a:active {
 );
 
 const getLinks = component => {
-	if (!component.loggedIn) { return ``; }
+	if (!component.loggedIn) {
+		return `<a class="login" href="#/login">Login <i class="material-icons">exit_to_app</i></a>`;
+	}
 	return `
 	<a class="watches" href="#/watches"><i class="material-icons">watch</i> Watches</a>
 	<a class="logout" href="javascript:void(0);">Logout <i class="material-icons">exit_to_app</i></a>
