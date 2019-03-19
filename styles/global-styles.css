@@ -26,10 +26,10 @@
 }
 
 html, body {
+	position: relative;
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	min-height: 100%;
 	font-size: 16px;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: normal;
@@ -97,8 +97,29 @@ hr {
 	pointer-events: none;
 }
 
+#view {
+	position: relative;
+	height: 100%;
+}
+
+.all-but-footer {
+	min-height: calc(100vh - 54px);
+}
+
 .content-container {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 2em;
+}
+
+footer {
+	background-color: var(--dark-blue);
+}
+
+footer .content {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 1em 2em;
+	text-align: right;
+	color: var(--silver);
 }
