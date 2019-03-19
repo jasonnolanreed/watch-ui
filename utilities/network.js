@@ -22,6 +22,12 @@ export const getOptionsForPost = (data) => {
 	};
 };
 
+export const getOptionsForPut = (data) => {
+	let options = getOptionsForPost(data);
+	options.method = `PUT`;
+	return options;
+};
+
 export const getOptionsForDelete = (data) => {
 	let options = getOptionsForPost(data);
 	options.method = `DELETE`;

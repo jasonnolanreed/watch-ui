@@ -39,18 +39,26 @@ export class WatchDetail extends NamedSizeElement {
 		for (let target of event.path) {
 			if (typeof target.matches !== `function`) { continue; }
 			if (target.matches(`.previous-session`)) {
+				event.preventDefault();
 				this.currentSessionIndex = this.currentSessionIndex - 1;
 				this.currentSession = this.sessions[this.currentSessionIndex];
 				this.render();
 				break;
 			}
 			if (target.matches(`.next-session`)) {
+				event.preventDefault();
 				this.currentSessionIndex = this.currentSessionIndex + 1;
 				this.currentSession = this.sessions[this.currentSessionIndex];
 				this.render();
 				break;
 			}
+			if (target.matches(`.view-measure`)) {
+				event.preventDefault();
+				router.navigate(`/measure/${target.getAttribute(`measure-id`)}`);
+				break;
+			}
 			if (target.matches(`.delete-measure`)) {
+				event.preventDefault();
 				this.removeMeasure(target.getAttribute(`measure-id`));
 				break;
 			}

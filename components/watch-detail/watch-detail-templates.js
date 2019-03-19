@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">timeline</i> ${component.watch.name}</h1>
+<h1><i class="material-icons inline">insert_chart</i> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
 ${showMeasures(component)}
@@ -20,7 +20,7 @@ const makeCss = (component) => (
 .controls.fast { color: var(--green); }
 .controls.fast:before { content: "+"; }
 .deviation { display: flex; align-items: flex-end; }
-.deviation .delete-measure { margin-left: 0.5em; }
+.deviation .button { margin-left: 0.5em; }
 .controls { display: flex; align-items: center; }
 .total.fast .number:before { content: "+"; }
 .short-session-alert {
@@ -71,9 +71,8 @@ const showMeasures = component => {
 		<div>Date, Time</div>
 		<div class="deviation">
 			Deviation
-			<button class="invisible button negative ultra-compact delete-measure">
-				<i class="material-icons">delete</i>
-			</button>
+			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
+			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 		</div>
 	</div>
 	`;
@@ -84,6 +83,9 @@ const showMeasures = component => {
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
 			<div class="controls ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
+				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `positive` : ``)()}" measure-id="${measure._id}">
+					<i class="material-icons">attachment</i>
+				</button>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
 					<i class="material-icons">delete</i>
 				</button>

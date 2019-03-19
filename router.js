@@ -52,6 +52,14 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/measure/:measureId`, async (params, query) => {
+	router.params = params;
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
 })

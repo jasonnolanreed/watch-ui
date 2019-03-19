@@ -33,7 +33,7 @@ label.check [type=checkbox] {
 	margin-left: 0.35em;
 }
 
-input {
+input, textarea {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -57,4 +57,9 @@ input[type=checkbox] {
 	display: inline-block;
 	width: auto;
 	-webkit-appearance: checkbox;
+}
+
+textarea {
+	height: 8em;
+	resize: vertical;
 }

@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">assignment_ind</i> Register</h1>
+<h1><i class="material-icons inline">account_box</i> Register</h1>
 <form novalidate>
 	<div class="form-input">
 		<label>Email</label>

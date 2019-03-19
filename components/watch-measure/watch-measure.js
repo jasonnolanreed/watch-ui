@@ -41,16 +41,19 @@ export class WatchMeasure extends NamedSizeElement {
 		for (let target of event.path) {
 			if (typeof target.matches !== `function`) { continue; }
 			if (target.matches(`.increase-minute`)) {
+				event.preventDefault();
 				this.moment = this.moment.add(1, `minute`);
 				this.render();
 				break;
 			}
 			if (target.matches(`.decrease-minute`)) {
+				event.preventDefault();
 				this.moment = this.moment.subtract(1, `minute`);
 				this.render();
 				break;
 			}
 			if (target.matches(`.now`)) {
+				event.preventDefault();
 				this.addMeasure();
 				break;
 			}

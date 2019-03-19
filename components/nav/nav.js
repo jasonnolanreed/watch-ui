@@ -38,6 +38,7 @@ export class Nav extends NamedSizeElement {
 		for (let target of event.path) {
 			if (typeof target.matches !== `function`) { continue; }
 			if (target.matches(`.logout`)) {
+				event.preventDefault();
 				const didLogOut = await Auth.logout();
 				router.navigate(`/`);
 				break;

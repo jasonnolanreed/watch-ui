@@ -29,7 +29,7 @@ const listWatches = component => {
 			<div>${watch.name}</div>
 			<div class="nowrap">
 				<button class="view-watch button compact" watch-id="${watch._id}">
-					<i class="material-icons">timeline</i>
+					<i class="material-icons">insert_chart</i>
 				</button>
 				<button class="delete-watch button negative compact" watch-id="${watch._id}">
 					<i class="material-icons">delete</i>
