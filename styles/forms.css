@@ -12,11 +12,14 @@ form label:not(.check):after {
 }
 
 label.check {
+	width: 1px;
 	display: flex;
 	align-items: center;
+	white-space: nowrap;
 }
 
-label.check [type=checkbox] {
+label.check [type=checkbox],
+label.check [type=radio] {
 	margin-right: 0.5em;
 }
 
@@ -46,6 +49,9 @@ input, textarea {
 	outline: none;
 	background-color: var(--almost-white);
 	box-shadow: 0 0 0 1px var(--silver);
+}
+
+input:not([type=radio]):not([type=checkbox]) {
 	-webkit-appearance: none;
 }
 
@@ -53,10 +59,11 @@ input:focus {
 	box-shadow: 0 0 0 1px var(--blue);
 }
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
 	display: inline-block;
 	width: auto;
-	-webkit-appearance: checkbox;
+	background-color: transparent;
+	box-shadow: none;
 }
 
 textarea {

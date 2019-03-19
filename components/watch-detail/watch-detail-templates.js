@@ -1,3 +1,5 @@
+import {getIconNameForPosition} from '../../utilities/position.js';
+
 const makeHtml = (component) => (
 `
 <h1><i class="material-icons inline">insert_chart</i> ${component.watch.name}</h1>
@@ -16,12 +18,12 @@ const makeCss = (component) => (
 
 .session-selection { margin: -16px 0 30px 0; }
 .session-selection i { font-weight: 900; }
+.controls { display: flex; align-items: center; }
 .controls.slow { color: var(--red); }
 .controls.fast { color: var(--green); }
 .controls.fast:before { content: "+"; }
 .deviation { display: flex; align-items: flex-end; }
 .deviation .button { margin-left: 0.5em; }
-.controls { display: flex; align-items: center; }
 .total.fast .number:before { content: "+"; }
 .short-session-alert {
 	display: flex;
@@ -31,6 +33,12 @@ const makeCss = (component) => (
 	color: var(--red);
 }
 .short-session-alert i { margin-right: 0.5em; }
+.position {
+	font-size: 2em;
+	margin: -1em -0.1em -1em 0.25em;
+	color: #000;
+	opacity: 0.15;
+}
 </style>
 `
 );
@@ -71,6 +79,7 @@ const showMeasures = component => {
 		<div>Date, Time</div>
 		<div class="deviation">
 			Deviation
+			<i class="invisible material-icons position">help</i>
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 		</div>
@@ -81,8 +90,9 @@ const showMeasures = component => {
 		html += `
 		<li class="list-item" measure-id="${measure._id}">
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
-			<div class="controls ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
+			<div class="controls nowrap ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
+				<i class="material-icons position">${getIconNameForPosition(measure.position)}</i>
 				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `positive` : ``)()}" measure-id="${measure._id}">
 					<i class="material-icons">attachment</i>
 				</button>
