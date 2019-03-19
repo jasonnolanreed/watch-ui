@@ -79,7 +79,7 @@ const showMeasures = component => {
 	html += `<ul class="list">`;
 	component.currentSession.forEach(measure => {
 		html += `
-		<li class="list-item">
+		<li class="list-item" measure-id="${measure._id}">
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
 			<div class="controls ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s

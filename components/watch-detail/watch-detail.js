@@ -52,7 +52,7 @@ export class WatchDetail extends NamedSizeElement {
 				this.render();
 				break;
 			}
-			if (target.matches(`.view-measure`)) {
+			if (target.matches(`.view-measure`) || target.matches(`.list-item`)) {
 				event.preventDefault();
 				router.navigate(`/measure/${target.getAttribute(`measure-id`)}`);
 				break;
