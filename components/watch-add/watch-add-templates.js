@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1>Add a Watch</h1>
+<h1><i class="material-icons inline">watch</i> Add a Watch</h1>
 <form>
 	<div class="form-controls">
 		<div class="form-input">

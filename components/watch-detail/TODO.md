@@ -2,12 +2,11 @@
 - Change password/reset password
 - Pass data into custom elements where possible -- router params?
 - Fix auto fill on login/register
-- Google Analytics
 - FAQ page
 - Footer with some info
 - On app load, get offset between device and atomic time (time.is?)
 - Add measure details view where user can select position and add notes
 - Show indicators for measure details on larger screens
-- Show rate between measures with start/stop stakes
+- Show rate between measures with start/stop stakes?
 - New watch setting for goal accuracy to start with "good/bad" theme
 - Animations for measure for more fun with user interactivity
