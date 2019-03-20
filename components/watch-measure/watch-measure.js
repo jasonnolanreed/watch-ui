@@ -2,7 +2,6 @@ import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Measure} from '../../api-helpers/measure.js';
-import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
 
@@ -15,7 +14,8 @@ export class WatchMeasure extends NamedSizeElement {
 
 		this.attachShadow({mode: `open`});
 		this.setNamedSizes([
-			{name: `huge`, width: 1}
+			{name: `small`, width: 1},
+			{name: `large`, width: 600}
 		]);
 		this.getWatch();
 	}

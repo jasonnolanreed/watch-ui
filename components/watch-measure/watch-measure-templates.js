@@ -49,6 +49,23 @@ const makeCss = (component) => (
 .decrease-minute i, .increase-minute i {
 	font-weight: 900;
 }
+
+.now {
+	min-width: 10em;
+}
+
+:host([namedsize=small]) .form-controls {
+	display: flex;
+}
+
+:host([namedsize=small]) .form-controls .button {
+	font-size: 1.2em;
+	padding: 0.8em 1em;
+}
+
+:host([namedsize=small]) .now {
+	width: 100%;
+}
 </style>
 `
 );
