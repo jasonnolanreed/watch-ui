@@ -34,6 +34,10 @@ const makeHtml = (component) => (
 			<input type="radio" name="position" value="crowndown" ${(_ => component.measure.position === `crowndown` ? `checked` : ``)()}>
 			<i class="material-icons">${getIconNameForPosition(`crowndown`)}</i> Crown Down
 		</label>
+		<label class="check">
+			<input type="radio" name="position" value="winder" ${(_ => component.measure.position === `winder` ? `checked` : ``)()}>
+			<i class="material-icons">${getIconNameForPosition(`winder`)}</i> Winder
+		</label>
 	</div>
 	<div class="form-controls">
 		<a href="#/watches/detail/${component.measure.watchId}" class="button negative">Cancel</a>
