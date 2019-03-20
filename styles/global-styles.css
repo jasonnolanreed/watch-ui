@@ -110,7 +110,7 @@ hr {
 .content-container {
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 2em;
+	padding: 2em 2em 4em 2em;
 }
 
 footer {
@@ -121,6 +121,6 @@ footer .content {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 1em 2em;
-	text-align: right;
+	text-align: left;
 	color: var(--silver);
 }

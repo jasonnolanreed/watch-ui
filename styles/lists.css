@@ -28,6 +28,16 @@
 	box-shadow: 0 0 1px var(--light-blue);
 }
 
+.list-item:first-of-type {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+.list-item:last-of-type {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
 .list-item > * {
 	width: auto;
 }

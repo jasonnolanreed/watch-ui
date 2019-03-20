@@ -33,12 +33,6 @@ const makeCss = (component) => (
 	color: var(--red);
 }
 .short-session-alert i { margin-right: 0.5em; }
-.position {
-	font-size: 1.75em;
-	margin: -1em -0.15em -1em 0.2em;
-	color: #000;
-	opacity: 0.12;
-}
 </style>
 `
 );
@@ -79,7 +73,6 @@ const showMeasures = component => {
 		<div>Date, Time</div>
 		<div class="deviation">
 			Deviation
-			<i class="invisible material-icons position">help</i>
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 		</div>
@@ -92,9 +85,8 @@ const showMeasures = component => {
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
 			<div class="controls nowrap ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
-				<i class="material-icons position">${getIconNameForPosition(measure.position)}</i>
 				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `positive` : ``)()}" measure-id="${measure._id}">
-					<i class="material-icons">attachment</i>
+					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
 				</button>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
 					<i class="material-icons">delete</i>

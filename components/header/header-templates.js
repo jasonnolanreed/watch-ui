@@ -4,7 +4,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 header {
-	padding: 2em;
+	padding: 2em 2em 1em 2em;
 	background-color: var(--almost-white);
 }
 
