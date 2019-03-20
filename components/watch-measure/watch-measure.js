@@ -1,7 +1,6 @@
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
-import {Measure} from '../../api-helpers/measure.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
 
@@ -70,18 +69,12 @@ export class WatchMeasure extends NamedSizeElement {
 		this.render();
 	}
 
-	async addMeasure() {
-		const didAdd = await Measure.addMeasure({
-			watchId: this.watch._id,
-			targetMoment: this.moment.format(`x`),
-			moment: moment().format(`x`),
-			firstOfSet: this.shadowRoot.querySelector(`[name=firstOfSet]`).checked
-		});
-		if (!didAdd) {
-			alert(`Failed to add measure. Try again?`);
-		} else {
-			router.navigate(`/watches/detail/${this.watch._id}`);
-		}
+	addMeasure() {
+		const targetMoment = moment().format(`x`);
+		const measuredMoment = this.moment.format(`x`);
+		const firstOfSet = this.shadowRoot.querySelector(`[name=firstOfSet]`).checked;
+		const url = `/measure/now/${this.watch._id}/${targetMoment}/${measuredMoment}/${firstOfSet}`;
+		router.navigate(url);
 	}
 }
 

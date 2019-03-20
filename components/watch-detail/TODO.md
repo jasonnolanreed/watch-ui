@@ -1,3 +1,4 @@
+- Rename "firstOfSet" to "firstOfSession" across projects
 - Email validation on registration
 - Change password/reset password
 - Pass data into custom elements where possible -- router params?

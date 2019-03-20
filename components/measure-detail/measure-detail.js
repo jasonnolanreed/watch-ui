@@ -20,7 +20,20 @@ export class MeasureDetail extends NamedSizeElement {
 
 	async connectedCallback() {
 		super.connectedCallback();
-		this.measure = await Measure.getMeasure(router.params[`measureId`]);;
+		if (router.params.measureId) {
+			this.mode = `view`;
+			this.measure = await Measure.getMeasure(router.params[`measureId`]);;
+		} else {
+			this.mode = `add`;
+			this.measure = {
+				watchId: router.params[`watchId`],
+				moment: router.params[`moment`],
+				targetMoment: router.params[`targetMoment`],
+				firstOfSet: router.params[`firstOfSet`] === `true`,
+				note: ``,
+				position: `unspecified`
+			};
+		}
 		this.render();
 	}
 
@@ -38,11 +51,20 @@ export class MeasureDetail extends NamedSizeElement {
 
 	async onSave(event) {
 		event.preventDefault();
-		const didSave = await Measure.updateMeasure(this.measure._id, getFormData(this.$form));
-		if (didSave) {
-			router.navigate(`/watches/detail/${this.measure.watchId}`);
-		} else {
-			alert(`Save updates failed. Try again?`);
+		if (this.mode === `view`) {
+			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(this.$form));
+			if (didSave) {
+				router.navigate(`/watches/detail/${this.measure.watchId}`);
+			} else {
+				alert(`Failed to save measure. Try again?`);
+			}
+		} else if (this.mode === `add`) {
+			const didAdd = await Measure.addMeasure(getFormData(this.$form));
+			if (didAdd) {
+				router.navigate(`/watches/detail/${this.measure.watchId}`);
+			} else {
+				alert(`Failed to save measure. Try again?`);
+			}
 		}
 	}
 }

@@ -5,6 +5,13 @@ const makeHtml = (component) => (
 <h1><i class="material-icons inline">attachment</i> Measure Details</h1>
 <form>
 	<div class="form-input">
+		<label class="check">
+			<input type="checkbox" name="firstOfSet" ${(_ => component.measure.firstOfSet ? `checked` : ``)()}>
+			First measure of session
+		</label>
+	</div>
+	<hr>
+	<div class="form-input">
 		<label for="note">Note</label>
 		<textarea name="note">${component.measure.note}</textarea>
 	</div>
@@ -39,13 +46,23 @@ const makeHtml = (component) => (
 			<i class="material-icons">${getIconNameForPosition(`winder`)}</i> Winder
 		</label>
 	</div>
+	${makeHiddenFields(component)}
 	<div class="form-controls">
 		<a href="#/watches/detail/${component.measure.watchId}" class="button negative">Cancel</a>
-		<button type="submit" class="button positive">Save Updates</button>
+		<button type="submit" class="button positive">Save Measure</button>
 	</div>
 </form>
 `
 );
+
+const makeHiddenFields = component => {
+	if (component.mode !== `add`) { return ``; }
+	return `
+	<input type="hidden" name="watchId" value="${component.measure.watchId}">
+	<input type="hidden" name="targetMoment" value="${component.measure.targetMoment}">
+	<input type="hidden" name="moment" value="${component.measure.moment}">
+	`;
+}
 
 const makeCss = (component) => (
 `
