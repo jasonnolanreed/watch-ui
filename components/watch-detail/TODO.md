@@ -2,6 +2,7 @@
 - Change password/reset password
 - Pass data into custom elements where possible -- router params?
 - Fix auto fill on login/register
+- Think about mousedown/touchstart for better NOW recording?
 - FAQ page
 - Footer with some info
 - On app load, get offset between device and atomic time (time.is?)

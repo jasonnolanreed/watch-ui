@@ -3,7 +3,11 @@ const makeHtml = (component) => (
 <h1><i class="material-icons inline">insert_chart</i> Measure ${component.watch.name}</h1>
 <form>
 	<p><em>Step 1)</em> Make sure this device has its time set accurately</p>
-	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
+	<p><em>Step 2)</em> Check the box if this is the first measure after having set your watch</p>
+	<div class="form-input">
+		<label class="check"><input type="checkbox" name="firstOfSet"> Start new session</label>
+	</div>
+	<p><em>Step 3)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">
 		<h1 class="target-time">${component.targetTimeString}</h1>
 		<button type="button" class="button compact decrease-minute">
@@ -12,10 +16,6 @@ const makeHtml = (component) => (
 		<button type="button" class="button compact increase-minute">
 			<i class="material-icons">arrow_forward</i>
 		</button>
-	</div>
-	<p><em>Step 3)</em> Check the box if this is the first measure after having set your watch</p>
-	<div class="form-input">
-		<label class="check"><input type="checkbox" name="firstOfSet"> Start new session</label>
 	</div>
 	<p><em>Step 4)</em> Hit the "Now!" button at the exact moment your watch matches the above time</p>
 	<div class="form-controls">
