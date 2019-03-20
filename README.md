@@ -12,7 +12,8 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 
 # Initial project setup
 
-* Only `npm install` is needed
+* `npm install -g concurrently`
+* `npm install`
 * Postinstall moves necessary node_modules files into /vendor
 
 # Development flow
@@ -22,6 +23,9 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 ```
 # Simple server
 python -m SimpleHTTPServer
+
+## Or, to also run api server
+npm run start:all
 ```
 
 # Deployment to GitHub Pages

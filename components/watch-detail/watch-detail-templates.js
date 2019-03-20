@@ -34,10 +34,10 @@ const makeCss = (component) => (
 }
 .short-session-alert i { margin-right: 0.5em; }
 .position {
-	font-size: 2em;
-	margin: -1em -0.1em -1em 0.25em;
+	font-size: 1.75em;
+	margin: -1em -0.15em -1em 0.2em;
 	color: #000;
-	opacity: 0.15;
+	opacity: 0.12;
 }
 </style>
 `

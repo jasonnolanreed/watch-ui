@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start:all": "concurrently 'python -m SimpleHTTPServer' 'cd ../watch-api && npm run start'",
     "postinstall": "sh ./scripts/vendor.sh"
   },
   "keywords": [],

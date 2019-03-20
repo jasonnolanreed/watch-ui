@@ -5,10 +5,11 @@ form {
 form label:not(.check) {
 	display: block;
 	margin-bottom: 5px;
+	font-size: 1.2em;
 }
 
 form label:not(.check):after {
-	content: ":"
+	content: ":";
 }
 
 label.check {
