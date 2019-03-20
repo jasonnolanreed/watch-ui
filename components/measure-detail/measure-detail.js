@@ -61,7 +61,10 @@ export class MeasureDetail extends NamedSizeElement {
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(this.$form));
 			if (didAdd) {
-				router.navigate(`/watches/detail/${this.measure.watchId}`);
+				// Prevent user from hitting back and getting this view back
+				// Instead they will go back to /watches/measure
+				history.replaceState(null, null, `#/watches/detail/${this.measure.watchId}`);
+				router.resolve();
 			} else {
 				alert(`Failed to save measure. Try again?`);
 			}
