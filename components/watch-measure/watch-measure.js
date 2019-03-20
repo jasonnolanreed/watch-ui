@@ -70,8 +70,8 @@ export class WatchMeasure extends NamedSizeElement {
 	}
 
 	addMeasure() {
-		const targetMoment = moment().format(`x`);
-		const measuredMoment = this.moment.format(`x`);
+		const targetMoment = this.moment.format(`x`);
+		const measuredMoment = moment().format(`x`);
 		const firstOfSet = this.shadowRoot.querySelector(`[name=firstOfSet]`).checked;
 		const url = `/measure/now/${this.watch._id}/${targetMoment}/${measuredMoment}/${firstOfSet}`;
 		router.navigate(url);
