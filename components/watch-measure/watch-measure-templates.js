@@ -5,7 +5,7 @@ const makeHtml = (component) => (
 	<p><em>Step 1)</em> Make sure this device has its time set accurately</p>
 	<p><em>Step 2)</em> Check the box if this is the first measure after having set your watch</p>
 	<div class="form-input">
-		<label class="check"><input type="checkbox" name="firstOfSet"> Start new session</label>
+		<label class="check"><input type="checkbox" name="firstOfSet" ${(_ => component.isNewSession ? `checked` : ``)()}> Start new session</label>
 	</div>
 	<p><em>Step 3)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">

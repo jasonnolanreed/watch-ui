@@ -23,6 +23,7 @@ export class WatchMeasure extends NamedSizeElement {
 	connectedCallback() {
 		super.connectedCallback();
 		this.moment = moment().second(0).add(1, `minute`);
+		this.isNewSession = false;
 		this.addEventListener(`click`, this.onClick);
 	}
 
@@ -32,6 +33,10 @@ export class WatchMeasure extends NamedSizeElement {
 	}
 
 	render() {
+		const $firstOfSet = this.shadowRoot.querySelector(`input[name=firstOfSet]`);
+		if ($firstOfSet) {
+			this.isNewSession = !!$firstOfSet.checked;
+		}
 		this.targetTimeString = this.moment.format(`hh:mm a`);
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
