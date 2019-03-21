@@ -4,7 +4,6 @@
 - Pass data into custom elements where possible -- router params?
 - Fix auto fill on login/register
 - FAQ page
-- On app load, get offset between device and atomic time (time.is?)
 - User option for using atomic time or not
 - Show rate between measures with start/stop stakes?
 - New watch setting for goal accuracy to start with "good/bad" theme

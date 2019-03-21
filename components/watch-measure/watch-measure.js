@@ -3,6 +3,7 @@ import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
+import {Atomic} from '../../atomic.js';
 
 export class WatchMeasure extends NamedSizeElement {
 	constructor() {
@@ -66,14 +67,19 @@ export class WatchMeasure extends NamedSizeElement {
 
 	async getWatch() {
 		this.watch = await Watch.getWatch(router.params[`watchId`]);
+		this.atomicOffset = await Atomic.getAtomicOffset();
 		this.render();
 	}
 
 	addMeasure() {
 		const targetMoment = this.moment.format(`x`);
-		const measuredMoment = moment().format(`x`);
+		const measuredMoment = moment();
+		const adjustedMeasuredMoment =
+			(this.atomicOffset > 0) ?
+			measuredMoment.subtract(Math.abs(this.atomicOffset), `seconds`).format(`x`) :
+			measuredMoment.add(Math.abs(this.atomicOffset), `seconds`).format(`x`);
 		const firstOfSet = this.shadowRoot.querySelector(`[name=firstOfSet]`).checked;
-		const url = `/measure/now/${this.watch._id}/${targetMoment}/${measuredMoment}/${firstOfSet}`;
+		const url = `/measure/now/${this.watch._id}/${targetMoment}/${adjustedMeasuredMoment}/${firstOfSet}`;
 		router.navigate(url);
 	}
 }
