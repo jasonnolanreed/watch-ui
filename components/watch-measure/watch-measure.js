@@ -1,9 +1,9 @@
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
+import {Atomic} from '../../atomic.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
-import {Atomic} from '../../atomic.js';
 
 export class WatchMeasure extends NamedSizeElement {
 	constructor() {
@@ -17,7 +17,7 @@ export class WatchMeasure extends NamedSizeElement {
 			{name: `small`, width: 1},
 			{name: `large`, width: 600}
 		]);
-		this.getWatch();
+		this.getData();
 	}
 
 	connectedCallback() {
@@ -65,7 +65,7 @@ export class WatchMeasure extends NamedSizeElement {
 		}
 	}
 
-	async getWatch() {
+	async getData() {
 		this.watch = await Watch.getWatch(router.params[`watchId`]);
 		this.atomicOffset = await Atomic.getAtomicOffset();
 		this.render();
