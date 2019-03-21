@@ -1,5 +1,5 @@
 export const apiHost =
-	(location.hostname === `localhost`) ? `http://localhost:8001/` :
+	(location.hostname === `gwbwdevelop.com`) ? `http://localhost:8001/` :
 	(location.hostname === `jnr-gwbw-api-test.herokuapp.com`) ? `https://jnr-gwbw-api-test.herokuapp.com/` :
 	`https://jnr-gwbw-api-prod.herokuapp.com/`;
 
