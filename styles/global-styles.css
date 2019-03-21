@@ -77,6 +77,11 @@ em {
 	font-style: normal;
 }
 
+small {
+	font-size: 0.8em;
+	color: var(--light-blue);
+}
+
 hr {
 	display: block;
 	height: 2px;
@@ -91,6 +96,10 @@ hr {
 
 .nowrap {
 	white-space: nowrap;
+}
+
+.wrap {
+	white-space: normal;
 }
 
 .invisible {

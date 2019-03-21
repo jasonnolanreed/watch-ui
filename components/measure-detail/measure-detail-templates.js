@@ -7,7 +7,7 @@ const makeHtml = (component) => (
 	<div class="form-input">
 		<label class="check">
 			<input type="checkbox" name="firstOfSet" ${(_ => component.measure.firstOfSet ? `checked` : ``)()}>
-			First measure of session
+			<div>First measure of session<br><small>(first since having set time on watch)</small></div>
 		</label>
 	</div>
 	<hr>
