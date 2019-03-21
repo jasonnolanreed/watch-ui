@@ -1,4 +1,5 @@
 import {apiHost, getOptionsForPost, getOptionsForBasicGet} from '../utilities/network.js';
+import {Atomic} from '../utilities/atomic.js';
 
 export class Auth {
 	constructor() {
@@ -54,6 +55,7 @@ export class Auth {
 
 	// Always resolves, with boolean payload
 	static logout() {
+		Atomic.clearAtomicOffset();
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
 			.then(response => {

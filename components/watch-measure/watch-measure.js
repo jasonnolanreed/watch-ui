@@ -1,7 +1,7 @@
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
-import {Atomic} from '../../atomic.js';
+import {Atomic} from '../../utilities/atomic.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
 

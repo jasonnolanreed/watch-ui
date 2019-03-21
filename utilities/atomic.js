@@ -4,6 +4,11 @@ export class Atomic {
 	}
 
 	// Always resolves, with payload as number (positive when device is fast), or null
+	static clearAtomicOffset() {
+		sessionStorage.removeItem(`atomic-offset`);
+	}
+
+	// Always resolves, with payload as number (positive when device is fast), or null
 	static getAtomicOffset() {
 		if (this.atomicOffsetPromise) {
 			return this.atomicOffsetPromise;
