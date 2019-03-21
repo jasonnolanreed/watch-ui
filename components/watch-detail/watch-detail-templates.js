@@ -85,7 +85,7 @@ const showMeasures = component => {
 			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
 			<div class="controls nowrap ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
-				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `positive` : ``)()}" measure-id="${measure._id}">
+				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `marked` : ``)()}" measure-id="${measure._id}">
 					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
 				</button>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">

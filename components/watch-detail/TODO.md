@@ -8,3 +8,7 @@
 - Show rate between measures with start/stop stakes?
 - New watch setting for goal accuracy to start with "good/bad" theme
 - Animations for measure for more fun with user interactivity
+- Manual wind power reserve tools
+	- Count number of winds from dead to full
+	- Count number of winds from full to 24 hours later
+	- Start session with full wind, add new "winds added" number to measures to track power reserve
