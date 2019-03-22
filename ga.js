@@ -1,9 +1,20 @@
+const measurementId = `UA-136438475-2`;
+
+gtag(`js`, new Date());
+gtag(`config`, measurementId);
+
 export class GA {
 	static view(url) {
-		ga(`set`, `page`, url);
-		ga(`send`, `pageview`);
+		gtag(`config`, measurementId, {page_path: url});
+		gtag(`event`, 'page_view', {send_to: measurementId});
 	}
 }
 
 new GA();
-// ga('send', 'event', 'Video (category)`, 'play (action)', 'cats.mp4 (label)');
+
+/*
+gtag('event', 'play', {
+	'event_category': 'Videos',
+	'event_label': 'Fall Campaign'
+});
+*/
