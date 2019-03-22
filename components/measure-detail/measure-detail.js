@@ -10,6 +10,7 @@ export class MeasureDetail extends NamedSizeElement {
 		super();
 
 		this.render = this.render.bind(this);
+		this.onClick = this.onClick.bind(this);
 		this.onSave = this.onSave.bind(this);
 
 		this.attachShadow({mode: `open`});
@@ -34,11 +35,13 @@ export class MeasureDetail extends NamedSizeElement {
 				position: `unspecified`
 			};
 		}
+		this.addEventListener(`click`, this.onClick);
 		this.render();
 	}
 
 	disconnectedCallback() {
 		if (this.$form) { this.$form.removeEventListener(`submit`, this.onSave); }
+		this.removeEventListener(`click`, this.onClick);
 		super.disconnectedCallback();
 	}
 
@@ -47,6 +50,22 @@ export class MeasureDetail extends NamedSizeElement {
 		this.shadowRoot.innerHTML = makeTemplate(this);
 		this.$form = this.shadowRoot.querySelector(`form`);
 		this.$form.addEventListener(`submit`, this.onSave);
+	}
+
+	onClick(event) {
+		if (!event || !event.path || !event.path.length) { return; }
+		for (let target of event.path) {
+			if (typeof target.matches !== `function`) { continue; }
+			if (target.matches(`.cancel`)) {
+				event.preventDefault();
+				if (this.mode === `add`) {
+					this.goBackToWatch();
+				} else {
+					router.navigate(`/watches/detail/${this.measure.watchId}`);
+				}
+				break;
+			}
+		}
 	}
 
 	async onSave(event) {
@@ -61,14 +80,18 @@ export class MeasureDetail extends NamedSizeElement {
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(this.$form));
 			if (didAdd) {
-				// Prevent user from hitting back and getting this view back
-				// Instead they will go back to /watches/measure
-				history.replaceState(null, null, `#/watches/detail/${this.measure.watchId}`);
-				router.resolve();
+				this.goBackToWatch();
 			} else {
 				alert(`Failed to save measure. Try again?`);
 			}
 		}
+	}
+
+	goBackToWatch() {
+		// Prevent user from hitting back and getting this view back
+		// Instead they will go back to /watches/measure
+		history.replaceState(null, null, `#/watches/detail/${this.measure.watchId}`);
+		router.resolve();
 	}
 }
 

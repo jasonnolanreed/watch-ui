@@ -48,7 +48,7 @@ const makeHtml = (component) => (
 	</div>
 	${makeHiddenFields(component)}
 	<div class="form-controls">
-		<a href="#/watches/detail/${component.measure.watchId}" class="button negative">Cancel</a>
+		<button type="button" class="button negative cancel">Cancel</button>
 		<button type="submit" class="button positive">Save Measure</button>
 	</div>
 </form>
