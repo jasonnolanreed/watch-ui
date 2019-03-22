@@ -1,13 +1,13 @@
 export class GA {
 	constructor() {
-		GA.send = GA.send.bind(this);
+		GA.view = GA.view.bind(this);
 		this.hasCreatedDefaultTracker = false;
-		this.storedSends = [];
+		this.storedViews = [];
 	}
 
-	static send(...options) {
+	static view(...options) {
 		if (!(`ga` in window)) {
-			this.storedSends.push(options);
+			this.storedViews.push(options);
 			return;
 		}
 		if (!this.hasCreatedDefaultTracker) {
@@ -15,19 +15,18 @@ export class GA {
 			ga(`create`, `UA-136438475-1`, `auto`);
 		}
 		if (typeof ga.getAll !== `function`) {
-			this.storedSends.push(options);
+			this.storedViews.push(options);
 			return;
 		}
 		const tracker = ga.getAll()[0];
 		if (!tracker) {
-			this.storedSends.push(options);
+			this.storedViews.push(options);
 			return;
 		}
-		if (this.storedSends.length) {
-			this.storedSends.forEach(options => tracker.send(...options));
-			this.storedSends = [];
-		}
-		tracker.send(...options);
+		this.storedViews.forEach(options => ga(`set`, `page`, ...options));
+		this.storedViews = [];
+		ga(`set`, `page`, ...options);
+		ga(`send`, `pageview`);
 	}
 }
 
