@@ -1,3 +1,4 @@
+- GA: create account, add watch, add measure, hit time.is, all page views
 - Rename "firstOfSet" to "firstOfSession" across projects
 - Email validation on registration
 - Change password/reset password
@@ -12,3 +13,4 @@
 	- Count number of winds from dead to full
 	- Count number of winds from full to 24 hours later
 	- Start session with full wind, add new "winds added" number to measures to track power reserve
+- Admin tools to see what's going on?

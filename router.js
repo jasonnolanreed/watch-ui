@@ -18,13 +18,16 @@ router
 })
 .on(`/register`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/register/register-view.html`);
+	ga(`send`, `pageview`, `/register`, `Register`);
 })
 .on(`/login`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/login/login-view.html`);
+	ga(`send`, `pageview`, `/login`, `Login`);
 })
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watches/watches-view.html`);
+		ga(`send`, `pageview`, `/watches`, `Watches`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -32,6 +35,7 @@ router
 .on(`/watches/add`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-add/watch-add-view.html`);
+		ga(`send`, `pageview`, `/watches/add`, `Add a Watch`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -40,6 +44,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
+		ga(`send`, `pageview`, `/watches/detail`, `Watch Details`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -48,6 +53,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-measure/watch-measure-view.html`);
+		ga(`send`, `pageview`, `/watches/measure`, `Measure a Watch`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -56,6 +62,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
+		ga(`send`, `pageview`, `/measure`, `Measure Details`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -64,11 +71,13 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
+		ga(`send`, `pageview`, `/measure/now`, `Save New Measure`);
 	} else {
 		router.navigate(`/login`);
 	}
 })
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
+	ga(`send`, `pageview`, `/?`, `Page Not Found`);
 })
 .resolve();
