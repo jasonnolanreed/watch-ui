@@ -5,6 +5,7 @@ gtag(`config`, measurementId);
 
 export class GA {
 	static view(url) {
+		console.log(`setting view: ${url}`);
 		gtag(`config`, measurementId, {page_path: url});
 		gtag(`event`, 'page_view', {send_to: measurementId});
 	}
