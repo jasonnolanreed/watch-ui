@@ -5,27 +5,18 @@ export class GA {
 		this.storedViews = [];
 	}
 
-	static view(...options) {
+	static view(url) {
 		if (!(`ga` in window)) {
-			this.storedViews.push(options);
+			this.storedViews.push(url);
 			return;
 		}
 		if (!this.hasCreatedDefaultTracker) {
 			this.hasCreatedDefaultTracker = true;
 			ga(`create`, `UA-136438475-1`, `auto`);
 		}
-		if (typeof ga.getAll !== `function`) {
-			this.storedViews.push(options);
-			return;
-		}
-		const tracker = ga.getAll()[0];
-		if (!tracker) {
-			this.storedViews.push(options);
-			return;
-		}
-		this.storedViews.forEach(options => ga(`set`, `page`, ...options));
+		this.storedViews.forEach(url => ga(`set`, `page`, url));
 		this.storedViews = [];
-		ga(`set`, `page`, ...options);
+		ga(`set`, `page`, url);
 		ga(`send`, `pageview`);
 	}
 }
