@@ -19,16 +19,16 @@ router
 })
 .on(`/register`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/register/register-view.html`);
-	GA.view(`/register`);
+	GA.view(`/register`, `Register`);
 })
 .on(`/login`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/login/login-view.html`);
-	GA.view(`/login`);
+	GA.view(`/login`, `Login`);
 })
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watches/watches-view.html`);
-		GA.view(`/watches`);
+		GA.view(`/watches`, `Watches`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -36,7 +36,7 @@ router
 .on(`/watches/add`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-add/watch-add-view.html`);
-		GA.view(`/watches/add`);
+		GA.view(`/watches/add`, `Add a Watch`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -45,7 +45,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
-		GA.view(`/watches/detail`);
+		GA.view(`/watches/detail`, `Watch Details`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -54,7 +54,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-measure/watch-measure-view.html`);
-		GA.view(`/watches/measure`);
+		GA.view(`/watches/measure`, `Measure a Watch`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -63,7 +63,7 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
-		GA.view(`/measure`);
+		GA.view(`/measure`, `Measure Details`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -72,13 +72,13 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
-		GA.view(`/measure/now`);
+		GA.view(`/measure/now`, `Save New Measure`);
 	} else {
 		router.navigate(`/login`);
 	}
 })
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
-	GA.view(`/notfound`);
+	GA.view(`/notfound`, `Page Not Found`);
 })
 .resolve();

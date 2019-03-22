@@ -4,10 +4,10 @@ gtag(`js`, new Date());
 gtag(`config`, measurementId);
 
 export class GA {
-	static view(url) {
+	static view(url, name) {
 		console.log(`setting view: ${url}`);
-		gtag(`config`, measurementId, {page_path: url});
-		gtag(`event`, 'page_view', {send_to: measurementId});
+		gtag(`config`, measurementId, {page_path: url, page_name: name});
+		// gtag(`event`, `page_view`, {send_to: measurementId});
 	}
 }
 
