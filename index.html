@@ -14,12 +14,11 @@
 	<div id="view"></div>
 	<script defer src="vendor/moment.js"></script>
 	<script defer src="app.js" type="module"></script>
-	<script defer src="https://www.googletagmanager.com/gtag/js?id=UA-136438475-1"></script>
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-136438475-1');
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXX-Y', 'auto');
+	ga('send', 'pageview');
 	</script>
+	<script async src='https://www.google-analytics.com/analytics.js'></script>
 </body>
 </html>
