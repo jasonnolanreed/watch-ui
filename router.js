@@ -20,18 +20,21 @@ router
 })
 .on(`/register`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/register/register-view.html`);
-	ga(`set`, `page`, `/register`, `Register`);
+	// ga(`set`, `page`, `/register`, `Register`);
+	ga(`set`, `page`, `/register`);
 	ga(`send`, `pageview`);
 })
 .on(`/login`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/login/login-view.html`);
-	ga(`set`, `page`, `/login`, `Login`);
+	// ga(`set`, `page`, `/login`, `Login`);
+	ga(`set`, `page`, `/login`);
 	ga(`send`, `pageview`);
 })
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watches/watches-view.html`);
-		ga(`set`, `page`, `/watches`, `Watches`);
+		// ga(`set`, `page`, `/watches`, `Watches`);
+		ga(`set`, `page`, `/watches`);
 		ga(`send`, `pageview`);
 	} else {
 		router.navigate(`/login`);
@@ -40,7 +43,8 @@ router
 .on(`/watches/add`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-add/watch-add-view.html`);
-		ga(`set`, `page`, `/watches/add`, `Add a Watch`);
+		// ga(`set`, `page`, `/watches/add`, `Add a Watch`);
+		ga(`set`, `page`, `/watches/add`);
 		ga(`send`, `pageview`);
 	} else {
 		router.navigate(`/login`);
@@ -50,7 +54,8 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
-		ga(`set`, `page`, `/watches/detail`, `Watch Details`);
+		// ga(`set`, `page`, `/watches/detail`, `Watch Details`);
+		ga(`set`, `page`, `/watches/detail`);
 		ga(`send`, `pageview`);
 	} else {
 		router.navigate(`/login`);
@@ -70,7 +75,8 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
-		ga(`set`, `page`, `/measure`, `Measure Details`);
+		// ga(`set`, `page`, `/measure`, `Measure Details`);
+		ga(`set`, `page`, `/measure`);
 		ga(`send`, `pageview`);
 	} else {
 		router.navigate(`/login`);
@@ -80,7 +86,8 @@ router
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
-		ga(`set`, `page`, `/measure/now`, `Save New Measure`);
+		// ga(`set`, `page`, `/measure/now`, `Save New Measure`);
+		ga(`set`, `page`, `/measure/now`);
 		ga(`send`, `pageview`);
 	} else {
 		router.navigate(`/login`);
@@ -88,7 +95,8 @@ router
 })
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
-	ga(`set`, `page`, `/notfound`, `Page Not Found`);
+	// ga(`set`, `page`, `/notfound`, `Page Not Found`);
+	ga(`set`, `page`, `/notfound`);
 	ga(`send`, `pageview`);
 })
 .resolve();
