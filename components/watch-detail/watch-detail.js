@@ -71,10 +71,10 @@ export class WatchDetail extends NamedSizeElement {
 		if (!confirmDelete) { return; }
 		const didRemove = await Measure.removeMeasure({measureId});
 		if (!didRemove) {
-			GA.event(`measure`, `delete success`);
+			GA.event(`measure`, `delete fail`);
 			alert(`Failed to remove measure. Try again?`);
 		} else {
-			GA.event(`measure`, `delete fail`);
+			GA.event(`measure`, `delete success`);
 			this.getData();
 		}
 	}
