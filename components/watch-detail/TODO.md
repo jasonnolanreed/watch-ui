@@ -1,5 +1,3 @@
-- Switch to async ga
-- GA actions/errors: atomic (fetch, all different bail outs), register, add watch, remove watch, create measure, delete measure, update measure
 - Rename "firstOfSet" to "firstOfSession" across projects
 - Email validation on registration
 - Change password/reset password

@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
@@ -39,8 +40,10 @@ export class WatchAdd extends NamedSizeElement {
 		event.preventDefault();
 		const addSuccessful = await Watch.add(getFormData(this.$form));
 		if (addSuccessful) {
+			GA.event(`watch`, `add success`);
 			router.navigate(`/watches`);
 		} else {
+			GA.event(`watch`, `add fail`);
 			alert(`Failed to add watch. Try again?`);
 		}
 	}

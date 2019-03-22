@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {getFormData} from '../../utilities/form.js';
 import {Auth} from '../../api-helpers/auth.js';
@@ -39,8 +40,10 @@ export class Register extends NamedSizeElement {
 		event.preventDefault();
 		const registrationSuccessful = await Auth.register(getFormData(this.$form));
 		if (registrationSuccessful) {
+			GA.event(`register`, `success`);
 			router.navigate(`/watches`);
 		} else {
+			GA.event(`register`, `fail`);
 			alert(`Registration failed. Try again?`);
 		}
 	}

@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
@@ -63,8 +64,10 @@ export class Watches extends NamedSizeElement {
 		if (!confirmDelete) { return; }
 		const deleteSuccessful = await Watch.delete({watchId});
 		if (deleteSuccessful) {
+			GA.event(`watch`, `delete success`);
 			this.getWatches();
 		} else {
+			GA.event(`watch`, `delete fail`);
 			alert(`Failed to delete watch. Try again?`);
 		}
 	}

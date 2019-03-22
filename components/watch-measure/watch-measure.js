@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
@@ -58,6 +59,7 @@ export class WatchMeasure extends NamedSizeElement {
 				break;
 			}
 			if (target.matches(`.now`)) {
+				GA.event(`measure`, `add start`);
 				event.preventDefault();
 				this.addMeasure();
 				break;

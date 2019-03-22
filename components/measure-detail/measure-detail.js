@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Measure} from '../../api-helpers/measure.js';
@@ -73,15 +74,19 @@ export class MeasureDetail extends NamedSizeElement {
 		if (this.mode === `view`) {
 			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(this.$form));
 			if (didSave) {
+				GA.event(`measure`, `update success`);
 				router.navigate(`/watches/detail/${this.measure.watchId}`);
 			} else {
+				GA.event(`measure`, `update fail`);
 				alert(`Failed to save measure. Try again?`);
 			}
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(this.$form));
 			if (didAdd) {
+				GA.event(`measure`, `add success`);
 				this.goBackToWatch();
 			} else {
+				GA.event(`measure`, `add fail`);
 				alert(`Failed to save measure. Try again?`);
 			}
 		}

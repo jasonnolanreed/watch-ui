@@ -1,3 +1,4 @@
+import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
@@ -70,8 +71,10 @@ export class WatchDetail extends NamedSizeElement {
 		if (!confirmDelete) { return; }
 		const didRemove = await Measure.removeMeasure({measureId});
 		if (!didRemove) {
+			GA.event(`measure`, `delete success`);
 			alert(`Failed to remove measure. Try again?`);
 		} else {
+			GA.event(`measure`, `delete fail`);
 			this.getData();
 		}
 	}

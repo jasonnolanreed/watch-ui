@@ -1,21 +1,15 @@
-const measurementId = `UA-136438475-2`;
-
-gtag(`js`, new Date());
-gtag(`config`, measurementId);
+export const measurementId = `UA-136438475-2`;
 
 export class GA {
 	static view(url, name) {
-		console.log(`setting view: ${url}`);
 		gtag(`config`, measurementId, {page_path: url, page_name: name});
-		// gtag(`event`, `page_view`, {send_to: measurementId});
+	}
+
+	static event(category, action, label) {
+		let data = {event_category: category};
+		if (label) { data.label = label; }
+		gtag(`event`, action, data);
 	}
 }
 
 new GA();
-
-/*
-gtag('event', 'play', {
-	'event_category': 'Videos',
-	'event_label': 'Fall Campaign'
-});
-*/
