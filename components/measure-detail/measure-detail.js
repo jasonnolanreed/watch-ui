@@ -63,7 +63,7 @@ export class MeasureDetail extends NamedSizeElement {
 					GA.event(`measure`, `add cancel`);
 					this.goBackToWatch();
 				} else {
-					router.navigate(`/watches/detail/${this.measure.watchId}`);
+					history.back();
 				}
 				break;
 			}

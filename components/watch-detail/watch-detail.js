@@ -41,16 +41,12 @@ export class WatchDetail extends NamedSizeElement {
 			if (typeof target.matches !== `function`) { continue; }
 			if (target.matches(`.previous-session`)) {
 				event.preventDefault();
-				this.currentSessionIndex = this.currentSessionIndex - 1;
-				this.currentSession = this.sessions[this.currentSessionIndex];
-				this.render();
+				router.navigate(`/watches/detail/${router.params['watchId']}/?sessionIndex=${this.currentSessionIndex - 1}`);
 				break;
 			}
 			if (target.matches(`.next-session`)) {
 				event.preventDefault();
-				this.currentSessionIndex = this.currentSessionIndex + 1;
-				this.currentSession = this.sessions[this.currentSessionIndex];
-				this.render();
+				router.navigate(`/watches/detail/${router.params['watchId']}/?sessionIndex=${this.currentSessionIndex + 1}`);
 				break;
 			}
 			if (target.matches(`.view-measure`) || target.matches(`.list-item`)) {
@@ -61,6 +57,11 @@ export class WatchDetail extends NamedSizeElement {
 			if (target.matches(`.delete-measure`)) {
 				event.preventDefault();
 				this.removeMeasure(target.getAttribute(`measure-id`));
+				break;
+			}
+			if (target.matches(`.interval`)) {
+				event.preventDefault();
+				this.selectInterval(target);
 				break;
 			}
 		}
@@ -88,8 +89,11 @@ export class WatchDetail extends NamedSizeElement {
 			this.watch = responses[0];
 			this.measures = responses[1];
 			this.sessions = this.parseSessionsFromMeasures();
-			this.currentSession = this.sessions[this.sessions.length - 1];
 			this.currentSessionIndex = this.sessions.length - 1;
+			if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
+				this.currentSessionIndex = +router.query.sessionIndex;
+			}
+			this.currentSession = this.sessions[this.currentSessionIndex];
 			this.render();
 		})
 		.catch(error => null);
@@ -123,13 +127,32 @@ export class WatchDetail extends NamedSizeElement {
 	getSessionTotalData() {
 		if (!this.currentSession || this.currentSession.length < 2) { return null; }
 		const sessionDistance =
-			moment(+this.currentSession[this.currentSession.length - 1].moment).diff(+this.currentSession[0].moment, `days`, true);
+			moment(+this.currentSession[this.currentSession.length - 1].targetMoment).diff(+this.currentSession[0].targetMoment, `days`, true);
 		const sessionDrift =
 			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
 		return {
-			averageRate: roundToTwoDecimals(sessionDrift/sessionDistance),
+			averageRate: roundToTwoDecimals(sessionDrift / sessionDistance),
 			sessionDistance
 		};
+	}
+
+	selectInterval(target) {
+		const index = target.getAttribute(`measure-index`);
+		if (!this.intervalStartIndex) {
+			this.intervalStartIndex = index;
+			this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
+			target.classList.add(`interval-start`);
+		} else {
+			if (this.intervalStartIndex !== index) {
+				const measureOne = this.currentSession[this.intervalStartIndex]._id;
+				const measureTwo = this.currentSession[index]._id;
+				router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
+			} else {
+				this.intervalStartIndex = null;
+				this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
+				target.classList.remove(`interval-start`);
+			}
+		}
 	}
 }
 

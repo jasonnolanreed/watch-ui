@@ -18,6 +18,7 @@ const makeCss = (component) => (
 
 .session-selection { margin: -16px 0 30px 0; }
 .session-selection i { font-weight: 900; }
+.date-time { line-height: 1.8; }
 .controls { display: flex; align-items: center; }
 .controls.slow { color: var(--red); }
 .controls.fast { color: var(--green); }
@@ -33,6 +34,18 @@ const makeCss = (component) => (
 	color: var(--red);
 }
 .short-session-alert i { margin-right: 0.5em; }
+.interval.interval i {
+	font-size: 1.65em;
+	padding: 0.5em 1.15em 0.5em 0.5em;
+	margin: -0.7em -1.2em -0.7em -0.7em;
+	opacity: 0.35;
+	cursor: pointer;
+}
+.interval:not(.interval-start) .interval-start { display: none; }
+.interval.interval-start .interval-other { display: none; }
+.measures-list.interval-start .interval i { opacity: 1; }
+.measures-list.interval-start .interval.interval-start i { color: var(--blue); }
+.measures-list.interval-start .interval:not(.interval-start) i { color: var(--green); }
 </style>
 `
 );
@@ -40,8 +53,8 @@ const makeCss = (component) => (
 const showSessionsInfo = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	let html = `<h3>Session: `;
-	const startDate = moment(+component.currentSession[0].moment).format(`MMM Do`);
-	const endDate = moment(+component.currentSession[component.currentSession.length - 1].moment).format(`MMM Do`);
+	const startDate = moment(+component.currentSession[0].targetMoment).format(`MMM Do`);
+	const endDate = moment(+component.currentSession[component.currentSession.length - 1].targetMoment).format(`MMM Do`);
 	html += startDate;
 	if (startDate !== endDate) {
 		html += ` - ${endDate}`;
@@ -70,7 +83,10 @@ const showMeasures = component => {
 	let html = ``;
 	html += `
 	<div class="list-headers">
-		<div>Date, Time</div>
+		<div>
+		<i class="invisible interval material-icons inline">touch_app</i>
+			Date, Time
+		</div>
 		<div class="deviation">
 			Deviation
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
@@ -78,14 +94,20 @@ const showMeasures = component => {
 		</div>
 	</div>
 	`;
-	html += `<ul class="list">`;
-	component.currentSession.forEach(measure => {
+	html += `<ul class="list measures-list">`;
+	component.currentSession.forEach((measure, index) => {
 		html += `
 		<li class="list-item" measure-id="${measure._id}">
-			<div>${moment(+measure.moment).format(`MMM Do, hh:mm a`)}</div>
-			<div class="controls nowrap ${(component.getMomentDiff(measure) < 0) ? `slow` : `fast`}">
+			<div class="date-time">
+				<span class="interval" measure-index="${index}">
+					<i class="interval-other material-icons inline">touch_app</i>
+					<i class="interval-start material-icons inline">flag</i>
+				</span>
+				${moment(+measure.targetMoment).format(`MMM Do, hh:mm a`)}
+			</div>
+			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
 				${component.getMomentDiff(measure)}s
-				<button class="button ultra-compact view-measure ${(_ => measure.note.length ? `marked` : ``)()}" measure-id="${measure._id}">
+				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
 					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
 				</button>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
@@ -103,7 +125,7 @@ const showSessionTotal = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	const sessionTotalData = component.getSessionTotalData();
 	if (sessionTotalData) {
-		let html = `<h2 class="total ${(_ => sessionTotalData.averageRate < 0 ? 'slow' : 'fast')()}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>`;
+		let html = `<h2 class="total ${sessionTotalData.averageRate < 0 ? 'slow' : 'fast'}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>`;
 		if (sessionTotalData.sessionDistance < 0.5) {
 			html += `
 			<p class="short-session-alert">

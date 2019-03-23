@@ -43,6 +43,7 @@ router
 })
 .on(`/watches/detail/:watchId`, async (params, query) => {
 	router.params = params;
+	router.query = formatQuery(query);
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
 		GA.view(`/watches/detail`, `Watch Details`);
@@ -77,8 +78,28 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/measure/interval/:measureOne/:measureTwo`, async (params, query) => {
+	router.params = params;
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/measure-interval/measure-interval-view.html`);
+		GA.view(`/measure/interval`, `Measure Interval`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
 	GA.view(`/notfound`, `Page Not Found`);
 })
 .resolve();
+
+function formatQuery(queryString) {
+	if (!queryString) { return; }
+	const queries = queryString.split(`&`);
+	let queryObject = {};
+	queries.forEach(query => {
+		const splitQuery = query.split(`=`);
+		queryObject[splitQuery[0]] = splitQuery[1];
+	});
+	return queryObject;
+}

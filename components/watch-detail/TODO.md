@@ -1,3 +1,7 @@
+- Request throttling (https://github.com/nfriedly/express-rate-limit)
+- Server truncate all inputs to prevent storage abuse
+- Take care of fetch().then(() => {}, ERROR) error callback
+- Add id's to analytics events (userid, watchid, measureid, etc)
 - Rename "firstOfSet" to "firstOfSession" across projects
 - Email validation on registration
 - Change password/reset password
@@ -5,7 +9,6 @@
 - Fix auto fill on login/register
 - FAQ page
 - User option for using atomic time or not
-- Show rate between measures with start/stop stakes?
 - New watch setting for goal accuracy to start with "good/bad" theme
 - Animations for measure for more fun with user interactivity
 - Manual wind power reserve tools
