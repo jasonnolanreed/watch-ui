@@ -1,3 +1,5 @@
+- Abstract all the time math and formatting to new utility for sharing
+- Abstract some simple display sections into re-usable components (short interval warning?)
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse
 - Take care of fetch().then(() => {}, ERROR) error callback

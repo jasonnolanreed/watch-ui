@@ -18,7 +18,7 @@ const makeCss = (component) => (
 
 .session-selection { margin: -16px 0 30px 0; }
 .session-selection i { font-weight: 900; }
-.date-time { line-height: 1.8; }
+.date-time { display: flex; align-items: center; line-height: 1.8; }
 .controls { display: flex; align-items: center; }
 .controls.slow { color: var(--red); }
 .controls.fast { color: var(--green); }
@@ -34,18 +34,36 @@ const makeCss = (component) => (
 	color: var(--red);
 }
 .short-session-alert i { margin-right: 0.5em; }
-.interval.interval i {
+.interval.interval {
 	font-size: 1.65em;
 	padding: 0.5em 1.15em 0.5em 0.5em;
-	margin: -0.7em -1.2em -0.7em -0.7em;
+	margin: -0.7em -1em -0.7em -0.7em;
 	opacity: 0.35;
 	cursor: pointer;
 }
+.interval i { transform: rotate(90deg); }
 .interval:not(.interval-start) .interval-start { display: none; }
 .interval.interval-start .interval-other { display: none; }
-.measures-list.interval-start .interval i { opacity: 1; }
-.measures-list.interval-start .interval.interval-start i { color: var(--blue); }
-.measures-list.interval-start .interval:not(.interval-start) i { color: var(--green); }
+.measures-list.interval-start .interval { opacity: 1; }
+.measures-list.interval-start .interval.interval-start i { color: var(--green); }
+.measures-list.interval-start .interval:not(.interval-start) i {
+	color: var(--blue);
+	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
+}
+@keyframes entice {
+	10%, 90% {
+		transform: rotate(91deg);
+	}
+	20%, 80% {
+		transform: rotate(87deg);
+	}
+	30%, 50%, 70% {
+		transform: rotate(94deg);
+	}
+	40%, 60% {
+		transform: rotate(85deg);
+	}
+}
 </style>
 `
 );
@@ -100,8 +118,8 @@ const showMeasures = component => {
 		<li class="list-item" measure-id="${measure._id}">
 			<div class="date-time">
 				<span class="interval" measure-index="${index}">
-					<i class="interval-other material-icons inline">touch_app</i>
-					<i class="interval-start material-icons inline">flag</i>
+					<i class="interval-other material-icons inline">straighten</i>
+					<i class="interval-start material-icons inline">straighten</i>
 				</span>
 				${moment(+measure.targetMoment).format(`MMM Do, hh:mm a`)}
 			</div>

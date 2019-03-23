@@ -2,18 +2,19 @@ import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">flag</i> Measure Interval</h1>
+<h1><i class="material-icons inline">straighten</i> Measure Interval</h1>
 <h3>
 	<span class="nowrap">${moment(+component.startMeasure.targetMoment).format(`MMM Do, hh:mm a`)}</span>
 	${` `}-${` `}
 	<span class="nowrap">${moment(+component.endMeasure.targetMoment).format(`MMM Do, hh:mm a`)}</span>
 </h3>
-<div>
-	<em>Duration:</em> ${getDuration(component)}
-</div>
 <p>
-	<em>Rate:</em> <span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
+	<em>Duration:</em> ${getDuration(component)}
 </p>
+<h2>
+	Average:${` `}
+	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
+</h2>
 <button class="button" type="button" onclick="history.back();">Back</button>
 `
 );
@@ -23,6 +24,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+h1 i { transform: rotate(90deg); }
 .rate.fast:before { content: "+"; }
 </style>
 `
