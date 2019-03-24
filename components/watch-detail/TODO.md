@@ -1,20 +1,30 @@
-- Abstract all the time math and formatting to new utility for sharing
-- Abstract some simple display sections into re-usable components (short interval warning?)
+BEFORE SHARING WITH BETA TESTERS
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse
 - Take care of fetch().then(() => {}, ERROR) error callback
+- Send exceptions to ga
 - Add id's to analytics events (userid, watchid, measureid, etc)
-- Rename "firstOfSet" to "firstOfSession" across projects
 - Email validation on registration
-- Change password/reset password
-- Pass data into custom elements where possible -- router params?
 - Fix auto fill on login/register
 - FAQ page
-- User option for using atomic time or not
+- Home page
+- Change/forgot password
+
+
+BEFORE SHARING WIDELY
 - New watch setting for goal accuracy to start with "good/bad" theme
-- Animations for measure for more fun with user interactivity
+- User option for using atomic time or not
+- Proper messaging system instead of alerts
 - Manual wind power reserve tools
 	- Count number of winds from dead to full
 	- Count number of winds from full to 24 hours later
 	- Start session with full wind, add new "winds added" number to measures to track power reserve
-- Admin tools to see what's going on?
+
+
+NOT SURE YET
+- Service worker to make PWA
+- Rename "firstOfSet" to "firstOfSession" across projects
+- Admin tools to see what's going on
+- Pass data into custom elements where possible -- router params?
+- Abstract all the time math and formatting to new utility for sharing
+- Abstract some simple display sections into re-usable components (short interval warning?)

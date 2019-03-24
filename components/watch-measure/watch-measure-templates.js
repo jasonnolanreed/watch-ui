@@ -24,7 +24,10 @@ const makeHtml = (component) => (
 		<a href="#/watches/detail/${component.watch._id}" class="button negative">Cancel</a>
 		<button type="button" class="button positive now">Now!</button>
 	</div>
-	<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>
+	${component.atomicOffset && +component.atomicOffset !== 0 ?
+	`<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>` :
+	``
+	}
 </form>
 `
 );

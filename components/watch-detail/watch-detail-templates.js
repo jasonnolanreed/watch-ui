@@ -52,16 +52,16 @@ const makeCss = (component) => (
 }
 @keyframes entice {
 	10%, 90% {
-		transform: rotate(91deg);
+		transform: rotate(93deg);
 	}
 	20%, 80% {
-		transform: rotate(87deg);
+		transform: rotate(85deg);
 	}
 	30%, 50%, 70% {
-		transform: rotate(94deg);
+		transform: rotate(96deg);
 	}
 	40%, 60% {
-		transform: rotate(85deg);
+		transform: rotate(83deg);
 	}
 }
 </style>

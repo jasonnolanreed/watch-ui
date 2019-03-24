@@ -1,6 +1,6 @@
 export const getIconNameForPosition = position => {
 	const iconsMap = {
-		unspecified: `trip_origin`,
+		unspecified: `panorama_fish_eye`,
 		worn: `accessibility_new`,
 		dialup: `arrow_upward`,
 		dialdown: `arrow_downward`,
