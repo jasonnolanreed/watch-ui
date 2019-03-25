@@ -20,13 +20,11 @@ export class Nav extends NamedSizeElement {
 	async connectedCallback() {
 		super.connectedCallback();
 		this.loggedIn = await Auth.isLoggedIn();
+		// TODO: Remove after 3/26
 		this.birthday =
 			Auth.userData && Auth.userData.email &&
-			(
-				(Auth.userData.email === `barretrichardson@gmail.com` && moment().format(`M D`) === `3 26`) ||
-				(Auth.userData.email === `justindunhamjones@gmail` && moment().format(`M D`) === `7 6`) ||
-				(Auth.userData.email === `jasonnolanreed@gmail.com` && moment().format(`M D`) === `2 11`)
-			);
+			Auth.userData.email === `barretrichardson@gmail.com` &&
+			moment().format(`M D`) === `3 26`;
 		this.render();
 		this.addEventListener(`click`, this.onClick);
 	}
