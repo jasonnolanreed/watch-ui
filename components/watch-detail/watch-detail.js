@@ -1,5 +1,6 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
+import {Auth} from '../../api-helpers/auth.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Measure} from '../../api-helpers/measure.js';
@@ -19,6 +20,7 @@ export class WatchDetail extends NamedSizeElement {
 			{name: `huge`, width: 1}
 		]);
 		this.getData();
+		console.log(`user`, Auth.cachedUserData);
 	}
 
 	connectedCallback() {

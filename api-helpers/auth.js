@@ -3,12 +3,12 @@ import {Atomic} from '../utilities/atomic.js';
 
 export class Auth {
 	constructor() {
-		Auth.userData = null;
+		Auth.cachedUserData = null;
 		Auth.isLoggedInCache = null;
 	}
 
-	get userData() { return `123`; }
-	set userData(data) { return null; }
+	static get userData() { return Auth.cachedUserData; }
+	static set userData(data) { return null; }
 
 	// Always resolves, with boolean payload
 	static isLoggedIn() {
@@ -17,19 +17,14 @@ export class Auth {
 		} else {
 			return new Promise((resolve, reject) => {
 				fetch(`${apiHost}user`, getOptionsForBasicGet())
+				.then(response => response.json())
 				.then(response => {
-					if (response && response.ok) {
-						Auth.userData = response;
-						Auth.isLoggedInCache = true;
-						resolve(true);
-						return;
-					}
-					Auth.userData = null;
-					Auth.isLoggedInCache = false;
-					resolve(false);
+					Auth.cachedUserData = response;
+					Auth.isLoggedInCache = true;
+					resolve(true);
 				})
 				.catch(_ => {
-					Auth.userData = null;
+					Auth.cachedUserData = null;
 					Auth.isLoggedInCache = null;
 					resolve(false);
 				});
@@ -43,17 +38,15 @@ export class Auth {
 			fetch(`${apiHost}login`, getOptionsForPost(data))
 			.then(response => {
 				if (response && response.ok) {
-					Auth.userData = response;
-					Auth.isLoggedInCache = true;
 					resolve(true);
 					return;
 				}
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(false);
 			})
 			.catch(_ => {
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(false);
 			});
@@ -66,7 +59,7 @@ export class Auth {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
 			.then(response => {
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				if (response && response.ok) {
 					resolve(true);
@@ -75,7 +68,7 @@ export class Auth {
 				resolve(false);
 			})
 			.catch(_ => {
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(false);
 			});
@@ -88,17 +81,17 @@ export class Auth {
 			fetch(`${apiHost}user`, getOptionsForPost(data))
 			.then(response => {
 				if (response && response.ok) {
-					Auth.userData = response;
+					Auth.cachedUserData = response;
 					Auth.isLoggedInCache = true;
 					resolve(true);
 					return;
 				}
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(false);
 			})
 			.catch(_ => {
-				Auth.userData = null;
+				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(false);
 			});
