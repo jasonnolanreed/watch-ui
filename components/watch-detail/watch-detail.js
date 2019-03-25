@@ -20,7 +20,6 @@ export class WatchDetail extends NamedSizeElement {
 			{name: `huge`, width: 1}
 		]);
 		this.getData();
-		console.log(`user`, Auth.cachedUserData);
 	}
 
 	connectedCallback() {

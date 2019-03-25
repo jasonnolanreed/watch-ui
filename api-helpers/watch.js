@@ -5,8 +5,8 @@ export class Watch {
 	static getWatches() {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForBasicGet())
-			.then(response => response.json())
-			.then(response => resolve(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(response), error => { throw new Error(); })
 			.catch(_ => resolve([]));
 		});
 	}
@@ -15,8 +15,8 @@ export class Watch {
 	static getWatch(watchId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch/${watchId}`, getOptionsForBasicGet())
-			.then(response => response.json())
-			.then(response => resolve(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(response), error => { throw new Error(); })
 			.catch(_ => resolve([]));
 		});
 	}
@@ -25,12 +25,8 @@ export class Watch {
 	static add(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForPost(data))
-			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-				}
-				resolve(false);
-			})
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(true), error => { throw new Error(); })
 			.catch(_ => resolve(false));
 		});
 	}
@@ -39,12 +35,8 @@ export class Watch {
 	static delete(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForDelete(data))
-			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-				}
-				resolve(false);
-			})
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(true), error => { throw new Error(); })
 			.catch(_ => resolve(false));
 		});
 	}

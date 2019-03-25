@@ -5,8 +5,8 @@ export class Measure {
 	static getMeasures(watchId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/watch/${watchId}`, getOptionsForBasicGet())
-			.then(response => response.json())
-			.then(response => resolve(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(response), error => { throw new Error(); })
 			.catch(_ => resolve([]));
 		});
 	}
@@ -15,8 +15,8 @@ export class Measure {
 	static getMeasure(measureId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/${measureId}`, getOptionsForBasicGet())
-			.then(response => response.json())
-			.then(response => resolve(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(response), error => { throw new Error(); })
 			.catch(_ => resolve([]));
 		});
 	}
@@ -25,12 +25,8 @@ export class Measure {
 	static addMeasure(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure`, getOptionsForPost(data))
-			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-				}
-				resolve(false);
-			})
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(true), error => { throw new Error(); })
 			.catch(_ => resolve(false));
 		});
 	}
@@ -39,12 +35,8 @@ export class Measure {
 	static updateMeasure(measureId, data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/${measureId}`, getOptionsForPut(data))
-			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-				}
-				resolve(false);
-			})
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(true), error => { throw new Error(); })
 			.catch(_ => resolve(false));
 		});
 	}
@@ -53,12 +45,8 @@ export class Measure {
 	static removeMeasure(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure`, getOptionsForDelete(data))
-			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-				}
-				resolve(false);
-			})
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => resolve(true), error => { throw new Error(); })
 			.catch(_ => resolve(false));
 		});
 	}

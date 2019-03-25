@@ -17,12 +17,12 @@ export class Auth {
 		} else {
 			return new Promise((resolve, reject) => {
 				fetch(`${apiHost}user`, getOptionsForBasicGet())
-				.then(response => response.json())
+				.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 				.then(response => {
 					Auth.cachedUserData = response;
 					Auth.isLoggedInCache = true;
 					resolve(true);
-				})
+				}, error => { throw new Error(); })
 				.catch(_ => {
 					Auth.cachedUserData = null;
 					Auth.isLoggedInCache = null;
@@ -36,15 +36,10 @@ export class Auth {
 	static login(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}login`, getOptionsForPost(data))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
-				if (response && response.ok) {
-					resolve(true);
-					return;
-				}
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
-				resolve(false);
-			})
+				resolve(true);
+			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
@@ -58,15 +53,12 @@ export class Auth {
 		Atomic.clearAtomicOffset();
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
-				if (response && response.ok) {
-					resolve(true);
-					return;
-				}
-				resolve(false);
-			})
+				resolve(true);
+			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
@@ -79,17 +71,12 @@ export class Auth {
 	static register(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}user`, getOptionsForPost(data))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
-				if (response && response.ok) {
-					Auth.cachedUserData = response;
-					Auth.isLoggedInCache = true;
-					resolve(true);
-					return;
-				}
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
-				resolve(false);
-			})
+				Auth.cachedUserData = response;
+				Auth.isLoggedInCache = true;
+				resolve(true);
+			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
