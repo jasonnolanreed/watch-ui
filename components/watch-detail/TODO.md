@@ -2,7 +2,6 @@ BEFORE SHARING WITH BETA TESTERS
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse
-- Take care of fetch().then(() => {}, ERROR) error callback
 - Send exceptions to ga
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - Email validation on registration
@@ -13,6 +12,7 @@ BEFORE SHARING WITH BETA TESTERS
 
 
 BEFORE SHARING WIDELY
+- Search engine stuff -- <meta>, etc
 - New watch setting for goal accuracy to start integrating "good/bad" theme
 - User option for using atomic time or not or manually setting offset
 - Proper messaging system instead of alerts
