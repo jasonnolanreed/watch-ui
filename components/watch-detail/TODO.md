@@ -1,9 +1,10 @@
 BEFORE SHARING WITH BETA TESTERS
+- Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse
 - Take care of fetch().then(() => {}, ERROR) error callback
 - Send exceptions to ga
-- Add id's to analytics events (userid, watchid, measureid, etc)
+- Add more data to analytics events (userid, watchid, measureid, etc)
 - Email validation on registration
 - Fix auto fill on login/register
 - FAQ page
@@ -12,8 +13,8 @@ BEFORE SHARING WITH BETA TESTERS
 
 
 BEFORE SHARING WIDELY
-- New watch setting for goal accuracy to start with "good/bad" theme
-- User option for using atomic time or not
+- New watch setting for goal accuracy to start integrating "good/bad" theme
+- User option for using atomic time or not or manually setting offset
 - Proper messaging system instead of alerts
 - Manual wind power reserve tools
 	- Count number of winds from dead to full
@@ -22,6 +23,7 @@ BEFORE SHARING WIDELY
 
 
 NOT SURE YET
+- "Social" aspect? Share watches to other users?
 - Service worker to make PWA
 - Rename "firstOfSet" to "firstOfSession" across projects
 - Admin tools to see what's going on
