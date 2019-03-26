@@ -122,7 +122,7 @@ export class WatchDetail extends NamedSizeElement {
 	}
 
 	getMomentDiff(measure) {
-		return roundToTwoDecimals(moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true));
+		return moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true);
 	}
 
 	getSessionTotalData() {

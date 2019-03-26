@@ -1,3 +1,4 @@
+import {roundToTwoDecimals} from '../../utilities/number.js';
 import {getIconNameForPosition} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
@@ -125,7 +126,7 @@ const showMeasures = component => {
 				${moment(+measure.targetMoment).format(`MMM Do, hh:mm a`)}
 			</div>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
-				${component.getMomentDiff(measure)}s
+				${roundToTwoDecimals(component.getMomentDiff(measure))}s
 				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
 					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
 				</button>
