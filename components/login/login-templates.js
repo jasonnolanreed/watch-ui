@@ -1,4 +1,4 @@
-const makeHtml = (component) => (
+export const makeTemplate = (component) => (
 `
 <h1><i class="material-icons inline">exit_to_app</i> Login</h1>
 <form novalidate>
@@ -18,15 +18,3 @@ const makeHtml = (component) => (
 <a href="#/register" data-navigo>Don't have an account yet? Register here.</a>
 `
 );
-
-const makeCss = (component) => (
-`
-<style>
-@import "styles/global-styles.css";
-</style>
-`
-);
-
-export const makeTemplate = (component) => {
-	return makeCss(component) + makeHtml(component);
-};
