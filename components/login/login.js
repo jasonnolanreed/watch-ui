@@ -12,7 +12,6 @@ export class Login extends GWBWElement {
 		this.render = this.render.bind(this);
 		this.onLogin = this.onLogin.bind(this);
 
-		this.attachShadow({mode: `open`});
 		this.render();
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
@@ -30,8 +29,8 @@ export class Login extends GWBWElement {
 
 	render() {
 		if (this.$form) { this.$form.removeEventListener(`submit`, this.onLogin); }
-		this.shadowRoot.innerHTML = makeTemplate(this);
-		this.$form = this.shadowRoot.querySelector(`form`);
+		this.innerHTML = makeTemplate(this);
+		this.$form = this.querySelector(`form`);
 		this.$form.addEventListener(`submit`, this.onLogin);
 	}
 

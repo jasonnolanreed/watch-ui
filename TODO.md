@@ -8,7 +8,6 @@ BEFORE SHARING WITH BETA TESTERS
 - Send exceptions to ga
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - Email validation on registration
-- Fix auto fill on login/register
 - FAQ page
 - Home page
 - Change/forgot password
