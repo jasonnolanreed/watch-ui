@@ -39,12 +39,7 @@ export class Auth {
 			fetch(`${apiHost}login`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
-				if (!window.PasswordCredential) {
-					resolve(true);
-				} else {
-					const cred = new PasswordCredential($form);
-					return navigator.credentials.store(cred);
-				}
+				resolve(true);
 			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
@@ -81,12 +76,7 @@ export class Auth {
 			.then(response => {
 				Auth.cachedUserData = response;
 				Auth.isLoggedInCache = true;
-				if (!window.PasswordCredential) {
-					resolve(true);
-				} else {
-					const cred = new PasswordCredential($form);
-					return navigator.credentials.store(cred);
-				}
+				resolve(true);
 			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
