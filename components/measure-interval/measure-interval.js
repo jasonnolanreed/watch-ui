@@ -8,8 +8,6 @@ export class MeasureInterval extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
-
 		this.attachShadow({mode: `open`});
 		this.setNamedSizes([
 			{name: `huge`, width: 1}

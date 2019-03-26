@@ -1,5 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
-- Find way not to have to .bind(this) on click handlers
+- Abstract form submit event?
+- Move some things from constructors to attachedCallback
 - Add timestamp to measure detail view
 - Formalize component click within new BaseComponent class (replaces NamedSize)
 - Check for 401 on all requests, log out when received

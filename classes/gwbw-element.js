@@ -41,7 +41,7 @@ export class GWBWElement extends HTMLElement {
 			for (let clickEvent of this.clickEvents) {
 				if (target.matches(clickEvent.target)) {
 					event.preventDefault();
-					clickEvent.handler(event, target);
+					clickEvent.handler.call(this, event, target);
 					targetMatched = true;
 					break;
 				}

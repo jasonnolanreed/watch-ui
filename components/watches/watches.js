@@ -9,10 +9,6 @@ export class Watches extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
-		this.onView = this.onView.bind(this);
-		this.onDelete = this.onDelete.bind(this);
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.view-watch`, handler: this.onView},

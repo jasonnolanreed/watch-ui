@@ -11,13 +11,6 @@ export class WatchDetail extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
-		this.viewPreviousSession = this.viewPreviousSession.bind(this);
-		this.viewNextSession = this.viewNextSession.bind(this);
-		this.viewMeasure = this.viewMeasure.bind(this);
-		this.removeMeasure = this.removeMeasure.bind(this);
-		this.selectInterval = this.selectInterval.bind(this);
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.previous-session`, handler: this.viewPreviousSession},

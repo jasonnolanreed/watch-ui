@@ -9,13 +9,12 @@ export class Login extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
 		this.onLogin = this.onLogin.bind(this);
 
-		this.render();
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
+		this.render();
 	}
 
 	connectedCallback() {

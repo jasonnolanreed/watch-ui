@@ -9,13 +9,12 @@ export class Register extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
 		this.onRegister = this.onRegister.bind(this);
 
-		this.render();
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
+		this.render();
 	}
 
 	connectedCallback() {

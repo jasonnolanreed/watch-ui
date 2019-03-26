@@ -10,7 +10,6 @@ export class WatchAdd extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
 		this.onAdd = this.onAdd.bind(this);
 
 		this.attachShadow({mode: `open`});

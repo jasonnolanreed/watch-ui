@@ -10,9 +10,7 @@ export class MeasureDetail extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
 		this.onSave = this.onSave.bind(this);
-		this.onCancel = this.onCancel.bind(this);
 
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([

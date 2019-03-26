@@ -10,11 +10,6 @@ export class WatchMeasure extends GWBWElement {
 	constructor() {
 		super();
 
-		this.render = this.render.bind(this);
-		this.increaseMinute = this.increaseMinute.bind(this);
-		this.decreaseMinute = this.decreaseMinute.bind(this);
-		this.addMeasure = this.addMeasure.bind(this);
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.increase-minute`, handler: this.increaseMinute},
@@ -71,9 +66,16 @@ export class WatchMeasure extends GWBWElement {
 	}
 
 	async getData() {
-		this.watch = await Watch.getWatch(router.params[`watchId`]);
-		this.atomicOffset = await Atomic.getAtomicOffset();
-		this.render();
+		Promise.all([
+			Watch.getWatch(router.params[`watchId`]),
+			Atomic.getAtomicOffset()
+		])
+		.then(responses => {
+			this.watch = responses[0];
+			this.atomicOffset = responses[1];
+			this.render();
+		})
+		.catch(error => null);
 	}
 }
 
