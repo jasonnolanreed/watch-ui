@@ -1,5 +1,7 @@
 BEFORE SHARING WITH BETA TESTERS
-- Do away with getFormData and use new FormData() instead
+- Find way not to have to .bind(this) on click handlers
+- Add timestamp to measure detail view
+- Formalize component click within new BaseComponent class (replaces NamedSize)
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse

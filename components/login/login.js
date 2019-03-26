@@ -1,11 +1,11 @@
 import {GA} from '../../ga.js';
-import {NamedSizeElement} from '../../classes/named-size.js';
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Auth} from '../../api-helpers/auth.js';
 import {router} from '../../router.js';
 
 import {makeTemplate} from './login-templates.js';
 
-export class Login extends NamedSizeElement {
+export class Login extends GWBWElement {
 	constructor() {
 		super();
 

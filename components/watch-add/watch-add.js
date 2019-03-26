@@ -1,12 +1,12 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
-import {NamedSizeElement} from '../../classes/named-size.js';
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './watch-add-templates.js';
 
-export class WatchAdd extends NamedSizeElement {
+export class WatchAdd extends GWBWElement {
 	constructor() {
 		super();
 

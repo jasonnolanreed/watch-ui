@@ -1,10 +1,10 @@
 import {router} from '../../router.js';
-import {NamedSizeElement} from '../../classes/named-size.js';
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Measure} from '../../api-helpers/measure.js';
 
 import {makeTemplate} from './measure-interval-templates.js';
 
-export class MeasureInterval extends NamedSizeElement {
+export class MeasureInterval extends GWBWElement {
 	constructor() {
 		super();
 

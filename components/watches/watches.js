@@ -1,18 +1,24 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
-import {NamedSizeElement} from '../../classes/named-size.js';
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Watch} from '../../api-helpers/watch.js';
 
 import {makeTemplate} from './watches-templates.js';
 
-export class Watches extends NamedSizeElement {
+export class Watches extends GWBWElement {
 	constructor() {
 		super();
 
 		this.render = this.render.bind(this);
-		this.onClick = this.onClick.bind(this);
+		this.onView = this.onView.bind(this);
+		this.onDelete = this.onDelete.bind(this);
 
 		this.attachShadow({mode: `open`});
+		this.setClickEvents([
+			{target: `.view-watch`, handler: this.onView},
+			{target: `.list-item`, handler: this.onView},
+			{target: `.delete-watch`, handler: this.onDelete}
+		]);
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
@@ -21,11 +27,9 @@ export class Watches extends NamedSizeElement {
 	connectedCallback() {
 		super.connectedCallback();
 		this.getWatches();
-		this.addEventListener(`click`, this.onClick);
 	}
 
 	disconnectedCallback() {
-		this.removeEventListener(`click`, this.onClick);
 		super.disconnectedCallback();
 	}
 
@@ -38,28 +42,13 @@ export class Watches extends NamedSizeElement {
 		this.render();
 	}
 
-	onClick(event) {
-		if (!event || !event.path || !event.path.length) { return; }
-		for (let target of event.path) {
-			if (typeof target.matches !== `function`) { continue; }
-			if (target.matches(`.view-watch`) || target.matches(`.list-item`)) {
-				event.preventDefault();
-				this.onView(target.getAttribute(`watch-id`));
-				break;
-			}
-			if (target.matches(`.delete-watch`)) {
-				event.preventDefault();
-				this.onDelete(target.getAttribute(`watch-id`));
-				break;
-			}
-		}
-	}
-
-	onView(watchId) {
+	onView(event, target) {
+		const watchId = target.getAttribute(`watch-id`);
 		router.navigate(`/watches/detail/${watchId}`);
 	}
 
-	async onDelete(watchId) {
+	async onDelete(event, target) {
+		const watchId = target.getAttribute(`watch-id`);
 		const confirmDelete = confirm(`Do you really want to delete this watch and all its data?`);
 		if (!confirmDelete) { return; }
 		const deleteSuccessful = await Watch.delete({watchId});

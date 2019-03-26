@@ -5,9 +5,6 @@ const makeHtml = (component) => (
 		${getLinks(component)}
 	</div>
 </nav>
-${component.birthday ?
-`<img src="https://gifimage.net/wp-content/uploads/2017/11/it-is-your-birthday-gif-9.gif" style="padding: 1em 2em 0;">` :
-``}
 `
 );
 

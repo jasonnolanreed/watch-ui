@@ -1,7 +1,9 @@
-export class NamedSizeElement extends HTMLElement {
+export class GWBWElement extends HTMLElement {
 	constructor() {
 		super();
+		this.onClick = this.onClick.bind(this);
 		this.updateNamedSize = this.updateNamedSize.bind(this);
+		this.clickEvents = null;
 		this.namedSizes = [
 			{name: `small`, width: 600},
 			{name: `medium`, width: 900},
@@ -12,17 +14,40 @@ export class NamedSizeElement extends HTMLElement {
 
 	connectedCallback() {
 		this.classList.add(`block`);
+		this.addEventListener(`click`, this.onClick);
 		this.setupResizeListener();
 	}
 
 	disconnectedCallback() {
+		this.removeEventListener(`click`, this.onClick);
 		if (this.resizeObserver) {
 			this.resizeObserver.disconnect();
 		}
 	}
 
+	setClickEvents(clickEvents) {
+		this.clickEvents = clickEvents;
+	}
+
 	setNamedSizes(sizes) {
 		this.namedSizes = sizes;
+	}
+
+	onClick(event) {
+		if (!this.clickEvents) { return; }
+		for (let target of event.composedPath()) {
+			if (typeof target.matches !== `function`) { continue; }
+			let targetMatched = false;
+			for (let clickEvent of this.clickEvents) {
+				if (target.matches(clickEvent.target)) {
+					event.preventDefault();
+					clickEvent.handler(event, target);
+					targetMatched = true;
+					break;
+				}
+			}
+			if (targetMatched) { break; }
+		}
 	}
 
 	setupResizeListener() {

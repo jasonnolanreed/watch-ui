@@ -1,20 +1,23 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
-import {NamedSizeElement} from '../../classes/named-size.js';
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Measure} from '../../api-helpers/measure.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './measure-detail-templates.js';
 
-export class MeasureDetail extends NamedSizeElement {
+export class MeasureDetail extends GWBWElement {
 	constructor() {
 		super();
 
 		this.render = this.render.bind(this);
-		this.onClick = this.onClick.bind(this);
 		this.onSave = this.onSave.bind(this);
+		this.onCancel = this.onCancel.bind(this);
 
 		this.attachShadow({mode: `open`});
+		this.setClickEvents([
+			{target: `.cancel`, handler: this.onCancel}
+		]);
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
@@ -36,13 +39,11 @@ export class MeasureDetail extends NamedSizeElement {
 				position: `unspecified`
 			};
 		}
-		this.addEventListener(`click`, this.onClick);
 		this.render();
 	}
 
 	disconnectedCallback() {
 		if (this.$form) { this.$form.removeEventListener(`submit`, this.onSave); }
-		this.removeEventListener(`click`, this.onClick);
 		super.disconnectedCallback();
 	}
 
@@ -53,20 +54,12 @@ export class MeasureDetail extends NamedSizeElement {
 		this.$form.addEventListener(`submit`, this.onSave);
 	}
 
-	onClick(event) {
-		if (!event || !event.path || !event.path.length) { return; }
-		for (let target of event.path) {
-			if (typeof target.matches !== `function`) { continue; }
-			if (target.matches(`.cancel`)) {
-				event.preventDefault();
-				if (this.mode === `add`) {
-					GA.event(`measure`, `add cancel`);
-					this.goBackToWatch();
-				} else {
-					history.back();
-				}
-				break;
-			}
+	onCancel(event, target) {
+		if (this.mode === `add`) {
+			GA.event(`measure`, `add cancel`);
+			this.goBackToWatch();
+		} else {
+			history.back();
 		}
 	}
 
