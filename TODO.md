@@ -1,6 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
 - Abstract form submit event?
-- Add timestamp to measure detail view
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse

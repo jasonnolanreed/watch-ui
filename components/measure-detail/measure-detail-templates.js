@@ -3,6 +3,10 @@ import {getIconNameForPosition} from '../../utilities/position.js';
 const makeHtml = (component) => (
 `
 <h1><i class="material-icons inline">attachment</i> Measure Details</h1>
+<div class="more-info">
+	<h1><i class="invisible material-icons inline">attachment</i></h1>
+	${' '}<h3>${moment(+component.measure.targetMoment).format('MMM Do, hh:mm a')}</h3>
+</div>
 <form>
 	<div class="form-input">
 		<label class="check">
@@ -69,6 +73,9 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+.more-info { margin: -2.5em 0 2em; }
+.more-info h1 { display: inline; }
+.more-info h3 { display: inline; }
 .position i {
 	font-size: 2.2em;
 	margin-right: 0.2em;
