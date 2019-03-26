@@ -39,6 +39,9 @@ export class Auth {
 			fetch(`${apiHost}login`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
+				if (window.PasswordCredential) {
+					navigator.credentials.store(new PasswordCredential($form));
+				}
 				resolve(true);
 			}, error => { throw new Error(); })
 			.catch(_ => {
@@ -74,6 +77,9 @@ export class Auth {
 			fetch(`${apiHost}user`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
+				if (window.PasswordCredential) {
+					navigator.credentials.store(new PasswordCredential($form));
+				}
 				Auth.cachedUserData = response;
 				Auth.isLoggedInCache = true;
 				resolve(true);
