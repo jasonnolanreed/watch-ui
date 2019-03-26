@@ -1,6 +1,5 @@
 import {GA} from '../../ga.js';
 import {NamedSizeElement} from '../../classes/named-size.js';
-import {getFormData} from '../../utilities/form.js';
 import {Auth} from '../../api-helpers/auth.js';
 import {router} from '../../router.js';
 
@@ -38,7 +37,7 @@ export class Login extends NamedSizeElement {
 
 	async onLogin(event) {
 		event.preventDefault();
-		const loginSuccessful = await Auth.login(getFormData(this.$form));
+		const loginSuccessful = await Auth.login(this.$form);
 		if (loginSuccessful) {
 			GA.event(`login`, `success`);
 			router.navigate(`/watches`);

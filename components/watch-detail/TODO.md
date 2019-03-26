@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Do away with getFormData and use new FormData() instead
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse

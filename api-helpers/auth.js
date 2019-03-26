@@ -1,5 +1,6 @@
 import {apiHost, getOptionsForPost, getOptionsForBasicGet} from '../utilities/network.js';
 import {Atomic} from '../utilities/atomic.js';
+import {getFormData} from '../utilities/form.js';
 
 export class Auth {
 	constructor() {
@@ -33,12 +34,17 @@ export class Auth {
 	}
 
 	// Always resolves, with boolean payload
-	static login(data) {
+	static login($form) {
 		return new Promise((resolve, reject) => {
-			fetch(`${apiHost}login`, getOptionsForPost(data))
+			fetch(`${apiHost}login`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
-				resolve(true);
+				if (!window.PasswordCredential) {
+					resolve(true);
+				} else {
+					const cred = new PasswordCredential($form);
+					return navigator.credentials.store(cred);
+				}
 			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
@@ -68,14 +74,19 @@ export class Auth {
 	}
 
 	// Always resolves, with boolean payload
-	static register(data) {
+	static register($form) {
 		return new Promise((resolve, reject) => {
-			fetch(`${apiHost}user`, getOptionsForPost(data))
+			fetch(`${apiHost}user`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
 			.then(response => {
 				Auth.cachedUserData = response;
 				Auth.isLoggedInCache = true;
-				resolve(true);
+				if (!window.PasswordCredential) {
+					resolve(true);
+				} else {
+					const cred = new PasswordCredential($form);
+					return navigator.credentials.store(cred);
+				}
 			}, error => { throw new Error(); })
 			.catch(_ => {
 				Auth.cachedUserData = null;
