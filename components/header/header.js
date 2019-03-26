@@ -5,11 +5,11 @@ export class Header extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.render();
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
+		this.render();
 	}
 
 	disconnectedCallback() {

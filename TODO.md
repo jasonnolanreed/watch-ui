@@ -1,8 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
 - Abstract form submit event?
-- Move some things from constructors to attachedCallback
 - Add timestamp to measure detail view
-- Formalize component click within new BaseComponent class (replaces NamedSize)
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Server truncate all inputs to prevent storage abuse

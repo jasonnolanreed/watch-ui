@@ -20,13 +20,13 @@ export class WatchMeasure extends GWBWElement {
 			{name: `small`, width: 1},
 			{name: `large`, width: 600}
 		]);
-		this.getData();
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
 		this.moment = moment().second(0).add(1, `minute`);
 		this.isNewSession = false;
+		this.getData();
 	}
 
 	disconnectedCallback() {

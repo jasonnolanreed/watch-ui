@@ -14,11 +14,11 @@ export class Login extends GWBWElement {
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
-		this.render();
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
+		this.render();
 	}
 
 	disconnectedCallback() {

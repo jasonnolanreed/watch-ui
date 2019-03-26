@@ -23,11 +23,11 @@ export class WatchDetail extends GWBWElement {
 		this.setNamedSizes([
 			{name: `huge`, width: 1}
 		]);
-		this.getData();
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
+		this.getData();
 	}
 
 	disconnectedCallback() {
