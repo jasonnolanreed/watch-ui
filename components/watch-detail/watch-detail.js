@@ -103,20 +103,20 @@ export class WatchDetail extends GWBWElement {
 
 	parseSessionsFromMeasures() {
 		const allMeasures = this.measures;
-		let isFirstMeasure = true;
+		if (allMeasures && allMeasures.length) { allMeasures[0].firstOfSet = true; }
 		let sessions = [];
 		let measuresOfSession = [];
+		let lastMeasureDate;
 		for (const measure of allMeasures) {
-			if (isFirstMeasure) {
-				isFirstMeasure = false;
-				measure.firstOfSet = true;
-			}
+			const thisMeasureDate = moment(+measure.targetMoment).format(`MMM Do`);
+			measure.firstOfDay = thisMeasureDate !== lastMeasureDate;
 			if (!measure.firstOfSet) {
 				measuresOfSession.push(measure);
 			} else {
 				if (measuresOfSession.length) { sessions.push(measuresOfSession); }
 				measuresOfSession = [measure];
 			}
+			lastMeasureDate = thisMeasureDate;
 		}
 		if (measuresOfSession.length) { sessions.push(measuresOfSession); }
 		return sessions;

@@ -38,6 +38,12 @@
 	border-bottom-right-radius: 2px;
 }
 
+.list-item:not(:first-of-type).separation-above {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: var(--blue);
+}
+
 .list-item > * {
 	width: auto;
 }
@@ -64,7 +70,7 @@
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
 	background-color: #000;
-	opacity: 0.05;
+	opacity: 0.02;
 	pointer-events: none;
 }
 
@@ -79,5 +85,5 @@
 
 /* Make hover on evens a tiny bit stronger for better visual continuity */
 .list-item:nth-of-type(even):hover:after {
-	opacity: 0.1;
+	opacity: 0.085;
 }

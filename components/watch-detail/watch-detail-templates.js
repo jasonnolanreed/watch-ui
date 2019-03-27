@@ -12,64 +12,6 @@ ${showSessionTotal(component)}
 `
 );
 
-const makeCss = (component) => (
-`
-<style>
-@import "styles/global-styles.css";
-
-.session-selection { margin: -16px 0 30px 0; }
-.session-selection i { font-weight: 900; }
-.date-time { display: flex; align-items: center; line-height: 1.8; }
-.controls { display: flex; align-items: center; }
-.controls.slow { color: var(--red); }
-.controls.fast { color: var(--green); }
-.controls.fast:before { content: "+"; }
-.deviation { display: flex; align-items: flex-end; }
-.deviation .button { margin-left: 0.5em; }
-.total.fast .number:before { content: "+"; }
-.short-session-alert {
-	display: flex;
-	justify-items: flex-start;
-	align-items: center;
-	margin-top: -10px;
-	color: var(--red);
-}
-.short-session-alert i { margin-right: 0.5em; }
-.interval.interval {
-	font-size: 1.65em;
-	padding: 0.5em 1.15em 0.5em 0.5em;
-	margin: -0.7em -1em -0.7em -0.7em;
-	opacity: 0.35;
-	cursor: pointer;
-}
-.interval:hover { opacity: 1; }
-.interval i { transform: rotate(90deg); }
-.interval:not(.interval-start) .interval-start { display: none; }
-.interval.interval-start .interval-other { display: none; }
-.measures-list.interval-start .interval { opacity: 1; }
-.measures-list.interval-start .interval.interval-start i { color: var(--green); }
-.measures-list.interval-start .interval:not(.interval-start) i {
-	color: var(--blue);
-	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
-}
-@keyframes entice {
-	10%, 90% {
-		transform: rotate(93deg);
-	}
-	20%, 80% {
-		transform: rotate(85deg);
-	}
-	30%, 50%, 70% {
-		transform: rotate(96deg);
-	}
-	40%, 60% {
-		transform: rotate(83deg);
-	}
-}
-</style>
-`
-);
-
 const showSessionsInfo = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	let html = `<h3>Session: `;
@@ -117,7 +59,7 @@ const showMeasures = component => {
 	html += `<ul class="list measures-list">`;
 	component.currentSession.forEach((measure, index) => {
 		html += `
-		<li class="list-item" measure-id="${measure._id}">
+		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
 			<div class="date-time">
 				<span class="interval" measure-index="${index}">
 					<i class="interval-other material-icons inline">straighten</i>
@@ -159,6 +101,64 @@ const showSessionTotal = component => {
 		return `<p>Average rate will be shown here when multiple measurements are taken within this session.</p>`;
 	}
 };
+
+const makeCss = (component) => (
+	`
+	<style>
+	@import "styles/global-styles.css";
+
+	.session-selection { margin: -16px 0 30px 0; }
+	.session-selection i { font-weight: 900; }
+	.date-time { display: flex; align-items: center; line-height: 1.8; }
+	.controls { display: flex; align-items: center; }
+	.controls.slow { color: var(--red); }
+	.controls.fast { color: var(--green); }
+	.controls.fast:before { content: "+"; }
+	.deviation { display: flex; align-items: flex-end; }
+	.deviation .button { margin-left: 0.5em; }
+	.total.fast .number:before { content: "+"; }
+	.short-session-alert {
+		display: flex;
+		justify-items: flex-start;
+		align-items: center;
+		margin-top: -10px;
+		color: var(--red);
+	}
+	.short-session-alert i { margin-right: 0.5em; }
+	.interval.interval {
+		font-size: 1.65em;
+		padding: 0.5em 1.15em 0.5em 0.5em;
+		margin: -0.7em -1em -0.7em -0.7em;
+		opacity: 0.35;
+		cursor: pointer;
+	}
+	.interval:hover { opacity: 1; }
+	.interval i { transform: rotate(90deg); }
+	.interval:not(.interval-start) .interval-start { display: none; }
+	.interval.interval-start .interval-other { display: none; }
+	.measures-list.interval-start .interval { opacity: 1; }
+	.measures-list.interval-start .interval.interval-start i { color: var(--green); }
+	.measures-list.interval-start .interval:not(.interval-start) i {
+		color: var(--blue);
+		animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
+	}
+	@keyframes entice {
+		10%, 90% {
+			transform: rotate(93deg);
+		}
+		20%, 80% {
+			transform: rotate(85deg);
+		}
+		30%, 50%, 70% {
+			transform: rotate(96deg);
+		}
+		40%, 60% {
+			transform: rotate(83deg);
+		}
+	}
+	</style>
+	`
+	);
 
 export const makeTemplate = (component) => {
 	return makeCss(component) + makeHtml(component);
