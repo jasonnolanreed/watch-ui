@@ -24,7 +24,7 @@ export class Atomic {
 				GA.event(`atomic`, `fetch`);
 				const timeBeforeFetch = Date.now();
 				fetch(`https://api.time.is/microtime?app_id=nolanreed_e49f7skC.DDf473vc`)
-				.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+				.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 				.then(response => {
 					const fetchDuration = Date.now() - timeBeforeFetch;
 					// Fetch too slow to trust
@@ -62,7 +62,7 @@ export class Atomic {
 					this.atomicOffsetPromise = null;
 					sessionStorage.setItem(`atomic-offset`, adjustedDiff);
 					resolve(adjustedDiff);
-				}, error => { throw new Error(); })
+				})
 				.catch(error => {
 					GA.event(`atomic`, `error`);
 					this.atomicOffsetPromise = null;

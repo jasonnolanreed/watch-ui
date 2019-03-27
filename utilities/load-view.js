@@ -25,7 +25,7 @@ export class LoadView {
 	// into DOM for $view -> #content-container as parent
 	static layout($view, layoutUrl, viewUrl) {
 		fetch(layoutUrl)
-		.then(response => response.text())
+		.then(response => response.text(), error => { throw new Error(); })
 		.then(responseAsText => {
 			$view.innerHTML = responseAsText;
 			const $$scripts = $view.querySelectorAll(`script`);
@@ -40,5 +40,6 @@ export class LoadView {
 			});
 			LoadView.fetch($view.querySelector(`.content-container`), viewUrl);
 		})
+		.catch(error => null)
 	}
 }

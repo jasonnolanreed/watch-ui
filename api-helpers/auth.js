@@ -18,12 +18,12 @@ export class Auth {
 		} else {
 			return new Promise((resolve, reject) => {
 				fetch(`${apiHost}user`, getOptionsForBasicGet())
-				.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+				.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 				.then(response => {
 					Auth.cachedUserData = response;
 					Auth.isLoggedInCache = true;
 					resolve(true);
-				}, error => { throw new Error(); })
+				})
 				.catch(_ => {
 					Auth.cachedUserData = null;
 					Auth.isLoggedInCache = null;
@@ -37,10 +37,10 @@ export class Auth {
 	static login($form) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}login`, getOptionsForPost(getFormData($form)))
-			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => {
 				resolve(true);
-			}, error => { throw new Error(); })
+			})
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
@@ -54,12 +54,12 @@ export class Auth {
 		Atomic.clearAtomicOffset();
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
-			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
 				resolve(true);
-			}, error => { throw new Error(); })
+			})
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
@@ -72,12 +72,12 @@ export class Auth {
 	static register($form) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}user`, getOptionsForPost(getFormData($form)))
-			.then(response => { if (response.ok) { return response.json(); } throw new Error(); })
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => {
 				Auth.cachedUserData = response;
 				Auth.isLoggedInCache = true;
 				resolve(true);
-			}, error => { throw new Error(); })
+			})
 			.catch(_ => {
 				Auth.cachedUserData = null;
 				Auth.isLoggedInCache = false;
