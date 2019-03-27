@@ -7,7 +7,6 @@ import {makeTemplate} from './measure-interval-templates.js';
 export class MeasureInterval extends GWBWElement {
 	constructor() {
 		super();
-
 		this.attachShadow({mode: `open`});
 		this.setNamedSizes([
 			{name: `huge`, width: 1}

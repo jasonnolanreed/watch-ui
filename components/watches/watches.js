@@ -8,7 +8,6 @@ import {makeTemplate} from './watches-templates.js';
 export class Watches extends GWBWElement {
 	constructor() {
 		super();
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.view-watch`, handler: this.onView},

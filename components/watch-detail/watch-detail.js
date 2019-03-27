@@ -10,7 +10,6 @@ import {makeTemplate} from './watch-detail-templates.js';
 export class WatchDetail extends GWBWElement {
 	constructor() {
 		super();
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.previous-session`, handler: this.viewPreviousSession},

@@ -2,6 +2,7 @@ export class GWBWElement extends HTMLElement {
 	constructor() {
 		super();
 		this.onClick = this.onClick.bind(this);
+		this._onSubmit = this._onSubmit.bind(this);
 		this.updateNamedSize = this.updateNamedSize.bind(this);
 		this.clickEvents = null;
 		this.namedSizes = [
@@ -20,9 +21,19 @@ export class GWBWElement extends HTMLElement {
 
 	disconnectedCallback() {
 		this.removeEventListener(`click`, this.onClick);
-		if (this.resizeObserver) {
-			this.resizeObserver.disconnect();
-		}
+		if (this.hasForm) { this.removeEventListener(`submit`, this._onSubmit); }
+		if (this.hasShadowForm) { this.shadowRoot.removeEventListener(`submit`, this._onSubmit); }
+		if (this.resizeObserver) { this.resizeObserver.disconnect(); }
+	}
+
+	bindForm() {
+		this.hasForm = true;
+		this.addEventListener(`submit`, this._onSubmit);
+	}
+
+	bindShadowForm() {
+		this.hasShadowForm = true;
+		this.shadowRoot.addEventListener(`submit`, this._onSubmit);
 	}
 
 	setClickEvents(clickEvents) {
@@ -35,9 +46,9 @@ export class GWBWElement extends HTMLElement {
 
 	onClick(event) {
 		if (!this.clickEvents) { return; }
+		let targetMatched = false;
 		for (let target of event.composedPath()) {
 			if (typeof target.matches !== `function`) { continue; }
-			let targetMatched = false;
 			for (let clickEvent of this.clickEvents) {
 				if (target.matches(clickEvent.target)) {
 					event.preventDefault();
@@ -48,6 +59,20 @@ export class GWBWElement extends HTMLElement {
 			}
 			if (targetMatched) { break; }
 		}
+	}
+
+	_onSubmit(event) {
+		for (let target of event.composedPath()) {
+			if (typeof target.matches !== `function`) { continue; }
+			if (target.matches(`form`)) {
+				event.preventDefault();
+				if (typeof this.onSubmit === `function`) {
+					this.onSubmit.call(this, event, target);
+				}
+				break;
+			}
+		}
+		event.preventDefault();
 	}
 
 	setupResizeListener() {

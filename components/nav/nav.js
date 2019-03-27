@@ -8,7 +8,6 @@ import {makeTemplate} from './nav-templates.js';
 export class Nav extends GWBWElement {
 	constructor() {
 		super();
-
 		this.attachShadow({mode: `open`});
 		this.loggedIn = false;
 		this.setNamedSizes([

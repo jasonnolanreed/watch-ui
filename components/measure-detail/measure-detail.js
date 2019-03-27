@@ -9,9 +9,6 @@ import {makeTemplate} from './measure-detail-templates.js';
 export class MeasureDetail extends GWBWElement {
 	constructor() {
 		super();
-
-		this.onSave = this.onSave.bind(this);
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.cancel`, handler: this.onCancel}
@@ -37,19 +34,16 @@ export class MeasureDetail extends GWBWElement {
 				position: `unspecified`
 			};
 		}
+		this.bindShadowForm();
 		this.render();
 	}
 
 	disconnectedCallback() {
-		if (this.$form) { this.$form.removeEventListener(`submit`, this.onSave); }
 		super.disconnectedCallback();
 	}
 
 	render() {
-		if (this.$form) { this.$form.removeEventListener(`submit`, this.onSave); }
 		this.shadowRoot.innerHTML = makeTemplate(this);
-		this.$form = this.shadowRoot.querySelector(`form`);
-		this.$form.addEventListener(`submit`, this.onSave);
 	}
 
 	onCancel(event, target) {
@@ -61,10 +55,9 @@ export class MeasureDetail extends GWBWElement {
 		}
 	}
 
-	async onSave(event) {
-		event.preventDefault();
+	async onSubmit(event, target) {
 		if (this.mode === `view`) {
-			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(this.$form));
+			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(target));
 			if (didSave) {
 				GA.event(`measure`, `update success`);
 				router.navigate(`/watches/detail/${this.measure.watchId}`);
@@ -73,7 +66,7 @@ export class MeasureDetail extends GWBWElement {
 				alert(`Failed to save measure. Try again?`);
 			}
 		} else if (this.mode === `add`) {
-			const didAdd = await Measure.addMeasure(getFormData(this.$form));
+			const didAdd = await Measure.addMeasure(getFormData(target));
 			if (didAdd) {
 				GA.event(`measure`, `add success`);
 				this.goBackToWatch();

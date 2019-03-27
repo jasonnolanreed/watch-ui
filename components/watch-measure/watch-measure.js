@@ -9,7 +9,6 @@ import {makeTemplate} from './watch-measure-templates.js';
 export class WatchMeasure extends GWBWElement {
 	constructor() {
 		super();
-
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.increase-minute`, handler: this.increaseMinute},
