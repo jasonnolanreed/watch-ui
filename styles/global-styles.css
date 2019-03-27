@@ -129,7 +129,8 @@ footer {
 footer .content {
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 1em 2em;
+	padding: 1.75em 2em;
 	text-align: left;
 	color: var(--silver);
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }

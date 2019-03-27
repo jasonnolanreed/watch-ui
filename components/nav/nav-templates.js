@@ -14,9 +14,10 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 nav {
-	padding: 1em 0;
-	background-color: var(--dark-blue);
+	padding: 1.75em 0;
 	color: #fff;
+	background-color: var(--dark-blue);
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .content {
@@ -28,6 +29,8 @@ nav {
 }
 
 a, a:visited {
+	padding: 1.75em;
+	margin: -1.75em;
 	font-weight: 700;
 	color: #fff;
 	text-decoration: none;

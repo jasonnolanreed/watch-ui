@@ -11,13 +11,13 @@ const makeHtml = (component) => (
 	</div>
 	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">
-		<h1 class="target-time">${component.targetTimeString}</h1>
-		<button type="button" class="button compact decrease-minute">
+		<button type="button" class="decrease-minute button compact low-priority">
 			<i class="material-icons">arrow_back</i>
 			</button>
-		<button type="button" class="button compact increase-minute">
+		<button type="button" class="increase-minute button compact low-priority">
 			<i class="material-icons">arrow_forward</i>
 		</button>
+		<h1 class="target-time">${component.targetTimeString}</h1>
 	</div>
 	<p><em>Step 3)</em> Hit the "Now!" button at the exact moment your watch matches the above time</p>
 	<div class="form-controls">
@@ -43,12 +43,12 @@ const makeCss = (component) => (
 }
 
 .target-time h1 {
-	margin: 0 10px 0 0;
+	margin: 0 0 0 10px;
 	color: var(--green);
 }
 
 .decrease-minute, .increase-minute {
-	margin-left: 0.35em !important;
+	margin-right: 0.35em !important;
 	height: 2.25em;
 }
 
