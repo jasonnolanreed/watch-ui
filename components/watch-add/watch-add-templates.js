@@ -5,7 +5,7 @@ const makeHtml = (component) => (
 	<div class="form-controls">
 		<div class="form-input">
 			<label>Name</label>
-			<input type="text" name="name">
+			<input type="text" name="name" maxlength="200">
 		</div>
 		<div class="form-controls">
 			<a class="button negative" href="#/watches">Cancel</a>

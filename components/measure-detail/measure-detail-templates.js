@@ -17,7 +17,7 @@ const makeHtml = (component) => (
 	<hr>
 	<div class="form-input">
 		<label for="note">Note</label>
-		<textarea name="note">${component.measure.note}</textarea>
+		<textarea name="note" maxlength="500">${component.measure.note}</textarea>
 	</div>
 	<div class="form-input position">
 		<label for="position">Position</label>

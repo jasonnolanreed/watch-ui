@@ -1,7 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
 - Check for 401 on all requests, log out when received
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
-- Server truncate all inputs to prevent storage abuse
 - Send exceptions to ga
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - Email validation on registration
