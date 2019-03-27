@@ -45,6 +45,10 @@
 	background-color: var(--red);
 }
 
+.button.low-priority {
+	background-color: var(--light-blue);
+}
+
 .button.marked {
 	overflow: hidden;
 	box-shadow: 0 0 0 3px var(--bright-blue), inset 0 0 3px rgba(0, 0, 0, 0.14);

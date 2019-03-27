@@ -28,9 +28,9 @@ const showSessionsInfo = component => {
 const showSessionsSelection = component => {
 	if (component.sessions.length < 2) { return ``; }
 	return `
-	<p class="session-selection">
-		<button class="previous-session button compact ${getPreviousDisabled(component)}"><i class="material-icons">arrow_back</i></button>
-		<button class="next-session button compact ${getNextDisabled(component)}"><i class="material-icons">arrow_forward</i></button>
+	<p class="session-selection form-controls">
+		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><i class="material-icons">arrow_back</i></button>
+		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><i class="material-icons">arrow_forward</i></button>
 	</p>
 	`;
 };
@@ -61,7 +61,7 @@ const showMeasures = component => {
 		html += `
 		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
 			<div class="date-time">
-				<span class="interval" measure-index="${index}">
+				<span class="interval ${component.currentSession.length < 2 ? `invisible` : ``}" measure-index="${index}">
 					<i class="interval-other material-icons inline">straighten</i>
 					<i class="interval-start material-icons inline">straighten</i>
 				</span>

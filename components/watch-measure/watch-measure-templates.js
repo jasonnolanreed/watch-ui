@@ -48,7 +48,7 @@ const makeCss = (component) => (
 }
 
 .decrease-minute, .increase-minute {
-	margin-left: 5px !important;
+	margin-left: 0.35em !important;
 	height: 2.25em;
 }
 

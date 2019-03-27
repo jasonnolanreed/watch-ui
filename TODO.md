@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Rename watch
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Send exceptions to ga
 - Add more data to analytics events (userid, watchid, measureid, etc)
