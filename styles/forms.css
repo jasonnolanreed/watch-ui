@@ -1,6 +1,6 @@
 form {
 	position: relative;
-	max-width: 400px;
+	/* max-width: 400px; */
 	opacity: 1;
 	transition: opacity 1s ease 1s;
 }
