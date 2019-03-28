@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- "Mustard cut" test for older browsers
 - Rename watch
 - Remove extra layer of component/container/stuff
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
