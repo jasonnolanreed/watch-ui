@@ -85,6 +85,16 @@ export class Auth {
 			});
 		});
 	}
+
+	// Always resolves, with boolean payload
+	static verify($form) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}verify`, getOptionsForPost(getFormData($form)))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
+			.then(response => resolve(true))
+			.catch(_ => resolve(false));
+		});
+	}
 }
 
 new Auth();

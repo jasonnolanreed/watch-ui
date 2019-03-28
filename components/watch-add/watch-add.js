@@ -32,10 +32,10 @@ export class WatchAdd extends GWBWElement {
 	async onSubmit(event, target) {
 		const addSuccessful = await Watch.add(getFormData(target));
 		if (addSuccessful) {
-			GA.event(`watch`, `add success`);
+			GA.event(`watch`, `watch add success`);
 			router.navigate(`/watches`);
 		} else {
-			GA.event(`watch`, `add fail`);
+			GA.event(`watch`, `watch add fail`);
 			alert(`Failed to add watch. Try again?`);
 		}
 	}

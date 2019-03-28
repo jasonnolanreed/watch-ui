@@ -5,7 +5,7 @@ import {Auth} from './auth.js';
 export class LoggedOut {
 	static async checkLoggedOut(response) {
 		if (response.status !== 401) { return response; }
-		GA.event(`logout`, `timed out`);
+		GA.event(`logout`, `logout timed out`);
 		await Auth.logout();
 		router.navigate(`/login`);
 		// TODO -- messaging

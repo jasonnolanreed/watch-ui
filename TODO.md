@@ -1,15 +1,17 @@
 BEFORE SHARING WITH BETA TESTERS
+- Disable buttons when working
 - Rename watch
+- Remove extra layer of component/container/stuff
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Send exceptions to ga
 - Add more data to analytics events (userid, watchid, measureid, etc)
-- Email validation on registration
 - FAQ page
 - Home page
 - Change/forgot password
 
 
 BEFORE SHARING WIDELY
+- Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Search engine stuff -- <meta>, etc
 - New watch setting for goal accuracy to start integrating "good/bad" theme
 - User option for using atomic time or not or manually setting offset

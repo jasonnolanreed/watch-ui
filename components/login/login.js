@@ -30,10 +30,10 @@ export class Login extends GWBWElement {
 	async onSubmit(event, target) {
 		const loginSuccessful = await Auth.login(target);
 		if (loginSuccessful) {
-			GA.event(`login`, `success`);
+			GA.event(`login`, `login success`);
 			router.navigate(`/watches`);
 		} else {
-			GA.event(`login`, `fail`);
+			GA.event(`login`, `login fail`);
 			alert(`Login failed. Try again?`);
 		}
 	}

@@ -52,7 +52,7 @@ export class WatchMeasure extends GWBWElement {
 	}
 
 	addMeasure() {
-		GA.event(`measure`, `add start`);
+		GA.event(`measure`, `measure add start`);
 		const targetMoment = this.moment.format(`x`);
 		const measuredMoment = moment();
 		const adjustedMeasuredMoment =

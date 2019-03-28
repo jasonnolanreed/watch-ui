@@ -48,7 +48,7 @@ export class MeasureDetail extends GWBWElement {
 
 	onCancel(event, target) {
 		if (this.mode === `add`) {
-			GA.event(`measure`, `add cancel`);
+			GA.event(`measure`, `measure add cancel`);
 			this.goBackToWatch();
 		} else {
 			history.back();
@@ -59,19 +59,19 @@ export class MeasureDetail extends GWBWElement {
 		if (this.mode === `view`) {
 			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(target));
 			if (didSave) {
-				GA.event(`measure`, `update success`);
+				GA.event(`measure`, `measure update success`);
 				router.navigate(`/watches/detail/${this.measure.watchId}`);
 			} else {
-				GA.event(`measure`, `update fail`);
+				GA.event(`measure`, `measure update fail`);
 				alert(`Failed to save measure. Try again?`);
 			}
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(target));
 			if (didAdd) {
-				GA.event(`measure`, `add success`);
+				GA.event(`measure`, `measure add success`);
 				this.goBackToWatch();
 			} else {
-				GA.event(`measure`, `add fail`);
+				GA.event(`measure`, `measure add fail`);
 				alert(`Failed to save measure. Try again?`);
 			}
 		}
