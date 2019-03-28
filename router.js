@@ -18,16 +18,25 @@ router
 	}
 })
 .on(`/register`, (params, query) => {
-	LoadView.layout($view, layouts.main, `views/register/register-view.html`);
+	LoadView.layout($view, layouts.main, `views/register-view.html`);
 	GA.view(`/register`, `Register`);
 })
+.on(`/pre-verify`, (params, query) => {
+	LoadView.layout($view, layouts.main, `views/pre-verify-view.html`);
+	GA.view(`/pre-verify`, `Pre-Verify`);
+})
+.on(`/verify/:email/:verificationCode`, (params, query) => {
+	router.params = params;
+	LoadView.layout($view, layouts.main, `views/verify-view.html`);
+	GA.view(`/verify`, `Verify`);
+})
 .on(`/login`, (params, query) => {
-	LoadView.layout($view, layouts.main, `views/login/login-view.html`);
+	LoadView.layout($view, layouts.main, `views/login-view.html`);
 	GA.view(`/login`, `Login`);
 })
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/watches/watches-view.html`);
+		LoadView.layout($view, layouts.main, `views/watches-view.html`);
 		GA.view(`/watches`, `Watches`);
 	} else {
 		router.navigate(`/login`);
@@ -35,7 +44,7 @@ router
 })
 .on(`/watches/add`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/watch-add/watch-add-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-add-view.html`);
 		GA.view(`/watches/add`, `Add a Watch`);
 	} else {
 		router.navigate(`/login`);
@@ -45,7 +54,7 @@ router
 	router.params = params;
 	router.query = formatQuery(query);
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/watch-detail/watch-detail-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
 		GA.view(`/watches/detail`, `Watch Details`);
 	} else {
 		router.navigate(`/login`);
@@ -54,7 +63,7 @@ router
 .on(`/watches/measure/:watchId`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/watch-measure/watch-measure-view.html`);
+		LoadView.layout($view, layouts.main, `views/watch-measure-view.html`);
 		GA.view(`/watches/measure`, `Measure a Watch`);
 	} else {
 		router.navigate(`/login`);
@@ -63,7 +72,7 @@ router
 .on(`/measure/:measureId`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
+		LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
 		GA.view(`/measure`, `Measure Details`);
 	} else {
 		router.navigate(`/login`);
@@ -72,7 +81,7 @@ router
 .on(`/measure/now/:watchId/:targetMoment/:moment/:firstOfSet`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/measure-detail/measure-detail-view.html`);
+		LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
 		GA.view(`/measure/now`, `Save New Measure`);
 	} else {
 		router.navigate(`/login`);
@@ -81,14 +90,14 @@ router
 .on(`/measure/interval/:measureOne/:measureTwo`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/measure-interval/measure-interval-view.html`);
+		LoadView.layout($view, layouts.main, `views/measure-interval-view.html`);
 		GA.view(`/measure/interval`, `Measure Interval`);
 	} else {
 		router.navigate(`/login`);
 	}
 })
 .notFound((query) => {
-	LoadView.layout($view, layouts.main, `views/not-found/not-found-view.html`);
+	LoadView.layout($view, layouts.main, `views/not-found-view.html`);
 	GA.view(`/notfound`, `Page Not Found`);
 })
 .resolve();

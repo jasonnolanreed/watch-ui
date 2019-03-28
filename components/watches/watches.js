@@ -48,10 +48,10 @@ export class Watches extends GWBWElement {
 		if (!confirmDelete) { return; }
 		const deleteSuccessful = await Watch.delete({watchId});
 		if (deleteSuccessful) {
-			GA.event(`watch`, `delete success`);
+			GA.event(`watch`, `watch delete success`);
 			this.getWatches();
 		} else {
-			GA.event(`watch`, `delete fail`);
+			GA.event(`watch`, `watch delete fail`);
 			alert(`Failed to delete watch. Try again?`);
 		}
 	}

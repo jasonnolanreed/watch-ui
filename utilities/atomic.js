@@ -21,7 +21,7 @@ export class Atomic {
 					this.atomicOffsetPromise = null;
 					resolve(ssAtomicOffset); return;
 				}
-				GA.event(`atomic`, `fetch`);
+				GA.event(`atomic`, `atomic fetch`);
 				const timeBeforeFetch = Date.now();
 				fetch(`https://api.time.is/microtime?app_id=nolanreed_e49f7skC.DDf473vc`)
 				.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -29,7 +29,7 @@ export class Atomic {
 					const fetchDuration = Date.now() - timeBeforeFetch;
 					// Fetch too slow to trust
 					if (fetchDuration > 2500) {
-						GA.event(`atomic`, `too slow`);
+						GA.event(`atomic`, `atomic too slow`);
 						this.atomicOffsetPromise = null;
 						sessionStorage.setItem(`atomic-offset`, 0);
 						resolve(0); return;
@@ -53,18 +53,18 @@ export class Atomic {
 					const adjustedDiff = adjustedNowTime.diff(moment(atomicTime), `seconds`, true);
 					// If difference is too great, be cautious and pretend it's 0
 					if (Math.abs(adjustedDiff) > 1500) {
-						GA.event(`atomic`, `diff too large`);
+						GA.event(`atomic`, `atomic diff too large`);
 						this.atomicOffsetPromise = null;
 						sessionStorage.setItem(`atomic-offset`, 0);
 						resolve(0); return;
 					}
-					GA.event(`atomic`, `using diff`);
+					GA.event(`atomic`, `atomic using diff`);
 					this.atomicOffsetPromise = null;
 					sessionStorage.setItem(`atomic-offset`, adjustedDiff);
 					resolve(adjustedDiff);
 				})
 				.catch(error => {
-					GA.event(`atomic`, `error`);
+					GA.event(`atomic`, `atomic error`);
 					this.atomicOffsetPromise = null;
 					sessionStorage.setItem(`atomic-offset`, 0);
 					resolve(0); return;

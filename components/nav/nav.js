@@ -35,9 +35,9 @@ export class Nav extends GWBWElement {
 	async logout(event) {
 		const didLogOut = await Auth.logout();
 		if (didLogOut) {
-			GA.event(`logout`, `success`);
+			GA.event(`logout`, `logout success`);
 		} else {
-			GA.event(`logout`, `fail`);
+			GA.event(`logout`, `logout fail`);
 		}
 		router.navigate(`/`);
 	}

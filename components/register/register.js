@@ -30,10 +30,10 @@ export class Register extends GWBWElement {
 	async onSubmit(event, target) {
 		const registrationSuccessful = await Auth.register(target);
 		if (registrationSuccessful) {
-			GA.event(`register`, `success`);
-			router.navigate(`/watches`);
+			GA.event(`register`, `register success`);
+			router.navigate(`/pre-verify`);
 		} else {
-			GA.event(`register`, `fail`);
+			GA.event(`register`, `register fail`);
 			alert(`Registration failed. Try again?`);
 		}
 	}
