@@ -6,7 +6,9 @@ const makeHtml = (component) => (
 <h1><i class="material-icons inline">insert_chart</i> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
-${showMeasures(component)}
+<form>
+	${showMeasures(component)}
+</form>
 ${showSessionTotal(component)}
 <a href="#/watches/measure/${component.watch._id}" class="button">Take Measurement</a>
 `

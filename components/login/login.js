@@ -28,7 +28,9 @@ export class Login extends GWBWElement {
 	}
 
 	async onSubmit(event, target) {
+		this.startWorking();
 		const loginSuccessful = await Auth.login(target);
+		this.stopWorking();
 		if (loginSuccessful) {
 			GA.event(`login`, `login success`);
 			router.navigate(`/watches`);

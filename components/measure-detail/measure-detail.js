@@ -56,6 +56,7 @@ export class MeasureDetail extends GWBWElement {
 	}
 
 	async onSubmit(event, target) {
+		this.startWorking();
 		if (this.mode === `view`) {
 			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(target));
 			if (didSave) {
@@ -75,6 +76,7 @@ export class MeasureDetail extends GWBWElement {
 				alert(`Failed to save measure. Try again?`);
 			}
 		}
+		this.startWorking();
 	}
 
 	goBackToWatch() {

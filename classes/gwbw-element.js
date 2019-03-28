@@ -1,6 +1,8 @@
 export class GWBWElement extends HTMLElement {
 	constructor() {
 		super();
+		this.startWorking = this.startWorking.bind(this);
+		this.stopWorking = this.stopWorking.bind(this);
 		this.onClick = this.onClick.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
 		this.updateNamedSize = this.updateNamedSize.bind(this);
@@ -42,6 +44,28 @@ export class GWBWElement extends HTMLElement {
 
 	setNamedSizes(sizes) {
 		this.namedSizes = sizes;
+	}
+
+	startWorking() {
+		let $form;
+		if (this.shadowRoot) {
+			$form = this.shadowRoot.querySelector(`form`);
+		} else {
+			$form = this.querySelector(`form`);
+		}
+		if (!$form) { return; }
+		$form.classList.add(`working`);
+	}
+
+	stopWorking() {
+		let $form;
+		if (this.shadowRoot) {
+			$form = this.shadowRoot.querySelector(`form`);
+		} else {
+			$form = this.querySelector(`form`);
+		}
+		if (!$form) { return; }
+		$form.classList.remove(`working`);
 	}
 
 	onClick(event) {

@@ -1,5 +1,4 @@
 BEFORE SHARING WITH BETA TESTERS
-- Disable buttons when working
 - Rename watch
 - Remove extra layer of component/container/stuff
 - Request throttling (https://github.com/nfriedly/express-rate-limit)

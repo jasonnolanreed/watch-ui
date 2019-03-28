@@ -1,10 +1,12 @@
 const makeHtml = (component) => (
 `
 <h1><i class="material-icons inline">watch</i> Watches</h1>
-${listWatches(component)}
-<div class="form-controls">
-	<a class="button" href="#/watches/add">Add a Watch</a>
-</div>
+<form>
+	${listWatches(component)}
+	<div class="form-controls">
+		<a class="button" href="#/watches/add">Add a Watch</a>
+	</div>
+</form>
 `
 );
 

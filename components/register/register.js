@@ -28,7 +28,9 @@ export class Register extends GWBWElement {
 	}
 
 	async onSubmit(event, target) {
+		this.startWorking();
 		const registrationSuccessful = await Auth.register(target);
+		this.stopWorking();
 		if (registrationSuccessful) {
 			GA.event(`register`, `register success`);
 			router.navigate(`/pre-verify`);

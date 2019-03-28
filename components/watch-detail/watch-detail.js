@@ -72,7 +72,9 @@ export class WatchDetail extends GWBWElement {
 		const measureId = target.getAttribute(`measure-id`);
 		const confirmDelete = confirm(`Do you really want to delete this measure?`);
 		if (!confirmDelete) { return; }
+		this.startWorking();
 		const didRemove = await Measure.removeMeasure({measureId});
+		this.stopWorking();
 		if (!didRemove) {
 			GA.event(`measure`, `measure delete fail`);
 			alert(`Failed to remove measure. Try again?`);

@@ -46,7 +46,9 @@ export class Watches extends GWBWElement {
 		const watchId = target.getAttribute(`watch-id`);
 		const confirmDelete = confirm(`Do you really want to delete this watch and all its data?`);
 		if (!confirmDelete) { return; }
+		this.startWorking();
 		const deleteSuccessful = await Watch.delete({watchId});
+		this.stopWorking();
 		if (deleteSuccessful) {
 			GA.event(`watch`, `watch delete success`);
 			this.getWatches();
