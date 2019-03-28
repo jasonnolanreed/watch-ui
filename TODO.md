@@ -1,7 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
 - "Mustard cut" test for older browsers
 - Rename watch
-- Remove extra layer of component/container/stuff
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Send exceptions to ga or use something like rollbar
 - Add more data to analytics events (userid, watchid, measureid, etc)
@@ -11,6 +10,7 @@ BEFORE SHARING WITH BETA TESTERS
 
 
 BEFORE SHARING WIDELY
+- New user gets sample data to explore
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Search engine stuff -- <meta>, etc
 - New watch setting for goal accuracy to start integrating "good/bad" theme

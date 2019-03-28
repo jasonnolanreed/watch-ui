@@ -1,1 +1,0 @@
-import './watch-detail.js';

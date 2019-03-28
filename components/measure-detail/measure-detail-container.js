@@ -1,1 +1,0 @@
-import './measure-detail.js';
