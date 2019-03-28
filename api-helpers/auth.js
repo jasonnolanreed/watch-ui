@@ -73,16 +73,8 @@ export class Auth {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}user`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
-			.then(response => {
-				Auth.cachedUserData = response;
-				Auth.isLoggedInCache = true;
-				resolve(true);
-			})
-			.catch(_ => {
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
-				resolve(false);
-			});
+			.then(response => resolve(true))
+			.catch(_ => resolve(false));
 		});
 	}
 
