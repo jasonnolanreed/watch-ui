@@ -10,6 +10,7 @@ BEFORE SHARING WITH BETA TESTERS
 
 
 BEFORE SHARING WIDELY
+- Persist sessions in db (so server restarts don't kill login)
 - New user gets sample data to explore
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Search engine stuff -- <meta>, etc

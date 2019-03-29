@@ -16,6 +16,9 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 * `npm install`
 * Postinstall moves necessary node_modules files into /vendor
 * Add `127.0.0.1 gwbwdevelop.com` to /etc/hosts
+* Add `127.0.0.1 api.gwbwdevelop.com` to /etc/hosts
+
+* API server runs on api.gwbwdevelop.com:8001, whereas static server runs on gwbwdevelop.com
 
 # Development flow
 
@@ -28,8 +31,6 @@ python -m SimpleHTTPServer
 ## Or, to also run api server
 npm run start:all
 ```
-
-* API server runs on localhost:8001, whereas static server runs on gwbwdevelop.com
 
 # Deployment to GitHub Pages
 
