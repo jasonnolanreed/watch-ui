@@ -1,7 +1,7 @@
 export const apiHost =
 	(location.hostname === `gwbwdevelop.com`) ? `http://api.gwbwdevelop.com:8001/` :
 	(location.hostname === `jnr-gwbw-api-test.herokuapp.com`) ? `https://jnr-gwbw-api-test.herokuapp.com/` :
-	`https://api.goodwatchbadwatch.com/`;
+	`https://jnr-gwbw-api-prod.herokuapp.com/`;
 
 export const getOptionsForBasicGet = _ => ({
 	credentials: `include`,
