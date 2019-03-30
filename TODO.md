@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Fix iPhone radio styles
 - Add back hover styles with @media (hover)?
 - "Mustard cut" test for older browsers
 - Rename watch
