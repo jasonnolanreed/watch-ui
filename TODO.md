@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Add back hover styles with @media (hover)?
 - "Mustard cut" test for older browsers
 - Rename watch
 - Request throttling (https://github.com/nfriedly/express-rate-limit)

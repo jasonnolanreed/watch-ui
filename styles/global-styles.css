@@ -34,6 +34,7 @@ html, body {
 	font-size: 19px;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: normal;
+	letter-spacing: 0;
 	color: var(--dark-blue);
 }
 
@@ -66,7 +67,7 @@ h1, h2, h3, h4, h5 {
 	margin: 0 0 20px 0;
 	font-family: var(--serif-font), serif;
 	font-weight: bold;
-	letter-spacing: 0.5px;
+	letter-spacing: 0;
 }
 
 p {
