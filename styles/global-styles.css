@@ -55,10 +55,12 @@ a, a:visited {
 	text-decoration: underline;
 }
 
+/*
 a:hover {
 	color: var(--light-blue);
 	text-decoration: underline;
 }
+*/
 
 h1, h2, h3, h4, h5 {
 	margin: 0 0 20px 0;

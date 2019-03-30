@@ -36,10 +36,12 @@ a, a:visited {
 	text-decoration: none;
 }
 
+/*
 a:hover {
 	color: var(--light-blue);
 	text-decoration: none;
 }
+*/
 
 a:active {
 	color: var(--bright-blue);
