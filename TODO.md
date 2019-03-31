@@ -1,6 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
-- New big links in place of buttons
-- Better "start new session" explanation
+- Make add measure one step again
+	- New optional extra data during add measure
 - "Mustard cut" test for older browsers
 - Rename watch
 - Request throttling (https://github.com/nfriedly/express-rate-limit)

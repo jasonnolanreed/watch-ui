@@ -45,6 +45,8 @@ label.check {
 
 label.check [type=checkbox],
 label.check [type=radio] {
+	display: inline-block;
+	width: auto;
 	margin-right: 0.5em;
 }
 
