@@ -45,9 +45,7 @@ label.check {
 
 label.check [type=checkbox],
 label.check [type=radio] {
-	flex: 1;
-	display: inline-block;
-	width: auto;
+	min-width: 1.2em;
 	margin-right: 0.5em;
 }
 
