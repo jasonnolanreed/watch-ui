@@ -1,5 +1,7 @@
 BEFORE SHARING WITH BETA TESTERS
-- Fix iPhone radio styles
+- New big links in place of buttons
+- Fix iPhone radio/checkbox styles
+- Better "start new session" explanation
 - Add back hover styles with @media (hover)?
 - "Mustard cut" test for older browsers
 - Rename watch

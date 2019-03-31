@@ -110,7 +110,7 @@ const makeCss = (component) => (
 	@import "styles/global-styles.css";
 
 	.session-selection { margin: -16px 0 30px 0; }
-	.session-selection i { font-weight: 900; }
+	.session-selection i { font-weight: bold; }
 	.date-time { display: flex; align-items: center; line-height: 1.8; }
 	.controls { display: flex; align-items: center; }
 	.controls.slow { color: var(--red); }

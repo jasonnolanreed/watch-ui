@@ -53,7 +53,7 @@ const makeCss = (component) => (
 }
 
 .decrease-minute i, .increase-minute i {
-	font-weight: 900;
+	font-weight: bold;
 }
 
 .now {
