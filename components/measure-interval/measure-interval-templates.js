@@ -15,7 +15,7 @@ const makeHtml = (component) => (
 	Average:${` `}
 	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
 </h2>
-<button class="button" type="button" onclick="history.back();">Back</button>
+<a class="big-link" href="javascript:history.back();">Back to Measures</button>
 `
 );
 

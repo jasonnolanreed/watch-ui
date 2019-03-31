@@ -61,7 +61,7 @@ label.check [type=radio] {
 	margin-left: 0.35em;
 }
 
-input, textarea {
+input[type=text], input[type=password], textarea {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -74,21 +74,11 @@ input, textarea {
 	outline: none;
 	background-color: var(--almost-white);
 	box-shadow: 0 0 0 1px var(--silver);
-}
-
-input:not([type=radio]):not([type=checkbox]) {
 	-webkit-appearance: none;
 }
 
-input:focus {
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
 	box-shadow: 0 0 0 1px var(--blue);
-}
-
-input[type=checkbox], input[type=radio] {
-	display: inline-block;
-	width: auto;
-	background-color: transparent;
-	box-shadow: none;
 }
 
 textarea {

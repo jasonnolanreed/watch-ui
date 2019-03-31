@@ -21,6 +21,7 @@ export class Nav extends GWBWElement {
 	async connectedCallback() {
 		super.connectedCallback();
 		this.loggedIn = await Auth.isLoggedIn();
+		this.isLoginView = router._lastRouteResolved.url === `/login`;
 		this.render();
 	}
 

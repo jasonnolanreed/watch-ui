@@ -36,12 +36,12 @@ a, a:visited {
 	text-decoration: none;
 }
 
-/*
-a:hover {
-	color: var(--light-blue);
-	text-decoration: none;
+@media (hover: hover) {
+	a:hover {
+		color: var(--light-blue);
+		text-decoration: none;
+	}
 }
-*/
 
 a:active {
 	color: var(--bright-blue);
@@ -54,7 +54,7 @@ a:active {
 	line-height: 0;
 }
 
-.login, .logout {
+.login, .logout, .register {
 	margin-left: auto;
 }
 </style>
@@ -63,7 +63,11 @@ a:active {
 
 const getLinks = component => {
 	if (!component.loggedIn) {
-		return `<a class="login" href="#/login">Login <i class="material-icons">exit_to_app</i></a>`;
+		if (component.isLoginView) {
+			return `<a class="register" href="#/register">Register <i class="material-icons">account_box</i></a>`;
+		} else {
+			return `<a class="login" href="#/login">Login <i class="material-icons">exit_to_app</i></a>`;
+		}
 	}
 	return `
 	<a class="watches" href="#/watches"><i class="material-icons">watch</i> Watches</a>

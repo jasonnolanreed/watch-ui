@@ -10,7 +10,7 @@ ${showSessionsSelection(component)}
 	${showMeasures(component)}
 </form>
 ${showSessionTotal(component)}
-<a href="#/watches/measure/${component.watch._id}" class="button">Take Measurement</a>
+<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
 `
 );
 
@@ -100,7 +100,7 @@ const showSessionTotal = component => {
 		}
 		return html;
 	} else {
-		return `<p>Average rate will be shown here when multiple measurements are taken within this session.</p>`;
+		return `<p>Average rate will be shown here when multiple measures are taken within this session.</p>`;
 	}
 };
 
@@ -134,7 +134,9 @@ const makeCss = (component) => (
 		opacity: 0.35;
 		cursor: pointer;
 	}
-	/*.interval:hover { opacity: 1; }*/
+	@media (hover: hover) {
+		.interval:hover { opacity: 1; }
+	}
 	.interval i { transform: rotate(90deg); }
 	.interval:not(.interval-start) .interval-start { display: none; }
 	.interval.interval-start .interval-other { display: none; }

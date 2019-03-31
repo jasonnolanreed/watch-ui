@@ -4,7 +4,7 @@ const makeHtml = (component) => (
 <form>
 	${listWatches(component)}
 	<div class="form-controls">
-		<a class="button" href="#/watches/add">Add a Watch</a>
+		<a class="big-link" href="#/watches/add">Add New Watch</a>
 	</div>
 </form>
 `

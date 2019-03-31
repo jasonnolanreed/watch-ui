@@ -1,8 +1,6 @@
 BEFORE SHARING WITH BETA TESTERS
 - New big links in place of buttons
-- Fix iPhone radio/checkbox styles
 - Better "start new session" explanation
-- Add back hover styles with @media (hover)?
 - "Mustard cut" test for older browsers
 - Rename watch
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
