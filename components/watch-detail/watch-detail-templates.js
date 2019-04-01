@@ -51,7 +51,7 @@ const showMeasures = component => {
 		<i class="invisible interval material-icons inline">touch_app</i>
 			Date, Time
 		</div>
-		<div class="deviation">
+		<div class="header-deviation">
 			Deviation
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
 			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
@@ -70,7 +70,7 @@ const showMeasures = component => {
 				${moment(+measure.targetMoment).format(`MMM Do, hh:mm a`)}
 			</div>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
-				${roundToTwoDecimals(component.getMomentDiff(measure))}s
+				<span class="measure-deviation">${roundToTwoDecimals(component.getMomentDiff(measure))}s</span>
 				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
 					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
 				</button>
@@ -88,14 +88,26 @@ const showMeasures = component => {
 const showSessionTotal = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	const sessionTotalData = component.getSessionTotalData();
+	const totalClasses = getTotalClasses(component, sessionTotalData);
 	if (sessionTotalData) {
-		let html = `<h2 class="total ${sessionTotalData.averageRate < 0 ? 'slow' : 'fast'}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>`;
+		let html =
+		`
+		<h2 class="total ${totalClasses}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>
+		`;
 		if (sessionTotalData.sessionDistance < 0.5) {
 			html += `
 			<p class="short-session-alert">
 				<i class="material-icons">warning</i>
 				<span>This average is prone to inaccuracy because of the short session. Sessions of 12+ hours provide better results.</span>
 			</p>
+			`;
+		} else {
+			html +=
+			`
+			<div class="good-bad-message ${totalClasses}">
+				<h4 class="good"><i class="material-icons inline">thumb_up</i> Good watch</h4>
+				<h4 class="bad"><i class="material-icons inline">thumb_down</i> Bad watch</h4>
+			</div>
 			`;
 		}
 		return html;
@@ -104,66 +116,85 @@ const showSessionTotal = component => {
 	}
 };
 
-const makeCss = (component) => (
-	`
-	<style>
-	@import "styles/global-styles.css";
+const getTotalClasses = (component, sessionTotalData) => {
+	if (!sessionTotalData) { return ``; }
+	let classes = [];
+	if (sessionTotalData.averageRate < 0) {
+		classes.push(`slow`);
+	} else {
+		classes.push(`fast`);
+	}
+	if (Math.abs(sessionTotalData.averageRate) <= component.watch.goodTolerance) {
+		classes.push(`good-watch`);
+	} else {
+		classes.push(`bad-watch`);
+	}
+	return classes.length ? classes.join(` `) : ``;
+};
 
-	.session-selection { margin: -16px 0 30px 0; }
-	.session-selection i { font-weight: bold; }
-	.date-time { display: flex; align-items: center; line-height: 1.8; }
-	.controls { display: flex; align-items: center; }
-	.controls.slow { color: var(--red); }
-	.controls.fast { color: var(--green); }
-	.controls.fast:before { content: "+"; }
-	.deviation { display: flex; align-items: flex-end; }
-	.deviation .button { margin-left: 0.5em; }
-	.total.fast .number:before { content: "+"; }
-	.short-session-alert {
-		display: flex;
-		justify-items: flex-start;
-		align-items: center;
-		margin-top: -10px;
-		color: var(--red);
+const makeCss = (component) => (
+`
+<style>
+@import "styles/global-styles.css";
+
+.session-selection { margin: -16px 0 30px 0; }
+.session-selection i { font-weight: bold; }
+.date-time { display: flex; align-items: center; line-height: 1.8; }
+.header-deviation { display: flex; align-items: flex-end; }
+.header-deviation .button { margin-left: 0.5em; }
+.controls { display: flex; align-items: center; color: var(--light-blue); }
+.controls.fast:before { content: "+"; }
+.total.good-watch { color: var(--green); }
+.total.bad-watch { color: var(--red); }
+.total.fast .number:before { content: "+"; }
+.good-bad-message > * { display: none; margin-top: -1.5em; }
+.good-bad-message.good-watch .good { display: block; color: var(--green); }
+.good-bad-message.bad-watch .bad { display: block; color: var(--red); }
+.short-session-alert {
+	display: flex;
+	justify-items: flex-start;
+	align-items: center;
+	margin-top: -10px;
+	color: var(--red);
+}
+.short-session-alert i { margin-right: 0.5em; }
+.interval.interval {
+	font-size: 1.65em;
+	padding: 0.5em 1.15em 0.5em 0.5em;
+	margin: -0.7em -1em -0.7em -0.7em;
+	opacity: 0.35;
+	cursor: pointer;
+	z-index: 1;
+}
+@media (hover: hover) {
+	.interval:hover { opacity: 1; }
+}
+.interval i { transform: rotate(90deg); }
+.interval:not(.interval-start) .interval-start { display: none; }
+.interval.interval-start .interval-other { display: none; }
+.measures-list.interval-start .interval { opacity: 1; }
+.measures-list.interval-start .interval.interval-start i { color: var(--green); }
+.measures-list.interval-start .interval:not(.interval-start) i {
+	color: var(--blue);
+	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
+}
+@keyframes entice {
+	10%, 90% {
+		transform: rotate(93deg);
 	}
-	.short-session-alert i { margin-right: 0.5em; }
-	.interval.interval {
-		font-size: 1.65em;
-		padding: 0.5em 1.15em 0.5em 0.5em;
-		margin: -0.7em -1em -0.7em -0.7em;
-		opacity: 0.35;
-		cursor: pointer;
-		z-index: 1;
+	20%, 80% {
+		transform: rotate(85deg);
 	}
-	@media (hover: hover) {
-		.interval:hover { opacity: 1; }
+	30%, 50%, 70% {
+		transform: rotate(96deg);
 	}
-	.interval i { transform: rotate(90deg); }
-	.interval:not(.interval-start) .interval-start { display: none; }
-	.interval.interval-start .interval-other { display: none; }
-	.measures-list.interval-start .interval { opacity: 1; }
-	.measures-list.interval-start .interval.interval-start i { color: var(--green); }
-	.measures-list.interval-start .interval:not(.interval-start) i {
-		color: var(--blue);
-		animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
+	40%, 60% {
+		transform: rotate(83deg);
 	}
-	@keyframes entice {
-		10%, 90% {
-			transform: rotate(93deg);
-		}
-		20%, 80% {
-			transform: rotate(85deg);
-		}
-		30%, 50%, 70% {
-			transform: rotate(96deg);
-		}
-		40%, 60% {
-			transform: rotate(83deg);
-		}
-	}
-	</style>
-	`
-	);
+}
+</style>
+`
+);
 
 export const makeTemplate = (component) => {
 	return makeCss(component) + makeHtml(component);

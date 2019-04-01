@@ -11,10 +11,14 @@ const makeHtml = (component) => (
 <p>
 	<em>Duration:</em> ${getDuration(component)}
 </p>
-<h2>
+<h2 class="average ${getClasses(component)}">
 	Average:${` `}
 	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
 </h2>
+<div class="good-bad-message ${getClasses(component)}">
+	<h4 class="good"><i class="material-icons inline">thumb_up</i> Good watch</h4>
+	<h4 class="bad"><i class="material-icons inline">thumb_down</i> Bad watch</h4>
+</div>
 <a class="big-link" href="javascript:history.back();">Back to Measures</button>
 `
 );
@@ -25,7 +29,12 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 h1 i { transform: rotate(90deg); }
+.average.good-watch { color: var(--green); }
+.average.bad-watch { color: var(--red); }
 .rate.fast:before { content: "+"; }
+.good-bad-message > * { display: none; margin-top: -1.5em; }
+.good-bad-message.good-watch .good { display: block; color: var(--green); }
+.good-bad-message.bad-watch .bad { display: block; color: var(--red); }
 </style>
 `
 );
@@ -62,6 +71,12 @@ const getRate = component => {
 	const diffAtStart = moment(+component.startMeasure.targetMoment).diff(moment(+component.startMeasure.moment), `seconds`, true);
 	const intervalDrift = diffAtEnd - diffAtStart;
 	return roundToTwoDecimals(intervalDrift / intervalDistanceInDays);
+};
+
+const getClasses = component => {
+	const isGood = Math.abs(getRate(component)) <= component.watch.goodTolerance;
+	if (isGood) { return `good-watch`; }
+	return `bad-watch`;
 };
 
 export const makeTemplate = (component) => {

@@ -31,7 +31,6 @@ export class WatchEdit extends GWBWElement {
 
 	async getData() {
 		this.watch = await Watch.getWatch(router.params[`watchId`]);
-		console.log(`watch`, this.watch);
 		this.render();
 	}
 

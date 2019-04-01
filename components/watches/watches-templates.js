@@ -16,6 +16,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 .list-item { cursor: default; }
+.controls { display: flex; align-items: center; }
 </style>
 `
 );
@@ -29,14 +30,14 @@ const listWatches = component => {
 		htmlString += `
 		<li class="list-item" watch-id="${watch._id}">
 			<div>${watch.name}</div>
-			<div class="nowrap">
-				<button class="edit-watch button compact low-priority" watch-id="${watch._id}">
+			<div class="controls nowrap">
+				<button class="edit-watch button ultra-compact low-priority" watch-id="${watch._id}">
 					<i class="material-icons">settings</i>
 				</button>
-				<button class="view-watch button compact" watch-id="${watch._id}">
+				<button class="view-watch button ultra-compact" watch-id="${watch._id}">
 					<i class="material-icons">insert_chart</i>
 				</button>
-				<button class="delete-watch button negative compact" watch-id="${watch._id}">
+				<button class="delete-watch button negative ultra-compact" watch-id="${watch._id}">
 					<i class="material-icons">delete</i>
 				</button>
 			</div>

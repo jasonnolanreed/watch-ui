@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Wrap all renders with try/catch
 - Make sure all form labels have for attribute
 - Loading icon for view
 	- Has to live outside component but be killed by component on render()
@@ -19,7 +20,6 @@ BEFORE SHARING WIDELY
 - New user gets sample data to explore
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Search engine stuff -- <meta>, etc
-- New watch setting for goal accuracy to start integrating "good/bad" theme
 - User option for using atomic time or not or manually setting offset
 - Proper messaging system instead of alerts
 - Manual wind power reserve tools
