@@ -4,7 +4,7 @@ const makeHtml = (component) => (
 <form>
 	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set your watch</p>
 	<div class="form-input">
-		<label class="check" for="firstOfSession">
+		<label class="check">
 			<input type="checkbox" name="firstOfSession" ${component.isNewSession ? `checked` : ``}>
 			${` `}Start new session
 		</label>

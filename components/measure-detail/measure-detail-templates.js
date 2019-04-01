@@ -9,7 +9,7 @@ const makeHtml = (component) => (
 </div>
 <form>
 	<div class="form-input">
-		<label class="check" for="firstOfSession">
+		<label class="check">
 			<input type="checkbox" name="firstOfSession" ${component.measure.firstOfSession ? `checked` : ``}>
 			<div>First measure of session<br><small>(first since having set time on watch)</small></div>
 		</label>
@@ -22,31 +22,31 @@ const makeHtml = (component) => (
 	<div class="form-input position">
 		<label for="position">Position</label>
 		<small class="position-helper">Choose the most prevalent position since the last measure</small>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="unspecified" ${component.measure.position === `unspecified` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`unspecified`)}</i> Unspecified
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="worn" ${component.measure.position === `worn` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`worn`)}</i> Worn
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="dialup" ${component.measure.position === `dialup` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`dialup`)}</i> Dial Up
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="dialdown" ${component.measure.position === `dialdown` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`dialdown`)}</i> Dial Down
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="crownup" ${component.measure.position === `crownup` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`crownup`)}</i> Crown Up
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="crowndown" ${component.measure.position === `crowndown` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`crowndown`)}</i> Crown Down
 		</label>
-		<label class="check" for="position">
+		<label class="check">
 			<input type="radio" name="position" value="winder" ${component.measure.position === `winder` ? `checked` : ``}>
 			<i class="material-icons">${getIconNameForPosition(`winder`)}</i> Winder
 		</label>
