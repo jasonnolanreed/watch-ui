@@ -1,12 +1,13 @@
+export const positionsMap = {
+	unspecified: {label: `Unspecified`, icon: `panorama_fish_eye`},
+	worn: {label: `Worn`, icon: `accessibility_new`},
+	dialup: {label: `Dial Up`, icon: `arrow_upward`},
+	dialdown: {label: `Dial Down`, icon: `arrow_downward`},
+	crownup: {label: `Crown Up`, icon: `text_rotate_up`},
+	crowndown: {label: `Crown Down`, icon: `text_rotation_down`},
+	winder: {label: `Winder`, icon: `rotate_right`}
+};
+
 export const getIconNameForPosition = position => {
-	const iconsMap = {
-		unspecified: `panorama_fish_eye`,
-		worn: `accessibility_new`,
-		dialup: `arrow_upward`,
-		dialdown: `arrow_downward`,
-		crownup: `text_rotate_up`,
-		crowndown: `text_rotation_down`,
-		winder: `rotate_right`
-	};
-	return iconsMap[position] || positions[`unspecified`];
+	return positionsMap[position] ? positionsMap[position].icon : positionsMap.unspecified.icon;
 };
