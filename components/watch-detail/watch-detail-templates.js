@@ -133,6 +133,7 @@ const makeCss = (component) => (
 		margin: -0.7em -1em -0.7em -0.7em;
 		opacity: 0.35;
 		cursor: pointer;
+		z-index: 1;
 	}
 	@media (hover: hover) {
 		.interval:hover { opacity: 1; }
