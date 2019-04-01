@@ -29,7 +29,6 @@ BEFORE SHARING WIDELY
 NOT SURE YET
 - "Social" aspect? Share watches to other users?
 - Service worker to make PWA
-- Rename "firstOfSet" to "firstOfSession" across projects
 - Admin tools to see what's going on
 - Pass data into custom elements where possible -- router params?
 - Abstract all the time math and formatting to new utility for sharing

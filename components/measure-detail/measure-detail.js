@@ -29,7 +29,7 @@ export class MeasureDetail extends GWBWElement {
 				watchId: router.params[`watchId`],
 				moment: router.params[`moment`],
 				targetMoment: router.params[`targetMoment`],
-				firstOfSet: router.params[`firstOfSet`] === `true`,
+				firstOfSession: router.params[`firstOfSession`] === `true`,
 				note: ``,
 				position: `unspecified`
 			};

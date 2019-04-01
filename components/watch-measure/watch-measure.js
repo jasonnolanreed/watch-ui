@@ -33,9 +33,9 @@ export class WatchMeasure extends GWBWElement {
 	}
 
 	render() {
-		const $firstOfSet = this.shadowRoot.querySelector(`input[name=firstOfSet]`);
-		if ($firstOfSet) {
-			this.isNewSession = !!$firstOfSet.checked;
+		const $firstOfSession = this.shadowRoot.querySelector(`input[name=firstOfSession]`);
+		if ($firstOfSession) {
+			this.isNewSession = !!$firstOfSession.checked;
 		}
 		this.targetTimeString = this.moment.format(`hh:mm a`);
 		this.shadowRoot.innerHTML = makeTemplate(this);
@@ -59,8 +59,8 @@ export class WatchMeasure extends GWBWElement {
 			(this.atomicOffset > 0) ?
 			measuredMoment.subtract(Math.abs(this.atomicOffset), `seconds`).format(`x`) :
 			measuredMoment.add(Math.abs(this.atomicOffset), `seconds`).format(`x`);
-		const firstOfSet = this.shadowRoot.querySelector(`[name=firstOfSet]`).checked;
-		const url = `/measure/now/${this.watch._id}/${targetMoment}/${adjustedMeasuredMoment}/${firstOfSet}`;
+		const firstOfSession = this.shadowRoot.querySelector(`[name=firstOfSession]`).checked;
+		const url = `/measure/now/${this.watch._id}/${targetMoment}/${adjustedMeasuredMoment}/${firstOfSession}`;
 		router.navigate(url);
 	}
 

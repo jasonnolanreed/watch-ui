@@ -78,7 +78,7 @@ router
 		router.navigate(`/login`);
 	}
 })
-.on(`/measure/now/:watchId/:targetMoment/:moment/:firstOfSet`, async (params, query) => {
+.on(`/measure/now/:watchId/:targetMoment/:moment/:firstOfSession`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
