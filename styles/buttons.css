@@ -1,4 +1,5 @@
 .button.button {
+	align-items: flex-start;
 	display: inline-block;
 	position: relative;
 	margin: 0;
