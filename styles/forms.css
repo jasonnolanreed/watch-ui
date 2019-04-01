@@ -61,7 +61,7 @@ label.check [type=radio] {
 	margin-left: 0.35em;
 }
 
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=number], textarea {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -82,7 +82,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 
 textarea {
-	height: 8em;
+	height: 10em;
 	resize: vertical;
 }
 

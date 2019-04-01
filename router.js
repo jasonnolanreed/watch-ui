@@ -60,6 +60,16 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/watches/edit/:watchId`, async (params, query) => {
+	router.params = params;
+	router.query = formatQuery(query);
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/watch-edit-view.html`);
+		GA.view(`/watches/edit`, `Edit a Watch`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .on(`/watches/measure/:watchId`, async (params, query) => {
 	router.params = params;
 	if (await Auth.isLoggedIn()) {

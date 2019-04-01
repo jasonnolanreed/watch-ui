@@ -1,4 +1,4 @@
-import {apiHost, getOptionsForPost, getOptionsForBasicGet, getOptionsForDelete} from '../utilities/network.js';
+import {apiHost, getOptionsForPost, getOptionsForBasicGet, getOptionsForDelete, getOptionsForPut} from '../utilities/network.js';
 import {LoggedOut} from './logged-out.js';
 
 export class Watch {
@@ -39,6 +39,17 @@ export class Watch {
 	static delete(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForDelete(data))
+			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
+			.then(response => resolve(true))
+			.catch(_ => resolve(false));
+		});
+	}
+
+	// Always resolves, with boolean payload
+	static update(data) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}watch`, getOptionsForPut(data))
 			.then(response => LoggedOut.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))

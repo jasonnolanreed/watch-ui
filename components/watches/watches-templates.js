@@ -30,6 +30,9 @@ const listWatches = component => {
 		<li class="list-item" watch-id="${watch._id}">
 			<div>${watch.name}</div>
 			<div class="nowrap">
+				<button class="edit-watch button compact low-priority" watch-id="${watch._id}">
+					<i class="material-icons">settings</i>
+				</button>
 				<button class="view-watch button compact" watch-id="${watch._id}">
 					<i class="material-icons">insert_chart</i>
 				</button>

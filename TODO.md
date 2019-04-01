@@ -1,9 +1,11 @@
 BEFORE SHARING WITH BETA TESTERS
+- Make sure all form labels have for attribute
+- Loading icon for view
+	- Has to live outside component but be killed by component on render()
 - Allow guest users who can later sign up without losing progress
 - Make add measure one step again
 	- New optional extra data during add measure
 - "Mustard cut" test for older browsers
-- Rename watch
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Send exceptions to ga or use something like rollbar
 - Add more data to analytics events (userid, watchid, measureid, etc)

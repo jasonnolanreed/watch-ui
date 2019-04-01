@@ -10,6 +10,7 @@ export class Watches extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
+			{target: `.edit-watch`, handler: this.onEdit},
 			{target: `.view-watch`, handler: this.onView},
 			{target: `.list-item`, handler: this.onView},
 			{target: `.delete-watch`, handler: this.onDelete}
@@ -35,6 +36,11 @@ export class Watches extends GWBWElement {
 	async getWatches() {
 		this.watches = await Watch.getWatches();
 		this.render();
+	}
+
+	onEdit(event, target) {
+		const watchId = target.getAttribute(`watch-id`);
+		router.navigate(`/watches/edit/${watchId}`);
 	}
 
 	onView(event, target) {

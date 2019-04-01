@@ -1,6 +1,6 @@
 export const getFormData = $form => {
 	let data = {};
-	$form.querySelectorAll(`input[type=text], input[type=password], input[type=hidden]`).forEach($input => {
+	$form.querySelectorAll(`input[type=text], input[type=password], input[type=hidden], input[type=number]`).forEach($input => {
 		data[$input.getAttribute(`name`)] = $input.value;
 	});
 	$form.querySelectorAll(`input[type=checkbox]`).forEach($checkbox => {
