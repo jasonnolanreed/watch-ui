@@ -29,6 +29,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 h1 i { transform: rotate(90deg); }
+p { margin-top: -1.35em; }
 .average.good-watch { color: var(--green); }
 .average.bad-watch { color: var(--red); }
 .rate.fast:before { content: "+"; }

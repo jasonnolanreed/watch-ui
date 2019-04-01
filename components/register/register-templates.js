@@ -3,11 +3,11 @@ export const makeTemplate = (component) => (
 <h1><i class="material-icons inline">account_box</i> Register</h1>
 <form novalidate>
 	<div class="form-input">
-		<label>Email</label>
+		<label for="email">Email</label>
 		<input type="text" name="email" autocomplete="email" maxlength="250">
 	</div>
 	<div class="form-input">
-		<label>Password</label>
+		<label for="password">Password</label>
 		<input type="password" name="password" autocomplete="new-password" maxlength="250">
 	</div>
 	<div class="form-controls">

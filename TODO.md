@@ -1,6 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
-- Wrap all renders with try/catch
-- Make sure all form labels have for attribute
+- Wrap all renders with try/catch and post-loading visual on error
 - Loading icon for view
 	- Has to live outside component but be killed by component on render()
 - Allow guest users who can later sign up without losing progress
