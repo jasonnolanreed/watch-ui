@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Rework header margins in em's -- will take a fair amount of testing
 - Wrap all renders with try/catch and post-loading visual on error
 - Loading icon for view
 	- Has to live outside component but be killed by component on render()
