@@ -37,7 +37,6 @@ form label:not(.check):after {
 }
 
 label.check {
-	width: 1px;
 	display: flex;
 	align-items: center;
 	white-space: nowrap;

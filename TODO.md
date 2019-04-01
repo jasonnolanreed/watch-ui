@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Allow guest users who can later sign up without losing progress
 - Make add measure one step again
 	- New optional extra data during add measure
 - "Mustard cut" test for older browsers
