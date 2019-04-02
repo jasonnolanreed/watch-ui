@@ -29,7 +29,7 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 python -m SimpleHTTPServer
 
 ## Or, to also run api server
-npm run start:all
+npm run dev
 ```
 
 # Deployment to GitHub Pages

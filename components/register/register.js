@@ -8,9 +8,6 @@ import {makeTemplate} from './register-templates.js';
 export class Register extends GWBWElement {
 	constructor() {
 		super();
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	connectedCallback() {
@@ -24,6 +21,7 @@ export class Register extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.innerHTML = makeTemplate(this);
 	}
 

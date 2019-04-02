@@ -13,9 +13,6 @@ export class MeasureDetail extends GWBWElement {
 		this.setClickEvents([
 			{target: `.cancel`, handler: this.onCancel}
 		]);
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	async connectedCallback() {
@@ -43,6 +40,7 @@ export class MeasureDetail extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 

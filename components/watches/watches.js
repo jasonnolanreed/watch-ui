@@ -15,9 +15,6 @@ export class Watches extends GWBWElement {
 			{target: `.list-item`, handler: this.onView},
 			{target: `.delete-watch`, handler: this.onDelete}
 		]);
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	connectedCallback() {
@@ -30,6 +27,7 @@ export class Watches extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 

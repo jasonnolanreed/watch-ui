@@ -8,9 +8,6 @@ import {makeTemplate} from './login-templates.js';
 export class Login extends GWBWElement {
 	constructor() {
 		super();
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	connectedCallback() {
@@ -24,6 +21,7 @@ export class Login extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.innerHTML = makeTemplate(this);
 	}
 

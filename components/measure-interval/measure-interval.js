@@ -9,9 +9,6 @@ export class MeasureInterval extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	async connectedCallback() {
@@ -24,6 +21,7 @@ export class MeasureInterval extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 

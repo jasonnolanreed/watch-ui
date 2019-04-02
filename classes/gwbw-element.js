@@ -28,6 +28,10 @@ export class GWBWElement extends HTMLElement {
 		if (this.resizeObserver) { this.resizeObserver.disconnect(); }
 	}
 
+	render() {
+		document.querySelector(`gwbw-loader`).loading = false;
+	}
+
 	bindForm() {
 		this.hasForm = true;
 		this.addEventListener(`submit`, this._onSubmit);

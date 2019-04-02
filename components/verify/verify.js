@@ -24,6 +24,7 @@ export class Verify extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 

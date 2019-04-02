@@ -10,9 +10,6 @@ export class WatchEdit extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 	}
 
 	connectedCallback() {
@@ -26,6 +23,7 @@ export class WatchEdit extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 

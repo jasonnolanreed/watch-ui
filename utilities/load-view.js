@@ -6,7 +6,8 @@ export class LoadView {
 		.then(response => response.text())
 		.then(responseAsText => {
 			$view.innerHTML = responseAsText;
-			const $$scripts = $view.querySelectorAll(`script`);
+			const $$scripts = $view.querySelectorAll(`script[src]`);
+			const $$inlineScripts = $view.querySelectorAll(`script:not([src])`);
 			$$scripts.forEach($script => {
 				let $newScript = document.createElement(`script`);
 				$newScript.src = $script.getAttribute(`src`);
@@ -16,6 +17,9 @@ export class LoadView {
 				$script.parentNode.removeChild($script);
 				$view.appendChild($newScript);
 			});
+			$$inlineScripts.forEach($script => {
+				eval($script.innerText);
+			});
 		});
 	}
 
@@ -24,11 +28,12 @@ export class LoadView {
 	// view, parses and loads ITS contained scripts, and inserts
 	// into DOM for $view -> #content-container as parent
 	static layout($view, layoutUrl, viewUrl) {
+		document.querySelector(`gwbw-loader`).loading = true;
 		fetch(layoutUrl)
 		.then(response => response.text(), error => { throw new Error(); })
 		.then(responseAsText => {
 			$view.innerHTML = responseAsText;
-			const $$scripts = $view.querySelectorAll(`script`);
+			const $$scripts = $view.querySelectorAll(`script[src]`);
 			$$scripts.forEach($script => {
 				let $newScript = document.createElement(`script`);
 				$newScript.src = $script.getAttribute(`src`);

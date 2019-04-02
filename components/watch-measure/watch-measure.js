@@ -33,6 +33,7 @@ export class WatchMeasure extends GWBWElement {
 	}
 
 	render() {
+		super.render();
 		const $firstOfSession = this.shadowRoot.querySelector(`input[name=firstOfSession]`);
 		if ($firstOfSession) {
 			this.isNewSession = !!$firstOfSession.checked;

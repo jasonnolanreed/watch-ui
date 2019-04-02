@@ -10,9 +10,6 @@ export class Nav extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.loggedIn = false;
-		this.setNamedSizes([
-			{name: `huge`, width: 1}
-		]);
 		this.setClickEvents([
 			{target: `.logout`, handler: this.logout}
 		]);
