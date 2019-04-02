@@ -11,5 +11,3 @@ if (window.Sentry) {
 		dsn: `https://4ec231e6bf774e5bbc2546a1d11f5578@sentry.io/1426110`
 	});
 }
-
-window.do();
