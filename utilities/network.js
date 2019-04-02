@@ -1,6 +1,9 @@
+export const environment = (location.hostname === `gwbwdevelop.com`) ?
+	`development` :
+	`production`;
+
 export const apiHost =
-	(location.hostname === `gwbwdevelop.com`) ? `http://api.gwbwdevelop.com:8001/` :
-	// (location.hostname === `jnr-gwbw-api-test.herokuapp.com`) ? `https://jnr-gwbw-api-test.herokuapp.com/` :
+	(environment === `development`) ? `http://api.gwbwdevelop.com:8001/` :
 	`https://api.goodwatchbadwatch.com/`;
 
 export const getOptionsForBasicGet = _ => ({
