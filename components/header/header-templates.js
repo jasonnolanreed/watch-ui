@@ -15,6 +15,10 @@ picture {
 	margin: 0 auto;
 }
 
+:host(:not([namedsize])) picture {
+	display: none;
+}
+
 :host([namedsize=medium]) picture,
 :host([namedsize=large]) picture,
 :host([namedsize=huge]) picture {

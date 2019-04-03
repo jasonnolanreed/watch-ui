@@ -1,4 +1,6 @@
-BEFORE SHARING WITH BETA TESTERS
+BEFORE SHARING WITH BETA TESTERS'
+- Update mongo query projections to use 1 in place of true -- test!
+	- Also check for exclusions opportunities (0)
 - Rework header margins in em's -- will take a fair amount of testing
 - Wrap all renders with try/catch and post-loading visual on error
 - Allow guest users who can later sign up without losing progress
