@@ -73,6 +73,10 @@ h1, h2, h3, h4, h5 {
 	font-weight: 700;
 }
 
+.more-info-header { margin: -2.5em 0 2em; }
+.more-info-header h1 { display: inline; }
+.more-info-header h3 { display: inline; }
+
 p {
 	margin: 0 0 20px 0;
 }

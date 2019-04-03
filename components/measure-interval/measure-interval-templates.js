@@ -3,6 +3,10 @@ import {roundToTwoDecimals} from '../../utilities/number.js';
 const makeHtml = (component) => (
 `
 <h1><i class="material-icons inline">straighten</i> Measure Interval</h1>
+<div class="more-info-header">
+	<h1><i class="invisible material-icons inline">straighten</i></h1>
+	${' '}<h3>${component.watch.name}</h3>
+</div>
 <h3>
 	<span class="nowrap">${moment(+component.startMeasure.targetMoment).format(`MMM Do, hh:mm a`)}</span>
 	${` `}-${` `}
