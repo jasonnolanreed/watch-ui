@@ -2,6 +2,7 @@ export class LoadView {
 	// Fetches HTML for view, parses and loads contained scripts,
 	// and inserts into DOM with $view as parent
 	static fetch($view, viewUrl) {
+		LoadView._scrollToTop();
 		fetch(viewUrl)
 		.then(response => response.text())
 		.then(responseAsText => {
@@ -20,27 +21,16 @@ export class LoadView {
 			$$inlineScripts.forEach($script => {
 				eval($script.innerText);
 			});
-			try {
-				requestAnimationFrame(_ => {
-					$view.classList.add(`in`);
-						if (typeof window.scroll === `function`) {
-							window.scroll({top: 0, left: 0, behavior: `smooth`});
-						} else if (typeof window.scroll === `function`) {
-							window.scrollTo({top: 0, left: 0, behavior: `smooth`});
-						}
-				});
-			} catch(error) {
-				try {
-					window.scrollTo(0, 0);
-				} catch(error) {}
-			}
+			requestAnimationFrame(_ => {
+				$view.classList.add(`in`);
+			});
 		});
 	}
 
 	// Fetches HTML for layout, parses and loads contained scripts,
 	// inserts into DOM with $view as parent, fetches HTML for
 	// view, parses and loads ITS contained scripts, and inserts
-	// into DOM for $view -> #content-container as parent
+	// into DOM for $view -> .content-container as parent
 	static layout($view, layoutUrl, viewUrl) {
 		document.querySelector(`gwbw-loader`).loading = true;
 		fetch(layoutUrl)
@@ -60,5 +50,19 @@ export class LoadView {
 			LoadView.fetch($view.querySelector(`.content-container`), viewUrl);
 		})
 		.catch(error => null)
+	}
+
+	static _scrollToTop() {
+		try {
+			if (typeof window.scroll === `function`) {
+				window.scroll({top: 0, left: 0, behavior: `smooth`});
+			} else if (typeof window.scroll === `function`) {
+				window.scrollTo({top: 0, left: 0, behavior: `smooth`});
+			}
+		} catch(error) {
+			try {
+				window.scrollTo(0, 0);
+			} catch(error) {}
+		}
 	}
 }
