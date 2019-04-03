@@ -2,7 +2,6 @@ export class LoadView {
 	// Fetches HTML for view, parses and loads contained scripts,
 	// and inserts into DOM with $view as parent
 	static fetch($view, viewUrl) {
-		LoadView._scrollToTop();
 		fetch(viewUrl)
 		.then(response => response.text())
 		.then(responseAsText => {
@@ -32,7 +31,6 @@ export class LoadView {
 	// view, parses and loads ITS contained scripts, and inserts
 	// into DOM for $view -> .content-container as parent
 	static layout($view, layoutUrl, viewUrl) {
-		document.querySelector(`gwbw-loader`).loading = true;
 		fetch(layoutUrl)
 		.then(response => response.text(), error => { throw new Error(); })
 		.then(responseAsText => {
@@ -50,6 +48,11 @@ export class LoadView {
 			LoadView.fetch($view.querySelector(`.content-container`), viewUrl);
 		})
 		.catch(error => null)
+
+		LoadView._scrollToTop();
+		document.querySelector(`gwbw-loader`).loading = true;
+		const $contentContainer = $view.querySelector(`.content-container`);
+		if ($contentContainer) { $contentContainer.classList.remove(`in`); }
 	}
 
 	static _scrollToTop() {

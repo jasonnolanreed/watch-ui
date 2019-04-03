@@ -126,15 +126,13 @@ hr {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 2em 2em 4em 2em;
-	/* opacity: 0;
-	transform: scale(0.9);
-	transition: transform 0.15s ease, opacity 0.25s ease; */
+	opacity: 0;
+	transition: opacity 0.6s ease;
 }
 
-/* .content-container.in {
-	transform: scale(1);
+.content-container.in {
 	opacity: 1;
-} */
+}
 
 footer {
 	background-color: var(--dark-blue);
