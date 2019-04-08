@@ -1,6 +1,7 @@
-BEFORE SHARING WITH BETA TESTERS'
+BEFORE SHARING WITH BETA TESTERS
+- If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
-	- Also check for exclusions opportunities (0)
+	- Also check for exclusions opportunities (0) (user (password)?)
 - Rework header margins in em's -- will take a fair amount of testing
 - Wrap all renders with try/catch and post-loading visual on error
 - Allow guest users who can later sign up without losing progress
@@ -8,7 +9,6 @@ BEFORE SHARING WITH BETA TESTERS'
 	- New optional extra data during add measure
 - "Mustard cut" test for older browsers
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
-- Send exceptions to ga or use something like rollbar
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - FAQ page
 - Home page
@@ -29,7 +29,7 @@ BEFORE SHARING WIDELY
 
 
 NOT SURE YET
-- "Social" aspect? Share watches to other users?
+- "Social" aspect? Share watches to other users? Awards for most accurate sessions?
 - Service worker to make PWA
 - Admin tools to see what's going on
 - Pass data into custom elements where possible -- router params?
