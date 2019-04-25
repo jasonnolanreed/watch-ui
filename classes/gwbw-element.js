@@ -13,12 +13,18 @@ export class GWBWElement extends HTMLElement {
 			{name: `large`, width: 1200},
 			{name: `huge`, width: 1600},
 		];
+		this.hasSetupResizeListener = false;
+		this.hasSetNamedSizes = false;
+		this.hasConnected = false;
 	}
 
 	connectedCallback() {
+		this.hasConnected = true;
 		this.classList.add(`block`);
 		this.addEventListener(`click`, this.onClick);
-		this.setupResizeListener();
+		if (this.hasSetNamedSizes) {
+			this.setupResizeListener();
+		}
 	}
 
 	disconnectedCallback() {
@@ -47,7 +53,13 @@ export class GWBWElement extends HTMLElement {
 	}
 
 	setNamedSizes(sizes) {
-		this.namedSizes = sizes;
+		this.hasSetNamedSizes = true;
+		if (sizes) {
+			this.namedSizes = sizes;
+		}
+		if (this.hasConnected) {
+			this.setupResizeListener();
+		}
 	}
 
 	startWorking() {
@@ -104,6 +116,8 @@ export class GWBWElement extends HTMLElement {
 	}
 
 	setupResizeListener() {
+		if (this.hasSetupResizeListener) { return; }
+		this.hasSetupResizeListener = true;
 		if (`ResizeObserver` in window) {
 			this.resizeObserver = new ResizeObserver(elements => {
 				this.updateNamedSize(elements[0].contentRect.width);

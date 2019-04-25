@@ -1,4 +1,5 @@
 BEFORE SHARING WITH BETA TESTERS
+- Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
 	- Also check for exclusions opportunities (0) (user (password)?)
