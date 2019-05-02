@@ -25,10 +25,7 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 * No build tools are used!
 
 ```
-# Simple server
-python -m SimpleHTTPServer
-
-## Or, to also run api server
+# Serve static files, start mongo, start api server
 npm run dev
 ```
 

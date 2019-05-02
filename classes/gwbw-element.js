@@ -3,9 +3,10 @@ export class GWBWElement extends HTMLElement {
 		super();
 		this.startWorking = this.startWorking.bind(this);
 		this.stopWorking = this.stopWorking.bind(this);
-		this.onClick = this.onClick.bind(this);
+		this.onClick = this._onClick.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
-		this.updateNamedSize = this.updateNamedSize.bind(this);
+		this.updateNamedSize = this._updateNamedSize.bind(this);
+		this.setupResizeListener = this._setupResizeListener.bind(this);
 		this.clickEvents = null;
 		this.namedSizes = [
 			{name: `small`, width: 600},
@@ -21,14 +22,12 @@ export class GWBWElement extends HTMLElement {
 	connectedCallback() {
 		this.hasConnected = true;
 		this.classList.add(`block`);
-		this.addEventListener(`click`, this.onClick);
-		if (this.hasSetNamedSizes) {
-			this.setupResizeListener();
-		}
+		this.addEventListener(`click`, this._onClick);
+		this._setupResizeListener();
 	}
 
 	disconnectedCallback() {
-		this.removeEventListener(`click`, this.onClick);
+		this.removeEventListener(`click`, this._onClick);
 		if (this.hasForm) { this.removeEventListener(`submit`, this._onSubmit); }
 		if (this.hasShadowForm) { this.shadowRoot.removeEventListener(`submit`, this._onSubmit); }
 		if (this.resizeObserver) { this.resizeObserver.disconnect(); }
@@ -39,11 +38,13 @@ export class GWBWElement extends HTMLElement {
 	}
 
 	bindForm() {
+		console.log(`nolan bindForm`);
 		this.hasForm = true;
 		this.addEventListener(`submit`, this._onSubmit);
 	}
 
 	bindShadowForm() {
+		console.log(`nolan bindShadowForm`);
 		this.hasShadowForm = true;
 		this.shadowRoot.addEventListener(`submit`, this._onSubmit);
 	}
@@ -57,9 +58,7 @@ export class GWBWElement extends HTMLElement {
 		if (sizes) {
 			this.namedSizes = sizes;
 		}
-		if (this.hasConnected) {
-			this.setupResizeListener();
-		}
+		this._setupResizeListener();
 	}
 
 	startWorking() {
@@ -84,7 +83,7 @@ export class GWBWElement extends HTMLElement {
 		$form.classList.remove(`working`);
 	}
 
-	onClick(event) {
+	_onClick(event) {
 		if (!this.clickEvents) { return; }
 		let targetMatched = false;
 		for (let target of event.composedPath()) {
@@ -107,6 +106,7 @@ export class GWBWElement extends HTMLElement {
 			if (target.matches(`form`)) {
 				event.preventDefault();
 				if (typeof this.onSubmit === `function`) {
+					console.log(`nolan onSubmit`);
 					this.onSubmit.call(this, event, target);
 				}
 				break;
@@ -115,12 +115,14 @@ export class GWBWElement extends HTMLElement {
 		event.preventDefault();
 	}
 
-	setupResizeListener() {
+	_setupResizeListener() {
 		if (this.hasSetupResizeListener) { return; }
+		if (!this.hasConnected) { return; }
+		if (!this.hasSetNamedSizes) { return; }
 		this.hasSetupResizeListener = true;
 		if (`ResizeObserver` in window) {
 			this.resizeObserver = new ResizeObserver(elements => {
-				this.updateNamedSize(elements[0].contentRect.width);
+				this._updateNamedSize(elements[0].contentRect.width);
 			});
 			setTimeout(_ => {
 				this.resizeObserver.observe(this);
@@ -128,12 +130,12 @@ export class GWBWElement extends HTMLElement {
 		} else {
 			// Fallback to set once and not update on resize
 			setTimeout(_ => {
-				this.updateNamedSize(this.getBoundingClientRect().width);
+				this._updateNamedSize(this.getBoundingClientRect().width);
 			}, 0);
 		}
 	}
 
-	updateNamedSize(width) {
+	_updateNamedSize(width) {
 		let sizeName = ``;
 		for (const size of this.namedSizes) {
 			if (size.width <= width) {
