@@ -3,10 +3,10 @@ export class GWBWElement extends HTMLElement {
 		super();
 		this.startWorking = this.startWorking.bind(this);
 		this.stopWorking = this.stopWorking.bind(this);
-		this.onClick = this._onClick.bind(this);
+		this._onClick = this._onClick.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
-		this.updateNamedSize = this._updateNamedSize.bind(this);
-		this.setupResizeListener = this._setupResizeListener.bind(this);
+		this._updateNamedSize = this._updateNamedSize.bind(this);
+		this._setupResizeListener = this._setupResizeListener.bind(this);
 		this.clickEvents = null;
 		this.namedSizes = [
 			{name: `small`, width: 600},
@@ -38,13 +38,11 @@ export class GWBWElement extends HTMLElement {
 	}
 
 	bindForm() {
-		console.log(`nolan bindForm`);
 		this.hasForm = true;
 		this.addEventListener(`submit`, this._onSubmit);
 	}
 
 	bindShadowForm() {
-		console.log(`nolan bindShadowForm`);
 		this.hasShadowForm = true;
 		this.shadowRoot.addEventListener(`submit`, this._onSubmit);
 	}
@@ -106,7 +104,6 @@ export class GWBWElement extends HTMLElement {
 			if (target.matches(`form`)) {
 				event.preventDefault();
 				if (typeof this.onSubmit === `function`) {
-					console.log(`nolan onSubmit`);
 					this.onSubmit.call(this, event, target);
 				}
 				break;
