@@ -1,4 +1,5 @@
-import {GA} from "../ga.js";
+import {GA} from '../ga.js';
+import {Difference} from './date-time.js';
 
 export class Atomic {
 	constructor() {
@@ -47,10 +48,9 @@ export class Atomic {
 						resolve(0); return;
 					}
 					const atomicTime = +((`` + response.microtime).split(`.`).join(``).substring(0, 13));
-					const adjustedNowTime = moment().subtract((fetchDuration / 2), `milliseconds`);
+					const adjustedNowTime = Date.now() - ((fetchDuration / 2));
 					// Positive diff means device is fast
-					const diff = moment().diff(moment(atomicTime), `seconds`, true);
-					const adjustedDiff = adjustedNowTime.diff(moment(atomicTime), `seconds`, true);
+					const adjustedDiff = Difference.seconds(atomicTime, adjustedNowTime);
 					// If difference is too great, be cautious and pretend it's 0
 					if (Math.abs(adjustedDiff) > 1500) {
 						GA.event(`atomic`, `atomic diff too large`);

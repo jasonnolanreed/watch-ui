@@ -1,3 +1,4 @@
+import {Format} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 import {getIconNameForPosition} from '../../utilities/position.js';
 
@@ -17,8 +18,8 @@ ${showSessionTotal(component)}
 const showSessionsInfo = component => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	let html = `<h3>Session: `;
-	const startDate = moment(+component.currentSession[0].targetMoment).format(`MMM Do`);
-	const endDate = moment(+component.currentSession[component.currentSession.length - 1].targetMoment).format(`MMM Do`);
+	const startDate = Format.date(component.currentSession[0].targetMoment);
+	const endDate = Format.date(component.currentSession[component.currentSession.length - 1].targetMoment);
 	html += startDate;
 	if (startDate !== endDate) {
 		html += ` - ${endDate}`;
@@ -67,7 +68,7 @@ const showMeasures = component => {
 					<i class="interval-other material-icons inline">straighten</i>
 					<i class="interval-start material-icons inline">straighten</i>
 				</span>
-				${moment(+measure.targetMoment).format(`MMM Do, hh:mm a`)}
+				${Format.dateAndTime(measure.targetMoment)}
 			</div>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToTwoDecimals(component.getMomentDiff(measure))}s</span>

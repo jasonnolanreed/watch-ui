@@ -1,3 +1,4 @@
+import {Format} from '../../utilities/date-time.js';
 import {positionsMap} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
@@ -5,7 +6,7 @@ const makeHtml = (component) => (
 <h1><i class="material-icons inline">attachment</i> Measure Details</h1>
 <div class="more-info-header">
 	<h1><i class="invisible material-icons inline">attachment</i></h1>
-	${' '}<h3>${moment(+component.measure.targetMoment).format('MMM Do, hh:mm a')}</h3>
+	${' '}<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
 </div>
 <form>
 	<div class="form-input">

@@ -1,3 +1,4 @@
+import {Format, Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
@@ -8,12 +9,12 @@ const makeHtml = (component) => (
 	${' '}<h3>${component.watch.name}</h3>
 </div>
 <h3>
-	<span class="nowrap">${moment(+component.startMeasure.targetMoment).format(`MMM Do, hh:mm a`)}</span>
+	<span class="nowrap">${Format.dateAndTime(component.startMeasure.targetMoment)}</span>
 	${` `}-${` `}
-	<span class="nowrap">${moment(+component.endMeasure.targetMoment).format(`MMM Do, hh:mm a`)}</span>
+	<span class="nowrap">${Format.dateAndTime(component.endMeasure.targetMoment)}</span>
 </h3>
 <p>
-	<em>Duration:</em> ${getDuration(component)}
+	<em>Duration:</em> ${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}
 </p>
 <h2 class="average ${getClasses(component)}">
 	Average:${` `}
@@ -44,36 +45,11 @@ p { margin-top: -1.2em; }
 `
 );
 
-const getDuration = component => {
-	let secondsOfDuration = moment(+component.endMeasure.targetMoment).diff(moment(+component.startMeasure.targetMoment), `seconds`, true);
-	let durationSections = [];
-	const days = Math.floor(secondsOfDuration / 86400); // 60 seconds, 60 minutes, 24 hours
-	if (days > 0) {
-		durationSections.push(`${days} day${days > 1 ? `s` : ``}`);
-		secondsOfDuration -= (days * 86400);
-	}
-	const hours = Math.floor(secondsOfDuration / 3600);
-	if (hours > 0) {
-		durationSections.push(`${hours} hour${hours > 1 ? `s` : ``}`);
-		secondsOfDuration -= (hours * 3600);
-	}
-	const minutes = Math.floor(secondsOfDuration / 60);
-	if (minutes > 0) {
-		durationSections.push(`${minutes} minute${minutes > 1 ? `s` : ``}`);
-		secondsOfDuration -= (minutes * 60);
-	}
-	const seconds = Math.floor(secondsOfDuration);
-	if (seconds > 0) {
-		durationSections.push(`${seconds} second${seconds > 1 ? `s` : ``}`);
-	}
-	return durationSections.join(`, `);
-};
-
 const getRate = component => {
 	const intervalDistanceInDays =
-		moment(+component.endMeasure.targetMoment).diff(moment(+component.startMeasure.targetMoment), `days`, true);
-	const diffAtEnd = moment(+component.endMeasure.targetMoment).diff(moment(+component.endMeasure.moment), `seconds`, true);
-	const diffAtStart = moment(+component.startMeasure.targetMoment).diff(moment(+component.startMeasure.moment), `seconds`, true);
+		Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment);
+	const diffAtEnd = Difference.seconds(component.endMeasure.moment, component.endMeasure.targetMoment);
+	const diffAtStart = Difference.seconds(component.startMeasure.moment, component.startMeasure.targetMoment);
 	const intervalDrift = diffAtEnd - diffAtStart;
 	return roundToTwoDecimals(intervalDrift / intervalDistanceInDays);
 };

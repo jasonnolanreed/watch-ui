@@ -1,4 +1,5 @@
-BEFORE SHARING WITH BETA TESTERS
+- Position data on interval page (pie chart?)
+- Option to set to :15, :30, :40 on measure page for less waiting
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
@@ -14,9 +15,6 @@ BEFORE SHARING WITH BETA TESTERS
 - FAQ page
 - Home page
 - Change/forgot password
-
-
-BEFORE SHARING WIDELY
 - Persist sessions in db (so server restarts don't kill login)
 - New user gets sample data to explore
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
@@ -27,9 +25,6 @@ BEFORE SHARING WIDELY
 	- Count number of winds from dead to full
 	- Count number of winds from full to 24 hours later
 	- Start session with full wind, add new "winds added" number to measures to track power reserve
-
-
-NOT SURE YET
 - "Social" aspect? Share watches to other users? Awards for most accurate sessions?
 - Service worker to make PWA
 - Admin tools to see what's going on

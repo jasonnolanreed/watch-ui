@@ -3,6 +3,7 @@ import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Measure} from '../../api-helpers/measure.js';
+import {Format, Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
@@ -108,7 +109,7 @@ export class WatchDetail extends GWBWElement {
 		let measuresOfSession = [];
 		let lastMeasureDate;
 		for (const measure of allMeasures) {
-			const thisMeasureDate = moment(+measure.targetMoment).format(`MMM Do`);
+			const thisMeasureDate = Format.date(measure.targetMoment);
 			measure.firstOfDay = thisMeasureDate !== lastMeasureDate;
 			if (!measure.firstOfSession) {
 				measuresOfSession.push(measure);
@@ -123,13 +124,13 @@ export class WatchDetail extends GWBWElement {
 	}
 
 	getMomentDiff(measure) {
-		return moment(+measure.targetMoment).diff(moment(+measure.moment), `seconds`, true);
+		return Difference.seconds(measure.moment, measure.targetMoment);
 	}
 
 	getSessionTotalData() {
 		if (!this.currentSession || this.currentSession.length < 2) { return null; }
 		const sessionDistance =
-			moment(+this.currentSession[this.currentSession.length - 1].targetMoment).diff(+this.currentSession[0].targetMoment, `days`, true);
+			Difference.days(this.currentSession[0].targetMoment, this.currentSession[this.currentSession.length - 1].targetMoment);
 		const sessionDrift =
 			this.getMomentDiff(this.currentSession[this.currentSession.length - 1]) - this.getMomentDiff(this.currentSession[0]);
 		return {

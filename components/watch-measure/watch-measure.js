@@ -3,6 +3,7 @@ import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Watch} from '../../api-helpers/watch.js';
 import {Atomic} from '../../utilities/atomic.js';
+import {Shift, Format} from '../../utilities/date-time.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
 
@@ -23,7 +24,8 @@ export class WatchMeasure extends GWBWElement {
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.moment = moment().second(0).add(1, `minute`);
+		// Exactly next minute
+		this.moment = Shift.minutes(new Date(new Date().setSeconds(0)).setMilliseconds(0), 1);
 		this.isNewSession = false;
 		this.getData();
 	}
@@ -38,28 +40,28 @@ export class WatchMeasure extends GWBWElement {
 		if ($firstOfSession) {
 			this.isNewSession = !!$firstOfSession.checked;
 		}
-		this.targetTimeString = this.moment.format(`hh:mm a`);
+		this.targetTimeString = Format.time(this.moment);
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 
 	increaseMinute(event, target) {
-		this.moment = this.moment.add(1, `minute`);
+		this.moment = Shift.minutes(this.moment, 1);
 		this.render();
 	}
 
 	decreaseMinute(event, target) {
-		this.moment = this.moment.subtract(1, `minute`);
+		this.moment = Shift.minutes(this.moment, -1);
 		this.render();
 	}
 
 	addMeasure() {
 		GA.event(`measure`, `measure add start`);
-		const targetMoment = this.moment.format(`x`);
-		const measuredMoment = moment();
+		const targetMoment = this.moment;
+		const measuredMoment = Date.now();
 		const adjustedMeasuredMoment =
 			(this.atomicOffset > 0) ?
-			measuredMoment.subtract(Math.abs(this.atomicOffset), `seconds`).format(`x`) :
-			measuredMoment.add(Math.abs(this.atomicOffset), `seconds`).format(`x`);
+			Shift.seconds(measuredMoment, (-1 * Math.abs(this.atomicOffset))) :
+			Shift.seconds(measuredMoment, Math.abs(this.atomicOffset));
 		const firstOfSession = this.shadowRoot.querySelector(`[name=firstOfSession]`).checked;
 		const url = `/measure/now/${this.watch._id}/${targetMoment}/${adjustedMeasuredMoment}/${firstOfSession}`;
 		router.navigate(url);
