@@ -12,8 +12,8 @@ export class WatchMeasure extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
-			{target: `.increase-minute`, handler: this.increaseMinute},
-			{target: `.decrease-minute`, handler: this.decreaseMinute},
+			{target: `.increase-quarter`, handler: this.increaseQuarter},
+			{target: `.decrease-quarter`, handler: this.decreaseQuarter},
 			{target: `.now`, handler: this.addMeasure}
 		]);
 		this.setNamedSizes([
@@ -40,17 +40,17 @@ export class WatchMeasure extends GWBWElement {
 		if ($firstOfSession) {
 			this.isNewSession = !!$firstOfSession.checked;
 		}
-		this.targetTimeString = Format.time(this.moment);
+		this.targetTimeString = Format.timeWithSeconds(this.moment);
 		this.shadowRoot.innerHTML = makeTemplate(this);
 	}
 
-	increaseMinute(event, target) {
-		this.moment = Shift.minutes(this.moment, 1);
+	increaseQuarter(event, target) {
+		this.moment = Shift.seconds(this.moment, 15);
 		this.render();
 	}
 
-	decreaseMinute(event, target) {
-		this.moment = Shift.minutes(this.moment, -1);
+	decreaseQuarter(event, target) {
+		this.moment = Shift.seconds(this.moment, -15);
 		this.render();
 	}
 

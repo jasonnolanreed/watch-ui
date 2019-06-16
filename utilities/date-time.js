@@ -1,24 +1,29 @@
 export class Format {
-	// Example 3:43 pm
+	// Example: `3:43 pm`
 	static time(timestamp) {
 		return FromDate.getTimeWithAmPm(new window.Date(+timestamp));
 	}
 
-	// Example: Feb 3rd
+	// Example: `3:43:15 pm`
+	static timeWithSeconds(timestamp) {
+		return FromDate.getTimeWithSecondsAndAmPm(new window.Date(+timestamp));
+	}
+
+	// Example: `Feb 3rd`
 	static date(timestamp) {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}`;
 	}
 
-	// Example: Feb 3rd, 8:13am
+	// Example: `Feb 3rd, 8:13am`
 	static dateAndTime(timestamp) {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}, ${FromDate.getTimeWithAmPm(date)}`;
 	}
 
-	// Example: 5 days, 13 hours, 38 minutes, 3 seconds
+	// Example: `5 days, 13 hours, 38 minutes, 3 seconds`
 	static durationLong(timestamp1, timestamp2) {
 		const startTimestamp = Math.min(+timestamp1, +timestamp2);
 		const endTimestamp = Math.max(+timestamp1, +timestamp2);
@@ -58,7 +63,7 @@ export class FromDate {
 		return date.toDateString().split(` `)[1];
 	}
 
-	// Example `3rd`
+	// Example: `3rd`
 	static getDayOfMonth(date) {
 		const dateNumber = date.getDate();
 		let suffix = `th`;
@@ -68,12 +73,19 @@ export class FromDate {
 		return `${dateNumber}${suffix}`;
 	}
 
-	// Example 8:13 am
+	// Example: `8:13 am`
 	static getTimeWithAmPm(date) {
 		const parts = date.toLocaleString().split(` `);
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
 		return `${time} ${amPm}`;
+	}
+
+	// Example: `8:13:42 am`
+	static getTimeWithSecondsAndAmPm(date) {
+		const parts = date.toLocaleString().split(` `);
+		const amPm = parts[2].toLowerCase();
+		return `${parts[1]} ${amPm}`;
 	}
 }
 

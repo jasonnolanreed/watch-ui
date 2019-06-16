@@ -11,10 +11,10 @@ const makeHtml = (component) => (
 	</div>
 	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">
-		<button type="button" class="decrease-minute button compact low-priority">
+		<button type="button" class="decrease-quarter button compact low-priority">
 			<i class="material-icons">arrow_back</i>
 			</button>
-		<button type="button" class="increase-minute button compact low-priority">
+		<button type="button" class="increase-quarter button compact low-priority">
 			<i class="material-icons">arrow_forward</i>
 		</button>
 		<h1 class="target-time">${component.targetTimeString}</h1>
@@ -48,12 +48,12 @@ const makeCss = (component) => (
 	color: var(--green);
 }
 
-.decrease-minute, .increase-minute {
+.decrease-quarter, .increase-quarter {
 	margin-right: 0.35em !important;
 	height: 2.25em;
 }
 
-.decrease-minute i, .increase-minute i {
+.decrease-quarter i, .increase-quarter i {
 	font-weight: bold;
 }
 

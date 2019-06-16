@@ -1,5 +1,5 @@
+- Performance - drop Google fonts? Make images smaller?
 - Position data on interval page (pie chart?)
-- Option to set to :15, :30, :40 on measure page for less waiting
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
