@@ -1,5 +1,5 @@
 import {Format, Difference} from '../../utilities/date-time.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {Timing} from '../../utilities/timing.js';
 
 const makeHtml = (component) => (
 `
@@ -24,6 +24,15 @@ const makeHtml = (component) => (
 	<h4 class="good"><i class="material-icons inline">thumb_up</i> Good watch</h4>
 	<h4 class="bad"><i class="material-icons inline">thumb_down</i> Bad watch</h4>
 </div>
+<hr>
+<div class="positions-detail">
+	<gwbw-positions-detail
+		watchid="${component.watch._id}"
+		startmeasureid="${component.startMeasure._id}"
+		endmeasureid="${component.endMeasure._id}"
+		goodtolerance="${component.watch.goodTolerance}"
+	></gwbw-positions-detail>
+</div>
 <a class="big-link" href="javascript:history.back();">Back to Measures</button>
 `
 );
@@ -41,17 +50,16 @@ p { margin-top: -1.2em; }
 .good-bad-message > * { display: none; margin-top: -1.5em; }
 .good-bad-message.good-watch .good { display: block; color: var(--green); }
 .good-bad-message.bad-watch .bad { display: block; color: var(--red); }
+.positions-detail { margin-bottom: 2em; }
 </style>
 `
 );
 
 const getRate = component => {
-	const intervalDistanceInDays =
-		Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment);
-	const diffAtEnd = Difference.seconds(component.endMeasure.moment, component.endMeasure.targetMoment);
-	const diffAtStart = Difference.seconds(component.startMeasure.moment, component.startMeasure.targetMoment);
-	const intervalDrift = diffAtEnd - diffAtStart;
-	return roundToTwoDecimals(intervalDrift / intervalDistanceInDays);
+	return Timing.rate(
+		component.startMeasure.targetMoment, component.startMeasure.moment,
+		component.endMeasure.targetMoment, component.endMeasure.moment
+	);
 };
 
 const getClasses = component => {

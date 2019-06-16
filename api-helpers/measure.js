@@ -25,6 +25,17 @@ export class Measure {
 	}
 
 	// Always resolves, with boolean payload
+	static getMeasuresByRange(watchId, startMeasureId, endMeasureId) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}measure/watch/${watchId}/range/${startMeasureId}/${endMeasureId}`, getOptionsForBasicGet())
+			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
+			.then(response => resolve(response))
+			.catch(_ => resolve([]));
+		});
+	}
+
+	// Always resolves, with boolean payload
 	static addMeasure(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure`, getOptionsForPost(data))
