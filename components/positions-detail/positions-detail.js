@@ -1,11 +1,10 @@
-import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Measure} from '../../api-helpers/measure.js';
 import {Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
 import {makeTemplate} from './positions-detail-templates.js';
 
-export class PositionsDetail extends GWBWElement {
+export class PositionsDetail extends HTMLElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -44,14 +43,6 @@ export class PositionsDetail extends GWBWElement {
 				break;
 		}
 		this.getData();
-	}
-
-	async connectedCallback() {
-		super.connectedCallback();
-	}
-
-	disconnectedCallback() {
-		super.disconnectedCallback();
 	}
 
 	render() {
