@@ -17,7 +17,7 @@ const makeCss = (component) => (
 
 .positions { margin-top: -1.2em; }
 .position { margin-bottom: 0.25em; }
-.position i { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
+.position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
 .rate.fast:before { content: "+"; }
 .rate.good-watch { color: var(--green); }
 .rate.bad-watch { color: var(--red); }
@@ -33,7 +33,7 @@ const showPositions = component => {
 		positionsHtml += `
 		<div class="position">
 			<em>
-				<i class="material-icons inline">${getIconNameForPosition(positionName)}</i>
+				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 				<span>${positionsMap[positionName].label}:</span>
 			</em>
 			<span class="days">${roundToTwoDecimals(position.days)} days</span>

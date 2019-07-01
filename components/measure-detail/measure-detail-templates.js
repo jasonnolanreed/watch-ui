@@ -3,9 +3,9 @@ import {positionsMap} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">attachment</i> Measure Details</h1>
+<h1><gwbw-icon name="attachment"></gwbw-icon> Measure Details</h1>
 <div class="more-info-header">
-	<h1><i class="invisible material-icons inline">attachment</i></h1>
+	<h1 class="invisible"><gwbw-icon name="attachment"></gwbw-icon></h1>
 	${' '}<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
 </div>
 <form>
@@ -41,7 +41,7 @@ const showPositionsRadios = component => {
 		`
 		<label class="check">
 			<input type="radio" name="position" value=${position} ${component.measure.position === position ? `checked` : ``}>
-			<i class="material-icons">${positionsMap[position].icon}</i> ${positionsMap[position].label}
+			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
 		</label>
 		`;
 	}
@@ -62,7 +62,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.position i {
+.position gwbw-icon {
 	font-size: 2.2em;
 	margin-right: 0.2em;
 }

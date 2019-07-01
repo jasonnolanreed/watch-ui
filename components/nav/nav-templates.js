@@ -14,7 +14,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 nav {
-	padding: 1.75em 0;
+	padding: 1.5em 0;
 	color: #fff;
 	background-color: var(--dark-blue);
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
@@ -26,6 +26,8 @@ nav {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 0 2em;
+	position: relative;
+	top: -0.1em;
 }
 
 a, a:visited {
@@ -47,9 +49,9 @@ a:active {
 	color: var(--bright-blue);
 }
 
-.material-icons {
+gwbw-icon {
 	position: relative;
-	top: 0.25em;
+	top: 0.1em;
 	font-size: 1.5em;
 	line-height: 0;
 }
@@ -64,14 +66,14 @@ a:active {
 const getLinks = component => {
 	if (!component.loggedIn) {
 		if (component.isLoginView) {
-			return `<a class="register" href="#/register">Register <i class="material-icons">account_box</i></a>`;
+			return `<a class="register" href="#/register">Register <gwbw-icon name="account_box"></gwbw-icon></a>`;
 		} else {
-			return `<a class="login" href="#/login">Login <i class="material-icons">exit_to_app</i></a>`;
+			return `<a class="login" href="#/login">Login <gwbw-icon name="exit_to_app"></gwbw-icon></a>`;
 		}
 	}
 	return `
-	<a class="watches" href="#/watches"><i class="material-icons">watch</i> Watches</a>
-	<a class="logout" href="javascript:void(0);">Logout <i class="material-icons">exit_to_app</i></a>
+	<a class="watches" href="#/watches"><gwbw-icon name="watch"></gwbw-icon> Watches</a>
+	<a class="logout" href="javascript:void(0);">Logout <gwbw-icon name="exit_to_app"></gwbw-icon></a>
 	`;
 };
 

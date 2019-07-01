@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">insert_chart</i> Measure ${component.watch.name}</h1>
+<h1><gwbw-icon name="insert_chart"></gwbw-icon> Measure ${component.watch.name}</h1>
 <form>
 	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set your watch</p>
 	<div class="form-input">
@@ -12,10 +12,10 @@ const makeHtml = (component) => (
 	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">
 		<button type="button" class="decrease-quarter button compact low-priority">
-			<i class="material-icons">arrow_back</i>
-			</button>
+			<gwbw-icon name="arrow_back"></gwbw-icon>
+		</button>
 		<button type="button" class="increase-quarter button compact low-priority">
-			<i class="material-icons">arrow_forward</i>
+			<gwbw-icon name="arrow_forward"></gwbw-icon>
 		</button>
 		<h1 class="target-time">${component.targetTimeString}</h1>
 	</div>
@@ -53,8 +53,8 @@ const makeCss = (component) => (
 	height: 2.25em;
 }
 
-.decrease-quarter i, .increase-quarter i {
-	font-weight: bold;
+.decrease-quarter gwbw-icon, .increase-quarter gwbw-icon {
+	font-size: 1.4em;
 }
 
 .now {

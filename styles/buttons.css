@@ -26,8 +26,8 @@
 	padding: 0.2em 0.4em;
 }
 
-.button.button.ultra-compact .material-icons {
-	font-size: 1.25em;
+.button.button.ultra-compact gwbw-icon {
+	font-size: 1.3em;
 }
 
 @media (hover: hover) {

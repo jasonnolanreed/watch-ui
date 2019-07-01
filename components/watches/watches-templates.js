@@ -1,6 +1,6 @@
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">watch</i> Watches</h1>
+<h1><gwbw-icon name="watch"></gwbw-icon> Watches</h1>
 <form>
 	${listWatches(component)}
 	<div class="form-controls">
@@ -32,13 +32,13 @@ const listWatches = component => {
 			<div>${watch.name}</div>
 			<div class="controls nowrap">
 				<button class="edit-watch button ultra-compact low-priority" watch-id="${watch._id}">
-					<i class="material-icons">settings</i>
+					<gwbw-icon name="settings"></gwbw-icon>
 				</button>
 				<button class="view-watch button ultra-compact" watch-id="${watch._id}">
-					<i class="material-icons">insert_chart</i>
+					<gwbw-icon name="insert_chart"></gwbw-icon>
 				</button>
 				<button class="delete-watch button negative ultra-compact" watch-id="${watch._id}">
-					<i class="material-icons">delete</i>
+					<gwbw-icon name="delete"></gwbw-icon>
 				</button>
 			</div>
 		</li>

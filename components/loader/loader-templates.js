@@ -30,11 +30,14 @@ const makeCss = (component) => (
 	transition: opacity 0.3s ease;
 }
 
-i {
-	font-size: 10em !important;
+gwbw-icon {
 	animation: spin 1s ease infinite;
-	text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 	pointer-events: none;
+}
+
+svg {
+	width: 10em !important;
+	height: 10em !important;
 }
 
 @keyframes spin {
@@ -52,7 +55,7 @@ i {
 const makeHtml = (component) => (
 `
 <div class="loader-container">
-	<i class="material-icons">hourglass_empty</i>
+	<gwbw-icon name="hourglass_empty"></gwbw-icon>
 </div>
 `
 );

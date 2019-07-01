@@ -1,11 +1,11 @@
-import {Format, Difference} from '../../utilities/date-time.js';
+import {Format} from '../../utilities/date-time.js';
 import {Timing} from '../../utilities/timing.js';
 
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">straighten</i> Measure Interval</h1>
+<h1><gwbw-icon name="straighten"></gwbw-icon> Measure Interval</h1>
 <div class="more-info-header">
-	<h1><i class="invisible material-icons inline">straighten</i></h1>
+	<h1 class="invisible"><gwbw-icon name="straighten"></gwbw-icon></h1>
 	${' '}<h3>${component.watch.name}</h3>
 </div>
 <h3>
@@ -21,8 +21,8 @@ const makeHtml = (component) => (
 	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
 </h2>
 <div class="good-bad-message ${getClasses(component)}">
-	<h4 class="good"><i class="material-icons inline">thumb_up</i> Good watch</h4>
-	<h4 class="bad"><i class="material-icons inline">thumb_down</i> Bad watch</h4>
+	<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
+	<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
 </div>
 <hr>
 <div class="positions-detail">
@@ -42,7 +42,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-h1 i { transform: rotate(90deg); }
+h1 gwbw-icon { transform: rotate(90deg); }
 p { margin-top: -1.2em; }
 .average.good-watch { color: var(--green); }
 .average.bad-watch { color: var(--red); }

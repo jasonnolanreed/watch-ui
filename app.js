@@ -1,6 +1,7 @@
 import {measurementId} from './ga.js';
 import {environment} from './utilities/network.js';
 import './router.js';
+import './components/icon/icon.js';
 
 gtag(`js`, new Date());
 gtag(`config`, measurementId);

@@ -1,7 +1,6 @@
 @import "buttons.css";
 @import "forms.css";
 @import "lists.css";
-@import "material-icons.css";
 
 *, *:before, *:after { box-sizing: border-box; }
 
@@ -102,6 +101,10 @@ hr {
 
 .block {
 	display: block;
+}
+
+.inline-block {
+	display: inline-block;
 }
 
 .nowrap {

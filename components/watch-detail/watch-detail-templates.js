@@ -4,7 +4,7 @@ import {getIconNameForPosition} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
-<h1><i class="material-icons inline">insert_chart</i> ${component.watch.name}</h1>
+<h1><gwbw-icon name="insert_chart"></gwbw-icon> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
 <form>
@@ -32,8 +32,8 @@ const showSessionsSelection = component => {
 	if (component.sessions.length < 2) { return ``; }
 	return `
 	<p class="session-selection form-controls">
-		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><i class="material-icons">arrow_back</i></button>
-		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><i class="material-icons">arrow_forward</i></button>
+		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><gwbw-icon name="arrow_back"></gwbw-icon></button>
+		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
 	</p>
 	`;
 };
@@ -49,13 +49,13 @@ const showMeasures = component => {
 	html += `
 	<div class="list-headers">
 		<div>
-		<i class="invisible interval material-icons inline">touch_app</i>
+		<gwbw-icon class="invisible interval" name="straighten"></gwbw-icon>
 			Date, Time
 		</div>
 		<div class="header-deviation">
 			Deviation
-			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
-			<button class="invisible button ultra-compact"><i class="material-icons">account_box</i></button>
+			<button class="invisible button ultra-compact"><gwbw-icon name="account_box"></gwbw-icon></button>
+			<button class="invisible button ultra-compact"><gwbw-icon name="account_box"></gwbw-icon></button>
 		</div>
 	</div>
 	`;
@@ -65,18 +65,18 @@ const showMeasures = component => {
 		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
 			<div class="date-time">
 				<span class="interval ${component.currentSession.length < 2 ? `invisible` : ``}" measure-index="${index}">
-					<i class="interval-other material-icons inline">straighten</i>
-					<i class="interval-start material-icons inline">straighten</i>
+					<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
+					<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>
 				</span>
 				${Format.dateAndTime(measure.targetMoment)}
 			</div>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToTwoDecimals(component.getMomentDiff(measure))}s</span>
 				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
-					<i class="material-icons">${getIconNameForPosition(measure.position)}</i>
+					<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>
 				</button>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
-					<i class="material-icons">delete</i>
+					<gwbw-icon name="delete"></gwbw-icon>
 				</button>
 			</div>
 		</li>
@@ -98,7 +98,7 @@ const showSessionTotal = component => {
 		if (sessionTotalData.sessionDistance < 0.5) {
 			html += `
 			<p class="short-session-alert">
-				<i class="material-icons">warning</i>
+				<gwbw-icon name="warning"></gwbw-icon>
 				<span>This average is prone to inaccuracy because of the short session. Sessions of 12+ hours provide better results.</span>
 			</p>
 			`;
@@ -106,8 +106,8 @@ const showSessionTotal = component => {
 			html +=
 			`
 			<div class="good-bad-message ${totalClasses}">
-				<h4 class="good"><i class="material-icons inline">thumb_up</i> Good watch</h4>
-				<h4 class="bad"><i class="material-icons inline">thumb_down</i> Bad watch</h4>
+				<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
+				<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
 			</div>
 			`;
 		}
@@ -139,7 +139,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 .session-selection { margin: -16px 0 30px 0; }
-.session-selection i { font-weight: bold; }
+.previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
 .date-time { display: flex; align-items: center; line-height: 1.8; }
 .header-deviation { display: flex; align-items: flex-end; }
 .header-deviation .button { margin-left: 0.5em; }
@@ -158,7 +158,7 @@ const makeCss = (component) => (
 	margin-top: -10px;
 	color: var(--red);
 }
-.short-session-alert i { margin-right: 0.5em; }
+.short-session-alert gwbw-icon { margin-right: 0.5em; }
 .interval.interval {
 	font-size: 1.65em;
 	padding: 0.5em 1.15em 0.5em 0.5em;
@@ -170,12 +170,12 @@ const makeCss = (component) => (
 @media (hover: hover) {
 	.interval:hover { opacity: 1; }
 }
-.interval i { transform: rotate(90deg); }
+.interval gwbw-icon { transform: rotate(90deg); }
 .interval:not(.interval-start) .interval-start { display: none; }
 .interval.interval-start .interval-other { display: none; }
 .measures-list.interval-start .interval { opacity: 1; }
-.measures-list.interval-start .interval.interval-start i { color: var(--green); }
-.measures-list.interval-start .interval:not(.interval-start) i {
+.measures-list.interval-start .interval.interval-start gwbw-icon { color: var(--green); }
+.measures-list.interval-start .interval:not(.interval-start) gwbw-icon {
 	color: var(--blue);
 	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
 }

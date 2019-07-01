@@ -1,6 +1,6 @@
 export const makeTemplate = (component) => (
 `
-<h1><i class="material-icons inline">exit_to_app</i> Login</h1>
+<h1><gwbw-icon name="exit_to_app"></gwbw-icon> Login</h1>
 <form novalidate>
 	<div class="form-input">
 		<label for="email">Email</label>
