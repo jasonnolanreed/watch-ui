@@ -33,13 +33,13 @@ const makeHtml = (component) => (
 `
 <header>
 	<picture>
-		<source srcset="assets/images/logo-small.png"
+		<source srcset="assets/images/logo-small.svg"
 				media="(max-width: 600px)" alt="God Watch Bad Watch Logo">
-		<source srcset="assets/images/logo-medium.png"
+		<source srcset="assets/images/logo-medium.svg"
 				media="(max-width: 900px)" alt="God Watch Bad Watch Logo">
-		<source srcset="assets/images/logo.png"
+		<source srcset="assets/images/logo.svg"
 				media="(min-width: 900px)" alt="God Watch Bad Watch Logo">
-		<img src="assets/images/logo.png" alt="Good Watch Bad Watch Logo">
+		<img src="assets/images/logo.svg" alt="Good Watch Bad Watch Logo">
 	</picture>
 </header>
 `

@@ -1,4 +1,5 @@
-- Performance - drop Google fonts? Make images smaller?
+- Performance -- trim down Google Fonts?
+- Handle errors from trying to view "wrong" data
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
