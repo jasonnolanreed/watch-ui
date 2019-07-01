@@ -48,13 +48,13 @@ label.check [type=radio] {
 }
 
 .form-input {
-	margin-bottom: 20px;
+	margin-bottom: 1.5em;
 }
 
 .form-controls {
 	display: flex;
 	align-items: flex-start;
-	margin: 30px 0;
+	margin: 2em 0;
 }
 
 .form-controls > .button + .button {

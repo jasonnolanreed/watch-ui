@@ -138,7 +138,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.session-selection { margin: -16px 0 30px 0; }
+.session-selection { margin: -1em 0 2em 0; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
 .date-time { display: flex; align-items: center; line-height: 1.8; }
 .header-deviation { display: flex; align-items: flex-end; }
@@ -155,10 +155,10 @@ const makeCss = (component) => (
 	display: flex;
 	justify-items: flex-start;
 	align-items: center;
-	margin-top: -10px;
+	margin-top: -0.8em;
 	color: var(--red);
 }
-.short-session-alert gwbw-icon { margin-right: 0.5em; }
+.short-session-alert gwbw-icon { font-size: 1.5em; margin-right: 0.5em; }
 .interval.interval {
 	font-size: 1.65em;
 	padding: 0.5em 1.15em 0.5em 0.5em;

@@ -37,11 +37,11 @@ html, body {
 }
 
 @media (max-width: 1000px) {
-	body{ font-size: 16px; }
+	body { font-size: 16px; }
 }
 
 @media (max-width: 600px) {
-	body{ font-size: 13px; }
+	body { font-size: 13px; }
 }
 
 img {
@@ -67,17 +67,17 @@ a.big-link {
 }
 
 h1, h2, h3, h4, h5 {
-	margin: 0 0 20px 0;
+	margin: 0 0 1em 0;
 	font-family: var(--serif-font), serif;
 	font-weight: 700;
 }
 
-.more-info-header { margin: -2.5em 0 2em; }
+.more-info-header { margin: -3em 0 2em; }
 .more-info-header h1 { display: inline; }
 .more-info-header h3 { display: inline; }
 
 p {
-	margin: 0 0 20px 0;
+	margin: 0 0 1.5em 0;
 }
 
 em {
@@ -94,7 +94,7 @@ small {
 hr {
 	display: block;
 	height: 2px;
-	margin: 20px 0;
+	margin: 1.5em 0;
 	background-color: var(--light-blue);
 	border: none;
 }
