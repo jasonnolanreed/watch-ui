@@ -34,7 +34,10 @@ export class Login extends GWBWElement {
 			router.navigate(`/watches`);
 		} else {
 			GA.event(`login`, `login fail`);
-			alert(`Login failed. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Login failed. Try again?`, type: `error`});
+			}
 		}
 	}
 }

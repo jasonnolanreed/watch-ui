@@ -58,7 +58,10 @@ export class Watches extends GWBWElement {
 			this.getWatches();
 		} else {
 			GA.event(`watch`, `watch delete fail`);
-			alert(`Failed to delete watch. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Failed to delete watch. Try again?`, type: `error`});
+			}
 		}
 	}
 }

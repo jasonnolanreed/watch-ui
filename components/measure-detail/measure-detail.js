@@ -62,7 +62,10 @@ export class MeasureDetail extends GWBWElement {
 				router.navigate(`/watches/detail/${this.measure.watchId}`);
 			} else {
 				GA.event(`measure`, `measure update fail`);
-				alert(`Failed to save measure. Try again?`);
+				const messages = document.querySelector(`gwbw-messages`);
+				if (messages) {
+					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
+				}
 			}
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(target));
@@ -71,7 +74,10 @@ export class MeasureDetail extends GWBWElement {
 				this.goBackToWatch();
 			} else {
 				GA.event(`measure`, `measure add fail`);
-				alert(`Failed to save measure. Try again?`);
+				const messages = document.querySelector(`gwbw-messages`);
+				if (messages) {
+					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
+				}
 			}
 		}
 		this.startWorking();

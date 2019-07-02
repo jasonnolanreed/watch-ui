@@ -76,7 +76,10 @@ export class WatchDetail extends GWBWElement {
 		this.stopWorking();
 		if (!didRemove) {
 			GA.event(`measure`, `measure delete fail`);
-			alert(`Failed to remove measure. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Failed to remove measure. Try again?`, type: `error`});
+			}
 		} else {
 			GA.event(`measure`, `measure delete success`);
 			this.getData();

@@ -1,4 +1,3 @@
-- Proper messaging system instead of alerts
 - FAQ page
 - Home page
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc

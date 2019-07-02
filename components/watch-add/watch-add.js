@@ -36,7 +36,10 @@ export class WatchAdd extends GWBWElement {
 			router.navigate(`/watches`);
 		} else {
 			GA.event(`watch`, `watch add fail`);
-			alert(`Failed to add watch. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Failed to add watch. Try again?`, type: `error`});
+			}
 		}
 	}
 }

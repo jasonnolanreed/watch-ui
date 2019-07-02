@@ -32,11 +32,17 @@ export class Verify extends GWBWElement {
 		const didVerify = await Auth.verify($form);
 		if (didVerify) {
 			GA.event(`verfy`, `verify success`);
-			alert(`Your email address has been verified. You may now log in`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`});
+			}
 			router.navigate(`/login`);
 		} else {
 			GA.event(`verfy`, `verify fail`);
-			alert(`Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`, type: `error`});
+			}
 		}
 	}
 }

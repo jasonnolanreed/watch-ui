@@ -41,7 +41,10 @@ export class WatchEdit extends GWBWElement {
 			router.navigate(`/watches`);
 		} else {
 			GA.event(`watch`, `watch edit fail`);
-			alert(`Failed to edit watch. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Failed to edit watch. Try again?`, type: `error`});
+			}
 		}
 	}
 }

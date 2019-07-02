@@ -34,7 +34,10 @@ export class Register extends GWBWElement {
 			router.navigate(`/pre-verify`);
 		} else {
 			GA.event(`register`, `register fail`);
-			alert(`Registration failed. Try again?`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Registration failed. Try again?`, type: `error`});
+			}
 		}
 	}
 }
