@@ -59,7 +59,7 @@ export class MeasureDetail extends GWBWElement {
 			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(target));
 			if (didSave) {
 				GA.event(`measure`, `measure update success`);
-				router.navigate(`/watches/detail/${this.measure.watchId}`);
+				history.back();
 			} else {
 				GA.event(`measure`, `measure update fail`);
 				const messages = document.querySelector(`gwbw-messages`);

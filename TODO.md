@@ -28,3 +28,4 @@
 - Admin tools to see what's going on
 - Pass data into custom elements where possible -- router params?
 - Abstract some simple display sections into re-usable components (short interval warning?)
+- Start thinking about server pagination

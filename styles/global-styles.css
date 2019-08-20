@@ -8,12 +8,12 @@
 	box-sizing: border-box;
 }
 
-* {
+:root {
 	--serif-font: 'Merriweather';
 	--sans-font: 'Montserrat';
 }
 
-* {
+:root {
 	--light-blue: #B2BDCF;
 	--blue: #396B97;
 	--dark-blue: #1E3760;
