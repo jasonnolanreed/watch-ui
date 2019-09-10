@@ -1,3 +1,5 @@
+- Make list of web features
+	- Figure out how to best implement "mustard cut"
 - FAQ page
 - Home page
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc

@@ -28,8 +28,9 @@ const makeCss = (component) => (
 
 const showPositions = component => {
 	let positionsHtml = ``;
-	for (const positionName of Object.keys(component.positions)) {
+	for (const positionName of Object.keys(positionsMap)) {
 		const position = component.positions[positionName];
+		if (!position) { continue; }
 		positionsHtml += `
 		<div class="position">
 			<em>
