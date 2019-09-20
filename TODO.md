@@ -1,3 +1,5 @@
+- Jump to top/bottom actions on watch details page
+- "View more details for session" action, animates clicks on first/last interval buttons
 - Make list of web features
 	- Figure out how to best implement "mustard cut"
 - FAQ page

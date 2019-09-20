@@ -41,7 +41,7 @@ export class Verify extends GWBWElement {
 			GA.event(`verfy`, `verify fail`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
-				messages.add({message: `Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`, type: `error`});
+				messages.add({message: `Something went wrong. You may need to bother jasonnolanreed+gwbw@gmail.com about this`, type: `error`});
 			}
 		}
 	}
