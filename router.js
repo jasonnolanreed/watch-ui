@@ -6,7 +6,8 @@ import {Auth} from './api-helpers/auth.js';
 export const router = new Navigo(null, true, `#`);
 const $view = document.getElementById(`view`);
 const layouts = {
-	main: `layouts/layout-main.html`
+	main: `layouts/layout-main.html`,
+	test: `layouts/layout-test.html`
 };
 
 router
@@ -16,6 +17,9 @@ router
 	} else {
 		router.navigate(`/login`);
 	}
+})
+.on(`/test`, (params, query) => {
+	LoadView.layout($view, layouts.test);
 })
 .on(`/register`, (params, query) => {
 	LoadView.layout($view, layouts.main, `views/register-view.html`);

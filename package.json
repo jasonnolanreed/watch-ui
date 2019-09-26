@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "concurrently 'python -m SimpleHTTPServer 80' 'cd ../watch-api && npm run start:develop'",
-    "postinstall": "sh ./scripts/vendor.sh"
+    "postinstall": "sh ./shell-scripts/vendor.sh"
   },
   "keywords": [],
   "author": "",

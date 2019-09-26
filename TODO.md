@@ -1,5 +1,5 @@
 - Jump to top/bottom actions on watch details page
-- "View more details for session" action, animates clicks on first/last interval buttons
+- "View more session details" action, animates clicks on first/last interval buttons
 - Make list of web features
 	- Figure out how to best implement "mustard cut"
 - FAQ page
@@ -7,7 +7,7 @@
 - Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Change/forgot password
 - Performance -- trim down Google Fonts?
-- Handle errors from trying to view "wrong" data
+- Handle errors from trying to view "wrong" or missing data
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - If controller fails to fetch view data, go .back()?
 - Update mongo query projections to use 1 in place of true -- test!
