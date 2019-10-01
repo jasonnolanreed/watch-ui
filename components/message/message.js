@@ -8,6 +8,7 @@ export class Message extends GWBWElement {
 		this.setClickEvents([
 			{target: `.close`, handler: this.onClose}
 		]);
+		this.close = this.onClose.bind(this);
 	}
 
 	connectedCallback() {

@@ -1,4 +1,5 @@
 - Jump to top/bottom actions on watch details page
+- Replace confirm() with messaging system
 - "View more session details" action, animates clicks on first/last interval buttons
 - Make list of web features
 	- Figure out how to best implement "mustard cut"

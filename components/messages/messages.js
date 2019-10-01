@@ -27,6 +27,9 @@ export class Messages extends GWBWElement {
 		template.style.display = `block`;
 		template.appendChild(message);
 		this.shadowRoot.appendChild(template.cloneNode(true));
+		const currentMessages = this.shadowRoot.querySelectorAll(`gwbw-message`);
+		// Return refernce to newly added message
+		return currentMessages[currentMessages.length - 1];
 	}
 }
 
