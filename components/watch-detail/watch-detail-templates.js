@@ -7,6 +7,7 @@ const makeHtml = (component) => (
 <h1><gwbw-icon name="insert_chart"></gwbw-icon> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
+${showSessionIntervalLink(component)}
 <form>
 	${showMeasures(component)}
 </form>
@@ -37,6 +38,23 @@ const showSessionsSelection = component => {
 	</p>
 	`;
 };
+
+const showSessionIntervalLink = component => {
+	if (component.currentSession.length < 2) { return ``; }
+	const session = component.currentSession;
+	const intervalHref =
+		`#/measure/interval/${session[0]._id}/${session[session.length  -1]._id}`;
+	return `
+	<div class="session-interval-link">
+		<a href="${intervalHref}">
+			<gwbw-icon name="straighten"></gwbw-icon>
+			<gwbw-icon name="arrow_right_alt"></gwbw-icon>
+			<gwbw-icon name="straighten"></gwbw-icon>
+			View Position Data for Session
+		</a>
+	</div>
+	`;
+}
 
 const getPreviousDisabled = component => component.currentSessionIndex === 0 ? `disabled` : ``;
 const getNextDisabled = component => component.currentSessionIndex === (component.sessions.length - 1) ? `disabled` : ``;
@@ -143,6 +161,10 @@ const makeCss = (component) => (
 .date-time { display: flex; align-items: center; line-height: 1.8; }
 .header-deviation { display: flex; align-items: flex-end; }
 .header-deviation .button { margin-left: 0.5em; }
+.session-interval-link { margin-bottom: 0.5em; line-height: 1.4; }
+.session-interval-link *, .session-interval-link:hover * { text-decoration: none; }
+.session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
+.session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em 0 -.38em; position: relative; top: 0.16em; transform: scaleX(0.7); }
 .controls { display: flex; align-items: center; color: var(--light-blue); }
 .controls.fast:before { content: "+"; }
 .total.good-watch { color: var(--green); }

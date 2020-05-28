@@ -21,6 +21,14 @@ export class Messages extends GWBWElement {
 		this.shadowRoot.innerHTML = makeCss(this);
 	}
 
+	/*
+	options {
+		message: string,
+		type: 'info'|'success'|'error',
+		ttl?: number,
+		dismissable?: boolean
+	}
+	*/
 	add(options = {}) {
 		const template = document.createElement(`template`);
 		const message = getMessageElement(options);
