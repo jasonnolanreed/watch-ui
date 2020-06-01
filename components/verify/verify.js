@@ -2,6 +2,7 @@ import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Auth} from '../../api-helpers/auth.js';
+import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './verify-templates.js';
 
@@ -32,6 +33,7 @@ export class Verify extends GWBWElement {
 		const didVerify = await Auth.verify($form);
 		if (didVerify) {
 			GA.event(`verfy`, `verify success`);
+			Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`});
@@ -39,6 +41,7 @@ export class Verify extends GWBWElement {
 			router.navigate(`/login`);
 		} else {
 			GA.event(`verfy`, `verify fail`);
+			Sentry.captureMessage(`registration verify ERROR: ${getFormData($form).email}`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`, type: `error`});

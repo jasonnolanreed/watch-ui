@@ -1,6 +1,5 @@
 - Jump to top/bottom actions on watch details page
 - Replace confirm() with messaging system
-- "View more session details" action, animates clicks on first/last interval buttons
 - Make list of web features
 	- Figure out how to best implement "mustard cut"
 - FAQ page
@@ -17,7 +16,6 @@
 - Allow guest users who can later sign up without losing progress
 - Make add measure one step again
 	- New optional extra data during add measure
-- "Mustard cut" test for older browsers
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - Persist sessions in db (so server restarts don't kill login)
