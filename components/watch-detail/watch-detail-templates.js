@@ -40,7 +40,7 @@ const showSessionsSelection = component => {
 };
 
 const showSessionIntervalLink = component => {
-	if (component.currentSession.length < 2) { return ``; }
+	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
 	const session = component.currentSession;
 	const intervalHref =
 		`#/measure/interval/${session[0]._id}/${session[session.length  -1]._id}`;
