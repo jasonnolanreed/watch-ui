@@ -13,6 +13,11 @@ export class Atomic {
 
 	// Always resolves, with payload as number (positive when device is fast), or null
 	static getAtomicOffset() {
+		// Disable atomic offset feature
+		return new Promise((resolve, reject) => {
+			sessionStorage.setItem(`atomic-offset`, 0);
+			resolve(0);
+		});
 		if (this.atomicOffsetPromise) {
 			return this.atomicOffsetPromise;
 		} else {
