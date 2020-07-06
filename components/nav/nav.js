@@ -27,7 +27,11 @@ export class Nav extends GWBWElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	async logout(event) {

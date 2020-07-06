@@ -41,7 +41,11 @@ export class WatchMeasure extends GWBWElement {
 			this.isNewSession = !!$firstOfSession.checked;
 		}
 		this.targetTimeString = Format.timeWithSeconds(this.moment);
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	increaseQuarter(event, target) {

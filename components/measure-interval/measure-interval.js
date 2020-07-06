@@ -22,7 +22,11 @@ export class MeasureInterval extends GWBWElement {
 
 	render() {
 		super.render();
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	getData() {

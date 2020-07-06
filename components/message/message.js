@@ -21,7 +21,11 @@ export class Message extends GWBWElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 		const ttl = +this.getAttribute(`ttl`);
 		if (ttl > 0) {
 			setTimeout(_ => this.onClose(), ttl);

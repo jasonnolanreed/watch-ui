@@ -23,7 +23,11 @@ export class Register extends GWBWElement {
 
 	render() {
 		super.render();
-		this.innerHTML = makeTemplate(this);
+		try {
+			this.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	async onSubmit(event, target) {

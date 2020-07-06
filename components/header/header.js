@@ -18,7 +18,11 @@ export class Header extends GWBWElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 }
 

@@ -46,7 +46,11 @@ export class PositionsDetail extends HTMLElement {
 	}
 
 	render() {
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	getData() {

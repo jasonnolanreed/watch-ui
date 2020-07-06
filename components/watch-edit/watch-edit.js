@@ -24,7 +24,11 @@ export class WatchEdit extends GWBWElement {
 
 	render() {
 		super.render();
-		this.shadowRoot.innerHTML = makeTemplate(this);
+		try {
+			this.shadowRoot.innerHTML = makeTemplate(this);
+		} catch(error) {
+			console.error(`Error rendering`, error);
+		}
 	}
 
 	async getData() {
