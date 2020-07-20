@@ -36,7 +36,6 @@ export class Register extends GWBWElement {
 		this.stopWorking();
 		if (registrationSuccessful) {
 			GA.event(`register`, `register success`);
-			Sentry.captureMessage(`registration attempt: ${getFormData(target).email}`);
 			router.navigate(`/pre-verify`);
 		} else {
 			GA.event(`register`, `register fail`);

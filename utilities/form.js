@@ -10,7 +10,7 @@ export const getFormData = $form => {
 		data[$radio.getAttribute(`name`)] = $radio.value;
 	});
 	$form.querySelectorAll(`textarea`).forEach($textarea => {
-		data[$textarea.getAttribute(`name`)] = $textarea.value
+		data[$textarea.getAttribute(`name`)] = $textarea.value;
 	});
 	return data;
 };
