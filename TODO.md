@@ -1,34 +1,24 @@
+- User options page
+	- Change password
+	- Local system timing offset or atomic solution
+	- "Room for error"
+- Reset password tool
+- Messaging on login fail about "verify" step
+- Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Jump to top/bottom actions on watch details page
-- Replace confirm() with messaging system
-- Make list of web features
-	- Figure out how to best implement "mustard cut"
 - FAQ page
 - Home page
-- Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
-- Change/forgot password
-- Performance -- trim down Google Fonts?
-- Handle errors from trying to view "wrong" or missing data
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
-- If controller fails to fetch view data, go .back()?
-- Update mongo query projections to use 1 in place of true -- test!
-	- Also check for exclusions opportunities (0) (user (password)?)
-- Wrap all renders with try/catch and post-loading visual on error
-- Allow guest users who can later sign up without losing progress
 - Make add measure one step again
 	- New optional extra data during add measure
+		- "Other" position, user input value
+		- Temperature
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Add more data to analytics events (userid, watchid, measureid, etc)
-- Persist sessions in db (so server restarts don't kill login)
-- New user gets sample data to explore
 - Search engine stuff -- <meta>, etc
-- User option for using atomic time or not or manually setting offset
 - Manual wind power reserve tools
 	- Count number of winds from dead to full
 	- Count number of winds from full to 24 hours later
 	- Start session with full wind, add new "winds added" number to measures to track power reserve
-- "Social" aspect? Share watches to other users? Awards for most accurate sessions?
-- Service worker to make PWA
-- Admin tools to see what's going on
 - Pass data into custom elements where possible -- router params?
-- Abstract some simple display sections into re-usable components (short interval warning?)
 - Start thinking about server pagination

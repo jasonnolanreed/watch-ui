@@ -1,5 +1,15 @@
 <h1>Verify Email Address</h1>
 <p>Please check your email for a link to verify your email address.</p>
+<p class="pre-verify-warning">
+	<gwbw-icon name="warning" color="red"></gwbw-icon>
+	If you don't see the email shortly, you might want to check your spam folder or whitelist emails from system@goodwatchbadwatch.com in your email client.
+</p>
+
+<style>
+.pre-verify-warning { color: var(--red); }
+.pre-verify-warning gwbw-icon { margin-right: 0.25em; }
+</style>
+
 <script>
 document.querySelector(`gwbw-loader`).loading = false;
 </script>
