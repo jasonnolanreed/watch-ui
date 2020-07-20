@@ -3,8 +3,6 @@
 	- Local system timing offset or atomic solution
 	- "Room for error"
 - Reset password tool
-- Messaging on login fail about "verify" step
-- Improve register/verify so there is a "resend" option, detection of preuser in login/register, etc
 - Jump to top/bottom actions on watch details page
 - FAQ page
 - Home page
