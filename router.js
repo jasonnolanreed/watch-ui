@@ -110,6 +110,13 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/stats`, async (params, query) => {
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/stats-view.html`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .notFound((query) => {
 	LoadView.layout($view, layouts.main, `views/not-found-view.html`);
 	GA.view(`/notfound`, `Page Not Found`);
