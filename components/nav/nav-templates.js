@@ -55,7 +55,7 @@ gwbw-icon {
 	line-height: 0;
 }
 
-.login, .logout, .register {
+.login, .register, .preferences {
 	margin-left: auto;
 }
 </style>
@@ -72,7 +72,7 @@ const getLinks = component => {
 	}
 	return `
 	<a class="watches" href="#/watches"><gwbw-icon name="watch"></gwbw-icon> Watches</a>
-	<a class="logout" href="javascript:void(0);">Logout <gwbw-icon name="exit_to_app"></gwbw-icon></a>
+	<a class="preferences" href="#/preferences">Preferences <gwbw-icon name="settings"></gwbw-icon></a>
 	`;
 };
 

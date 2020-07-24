@@ -71,6 +71,7 @@ export class MeasureDetail extends GWBWElement {
 					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
 				}
 			}
+			this.stopWorking();
 		} else if (this.mode === `add`) {
 			const didAdd = await Measure.addMeasure(getFormData(target));
 			if (didAdd) {
@@ -83,8 +84,8 @@ export class MeasureDetail extends GWBWElement {
 					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
 				}
 			}
+			this.stopWorking();
 		}
-		this.startWorking();
 	}
 
 	goBackToWatch() {

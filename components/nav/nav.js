@@ -10,9 +10,6 @@ export class Nav extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.loggedIn = false;
-		this.setClickEvents([
-			{target: `.logout`, handler: this.logout}
-		]);
 	}
 
 	async connectedCallback() {
@@ -32,16 +29,6 @@ export class Nav extends GWBWElement {
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
-	}
-
-	async logout(event) {
-		const didLogOut = await Auth.logout();
-		if (didLogOut) {
-			GA.event(`logout`, `logout success`);
-		} else {
-			GA.event(`logout`, `logout fail`);
-		}
-		router.navigate(`/`);
 	}
 }
 

@@ -2,7 +2,7 @@ import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Watch} from '../../api-helpers/watch.js';
-import {Atomic} from '../../utilities/atomic.js';
+import {PreferenceApi} from '../../api-helpers/preference.js';
 import {Shift, Format} from '../../utilities/date-time.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
@@ -74,11 +74,11 @@ export class WatchMeasure extends GWBWElement {
 	async getData() {
 		Promise.all([
 			Watch.getWatch(router.params[`watchId`]),
-			Atomic.getAtomicOffset()
+			PreferenceApi.getPreferences(),
 		])
 		.then(responses => {
 			this.watch = responses[0];
-			this.atomicOffset = responses[1];
+			this.atomicOffset = responses[1].atomicOffset;
 			this.render();
 		})
 		.catch(error => null);

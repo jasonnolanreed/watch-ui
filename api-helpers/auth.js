@@ -1,5 +1,4 @@
 import {apiHost, getOptionsForPost, getOptionsForBasicGet} from '../utilities/network.js';
-import {Atomic} from '../utilities/atomic.js';
 import {getFormData} from '../utilities/form.js';
 
 export class Auth {
@@ -51,7 +50,6 @@ export class Auth {
 
 	// Always resolves, with boolean payload
 	static logout() {
-		Atomic.clearAtomicOffset();
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })

@@ -1,16 +1,15 @@
 - User options page
 	- Change password
-	- Local system timing offset or atomic solution
 	- "Room for error"
+- "Stale" warning for atomicOffset value
 - Reset password tool
 - Jump to top/bottom actions on watch details page
 - FAQ page
 - Home page
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
-- Make add measure one step again
-	- New optional extra data during add measure
-		- "Other" position, user input value
-		- Temperature
+- New optional extra data during add measure
+	- "Other" position, user input value
+	- Temperature
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Add more data to analytics events (userid, watchid, measureid, etc)
 - Search engine stuff -- <meta>, etc

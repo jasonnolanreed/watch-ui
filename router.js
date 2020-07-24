@@ -38,6 +38,14 @@ router
 	LoadView.layout($view, layouts.main, `views/login-view.html`);
 	GA.view(`/login`, `Login`);
 })
+.on(`/preferences`, async (params, query) => {
+	if (await Auth.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/preferences.html`);
+		GA.view(`/preferences`, `Preferences`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .on(`/watches`, async (params, query) => {
 	if (await Auth.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watches-view.html`);

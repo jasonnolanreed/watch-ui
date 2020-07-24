@@ -8,7 +8,10 @@ export class LoggedOut {
 		GA.event(`logout`, `logout timed out`);
 		await Auth.logout();
 		router.navigate(`/login`);
-		// TODO -- messaging
+		const messages = document.querySelector(`gwbw-messages`);
+		if (messages) {
+			messages.add({message: `You have been logged out`, type: `info`});
+		}
 		throw new Error();
 	}
 }
