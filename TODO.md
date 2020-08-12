@@ -1,3 +1,4 @@
+- Messages which dismiss on view change
 - User options page
 	- Change password
 	- "Room for error"
