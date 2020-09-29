@@ -5,10 +5,13 @@ export class Auth {
 	constructor() {
 		Auth.cachedUserData = null;
 		Auth.isLoggedInCache = null;
+		Auth.preAuthRequestHash = null;
 	}
 
 	static get userData() { return Auth.cachedUserData; }
 	static set userData(data) { return null; }
+	static get preAuthHash() { return Auth.preAuthRequestHash; }
+	static set preAuthHash(hash) { Auth.preAuthRequestHash = hash; }
 
 	// Always resolves, with boolean payload
 	static isLoggedIn() {

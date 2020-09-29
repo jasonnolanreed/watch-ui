@@ -10,6 +10,10 @@ const layouts = {
 	test: `layouts/layout-test.html`
 };
 
+// Set hash of original request. If request is to auth-restricted view,
+// and user isn't logged in, they will be forwarded to this hash after login.
+Auth.preAuthHash = window.location.hash.replace(`#`, ``);
+
 router
 .on(async (query) => {
 	if (await Auth.isLoggedIn()) {
