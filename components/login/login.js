@@ -35,7 +35,11 @@ export class Login extends GWBWElement {
 		this.stopWorking();
 		if (loginSuccessful) {
 			GA.event(`login`, `login success`);
-			if (Auth.preAuthHash && Auth.preAuthHash !== `/login`) {
+			if (
+				Auth.preAuthHash &&
+				Auth.preAuthHash !== `/login` &&
+				!Auth.preAuthHash.startsWith(`/verify`)
+			) {
 				router.navigate(Auth.preAuthHash);
 			} else {
 				router.navigate(`/watches`);
