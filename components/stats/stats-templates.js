@@ -17,7 +17,8 @@ const outputLatestMeasures = latestMeasures => {
 	let html = ``;
 	latestMeasures.map(measure => {
 		html += `
-			<div><b>${Format.dateAndTime(measure.date)}:</b> ${measure.watch}</div>
+			<div><b>${Format.dateAndTime(measure.date)}:</b></div>
+			<div><a href="#/watches/detail/${measure.watchId}">${measure.watch}</a></div>
 			<div>${measure.user}</div>
 			<hr/>
 		`;
