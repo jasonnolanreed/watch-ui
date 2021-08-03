@@ -93,10 +93,11 @@ small {
 
 hr {
 	display: block;
-	height: 2px;
+	height: 5px;
 	margin: 1.5em 0;
 	background-color: var(--light-blue);
 	border: none;
+	border-radius: 5px;
 }
 
 .block {
