@@ -34,11 +34,11 @@ const makeHtml = (component) => (
 <header>
 	<picture>
 		<source srcset="assets/images/logo-small.svg"
-				media="(max-width: 600px)" alt="God Watch Bad Watch Logo">
+				media="(max-width: 600px)" alt="Good Watch Bad Watch Logo">
 		<source srcset="assets/images/logo-medium.svg"
-				media="(max-width: 900px)" alt="God Watch Bad Watch Logo">
+				media="(max-width: 900px)" alt="Good Watch Bad Watch Logo">
 		<source srcset="assets/images/logo.svg"
-				media="(min-width: 900px)" alt="God Watch Bad Watch Logo">
+				media="(min-width: 900px)" alt="Good Watch Bad Watch Logo">
 		<img src="assets/images/logo.svg" alt="Good Watch Bad Watch Logo">
 	</picture>
 </header>
