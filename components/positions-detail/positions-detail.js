@@ -58,9 +58,10 @@ export class PositionsDetail extends HTMLElement {
 		Measure.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid)
 		.then(measures => {
 			this.parsePositions(measures);
+			this.render();
 		});
 	}
-
+	
 	parsePositions(measures) {
 		let previousMeasure;
 		// Find all positions and add up distances and diffs
@@ -70,7 +71,7 @@ export class PositionsDetail extends HTMLElement {
 				continue;
 			}
 			if (!this.positions[measure.position]) {
-				this.positions[measure.position] = {name: measure.position, days: 0, secondsDrift: 0};
+				this.positions[measure.position] = {name: measure.position, days: 0, secondsDrift: 0, positionCount: 0};
 			}
 			const days = Difference.days(previousMeasure.targetMoment, measure.targetMoment);
 			const secondsDrift =
@@ -78,6 +79,7 @@ export class PositionsDetail extends HTMLElement {
 				Difference.seconds(previousMeasure.moment, previousMeasure.targetMoment);
 			this.positions[measure.position].days += days;
 			this.positions[measure.position].secondsDrift += secondsDrift;
+			this.positions[measure.position].positionCount++;
 			previousMeasure = measure;
 		}
 		// Calculate rate for each position
@@ -85,7 +87,6 @@ export class PositionsDetail extends HTMLElement {
 			this.positions[positionName].rate =
 				roundToTwoDecimals(this.positions[positionName].secondsDrift / this.positions[positionName].days);
 		}
-		this.render();
 	}
 }
 
