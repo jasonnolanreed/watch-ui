@@ -36,6 +36,7 @@ export class Verify extends GWBWElement {
 	async verify($form) {
 		const didVerify = await Auth.verify($form);
 		if (didVerify) {
+			Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
 			GA.event(`verfy`, `verify success`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
