@@ -1,7 +1,7 @@
 import Navigo from './vendor/navigo.js';
 import {LoadView} from './utilities/load-view.js';
 import {GA} from './ga.js';
-import {Auth} from './api-helpers/auth.js';
+import {AuthApi} from './api-helpers/auth.js';
 
 export const router = new Navigo(null, true, `#`);
 const $view = document.getElementById(`view`);
@@ -12,11 +12,11 @@ const layouts = {
 
 // Set hash of original request. If request is to auth-restricted view,
 // and user isn't logged in, they will be forwarded to this hash after login.
-Auth.preAuthHash = window.location.hash.replace(`#`, ``);
+AuthApi.preAuthHash = window.location.hash.replace(`#`, ``);
 
 router
 .on(async (query) => {
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		router.navigate(`/watches`);
 	} else {
 		router.navigate(`/login`);
@@ -43,7 +43,7 @@ router
 	GA.view(`/login`, `Login`);
 })
 .on(`/preferences`, async (params, query) => {
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/preferences.html`);
 		GA.view(`/preferences`, `Preferences`);
 	} else {
@@ -51,7 +51,7 @@ router
 	}
 })
 .on(`/watches`, async (params, query) => {
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watches-view.html`);
 		GA.view(`/watches`, `Watches`);
 	} else {
@@ -59,7 +59,7 @@ router
 	}
 })
 .on(`/watches/add`, async (params, query) => {
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-add-view.html`);
 		GA.view(`/watches/add`, `Add a Watch`);
 	} else {
@@ -69,7 +69,7 @@ router
 .on(`/watches/detail/:watchId`, async (params, query) => {
 	router.params = params;
 	router.query = formatQuery(query);
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
 		GA.view(`/watches/detail`, `Watch Details`);
 	} else {
@@ -79,7 +79,7 @@ router
 .on(`/watches/edit/:watchId`, async (params, query) => {
 	router.params = params;
 	router.query = formatQuery(query);
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-edit-view.html`);
 		GA.view(`/watches/edit`, `Edit a Watch`);
 	} else {
@@ -88,7 +88,7 @@ router
 })
 .on(`/watches/measure/:watchId`, async (params, query) => {
 	router.params = params;
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-measure-view.html`);
 		GA.view(`/watches/measure`, `Measure a Watch`);
 	} else {
@@ -97,7 +97,7 @@ router
 })
 .on(`/measure/:measureId`, async (params, query) => {
 	router.params = params;
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
 		GA.view(`/measure`, `Measure Details`);
 	} else {
@@ -106,7 +106,7 @@ router
 })
 .on(`/measure/now/:watchId/:targetMoment/:moment/:firstOfSession`, async (params, query) => {
 	router.params = params;
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
 		GA.view(`/measure/now`, `Save New Measure`);
 	} else {
@@ -115,7 +115,7 @@ router
 })
 .on(`/measure/interval/:measureOne/:measureTwo`, async (params, query) => {
 	router.params = params;
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-interval-view.html`);
 		GA.view(`/measure/interval`, `Measure Interval`);
 	} else {
@@ -123,7 +123,7 @@ router
 	}
 })
 .on(`/stats`, async (params, query) => {
-	if (await Auth.isLoggedIn()) {
+	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/stats-view.html`);
 	} else {
 		router.navigate(`/login`);

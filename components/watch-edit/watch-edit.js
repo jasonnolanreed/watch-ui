@@ -1,7 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Watch} from '../../api-helpers/watch.js';
+import {WatchApi} from '../../api-helpers/watch.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './watch-edit-templates.js';
@@ -32,13 +32,13 @@ export class WatchEdit extends GWBWElement {
 	}
 
 	async getData() {
-		this.watch = await Watch.getWatch(router.params[`watchId`]);
+		this.watch = await WatchApi.getWatch(router.params[`watchId`]);
 		this.render();
 	}
 
 	async onSubmit(event, target) {
 		this.startWorking();
-		const updateSuccessful = await Watch.update(getFormData(target));
+		const updateSuccessful = await WatchApi.update(getFormData(target));
 		this.stopWorking();
 		if (updateSuccessful) {
 			GA.event(`watch`, `watch edit success`);

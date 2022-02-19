@@ -1,4 +1,4 @@
-import {Measure} from '../../api-helpers/measure.js';
+import {MeasureApi} from '../../api-helpers/measure.js';
 import {Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
@@ -55,7 +55,7 @@ export class PositionsDetail extends HTMLElement {
 
 	getData() {
 		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerance) { return; }
-		Measure.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid)
+		MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid)
 		.then(measures => {
 			this.parsePositions(measures);
 			this.render();

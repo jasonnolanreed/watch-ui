@@ -1,6 +1,6 @@
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Auth} from '../../api-helpers/auth.js';
+import {AuthApi} from '../../api-helpers/auth.js';
 import {router} from '../../router.js';
 
 import {makeTemplate} from './login-templates.js';
@@ -31,16 +31,16 @@ export class Login extends GWBWElement {
 
 	async onSubmit(event, target) {
 		this.startWorking();
-		const loginSuccessful = await Auth.login(target);
+		const loginSuccessful = await AuthApi.login(target);
 		this.stopWorking();
 		if (loginSuccessful) {
 			GA.event(`login`, `login success`);
 			if (
-				Auth.preAuthHash &&
-				Auth.preAuthHash !== `/login` &&
-				!Auth.preAuthHash.startsWith(`/verify`)
+				AuthApi.preAuthHash &&
+				AuthApi.preAuthHash !== `/login` &&
+				!AuthApi.preAuthHash.startsWith(`/verify`)
 			) {
-				router.navigate(Auth.preAuthHash);
+				router.navigate(AuthApi.preAuthHash);
 			} else {
 				router.navigate(`/watches`);
 			}

@@ -1,12 +1,12 @@
 import {apiHost, getOptionsForPost, getOptionsForBasicGet, getOptionsForDelete, getOptionsForPut} from '../utilities/network.js';
-import {LoggedOut} from './logged-out.js';
+import {LoggedOutApi} from './logged-out.js';
 
-export class Watch {
+export class WatchApi {
 	// Always resolves, with boolean payload
 	static getWatches() {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForBasicGet())
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
 			.catch(_ => resolve([]));
@@ -17,7 +17,7 @@ export class Watch {
 	static getWatch(watchId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch/${watchId}`, getOptionsForBasicGet())
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
 			.catch(_ => resolve([]));
@@ -28,7 +28,7 @@ export class Watch {
 	static add(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForPost(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));
@@ -39,7 +39,7 @@ export class Watch {
 	static delete(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForDelete(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));
@@ -50,7 +50,7 @@ export class Watch {
 	static update(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForPut(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));

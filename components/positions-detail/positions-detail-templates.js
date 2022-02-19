@@ -18,6 +18,7 @@ const makeCss = (component) => (
 .positions { margin-top: -0.5em; }
 .position { margin-bottom: 0.25em; }
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
+.rate { white-space: nowrap; }
 .rate.fast:before { content: "+"; }
 .rate.good-watch { color: var(--green); }
 .rate.bad-watch { color: var(--red); }

@@ -1,12 +1,12 @@
 import {router} from '../router.js';
 import {GA} from '../ga.js';
-import {Auth} from './auth.js';
+import {AuthApi} from './auth.js';
 
-export class LoggedOut {
+export class LoggedOutApi {
 	static async checkLoggedOut(response) {
 		if (response.status !== 401) { return response; }
 		GA.event(`logout`, `logout timed out`);
-		await Auth.logout();
+		await AuthApi.logout();
 		router.navigate(`/login`);
 		const messages = document.querySelector(`gwbw-messages`);
 		if (messages) {

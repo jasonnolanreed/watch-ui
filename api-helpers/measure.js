@@ -1,12 +1,12 @@
 import {apiHost, getOptionsForPost, getOptionsForBasicGet, getOptionsForDelete, getOptionsForPut} from '../utilities/network.js';
-import {LoggedOut} from './logged-out.js';
+import {LoggedOutApi} from './logged-out.js';
 
-export class Measure {
+export class MeasureApi {
 	// Always resolves, with boolean payload
 	static getMeasures(watchId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/watch/${watchId}`, getOptionsForBasicGet())
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
 			.catch(_ => resolve([]));
@@ -17,7 +17,7 @@ export class Measure {
 	static getMeasure(measureId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/${measureId}`, getOptionsForBasicGet())
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
 			.catch(_ => resolve([]));
@@ -28,7 +28,7 @@ export class Measure {
 	static getMeasuresByRange(watchId, startMeasureId, endMeasureId) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/watch/${watchId}/range/${startMeasureId}/${endMeasureId}`, getOptionsForBasicGet())
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
 			.catch(_ => resolve([]));
@@ -39,7 +39,7 @@ export class Measure {
 	static addMeasure(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure`, getOptionsForPost(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));
@@ -50,7 +50,7 @@ export class Measure {
 	static updateMeasure(measureId, data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure/${measureId}`, getOptionsForPut(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));
@@ -61,7 +61,7 @@ export class Measure {
 	static removeMeasure(data) {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}measure`, getOptionsForDelete(data))
-			.then(response => LoggedOut.checkLoggedOut(response))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(true))
 			.catch(_ => resolve(false));

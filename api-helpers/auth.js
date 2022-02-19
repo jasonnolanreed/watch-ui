@@ -1,34 +1,34 @@
-import {apiHost, getOptionsForPost, getOptionsForBasicGet} from '../utilities/network.js';
+import {apiHost, getOptionsForPost, getOptionsForPut, getOptionsForBasicGet} from '../utilities/network.js';
 import {getFormData} from '../utilities/form.js';
 
-export class Auth {
+export class AuthApi {
 	constructor() {
-		Auth.cachedUserData = null;
-		Auth.isLoggedInCache = null;
-		Auth.preAuthRequestHash = null;
+		AuthApi.cachedUserData = null;
+		AuthApi.isLoggedInCache = null;
+		AuthApi.preAuthRequestHash = null;
 	}
 
-	static get userData() { return Auth.cachedUserData; }
+	static get userData() { return AuthApi.cachedUserData; }
 	static set userData(data) { return null; }
-	static get preAuthHash() { return Auth.preAuthRequestHash; }
-	static set preAuthHash(hash) { Auth.preAuthRequestHash = hash; }
+	static get preAuthHash() { return AuthApi.preAuthRequestHash; }
+	static set preAuthHash(hash) { AuthApi.preAuthRequestHash = hash; }
 
 	// Always resolves, with boolean payload
 	static isLoggedIn() {
-		if (typeof Auth.isLoggedInCache === `boolean` && Auth.isLoggedInCache) {
+		if (typeof AuthApi.isLoggedInCache === `boolean` && AuthApi.isLoggedInCache) {
 			return Promise.resolve(true);
 		} else {
 			return new Promise((resolve, reject) => {
 				fetch(`${apiHost}user`, getOptionsForBasicGet())
 				.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 				.then(response => {
-					Auth.cachedUserData = response;
-					Auth.isLoggedInCache = true;
+					AuthApi.cachedUserData = response;
+					AuthApi.isLoggedInCache = true;
 					resolve(true);
 				})
 				.catch(_ => {
-					Auth.cachedUserData = null;
-					Auth.isLoggedInCache = null;
+					AuthApi.cachedUserData = null;
+					AuthApi.isLoggedInCache = null;
 					resolve(false);
 				});
 			});
@@ -44,8 +44,8 @@ export class Auth {
 				resolve(true);
 			})
 			.catch(_ => {
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
+				AuthApi.cachedUserData = null;
+				AuthApi.isLoggedInCache = false;
 				resolve(false);
 			});
 		});
@@ -57,13 +57,13 @@ export class Auth {
 			fetch(`${apiHost}logout`, getOptionsForBasicGet())
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => {
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
+				AuthApi.cachedUserData = null;
+				AuthApi.isLoggedInCache = false;
 				resolve(true);
 			})
 			.catch(_ => {
-				Auth.cachedUserData = null;
-				Auth.isLoggedInCache = false;
+				AuthApi.cachedUserData = null;
+				AuthApi.isLoggedInCache = false;
 				resolve(false);
 			});
 		});
@@ -88,6 +88,16 @@ export class Auth {
 			.catch(_ => resolve(false));
 		});
 	}
+
+	// Always resolves, with boolean payload
+	static changePassword($form) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}change-password`, getOptionsForPut(getFormData($form)))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
+			.then(response => resolve(true))
+			.catch(_ => resolve(false));
+		});
+	}
 }
 
-new Auth();
+new AuthApi();

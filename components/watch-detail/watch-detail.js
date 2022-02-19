@@ -1,8 +1,8 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Watch} from '../../api-helpers/watch.js';
-import {Measure} from '../../api-helpers/measure.js';
+import {WatchApi} from '../../api-helpers/watch.js';
+import {MeasureApi} from '../../api-helpers/measure.js';
 import {Format, Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 
@@ -76,7 +76,7 @@ export class WatchDetail extends GWBWElement {
 		const confirmDelete = confirm(`Do you really want to delete this measure?`);
 		if (!confirmDelete) { return; }
 		this.startWorking();
-		const didRemove = await Measure.removeMeasure({measureId});
+		const didRemove = await MeasureApi.removeMeasure({measureId});
 		this.stopWorking();
 		if (!didRemove) {
 			GA.event(`measure`, `measure delete fail`);
@@ -92,8 +92,8 @@ export class WatchDetail extends GWBWElement {
 
 	getData() {
 		Promise.all([
-			Watch.getWatch(router.params[`watchId`]),
-			Measure.getMeasures(router.params[`watchId`])
+			WatchApi.getWatch(router.params[`watchId`]),
+			MeasureApi.getMeasures(router.params[`watchId`])
 		])
 		.then(responses => {
 			this.watch = responses[0];

@@ -1,7 +1,7 @@
 import {router} from '../../router.js';
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Auth} from '../../api-helpers/auth.js';
+import {AuthApi} from '../../api-helpers/auth.js';
 import {PreferenceApi} from "../../api-helpers/preference.js";
 import {getFormData} from '../../utilities/form.js';
 
@@ -11,9 +11,10 @@ export class Preferences extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.bindShadowForm();
 		this.setClickEvents([
-			{target: `.logout`, handler: this.onLogout}
+			{target: `.logout`, handler: this.onLogout},
+			{target: `.button--save-atomic-time`, handler: this.onSaveAtomicTime},
+			{target: `.button--change-password`, handler: this.onChangePassword}
 		]);
 	}
 
@@ -44,9 +45,21 @@ export class Preferences extends GWBWElement {
 		.catch(error => null)
 	}
 
-	async onSubmit(event, target) {
+	async onLogout(event, target) {
+		const didLogOut = await AuthApi.logout();
+		if (didLogOut) {
+			GA.event(`logout`, `logout success`);
+		} else {
+			GA.event(`logout`, `logout fail`);
+		}
+		router.navigate(`/`);
+	}
+
+	async onSaveAtomicTime(event, target) {
+		event.preventDefault();
 		this.startWorking();
-		const didSave = await PreferenceApi.updatePreferences(getFormData(target));
+		const form = target.form;
+		const didSave = await PreferenceApi.updatePreferences(getFormData(form));
 		const messages = document.querySelector(`gwbw-messages`);
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
@@ -62,14 +75,44 @@ export class Preferences extends GWBWElement {
 		this.stopWorking();
 	}
 
-	async onLogout(event, target) {
-		const didLogOut = await Auth.logout();
-		if (didLogOut) {
-			GA.event(`logout`, `logout success`);
-		} else {
-			GA.event(`logout`, `logout fail`);
+	async onChangePassword(event, target) {
+		event.preventDefault();
+		const messages = document.querySelector(`gwbw-messages`);
+		const form = target.form;
+		const {currentPassword, newPassword, confirmNewPassword} = target.form;
+		if (!currentPassword.value || !newPassword.value || !confirmNewPassword.value) {
+			messages.add({message: `Please complete all form fields`, type: `error`});
+			return;
 		}
-		router.navigate(`/`);
+		if (currentPassword.value === newPassword.value) {
+			messages.add({message: `New password must be different than current password`, type: `error`});
+			return;
+		}
+		if (newPassword.value !== confirmNewPassword.value) {
+			messages.add({message: `New password values are different`, type: `error`});
+			return;
+		}
+		this.startWorking();
+		const didChange = await AuthApi.changePassword(form);
+		if (didChange) {
+			GA.event(`changepassword`, `changepassword update success`);
+			if (messages) {
+				messages.add({message: `Your password has been changed. Please log back in with new password`, type: `success`});
+				const didLogOut = await AuthApi.logout();
+				if (didLogOut) {
+					GA.event(`pass change logout`, `pass change logout success`);
+					router.navigate(`/`);
+				} else {
+					GA.event(`pass change logout`, `pass change logout fail`);
+				}
+			}
+		} else {
+			GA.event(`changepassword`, `changepassword update fail`);
+			if (messages) {
+				messages.add({message: `Failed to change password. Try again?`, type: `error`});
+			}
+		}
+		this.stopWorking();
 	}
 }
 

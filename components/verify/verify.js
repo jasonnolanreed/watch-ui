@@ -1,7 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Auth} from '../../api-helpers/auth.js';
+import {AuthApi} from '../../api-helpers/auth.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './verify-templates.js';
@@ -34,7 +34,7 @@ export class Verify extends GWBWElement {
 	}
 
 	async verify($form) {
-		const didVerify = await Auth.verify($form);
+		const didVerify = await AuthApi.verify($form);
 		if (didVerify) {
 			Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
 			GA.event(`verfy`, `verify success`);

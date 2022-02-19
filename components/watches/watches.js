@@ -1,7 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Watch} from '../../api-helpers/watch.js';
+import {WatchApi} from '../../api-helpers/watch.js';
 
 import {makeTemplate} from './watches-templates.js';
 
@@ -36,7 +36,7 @@ export class Watches extends GWBWElement {
 	}
 
 	async getWatches() {
-		this.watches = await Watch.getWatches();
+		this.watches = await WatchApi.getWatches();
 		this.render();
 	}
 
@@ -55,7 +55,7 @@ export class Watches extends GWBWElement {
 		const confirmDelete = confirm(`Do you really want to delete this watch and all its data?`);
 		if (!confirmDelete) { return; }
 		this.startWorking();
-		const deleteSuccessful = await Watch.delete({watchId});
+		const deleteSuccessful = await WatchApi.delete({watchId});
 		this.stopWorking();
 		if (deleteSuccessful) {
 			GA.event(`watch`, `watch delete success`);

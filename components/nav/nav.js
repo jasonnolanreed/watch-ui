@@ -1,7 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Auth} from '../../api-helpers/auth.js';
+import {AuthApi} from '../../api-helpers/auth.js';
 
 import {makeTemplate} from './nav-templates.js';
 
@@ -14,7 +14,7 @@ export class Nav extends GWBWElement {
 
 	async connectedCallback() {
 		super.connectedCallback();
-		this.loggedIn = await Auth.isLoggedIn();
+		this.loggedIn = await AuthApi.isLoggedIn();
 		this.isLoginView = location.hash === `#/login`;
 		this.render();
 	}

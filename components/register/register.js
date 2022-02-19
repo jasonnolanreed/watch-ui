@@ -1,6 +1,6 @@
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Auth} from '../../api-helpers/auth.js';
+import {AuthApi} from '../../api-helpers/auth.js';
 import {router} from '../../router.js';
 import {getFormData} from '../../utilities/form.js';
 
@@ -32,7 +32,7 @@ export class Register extends GWBWElement {
 
 	async onSubmit(event, target) {
 		this.startWorking();
-		const registrationSuccessful = await Auth.register(target);
+		const registrationSuccessful = await AuthApi.register(target);
 		this.stopWorking();
 		if (registrationSuccessful) {
 			Sentry.captureMessage(`registration attempt SUCCESS: ${getFormData(target).email}`);

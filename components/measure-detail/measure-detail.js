@@ -1,7 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Measure} from '../../api-helpers/measure.js';
+import {MeasureApi} from '../../api-helpers/measure.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './measure-detail-templates.js';
@@ -19,7 +19,7 @@ export class MeasureDetail extends GWBWElement {
 		super.connectedCallback();
 		if (router.params.measureId) {
 			this.mode = `view`;
-			this.measure = await Measure.getMeasure(router.params[`measureId`]);;
+			this.measure = await MeasureApi.getMeasure(router.params[`measureId`]);;
 		} else {
 			this.mode = `add`;
 			this.measure = {
@@ -60,7 +60,7 @@ export class MeasureDetail extends GWBWElement {
 	async onSubmit(event, target) {
 		this.startWorking();
 		if (this.mode === `view`) {
-			const didSave = await Measure.updateMeasure(this.measure._id, getFormData(target));
+			const didSave = await MeasureApi.updateMeasure(this.measure._id, getFormData(target));
 			if (didSave) {
 				GA.event(`measure`, `measure update success`);
 				history.back();
@@ -73,7 +73,7 @@ export class MeasureDetail extends GWBWElement {
 			}
 			this.stopWorking();
 		} else if (this.mode === `add`) {
-			const didAdd = await Measure.addMeasure(getFormData(target));
+			const didAdd = await MeasureApi.addMeasure(getFormData(target));
 			if (didAdd) {
 				GA.event(`measure`, `measure add success`);
 				this.goBackToWatch();
