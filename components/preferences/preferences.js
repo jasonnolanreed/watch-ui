@@ -10,7 +10,6 @@ import {makeTemplate} from './preferences-templates.js';
 export class Preferences extends GWBWElement {
 	constructor() {
 		super();
-		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.logout`, handler: this.onLogout},
 			{target: `.button--save-atomic-time`, handler: this.onSaveAtomicTime},
@@ -30,7 +29,7 @@ export class Preferences extends GWBWElement {
 	render() {
 		super.render();
 		try {
-			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.innerHTML = makeTemplate(this);
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -57,8 +56,8 @@ export class Preferences extends GWBWElement {
 
 	async onSaveAtomicTime(event, target) {
 		event.preventDefault();
-		this.startWorking();
 		const form = target.form;
+		this.startWorking(form);
 		const didSave = await PreferenceApi.updatePreferences(getFormData(form));
 		const messages = document.querySelector(`gwbw-messages`);
 		if (didSave) {
@@ -72,7 +71,7 @@ export class Preferences extends GWBWElement {
 				messages.add({message: `Failed to save preferences. Try again?`, type: `error`});
 			}
 		}
-		this.stopWorking();
+		this.stopWorking(form);
 	}
 
 	async onChangePassword(event, target) {
@@ -92,7 +91,7 @@ export class Preferences extends GWBWElement {
 			messages.add({message: `New password values are different`, type: `error`});
 			return;
 		}
-		this.startWorking();
+		this.startWorking(form);
 		const didChange = await AuthApi.changePassword(form);
 		if (didChange) {
 			GA.event(`changepassword`, `changepassword update success`);
@@ -112,7 +111,7 @@ export class Preferences extends GWBWElement {
 				messages.add({message: `Failed to change password. Try again?`, type: `error`});
 			}
 		}
-		this.stopWorking();
+		this.stopWorking(form);
 	}
 }
 

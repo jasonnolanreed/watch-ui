@@ -59,24 +59,32 @@ export class GWBWElement extends HTMLElement {
 		this._setupResizeListener();
 	}
 
-	startWorking() {
-		const $forms = (this.shadowRoot) ?
-			this.shadowRoot.querySelectorAll(`form`) :
-			this.querySelectorAll(`form`);
-		if (!$forms.length) { return; }
-		$forms.forEach($form => {
-			$form.classList.add(`working`);
-		});
+	startWorking($givenForm) {
+		if ($givenForm) {
+			$givenForm.classList.add(`working`);
+		} else {
+			const $forms = (this.shadowRoot) ?
+				this.shadowRoot.querySelectorAll(`form`) :
+				this.querySelectorAll(`form`);
+			if (!$forms.length) { return; }
+			$forms.forEach($form => {
+				$form.classList.add(`working`);
+			});
+		}
 	}
 
-	stopWorking() {
-		const $forms = (this.shadowRoot) ?
-			this.shadowRoot.querySelectorAll(`form`) :
-			this.querySelectorAll(`form`);
-		if (!$forms.length) { return; }
-		$forms.forEach($form => {
-			$form.classList.remove(`working`);
-		});
+	stopWorking($givenForm) {
+		if ($givenForm) {
+			$givenForm.classList.remove(`working`);
+		} else {
+			const $forms = (this.shadowRoot) ?
+				this.shadowRoot.querySelectorAll(`form`) :
+				this.querySelectorAll(`form`);
+			if (!$forms.length) { return; }
+			$forms.forEach($form => {
+				$form.classList.remove(`working`);
+			});
+		}
 	}
 
 	_onClick(event) {

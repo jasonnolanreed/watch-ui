@@ -2,7 +2,7 @@ const makeHtml = (component) => (
 `
 <h1><gwbw-icon name="settings"></gwbw-icon> Preferences</h1>
 
-<a class="logout big-link" href="javascript:void(0);">Logout</a>
+<button type="button" class="logout button" href="javascript:void(0);">Logout</button>
 <hr>
 
 <form>
