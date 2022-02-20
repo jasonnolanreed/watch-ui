@@ -23,5 +23,8 @@ export const getMessageElement = (options) => {
 	if (typeof options.ttl === `number`) {
 		message.setAttribute(`ttl`, options.ttl);
 	}
+	if (options.persistent === true) {
+		message.setAttribute(`persistent`, `true`);
+	}
 	return message;
 };

@@ -26,7 +26,8 @@ export class Messages extends GWBWElement {
 		message: string,
 		type: 'info'|'success'|'error',
 		ttl?: number,
-		dismissable?: boolean
+		dismissable?: boolean,
+		persistent?:boolean // whether or not to auto close on view change
 	}
 	*/
 	add(options = {}) {
@@ -38,6 +39,16 @@ export class Messages extends GWBWElement {
 		const currentMessages = this.shadowRoot.querySelectorAll(`gwbw-message`);
 		// Return refernce to newly added message
 		return currentMessages[currentMessages.length - 1];
+	}
+
+	closeNonPersistent() {
+		const messages = this.shadowRoot.querySelectorAll(`gwbw-message`);
+		if (!messages.length) { return; }
+		messages.forEach(thisMessage => {
+			if (thisMessage.getAttribute(`persistent`) !== "true") {
+				thisMessage.onClose();
+			}
+		});
 	}
 }
 

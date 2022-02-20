@@ -40,7 +40,7 @@ export class Verify extends GWBWElement {
 			GA.event(`verfy`, `verify success`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
-				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`});
+				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`, persistent: true});
 			}
 			router.navigate(`/login`);
 		} else {

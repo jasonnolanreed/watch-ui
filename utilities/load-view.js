@@ -31,7 +31,13 @@ export class LoadView {
 		LoadView._scrollToTop();
 		document.querySelector(`gwbw-loader`).loading = true;
 		const $contentContainer = $view.querySelector(`.content-container`);
-		if ($contentContainer) { $contentContainer.classList.remove(`in`); }
+		if ($contentContainer) {
+			$contentContainer.classList.remove(`in`);
+		}
+		const messages = document.querySelector(`gwbw-messages`);
+		if (messages && typeof messages.closeNonPersistent === `function`) {
+			messages.closeNonPersistent();
+		}
 	}
 
 	// Fetches HTML for view, parses and loads contained scripts,

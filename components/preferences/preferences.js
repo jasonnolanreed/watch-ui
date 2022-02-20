@@ -63,12 +63,12 @@ export class Preferences extends GWBWElement {
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
 			if (messages) {
-				messages.add({message: `Your preferences have been saved.`, type: `success`});
+				messages.add({message: `Your new atomic offset been saved.`, type: `success`});
 			}
 		} else {
 			GA.event(`preference`, `preference update fail`);
 			if (messages) {
-				messages.add({message: `Failed to save preferences. Try again?`, type: `error`});
+				messages.add({message: `Failed to save new atomic offset. Try again?`, type: `error`});
 			}
 		}
 		this.stopWorking(form);
@@ -96,7 +96,7 @@ export class Preferences extends GWBWElement {
 		if (didChange) {
 			GA.event(`changepassword`, `changepassword update success`);
 			if (messages) {
-				messages.add({message: `Your password has been changed. Please log back in with new password`, type: `success`});
+				messages.add({message: `Your password has been changed. Please log back in with new password`, type: `success`, persistent: true});
 				const didLogOut = await AuthApi.logout();
 				if (didLogOut) {
 					GA.event(`pass change logout`, `pass change logout success`);

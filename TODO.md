@@ -1,6 +1,5 @@
-- Messages which dismiss on view change
+- "ResizeObserver loop completed with undelivered notifications."
 - User options page
-	- Change password
 	- "Room for error"
 - "Stale" warning for atomicOffset value
 - Reset password tool

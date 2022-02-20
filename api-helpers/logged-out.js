@@ -10,7 +10,7 @@ export class LoggedOutApi {
 		router.navigate(`/login`);
 		const messages = document.querySelector(`gwbw-messages`);
 		if (messages) {
-			messages.add({message: `You have been logged out`, type: `info`});
+			messages.add({message: `You have been logged out`, type: `info`, persistent: true});
 		}
 		throw new Error();
 	}
