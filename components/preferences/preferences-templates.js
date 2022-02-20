@@ -17,7 +17,7 @@ const makeHtml = (component) => (
 		</small>
 	</div>
 	<div class="form-controls">
-		<button type="submit" class="button--save-atomic-time button positive">Save</button>
+		<button type="submit" class="button--save-atomic-time button positive">Save Atomic Offset</button>
 	</div>
 </form>
 

@@ -1,5 +1,6 @@
-import {Format} from '../../utilities/date-time.js';
+import {Format, Difference} from '../../utilities/date-time.js';
 import {Timing} from '../../utilities/timing.js';
+import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
@@ -8,18 +9,18 @@ const makeHtml = (component) => (
 	<h1 class="invisible"><gwbw-icon name="straighten"></gwbw-icon></h1>
 	${' '}<h3>${component.watch.name}</h3>
 </div>
-<h3>
-	<span class="nowrap">${Format.dateAndTime(component.startMeasure.targetMoment)}</span>
-	${` `}-${` `}
-	<span class="nowrap">${Format.dateAndTime(component.endMeasure.targetMoment)}</span>
-</h3>
-<p>
-	<em>Duration:</em> ${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}
-</p>
-<h2 class="average ${getClasses(component)}">
+<h2>
+	<span class="session-days-range nowrap" title="${Format.dateAndTime(component.startMeasure.targetMoment) + ' - ' + Format.dateAndTime(component.endMeasure.targetMoment)}">
+		${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
+	</span>
+	<small class="session-duration-in-days nowrap" title="${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}">
+		(${roundToTwoDecimals(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days)
+	</small>
+</h2>
+<h3 class="average ${getClasses(component)}">
 	Average:${` `}
 	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
-</h2>
+</h3>
 <div class="good-bad-message ${getClasses(component)}">
 	<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
 	<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
@@ -43,6 +44,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 h1 gwbw-icon { transform: rotate(90deg); }
+.session-days-range { margin-right: .2em; }
 p { margin-top: -1.2em; }
 .average.good-watch { color: var(--green); }
 .average.bad-watch { color: var(--red); }

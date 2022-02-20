@@ -50,6 +50,12 @@ export class Format {
 		}
 		return durationSections.join(`, `);
 	}
+	// Example: "Feb 11th" or "Feb 11th - Feb 21st"
+	static dateRange(timestamp1, timestamp2) {
+		const startDate = Format.date(timestamp1);
+		const endDate = Format.date(timestamp2);
+		return startDate === endDate ? startDate : startDate + ` - ` + endDate;
+	}
 }
 
 export class FromDate {

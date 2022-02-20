@@ -22,8 +22,7 @@ const makeCss = (component) => (
 .rate.fast:before { content: "+"; }
 .rate.good-watch { color: var(--green); }
 .rate.bad-watch { color: var(--red); }
-.at { font-size: 0.7em; color: var(--light-blue); }
-.average-length { display: block; margin-bottom: 0.75em; }
+.duration { display: block; margin: 0.1em 0 1em; }
 </style>
 `
 );
@@ -39,10 +38,11 @@ const showPositions = component => {
 				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 				<span>${positionsMap[positionName].label}:</span>
 			</em>
-			<span class="days">${roundToTwoDecimals(position.days)} days</span>
-			<span class="at">&nbsp;@&nbsp;</span>
 			<span class="rate ${getRateClasses(position.rate, component.goodtolerance)}">${position.rate} seconds/day</span>
-			<small class="average-length">Avg length: ${roundToTwoDecimals(position.days / position.positionCount)} days</small>
+			<small class="duration">
+				<span class="nowrap">Duration: ${roundToTwoDecimals(position.days)} days /</span>
+				<span class="nowrap">Avg: ${roundToTwoDecimals(position.days / position.positionCount)} days</span>
+			</small>
 		</div>
 		`;
 	}
