@@ -7,6 +7,9 @@ const makeHtml = (component) => (
 <div class="positions">
 ${showPositions(component)}
 </div>
+<div class="graph">
+${showPositionsGraph(component)}
+</div>
 `
 );
 
@@ -62,6 +65,17 @@ const getRateClasses = (rate, goodTolerance) => {
 		classes.push(`bad-watch`);
 	}
 	return classes.length ? classes.join(` `) : ``;
+};
+
+const showPositionsGraph = component => {
+	return `
+	<br><br>
+	<gwbw-positions-graph
+		positions="${encodeURI(JSON.stringify(component.positions))}"
+		goodtolerance="${component.goodtolerance}"
+	></gwbw-positions-graph>
+	<br>
+	`;
 };
 
 export const makeTemplate = (component) => {
