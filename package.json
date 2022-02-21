@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "navigo": "^7.1.2"
+    "chart.js": "3.7.1",
+    "navigo": "7.1.2"
   }
 }

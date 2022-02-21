@@ -7,6 +7,7 @@ const makeHtml = (component) => (
 <h1><gwbw-icon name="insert_chart"></gwbw-icon> ${component.watch.name}</h1>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
+${showDeviationGraph(component)}
 ${showSessionIntervalLink(component)}
 <form>
 	${showMeasures(component)}
@@ -36,6 +37,15 @@ const showSessionsSelection = component => {
 		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><gwbw-icon name="arrow_back"></gwbw-icon></button>
 		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
 	</p>
+	`;
+};
+
+const showDeviationGraph = component => {
+	if (component.currentSession.length < 2) { return; }
+	return `
+	<br>
+	<gwbw-deviation-graph measures="${encodeURI(JSON.stringify(component.currentSession))}"></gwbw-deviation-graph>
+	<br><br>
 	`;
 };
 

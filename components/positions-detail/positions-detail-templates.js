@@ -41,7 +41,7 @@ const showPositions = component => {
 			<span class="rate ${getRateClasses(position.rate, component.goodtolerance)}">${position.rate} seconds/day</span>
 			<small class="duration">
 				<span class="nowrap">Duration: ${roundToTwoDecimals(position.days)} days /</span>
-				<span class="nowrap">Avg: ${roundToTwoDecimals(position.days / position.positionCount)} days</span>
+				<span class="nowrap">Average: ${roundToTwoDecimals(position.days / position.positionCount)} days</span>
 			</small>
 		</div>
 		`;

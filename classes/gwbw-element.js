@@ -59,6 +59,27 @@ export class GWBWElement extends HTMLElement {
 		this._setupResizeListener();
 	}
 
+	fetchRequiredScripts(requiredScriptSources) {
+		return new Promise((resolve, reject) => {
+			let scriptsFetched = 0;
+			requiredScriptSources.forEach(src => {
+				const $script = document.createElement(`script`);
+				const $parent = this.shadowRoot || document.body;
+				$script.src = src;
+				$script.onload = _done;
+				$script.onerror = _done;
+				$parent.appendChild($script);
+			});
+	
+			function _done() {
+				scriptsFetched++;
+				if (scriptsFetched === requiredScriptSources.length) {
+					resolve();
+				}
+			}
+		});
+	}
+
 	startWorking($givenForm) {
 		if ($givenForm) {
 			$givenForm.classList.add(`working`);
