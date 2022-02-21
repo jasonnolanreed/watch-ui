@@ -1,6 +1,7 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Difference, Format} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
+import {Timing} from '../../utilities/timing.js';
 import {makeTemplate} from './deviation-graph-templates.js';
 
 export class DeviationGraph extends GWBWElement {
@@ -13,6 +14,7 @@ export class DeviationGraph extends GWBWElement {
 
 		this._hasChartJS = false;
 		this.measuresData = null;
+		this.watchData = null;
 		this.graph = null;
 
 		this.fetchRequiredScripts([`../../vendor/chart.js`])
@@ -22,13 +24,19 @@ export class DeviationGraph extends GWBWElement {
 		});
 	}
 
-	static get observedAttributes() { return [`measures`]; }
+	static get observedAttributes() { return [`measures`, `watch`]; }
 	get measures() { return this.getAttribute(`measures`); }
 	set measures(stringifiedMeasures) { this.setAttribute(`measures`, stringifiedMeasures); }
+	get watch() { return this.getAttribute(`watch`); }
+	set watch(stringifiedWatch) { this.setAttribute(`watch`, stringifiedWatch); }
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `measures` && newValue !== oldValue) {
 			this.measuresData = JSON.parse(decodeURI(this.measures));
+			this.render();
+		}
+		if (name === `watch` && newValue !== oldValue) {
+			this.watchData = JSON.parse(decodeURI(this.watch));
 			this.render();
 		}
 	}
@@ -44,7 +52,7 @@ export class DeviationGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.measuresData && this._hasChartJS) { this.initChart(); }
+			if (this.measuresData && this.watchData && this._hasChartJS) { this.initChart(); }
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -52,7 +60,13 @@ export class DeviationGraph extends GWBWElement {
 
 	initChart() {
 		this.removeAttribute(`loading`);
+		const component = this;
 		const cssStyles = window.getComputedStyle(document.body);
+		const blue = cssStyles.getPropertyValue(`--blue`);
+		const lightBlue = cssStyles.getPropertyValue(`--light-blue`);
+		const green = cssStyles.getPropertyValue(`--green`);
+		const red = cssStyles.getPropertyValue(`--red`);
+
 		let config = {
 			type: `line`,
 			data: {
@@ -60,19 +74,30 @@ export class DeviationGraph extends GWBWElement {
 				datasets: [
 				{
 					label: `Deviation`,
-					backgroundColor: cssStyles.getPropertyValue(`--blue`),
-					borderColor: cssStyles.getPropertyValue(`--blue`),
-					data: [] // deviation amounts
+					backgroundColor: blue,
+					borderColor: blue,
+					data: [], // deviation amounts,
+					segment: {
+						borderColor: point => getGoodBadColor(point)
+					}
 				},
 				{
 					label: `Actual Time`,
-					backgroundColor: cssStyles.getPropertyValue(`--light-blue`),
-					borderColor: cssStyles.getPropertyValue(`--light-blue`),
+					backgroundColor: lightBlue,
+					borderColor: lightBlue,
 					data: []
 				}
 			]
 			},
-			options: {}
+			options: {
+				plugins: {
+					legend: false,
+					title: {
+						display: true,
+						text: "Deviation vs Actual Time"
+					}
+				}
+			}
 		};
 
 		let labels = []; // measure target dates
@@ -95,6 +120,13 @@ export class DeviationGraph extends GWBWElement {
 			this.querySelector(`canvas`),
 			config
 		);
+
+		function getGoodBadColor(point) {
+			const startMeasure = component.measuresData[point.p1DataIndex - 1];
+			const endMeasure = component.measuresData[point.p1DataIndex];
+			const rateAbsolute = Math.abs(Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment));
+			return rateAbsolute <= component.watchData.goodTolerance ? green : red;
+		}
 	}
 }
 

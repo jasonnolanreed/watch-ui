@@ -44,7 +44,10 @@ const showDeviationGraph = component => {
 	if (component.currentSession.length < 2) { return; }
 	return `
 	<br>
-	<gwbw-deviation-graph measures="${encodeURI(JSON.stringify(component.currentSession))}"></gwbw-deviation-graph>
+	<gwbw-deviation-graph
+		measures="${encodeURI(JSON.stringify(component.currentSession))}"
+		watch="${encodeURI(JSON.stringify(component.watch))}"
+	></gwbw-deviation-graph>
 	<br><br>
 	`;
 };
@@ -53,7 +56,7 @@ const showSessionIntervalLink = component => {
 	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
 	const session = component.currentSession;
 	const intervalHref =
-		`#/measure/interval/${session[0]._id}/${session[session.length  -1]._id}`;
+		`#/measure/interval/${session[0]._id}/${session[session.length -1]._id}`;
 	return `
 	<div class="session-interval-link">
 		<a href="${intervalHref}">

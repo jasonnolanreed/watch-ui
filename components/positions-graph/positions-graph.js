@@ -1,7 +1,5 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Difference, Format} from '../../utilities/date-time.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
-import { positionsMap } from '../../utilities/position.js';
+import {positionsMap} from '../../utilities/position.js';
 import {makeTemplate} from './positions-graph-templates.js';
 
 export class PositionsGraph extends GWBWElement {
