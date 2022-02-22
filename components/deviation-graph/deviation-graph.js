@@ -1,6 +1,7 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Difference, Format} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
+import {positionsMap} from '../../utilities/position.js';
 import {Timing} from '../../utilities/timing.js';
 import {makeTemplate} from './deviation-graph-templates.js';
 
@@ -60,7 +61,7 @@ export class DeviationGraph extends GWBWElement {
 
 	initChart() {
 		this.removeAttribute(`loading`);
-		const component = this;
+		const {measuresData, watchData} = this;
 		const cssStyles = window.getComputedStyle(document.body);
 		const blue = cssStyles.getPropertyValue(`--blue`);
 		const lightBlue = cssStyles.getPropertyValue(`--light-blue`);
@@ -72,22 +73,22 @@ export class DeviationGraph extends GWBWElement {
 			data: {
 				labels: [], // measure target dates
 				datasets: [
-				{
-					label: `Deviation`,
-					backgroundColor: blue,
-					borderColor: blue,
-					data: [], // deviation amounts,
-					segment: {
-						borderColor: point => getGoodBadColor(point)
+					{
+						label: `Deviation`,
+						backgroundColor: blue,
+						borderColor: blue,
+						data: [], // deviation amounts,
+						segment: {
+							borderColor: point => getGoodBadColor(point)
+						}
+					},
+					{
+						label: `Actual Time`,
+						backgroundColor: lightBlue,
+						borderColor: lightBlue,
+						data: []
 					}
-				},
-				{
-					label: `Actual Time`,
-					backgroundColor: lightBlue,
-					borderColor: lightBlue,
-					data: []
-				}
-			]
+				]
 			},
 			options: {
 				plugins: {
@@ -95,26 +96,30 @@ export class DeviationGraph extends GWBWElement {
 					title: {
 						display: true,
 						text: "Deviation vs Actual Time"
+					},
+					tooltip: {
+						callbacks: {
+							footer: point => getTooltip(point)
+						}
 					}
 				}
 			}
 		};
 
 		let labels = []; // measure target dates
-		this.measuresData.forEach(thisMeasure => {
+		measuresData.forEach(thisMeasure => {
 			labels.push(Format.date(thisMeasure.targetMoment));
 		});
 		config.data.labels = labels;
 
 		let points = [];
 		let zeroPoints = [];
-		this.measuresData.forEach(thisMeasure => {
+		measuresData.forEach(thisMeasure => {
 			points.push(roundToTwoDecimals(Difference.seconds(thisMeasure.moment, thisMeasure.targetMoment)));
 			zeroPoints.push(0);
 		});
 		config.data.datasets[0].data = points;
 		config.data.datasets[1].data = zeroPoints;
-
 
 		this.graph = new Chart(
 			this.querySelector(`canvas`),
@@ -122,10 +127,21 @@ export class DeviationGraph extends GWBWElement {
 		);
 
 		function getGoodBadColor(point) {
-			const startMeasure = component.measuresData[point.p1DataIndex - 1];
-			const endMeasure = component.measuresData[point.p1DataIndex];
-			const rateAbsolute = Math.abs(Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment));
-			return rateAbsolute <= component.watchData.goodTolerance ? green : red;
+			const startMeasure = measuresData[point.p1DataIndex - 1];
+			const endMeasure = measuresData[point.p1DataIndex];
+			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
+			return Math.abs(rate) <= watchData.goodTolerance ? green : red;
+		}
+
+		function getTooltip(activePoint) {
+			const point = activePoint[0]
+			if (point.dataset.label.toLowerCase() === `actual time`) { return; }
+			if (point.dataIndex === 0) { return; }
+			const startMeasure = measuresData[point.dataIndex - 1];
+			const endMeasure = measuresData[point.dataIndex];
+			if (!startMeasure || !endMeasure) { return; }
+			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
+			return `${positionsMap[endMeasure.position].label}: ${rate} seconds/day`;
 		}
 	}
 }
