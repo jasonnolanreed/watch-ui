@@ -15,7 +15,7 @@ export class PositionsGraph extends GWBWElement {
 		this.goodToleranceNumber = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();
@@ -76,7 +76,65 @@ export class PositionsGraph extends GWBWElement {
 			options: {
 				responsive: true,
 				plugins: {
-					legend: false
+					legend: false,
+					autocolors: false,
+					annotation: {
+						annotations: {
+							fastBadZone: {
+								type: `box`,
+								adjustScaleRange: false,
+								drawTime: `beforeDraw`,
+								yScaleId: `y-axis-0`,
+								yMin: this.goodToleranceNumber,
+								yMax: 999,
+								backgroundColor: `${red}44`,
+								borderColor: `transparent`
+							},
+							goodZone: {
+								type: `box`,
+								adjustScaleRange: false,
+								drawTime: `beforeDraw`,
+								yScaleId: `y-axis-0`,
+								yMin: -1 * this.goodToleranceNumber,
+								yMax: this.goodToleranceNumber,
+								backgroundColor: `${green}44`,
+								borderColor: `transparent`
+							},
+							slowBadZone: {
+								type: `box`,
+								adjustScaleRange: false,
+								drawTime: `beforeDraw`,
+								yScaleId: `y-axis-0`,
+								yMin: -999,
+								yMax: -1 * this.goodToleranceNumber,
+								backgroundColor: `${red}44`,
+								borderColor: `transparent`
+							},
+							zeroLine: {
+								type: `line`,
+								yMin: 0,
+								yMax: 0,
+								borderColor: `#333`,
+								borderWidth: 1
+							},
+							// maxLine: {
+							// 	type: `line`,
+							// 	yMin: this.goodToleranceNumber,
+							// 	yMax: this.goodToleranceNumber,
+							// 	borderColor: green,
+							// 	borderWidth: 1,
+							// 	drawTime: `beforeDraw`,
+							// },
+							// minLine: {
+							// 	type: `line`,
+							// 	yMin: -1 * this.goodToleranceNumber,
+							// 	yMax: -1 * this.goodToleranceNumber,
+							// 	borderColor: green,
+							// 	borderWidth: 1,
+							// 	drawTime: `beforeDraw`,
+							// },
+						}
+					}
 				}
 			}
 		};
