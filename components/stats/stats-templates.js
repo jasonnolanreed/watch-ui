@@ -10,6 +10,10 @@ export const makeTemplate = (component) => (
 
 <h1><gwbw-icon name="insert_chart"></gwbw-icon> Last ${component.stats.latestMeasures.length} Measures</h1>
 ${outputLatestMeasures(component.stats.latestMeasures)}
+
+<style>
+@import "styles/global-styles.css";
+</style>
 `
 );
 

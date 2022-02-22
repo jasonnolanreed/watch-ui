@@ -139,10 +139,18 @@ export class PositionsGraph extends GWBWElement {
 			}
 		};
 
+		// get list of used positions in order of positionsMap
+		let sortedPositionsList = [];
+		Object.keys(positionsMap).map(positionKey => {
+			if (this.positionsData[positionKey]) {
+				sortedPositionsList.push(positionKey);
+			}
+		});
+
 		let positionLabels = [];
 		let rates = [];
 		let colors = [];
-		Object.keys(this.positionsData).forEach(positionKey => {
+		sortedPositionsList.forEach(positionKey => {
 			const position = this.positionsData[positionKey];
 			positionLabels.push(positionsMap[position.name].label);
 			rates.push(position.rate);
