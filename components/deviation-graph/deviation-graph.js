@@ -69,12 +69,13 @@ export class DeviationGraph extends GWBWElement {
 		const red = cssStyles.getPropertyValue(`--red`);
 
 		let config = {
-			type: `line`,
+			type: `scatter`,
 			data: {
 				labels: [], // measure target dates
 				datasets: [
 					{
 						label: `Deviation`,
+						showLine: true,
 						backgroundColor: blue,
 						borderColor: blue,
 						data: [], // deviation amounts,
@@ -84,6 +85,7 @@ export class DeviationGraph extends GWBWElement {
 					},
 					{
 						label: `Actual Time`,
+						showLine: true,
 						backgroundColor: lightBlue,
 						borderColor: lightBlue,
 						data: []
@@ -91,6 +93,21 @@ export class DeviationGraph extends GWBWElement {
 				]
 			},
 			options: {
+				layout: {
+					autoPadding: false
+				},
+				scales: {
+					x: {
+						grid:{
+							display: false
+						},
+						min: getXScaleMin(),
+						max: getXScaleMax(),
+						ticks: {
+							callback: (val, index) => ``
+						}
+					}
+				},
 				plugins: {
 					legend: false,
 					title: {
@@ -99,6 +116,7 @@ export class DeviationGraph extends GWBWElement {
 					},
 					tooltip: {
 						callbacks: {
+							label: point => getLabel(point),
 							footer: point => getTooltip(point)
 						}
 					}
@@ -115,8 +133,16 @@ export class DeviationGraph extends GWBWElement {
 		let points = [];
 		let zeroPoints = [];
 		measuresData.forEach(thisMeasure => {
-			points.push(roundToTwoDecimals(Difference.seconds(thisMeasure.moment, thisMeasure.targetMoment)));
-			zeroPoints.push(0);
+			points.push({
+				label: "test",
+				x: thisMeasure.targetMoment,
+				y: roundToTwoDecimals(Difference.seconds(thisMeasure.moment, thisMeasure.targetMoment))
+			});
+			zeroPoints.push({
+				label: "ing",
+				x: thisMeasure.targetMoment,
+				y: 0
+			});
 		});
 		config.data.datasets[0].data = points;
 		config.data.datasets[1].data = zeroPoints;
@@ -133,8 +159,28 @@ export class DeviationGraph extends GWBWElement {
 			return Math.abs(rate) <= watchData.goodTolerance ? green : red;
 		}
 
+		function getXScaleMin() {
+			const start = +measuresData[0].targetMoment;
+			const end = +measuresData[measuresData.length - 1].targetMoment;
+			const buffer = (end - start) * .025;
+			return start - buffer;
+		}
+
+		function getXScaleMax() {
+			const start = +measuresData[0].targetMoment;
+			const end = +measuresData[measuresData.length - 1].targetMoment;
+			const buffer = (end - start) * .025;
+			return end + buffer;
+		}
+
+		function getLabel(activePoint) {
+			const point = activePoint;
+			const measure = measuresData[point.dataIndex];
+			return `${Format.date(measure.targetMoment)}, ${Format.time(measure.targetMoment)}`;
+		}
+
 		function getTooltip(activePoint) {
-			const point = activePoint[0]
+			const point = activePoint[0];
 			if (point.dataset.label.toLowerCase() === `actual time`) { return; }
 			if (point.dataIndex === 0) { return; }
 			const startMeasure = measuresData[point.dataIndex - 1];
