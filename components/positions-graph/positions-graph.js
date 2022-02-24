@@ -68,6 +68,7 @@ export class PositionsGraph extends GWBWElement {
 		const cssStyles = window.getComputedStyle(document.body);
 		const green = cssStyles.getPropertyValue(`--green`);
 		const red = cssStyles.getPropertyValue(`--red`);
+		const darkBlue = cssStyles.getPropertyValue(`--dark-blue`);
 
 		let config = {
 			type: `bar`,
@@ -77,11 +78,19 @@ export class PositionsGraph extends GWBWElement {
 					label: "",
 					data: [],
 					backgroundColor: [],
-					borderColor: []
+					borderColor: `rgb(0, 0, 0)`,
+					borderWidth: 2,
+					borderRadius: 3
 				}]
 			},
 			options: {
 				responsive: true,
+				scales: {
+					y: {
+						display: true,
+						position: `right`
+					}
+				},
 				plugins: {
 					title: {
 						display: true,
@@ -98,7 +107,7 @@ export class PositionsGraph extends GWBWElement {
 								yScaleId: `y-axis-0`,
 								yMin: this.goodTolerancePlusNumber,
 								yMax: 999,
-								backgroundColor: `${red}44`,
+								backgroundColor: `${red}33`,
 								borderColor: `transparent`
 							},
 							goodZone: {
@@ -108,7 +117,7 @@ export class PositionsGraph extends GWBWElement {
 								yScaleId: `y-axis-0`,
 								yMin: -1 * this.goodToleranceMinusNumber,
 								yMax: this.goodTolerancePlusNumber,
-								backgroundColor: `${green}44`,
+								backgroundColor: `${green}33`,
 								borderColor: `transparent`
 							},
 							slowBadZone: {
@@ -118,14 +127,30 @@ export class PositionsGraph extends GWBWElement {
 								yScaleId: `y-axis-0`,
 								yMin: -999,
 								yMax: -1 * this.goodToleranceMinusNumber,
-								backgroundColor: `${red}44`,
+								backgroundColor: `${red}33`,
 								borderColor: `transparent`
 							},
 							zeroLine: {
 								type: `line`,
 								yMin: 0,
 								yMax: 0,
-								borderColor: `#333`,
+								borderColor: `${darkBlue}55`,
+								borderWidth: 1
+							},
+							goodFastLine: {
+								type: `line`,
+								drawTime: `beforeDraw`,
+								yMin: this.goodTolerancePlusNumber,
+								yMax: this.goodTolerancePlusNumber,
+								borderColor: `${green}33`,
+								borderWidth: 1
+							},
+							goodSlowLine: {
+								type: `line`,
+								drawTime: `beforeDraw`,
+								yMin: -1 * this.goodToleranceMinusNumber,
+								yMax: -1 * this.goodToleranceMinusNumber,
+								borderColor: `${green}33`,
 								borderWidth: 1
 							}
 						}
@@ -150,7 +175,7 @@ export class PositionsGraph extends GWBWElement {
 			positionLabels.push(positionsMap[position.name].label);
 			rates.push(position.rate);
 			const isGood = position.rate <= this.goodTolerancePlusNumber && position.rate >= -1 * this.goodToleranceMinusNumber;
-			colors.push(isGood ? green : red);
+			colors.push(isGood ? `${green}ee` : `${red}ee`);
 		});
 		config.data.labels = positionLabels;
 		config.data.datasets[0].data = rates;

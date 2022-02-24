@@ -83,6 +83,7 @@ const showPositionsGraph = component => {
 };
 
 const showPositionsDistributionGraph = component => {
+	return ``;
 	return `
 	<br>
 	<gwbw-positions-distribution-graph
