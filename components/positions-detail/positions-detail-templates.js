@@ -10,6 +10,9 @@ ${showPositions(component)}
 <div class="graph">
 ${showPositionsGraph(component)}
 </div>
+<div class="graph">
+${showPositionsDistributionGraph(component)}
+</div>
 `
 );
 
@@ -75,6 +78,18 @@ const showPositionsGraph = component => {
 		goodtoleranceplus="${component.goodtoleranceplus}"
 		goodtoleranceminus="${component.goodtoleranceminus}"
 	></gwbw-positions-graph>
+	<br>
+	`;
+};
+
+const showPositionsDistributionGraph = component => {
+	return `
+	<br>
+	<gwbw-positions-distribution-graph
+		positions="${encodeURI(JSON.stringify(component.positions))}"
+	></gwbw-positions-graph>
+	<br>
+	<br>
 	<br>
 	`;
 };

@@ -83,6 +83,10 @@ export class PositionsGraph extends GWBWElement {
 			options: {
 				responsive: true,
 				plugins: {
+					title: {
+						display: true,
+						text: `Average Performance by Position`
+					},
 					legend: false,
 					autocolors: false,
 					annotation: {
