@@ -15,7 +15,7 @@ export class PositionsDistributionGraph extends GWBWElement {
 		this.positionsData = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();

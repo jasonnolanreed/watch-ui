@@ -18,7 +18,7 @@ export class DeviationGraph extends GWBWElement {
 		this.watchData = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();
