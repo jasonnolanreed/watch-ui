@@ -12,7 +12,8 @@ export class PositionsGraph extends GWBWElement {
 
 		this._hasChartJS = false;
 		this.positionsData = null;
-		this.goodToleranceNumber = null;
+		this.goodTolerancePlusNumber = null;
+		this.goodToleranceMinusNumber = null;
 		this.graph = null;
 
 		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
@@ -22,19 +23,25 @@ export class PositionsGraph extends GWBWElement {
 		});
 	}
 
-	static get observedAttributes() { return [`positions`, `goodtolerance`]; }
+	static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`]; }
 	get positions() { return this.getAttribute(`positions`); }
 	set positions(stringifiedPositions) { this.setAttribute(`positions`, stringifiedPositions); }
-	get goodtolerance() { return this.getAttribute(`goodtolerance`); }
-	set goodtolerance(goodTolerance) { this.setAttribute(`goodtolerance`, goodTolerance); }
+	get goodtoleranceplus() { return this.getAttribute(`goodtoleranceplus`); }
+	set goodtolerance(goodTolerancePlus) { this.setAttribute(`goodtoleranceplus`, goodTolerancePlus); }
+	get goodtoleranceminus() { return this.getAttribute(`goodtoleranceminus`); }
+	set goodtoleranceminus(goodToleranceMinus) { this.setAttribute(`goodtoleranceminus`, goodToleranceMinus); }
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `positions` && newValue !== oldValue) {
 			this.positionsData = JSON.parse(decodeURI(this.positions));
 			this.render();
 		}
-		if (name === `goodtolerance` && newValue !== oldValue) {
-			this.goodToleranceNumber = +this.goodtolerance
+		if (name === `goodtoleranceplus` && newValue !== oldValue) {
+			this.goodTolerancePlusNumber = +this.goodtoleranceplus;
+			this.render();
+		}
+		if (name === `goodtoleranceminus` && newValue !== oldValue) {
+			this.goodToleranceMinusNumber = +this.goodtoleranceminus;
 			this.render();
 		}
 	}
@@ -50,7 +57,7 @@ export class PositionsGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.positionsData && this.goodToleranceNumber && this._hasChartJS) { this.initChart(); }
+			if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) { this.initChart(); }
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -85,7 +92,7 @@ export class PositionsGraph extends GWBWElement {
 								adjustScaleRange: false,
 								drawTime: `beforeDraw`,
 								yScaleId: `y-axis-0`,
-								yMin: this.goodToleranceNumber,
+								yMin: this.goodTolerancePlusNumber,
 								yMax: 999,
 								backgroundColor: `${red}44`,
 								borderColor: `transparent`
@@ -95,8 +102,8 @@ export class PositionsGraph extends GWBWElement {
 								adjustScaleRange: false,
 								drawTime: `beforeDraw`,
 								yScaleId: `y-axis-0`,
-								yMin: -1 * this.goodToleranceNumber,
-								yMax: this.goodToleranceNumber,
+								yMin: -1 * this.goodToleranceMinusNumber,
+								yMax: this.goodTolerancePlusNumber,
 								backgroundColor: `${green}44`,
 								borderColor: `transparent`
 							},
@@ -106,7 +113,7 @@ export class PositionsGraph extends GWBWElement {
 								drawTime: `beforeDraw`,
 								yScaleId: `y-axis-0`,
 								yMin: -999,
-								yMax: -1 * this.goodToleranceNumber,
+								yMax: -1 * this.goodToleranceMinusNumber,
 								backgroundColor: `${red}44`,
 								borderColor: `transparent`
 							},
@@ -116,23 +123,7 @@ export class PositionsGraph extends GWBWElement {
 								yMax: 0,
 								borderColor: `#333`,
 								borderWidth: 1
-							},
-							// maxLine: {
-							// 	type: `line`,
-							// 	yMin: this.goodToleranceNumber,
-							// 	yMax: this.goodToleranceNumber,
-							// 	borderColor: green,
-							// 	borderWidth: 1,
-							// 	drawTime: `beforeDraw`,
-							// },
-							// minLine: {
-							// 	type: `line`,
-							// 	yMin: -1 * this.goodToleranceNumber,
-							// 	yMax: -1 * this.goodToleranceNumber,
-							// 	borderColor: green,
-							// 	borderWidth: 1,
-							// 	drawTime: `beforeDraw`,
-							// },
+							}
 						}
 					}
 				}
@@ -154,7 +145,8 @@ export class PositionsGraph extends GWBWElement {
 			const position = this.positionsData[positionKey];
 			positionLabels.push(positionsMap[position.name].label);
 			rates.push(position.rate);
-			colors.push((Math.abs(position.rate) <= this.goodToleranceNumber) ? green : red);
+			const isGood = position.rate <= this.goodTolerancePlusNumber && position.rate >= -1 * this.goodToleranceMinusNumber;
+			colors.push(isGood ? green : red);
 		});
 		config.data.labels = positionLabels;
 		config.data.datasets[0].data = rates;

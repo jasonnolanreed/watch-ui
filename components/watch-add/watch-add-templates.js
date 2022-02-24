@@ -7,9 +7,14 @@ const makeHtml = (component) => (
 		<input type="text" name="name" maxlength="200">
 	</div>
 	<div class="form-input">
-		<label for="goodTolerance">"Good" Tolerance</label>
-		<input type="number" name="goodTolerance" maxlength="200" value="20">
-		<small>Goal accuracy in +/- seconds per day</small>
+		<label for="goodTolerancePlus">"Good" Tolerance, Fast</label>
+		<input type="number" name="goodTolerancePlus" maxlength="200" value="20" min="0">
+		<small>Goal accuracy in seconds fast per day</small>
+	</div>
+	<div class="form-input">
+		<label for="goodToleranceMinus">"Good" Tolerance, Slow</label>
+		<input type="number" name="goodToleranceMinus" maxlength="200" value="10" min="0">
+		<small>Goal accuracy in seconds slow per day</small>
 	</div>
 	<div class="form-input">
 		<label for="note">Note</label>

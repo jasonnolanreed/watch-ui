@@ -156,7 +156,7 @@ export class DeviationGraph extends GWBWElement {
 			const startMeasure = measuresData[point.p1DataIndex - 1];
 			const endMeasure = measuresData[point.p1DataIndex];
 			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
-			return Math.abs(rate) <= watchData.goodTolerance ? green : red;
+			return rate <= watchData.goodTolerancePlus && rate >= -1 * watchData.goodToleranceMinus ? green : red;
 		}
 
 		function getXScaleMin() {

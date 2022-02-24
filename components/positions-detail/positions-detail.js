@@ -8,11 +8,11 @@ export class PositionsDetail extends HTMLElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.hasSet = {watch: false, start: false, end: false, tolerance: false};
+		this.hasSet = {watch: false, start: false, end: false, tolerancePlus: false, toleranceMinus: false};
 		this.positions = {};
 	}
 
-	static get observedAttributes() { return [`watchid`, `startmeasureid`, `endmeasureid`, `goodtolerance`]; }
+	static get observedAttributes() { return [`watchid`, `startmeasureid`, `endmeasureid`, `goodtoleranceplus`, `goodtoleranceminus`]; }
 
 	get watchid() { return this.getAttribute(`watchid`); }
 	set watchid(value) { this.setAttribute(`watchid`, value); }
@@ -23,8 +23,11 @@ export class PositionsDetail extends HTMLElement {
 	get endmeasureid() { return this.getAttribute(`endmeasureid`); }
 	set endmeasureid(value) { this.setAttribute(`endmeasureid`, value); }
 
-	get goodtolerance() { return this.getAttribute(`goodtolerance`); }
-	set goodtolerance(value) { this.setAttribute(`goodtolerance`, value); }
+	get goodtoleranceplus() { return this.getAttribute(`goodtoleranceplus`); }
+	set goodtoleranceplus(value) { this.setAttribute(`goodtoleranceplus`, value); }
+
+	get goodtoleranceminus() { return this.getAttribute(`goodtoleranceminus`); }
+	set goodtoleranceminus(value) { this.setAttribute(`goodtoleranceminus`, value); }
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (newValue === oldValue) { return; }
@@ -38,8 +41,11 @@ export class PositionsDetail extends HTMLElement {
 			case `endmeasureid`:
 				this.hasSet.end = true;
 				break;
-			case `goodtolerance`:
-				this.hasSet.tolerance = true;
+			case `goodtoleranceplus`:
+				this.hasSet.tolerancePlus = true;
+				break;
+			case `goodtoleranceminus`:
+				this.hasSet.toleranceMinus = true;
 				break;
 		}
 		this.getData();
@@ -54,7 +60,7 @@ export class PositionsDetail extends HTMLElement {
 	}
 
 	getData() {
-		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerance) { return; }
+		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerancePlus || !this.hasSet.toleranceMinus) { return; }
 		MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid)
 		.then(measures => {
 			this.parsePositions(measures);

@@ -31,7 +31,8 @@ const makeHtml = (component) => (
 		watchid="${component.watch._id}"
 		startmeasureid="${component.startMeasure._id}"
 		endmeasureid="${component.endMeasure._id}"
-		goodtolerance="${component.watch.goodTolerance}"
+		goodtoleranceplus="${component.watch.goodTolerancePlus}"
+		goodtoleranceminus="${component.watch.goodToleranceMinus}"
 	></gwbw-positions-detail>
 </div>
 <a class="big-link" href="javascript:history.back();">Back to Measures</button>
@@ -65,9 +66,10 @@ const getRate = component => {
 };
 
 const getClasses = component => {
-	const isGood = Math.abs(getRate(component)) <= component.watch.goodTolerance;
-	if (isGood) { return `good-watch`; }
-	return `bad-watch`;
+	const isGood =
+		getRate(component) <= component.watch.goodTolerancePlus &&
+		getRate(component) >= -1 * component.watch.goodToleranceMinus;
+	return isGood ? `good-watch` : `bad-watch`;
 };
 
 export const makeTemplate = (component) => {

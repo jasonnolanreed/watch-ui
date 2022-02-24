@@ -41,7 +41,7 @@ const showPositions = component => {
 				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 				<span>${positionsMap[positionName].label}:</span>
 			</em>
-			<span class="rate ${getRateClasses(position.rate, component.goodtolerance)}">${position.rate} seconds/day</span>
+			<span class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}">${position.rate} seconds/day</span>
 			<small class="duration">
 				<span class="nowrap">Duration: ${roundToTwoDecimals(position.days)} days /</span>
 				<span class="nowrap">Average: ${roundToTwoDecimals(position.days / position.positionCount)} days</span>
@@ -52,14 +52,14 @@ const showPositions = component => {
 	return positionsHtml;
 };
 
-const getRateClasses = (rate, goodTolerance) => {
+const getRateClasses = (rate, goodTolerancePlus, goodToleranceMinus) => {
 	let classes = [];
 	if (rate < 0) {
 		classes.push(`slow`);
 	} else {
 		classes.push(`fast`);
 	}
-	if (Math.abs(rate) <= goodTolerance) {
+	if (rate <= goodTolerancePlus && rate >= -1 * goodToleranceMinus) {
 		classes.push(`good-watch`);
 	} else {
 		classes.push(`bad-watch`);
@@ -72,7 +72,8 @@ const showPositionsGraph = component => {
 	<br><br>
 	<gwbw-positions-graph
 		positions="${encodeURI(JSON.stringify(component.positions))}"
-		goodtolerance="${component.goodtolerance}"
+		goodtoleranceplus="${component.goodtoleranceplus}"
+		goodtoleranceminus="${component.goodtoleranceminus}"
 	></gwbw-positions-graph>
 	<br>
 	`;

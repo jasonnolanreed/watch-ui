@@ -156,7 +156,7 @@ const getTotalClasses = (component, sessionTotalData) => {
 	} else {
 		classes.push(`fast`);
 	}
-	if (Math.abs(sessionTotalData.averageRate) <= component.watch.goodTolerance) {
+	if (sessionTotalData.averageRate <= component.watch.goodTolerancePlus && sessionTotalData.averageRate >= -1 * component.watch.goodToleranceMinus) {
 		classes.push(`good-watch`);
 	} else {
 		classes.push(`bad-watch`);
