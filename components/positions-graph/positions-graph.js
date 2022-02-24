@@ -65,6 +65,7 @@ export class PositionsGraph extends GWBWElement {
 
 	initChart() {
 		this.removeAttribute(`loading`);
+		const positionsData = this.positionsData;
 		const cssStyles = window.getComputedStyle(document.body);
 		const green = cssStyles.getPropertyValue(`--green`);
 		const red = cssStyles.getPropertyValue(`--red`);
@@ -78,8 +79,6 @@ export class PositionsGraph extends GWBWElement {
 					label: "",
 					data: [],
 					backgroundColor: [],
-					borderColor: `rgb(0, 0, 0)`,
-					borderWidth: 2,
 					borderRadius: 3
 				}]
 			},
@@ -88,7 +87,9 @@ export class PositionsGraph extends GWBWElement {
 				scales: {
 					y: {
 						display: true,
-						position: `right`
+						position: `right`,
+						suggestedMax: this.goodTolerancePlusNumber * 1.5,
+						suggestedMin: this.goodToleranceMinusNumber * -1.5
 					}
 				},
 				plugins: {
@@ -98,6 +99,11 @@ export class PositionsGraph extends GWBWElement {
 					},
 					legend: false,
 					autocolors: false,
+					tooltip: {
+						callbacks: {
+							label: point => getTooltip(point)
+						}
+					},
 					annotation: {
 						annotations: {
 							fastBadZone: {
@@ -162,7 +168,7 @@ export class PositionsGraph extends GWBWElement {
 		// get list of used positions in order of positionsMap
 		let sortedPositionsList = [];
 		Object.keys(positionsMap).map(positionKey => {
-			if (this.positionsData[positionKey]) {
+			if (positionsData[positionKey]) {
 				sortedPositionsList.push(positionKey);
 			}
 		});
@@ -171,7 +177,7 @@ export class PositionsGraph extends GWBWElement {
 		let rates = [];
 		let colors = [];
 		sortedPositionsList.forEach(positionKey => {
-			const position = this.positionsData[positionKey];
+			const position = positionsData[positionKey];
 			positionLabels.push(positionsMap[position.name].label);
 			rates.push(position.rate);
 			const isGood = position.rate <= this.goodTolerancePlusNumber && position.rate >= -1 * this.goodToleranceMinusNumber;
@@ -186,6 +192,11 @@ export class PositionsGraph extends GWBWElement {
 			this.querySelector(`canvas`),
 			config
 		);
+
+		function getTooltip(point) {
+			const position = positionsData[sortedPositionsList[point.dataIndex]];
+			return `${position.rate > 0 ? '+' : ''}${position.rate} seconds/day`;
+		}
 	}
 }
 

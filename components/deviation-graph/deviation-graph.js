@@ -18,7 +18,7 @@ export class DeviationGraph extends GWBWElement {
 		this.watchData = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();
@@ -187,7 +187,7 @@ export class DeviationGraph extends GWBWElement {
 			const endMeasure = measuresData[point.dataIndex];
 			if (!startMeasure || !endMeasure) { return; }
 			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
-			return `${positionsMap[endMeasure.position].label}: ${rate} seconds/day`;
+			return `${positionsMap[endMeasure.position].label}: ${rate > 0 ? '+' : ''}${rate} seconds/day`;
 		}
 	}
 }
