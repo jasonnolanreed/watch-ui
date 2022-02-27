@@ -18,7 +18,7 @@ export class DeviationGraph extends GWBWElement {
 		this.watchData = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();
@@ -119,6 +119,26 @@ export class DeviationGraph extends GWBWElement {
 							label: point => getLabel(point),
 							footer: point => getTooltip(point)
 						}
+					},
+					annotation: {
+						annotations: {
+							fastest: {
+								type: `line`,
+								drawTime: `beforeDraw`,
+								yMin: _ => fastestPoint,
+								yMax: _ => fastestPoint,
+								borderColor: `${blue}15`,
+								borderWidth: 3,
+							},
+							slowest: {
+								type: `line`,
+								drawTime: `beforeDraw`,
+								yMin: _ => slowestPoint,
+								yMax: _ => slowestPoint,
+								borderColor: `${blue}15`,
+								borderWidth: 3,
+							}
+						}
 					}
 				}
 			}
@@ -132,17 +152,20 @@ export class DeviationGraph extends GWBWElement {
 
 		let points = [];
 		let zeroPoints = [];
+		let fastestPoint = null;
+		let slowestPoint = null;
 		measuresData.forEach(thisMeasure => {
-			points.push({
-				label: "test",
+			const point = {
 				x: thisMeasure.targetMoment,
 				y: roundToTwoDecimals(Difference.seconds(thisMeasure.moment, thisMeasure.targetMoment))
-			});
+			};
+			points.push(point);
 			zeroPoints.push({
-				label: "ing",
 				x: thisMeasure.targetMoment,
 				y: 0
 			});
+			if (!fastestPoint || fastestPoint < point.y) { fastestPoint = point.y; }
+			if (!slowestPoint || slowestPoint > point.y) { slowestPoint = point.y; }
 		});
 		config.data.datasets[0].data = points;
 		config.data.datasets[1].data = zeroPoints;
