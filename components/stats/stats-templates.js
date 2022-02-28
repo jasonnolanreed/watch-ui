@@ -8,6 +8,8 @@ export const makeTemplate = (component) => (
 <div><b>Watches:</b> ${component.stats.watchesCount}</div>
 <div><b>Measures:</b> ${component.stats.measuresCount}</div>
 
+<br><br>
+
 <h1><gwbw-icon name="insert_chart"></gwbw-icon> Last ${component.stats.latestMeasures.length} Measures</h1>
 ${outputLatestMeasures(component.stats.latestMeasures)}
 
