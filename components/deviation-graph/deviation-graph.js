@@ -82,7 +82,7 @@ export class DeviationGraph extends GWBWElement {
 						segment: {
 							borderColor: point => getGoodBadColor(point)
 						},
-						tension: 0.5
+						tension: 0.2
 					},
 					{
 						label: `Actual Time`,
