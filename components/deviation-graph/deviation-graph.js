@@ -18,7 +18,8 @@ export class DeviationGraph extends GWBWElement {
 		this.watchData = null;
 		this.graph = null;
 
-		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
+		// this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
+		this.fetchRequiredScripts([`../../vendor/chart.js`])
 		.then(_ => {
 			this._hasChartJS = true;
 			this.render();
@@ -125,28 +126,47 @@ export class DeviationGraph extends GWBWElement {
 							footer: point => getTooltip(point)
 						}
 					},
-					annotation: {
-						annotations: {
-							fastest: {
-								type: `line`,
-								drawTime: `beforeDraw`,
-								yMin: _ => fastestPoint,
-								yMax: _ => fastestPoint,
-								borderColor: `${blue}15`,
-								borderWidth: 3,
-							},
-							slowest: {
-								type: `line`,
-								drawTime: `beforeDraw`,
-								yMin: _ => slowestPoint,
-								yMax: _ => slowestPoint,
-								borderColor: `${blue}15`,
-								borderWidth: 3,
-							}
-						}
+					chartAreaBorder: {
+						borderColor: `${lightBlue}55`,
+						borderWidth: 1
+					},
+					// annotation: {
+					// 	annotations: {
+					// 		fastest: {
+					// 			type: `line`,
+					// 			drawTime: `beforeDraw`,
+					// 			yMin: _ => fastestPoint,
+					// 			yMax: _ => fastestPoint,
+					// 			borderColor: `${blue}15`,
+					// 			borderWidth: 3,
+					// 		},
+					// 		slowest: {
+					// 			type: `line`,
+					// 			drawTime: `beforeDraw`,
+					// 			yMin: _ => slowestPoint,
+					// 			yMax: _ => slowestPoint,
+					// 			borderColor: `${blue}15`,
+					// 			borderWidth: 3,
+					// 		}
+					// 	}
+					// }
+				}
+			},
+			plugins: [
+				{
+					id: `chartAreaBorder`,
+					beforeDraw(chart, args, options) {
+						const {ctx, chartArea: {left, top, width, height}} = chart;
+						ctx.save();
+						ctx.strokeStyle = options.borderColor;
+						ctx.lineWidth = options.borderWidth;
+						ctx.setLineDash(options.borderDash || []);
+						ctx.lineDashOffset = options.borderDashOffset;
+						ctx.strokeRect(left, top, width, height);
+						ctx.restore();
 					}
 				}
-			}
+			]
 		};
 
 		let labels = []; // measure target dates
