@@ -44,7 +44,6 @@ const showSessionsSelection = component => {
 const showDeviationGraph = component => {
 	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
 	return `
-	<br>
 	<gwbw-deviation-graph
 		measures="${encodeURI(JSON.stringify(component.currentSession))}"
 		watch="${encodeURI(JSON.stringify(component.watch))}"
