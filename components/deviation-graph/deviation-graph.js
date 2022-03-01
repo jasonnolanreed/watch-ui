@@ -107,6 +107,10 @@ export class DeviationGraph extends GWBWElement {
 						ticks: {
 							callback: (val, index) => ``
 						}
+					},
+					y: {
+						display: true,
+						position: `right`
 					}
 				},
 				plugins: {

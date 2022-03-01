@@ -8,11 +8,12 @@ const makeHtml = (component) => (
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
 ${showDeviationGraph(component)}
+${showSessionTotal(component)}
 ${showSessionIntervalLink(component)}
 <form>
 	${showMeasures(component)}
 </form>
-${showSessionTotal(component)}
+<br>
 <a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
 `
 );
@@ -48,7 +49,6 @@ const showDeviationGraph = component => {
 		measures="${encodeURI(JSON.stringify(component.currentSession))}"
 		watch="${encodeURI(JSON.stringify(component.watch))}"
 	></gwbw-deviation-graph>
-	<br><br>
 	`;
 };
 
