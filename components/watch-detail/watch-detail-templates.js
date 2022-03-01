@@ -37,6 +37,7 @@ const showSessionsSelection = component => {
 	<p class="session-selection form-controls">
 		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><gwbw-icon name="arrow_back"></gwbw-icon></button>
 		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
+		<small class="pages">(${component.currentSessionIndex + 1} of ${component.sessions.length})</small>
 	</p>
 	`;
 };
@@ -168,7 +169,8 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.session-selection { margin: -1em 0 2em 0; }
+.session-selection.session-selection { display: flex; align-items: center; margin: -1em 0 2em 0; }
+.session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
 .date-time { display: flex; align-items: center; line-height: 1.8; }
 .header-deviation { display: flex; align-items: flex-end; }
