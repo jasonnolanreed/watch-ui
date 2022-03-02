@@ -3,12 +3,12 @@ import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
+<div class="graph">
+${showPositionsGraph(component)}
+</div>
 <h2>Positions</h2>
 <div class="positions">
 ${showPositions(component)}
-</div>
-<div class="graph">
-${showPositionsGraph(component)}
 </div>
 <div class="graph">
 ${showPositionsDistributionGraph(component)}
@@ -72,13 +72,12 @@ const getRateClasses = (rate, goodTolerancePlus, goodToleranceMinus) => {
 
 const showPositionsGraph = component => {
 	return `
-	<br><br>
 	<gwbw-positions-graph
 		positions="${encodeURI(JSON.stringify(component.positions))}"
 		goodtoleranceplus="${component.goodtoleranceplus}"
 		goodtoleranceminus="${component.goodtoleranceminus}"
 	></gwbw-positions-graph>
-	<br>
+	<br><br>
 	`;
 };
 
