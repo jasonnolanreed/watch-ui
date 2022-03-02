@@ -111,7 +111,15 @@ export class DeviationGraph extends GWBWElement {
 					},
 					y: {
 						display: true,
-						position: `right`
+						position: `right`,
+						suggestedMax: _ => {
+							const maxAfterDrift = points[0].y + (watchData.goodTolerancePlus * days);
+							return Math.max(fastestPoint, maxAfterDrift);
+						},
+						suggestedMin: _ => {
+							const minAfterDrift = points[0].y - (watchData.goodToleranceMinus * days);
+							return Math.min(slowestPoint, minAfterDrift);
+						}
 					}
 				},
 				plugins: {
@@ -165,6 +173,27 @@ export class DeviationGraph extends GWBWElement {
 						ctx.strokeRect(left, top, width, height);
 						ctx.restore();
 					}
+				},
+				{
+					id: `goodZone`,
+					beforeDraw(chart, args, options) {
+						const {ctx} = chart;
+						const metaPoints = chart._metasets[0].data;
+						const firstPoint = points[0];
+						const lastPoint = points[points.length - 1];
+						const firstMetaPoint = metaPoints[0];
+						const lastMetaPoint = metaPoints[metaPoints.length - 1];
+						const pixelModifier = Math.abs(firstMetaPoint.y - lastMetaPoint.y) / Math.abs(firstPoint.y - lastPoint.y);
+
+						ctx.save();
+						ctx.beginPath();
+						ctx.moveTo(firstMetaPoint.x, firstMetaPoint.y);
+						ctx.lineTo(lastMetaPoint.x, firstMetaPoint.y - (pixelModifier * watchData.goodTolerancePlus * days));
+						ctx.lineTo(lastMetaPoint.x, firstMetaPoint.y + (pixelModifier * watchData.goodToleranceMinus * days));
+						ctx.fillStyle = `${green}22`;
+						ctx.fill();
+						ctx.restore();
+					}
 				}
 			]
 		};
@@ -179,6 +208,7 @@ export class DeviationGraph extends GWBWElement {
 		let zeroPoints = [];
 		let fastestPoint = null;
 		let slowestPoint = null;
+		let days = 0;
 		measuresData.forEach(thisMeasure => {
 			const point = {
 				x: thisMeasure.targetMoment,
@@ -192,6 +222,7 @@ export class DeviationGraph extends GWBWElement {
 			if (!fastestPoint || fastestPoint < point.y) { fastestPoint = point.y; }
 			if (!slowestPoint || slowestPoint > point.y) { slowestPoint = point.y; }
 		});
+		days = Difference.days(points[0].x, points[points.length - 1].x);
 		config.data.datasets[0].data = points;
 		config.data.datasets[1].data = zeroPoints;
 
