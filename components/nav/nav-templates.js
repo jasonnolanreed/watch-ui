@@ -30,8 +30,8 @@ nav {
 }
 
 a, a:visited {
-	padding: 1.75em;
-	margin: -1.75em;
+	padding: 10px;
+	margin: -10px;
 	font-weight: 600;
 	color: #fff;
 	text-decoration: none;
