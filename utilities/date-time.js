@@ -16,11 +16,18 @@ export class Format {
 		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}`;
 	}
 
-	// Example: `Feb 3rd, 8:13am`
+	// Example: `Feb 3rd, 8:13 am`
 	static dateAndTime(timestamp) {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}, ${FromDate.getTimeWithAmPm(date)}`;
+	}
+
+	// Example: `Feb 3, 8:13a`
+	static dateAndTimeCompact(timestamp) {
+		timestamp = +timestamp;
+		const date = new window.Date(timestamp);
+		return `${FromDate.getShortMonth(date)} ${date.getDate()}, ${FromDate.getTimeWithCompactAmPm(date)}`;
 	}
 
 	// Example: `5 days, 13 hours, 38 minutes, 3 seconds`
@@ -85,6 +92,14 @@ export class FromDate {
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
 		return `${time} ${amPm}`;
+	}
+
+	// Example: `8:13p`
+	static getTimeWithCompactAmPm(date) {
+		const parts = date.toLocaleString().split(` `);
+		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
+		const amPm = parts[2].toLowerCase();
+		return `${time}${amPm.charAt(0)}`;
 	}
 
 	// Example: `8:13:42 am`

@@ -51,11 +51,17 @@ export class WatchMeasure extends GWBWElement {
 	increaseQuarter(event, target) {
 		this.moment = Shift.seconds(this.moment, 15);
 		this.render();
+		try {
+			this.shadowRoot.querySelector(".increase-quarter").focus();
+		} catch(error) {}
 	}
 
 	decreaseQuarter(event, target) {
 		this.moment = Shift.seconds(this.moment, -15);
 		this.render();
+		try {
+			this.shadowRoot.querySelector(".decrease-quarter").focus();
+		} catch(error) {}
 	}
 
 	addMeasure() {

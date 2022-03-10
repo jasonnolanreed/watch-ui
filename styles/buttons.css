@@ -24,7 +24,8 @@
 }
 
 .button.button.ultra-compact {
-	padding: 0.2em 0.4em;
+	min-width: 40px;
+	padding: 0.4em;
 }
 
 .button.button.ultra-compact gwbw-icon {
