@@ -35,8 +35,8 @@ const showSessionsSelection = component => {
 	if (component.sessions.length < 2) { return ``; }
 	return `
 	<p class="session-selection form-controls">
-		<button class="previous-session button compact low-priority ${getPreviousDisabled(component)}"><gwbw-icon name="arrow_back"></gwbw-icon></button>
-		<button class="next-session button compact low-priority ${getNextDisabled(component)}"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
+		<button class="previous-session button compact low-priority" ${getPreviousDisabled(component)}><gwbw-icon name="arrow_back"></gwbw-icon></button>
+		<button class="next-session button compact low-priority" ${getNextDisabled(component)}><gwbw-icon name="arrow_forward"></gwbw-icon></button>
 		<small class="pages">(${component.currentSessionIndex + 1} of ${component.sessions.length})</small>
 	</p>
 	`;

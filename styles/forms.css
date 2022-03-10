@@ -86,11 +86,6 @@ textarea {
 	resize: vertical;
 }
 
-button:focus,
-.button:focus {
-	box-shadow: 0 0 1px 2px var(--dark-blue);
-}
-
 @keyframes working {
 	50% {
 		background-color: rgba(0, 0, 0, 0.15);

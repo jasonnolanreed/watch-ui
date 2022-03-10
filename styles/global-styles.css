@@ -1,6 +1,7 @@
 @import "buttons.css";
 @import "forms.css";
 @import "lists.css";
+@import "a11y.css";
 
 *, *:before, *:after { box-sizing: border-box; }
 
