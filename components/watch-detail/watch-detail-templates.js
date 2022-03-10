@@ -10,11 +10,12 @@ ${showSessionsSelection(component)}
 ${showDeviationGraph(component)}
 ${showSessionTotal(component)}
 ${showSessionIntervalLink(component)}
-<form>
-	${showMeasures(component)}
-</form>
-<br>
-<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
+<div class="reverse-order">
+	<a href="#/watches/measure/${component.watch._id}" class="new-measure big-link">Add New Measure</a>
+	<form class="measures-form">
+		${showMeasures(component)}
+	</form>
+</div>
 `
 );
 
@@ -99,7 +100,7 @@ const showMeasures = component => {
 					<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
 					<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>
 				</span>
-				${Format.dateAndTime(measure.targetMoment)}
+				${Format.dateAndTimeCompact(measure.targetMoment)}
 			</div>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToTwoDecimals(component.getMomentDiff(measure))}s</span>
@@ -172,7 +173,7 @@ const makeCss = (component) => (
 .session-selection.session-selection { display: flex; align-items: center; margin: -1em 0 2em 0; }
 .session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
-.date-time { display: flex; align-items: center; line-height: 1.8; }
+.date-time { display: flex; align-items: center; font-size: 0.9em; }
 .header-deviation { display: flex; align-items: flex-end; }
 .header-deviation .button { margin-left: 0.5em; }
 .session-interval-link { margin-bottom: 0.5em; line-height: 1.4; }
@@ -195,6 +196,18 @@ const makeCss = (component) => (
 	color: var(--red);
 }
 .short-session-alert gwbw-icon { font-size: 1.5em; margin-right: 0.5em; }
+.reverse-order {
+	display: flex;
+	flex-wrap: wrap;
+}
+.new-measure {
+	order: 2;
+}
+.measures-form {
+	width: 100%;
+	order: 1;
+	margin-bottom: 1em;
+}
 .interval.interval {
 	font-size: 1.65em;
 	padding: 0.5em 1.15em 0.5em 0.5em;
