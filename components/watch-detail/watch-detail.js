@@ -16,7 +16,6 @@ export class WatchDetail extends GWBWElement {
 			{target: `.previous-session`, handler: this.viewPreviousSession},
 			{target: `.next-session`, handler: this.viewNextSession},
 			{target: `.view-measure`, handler: this.viewMeasure},
-			{target: `.list-item`, handler: this.viewMeasure},
 			{target: `.delete-measure`, handler: this.removeMeasure},
 			{target: `.interval`, handler: this.selectInterval},
 		]);

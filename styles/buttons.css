@@ -24,7 +24,7 @@
 }
 
 .button.button.ultra-compact {
-	min-width: 2.75em;
+	min-width: 3em;
 	padding: 0.4em;
 }
 
@@ -64,4 +64,14 @@
 button[disabled] {
 	opacity: 0.5;
 	pointer-events: none;
+}
+
+.sneaky-button {
+	background: none;
+	border: none;
+	padding: 0;
+	outline: none;
+	-webkit-appearance: none;
+	line-height: inherit;
+	min-height: auto;
 }

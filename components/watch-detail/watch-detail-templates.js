@@ -95,13 +95,13 @@ const showMeasures = component => {
 	component.currentSession.forEach((measure, index) => {
 		html += `
 		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
-			<div class="date-time">
-				<span class="interval ${component.currentSession.length < 2 ? `invisible` : ``}" measure-index="${index}">
-					<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
-					<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>
-				</span>
+			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} sneaky-button" measure-index="${index}">
+				<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
+				<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>
+			</button>
+			<a class="date-time" href="#/measure/${measure._id}">
 				${Format.dateAndTimeCompact(measure.targetMoment)}
-			</div>
+			</a>
 			<div class="controls nowrap ${component.getMomentDiff(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToTwoDecimals(component.getMomentDiff(measure))}s</span>
 				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
@@ -208,10 +208,17 @@ const makeCss = (component) => (
 	order: 1;
 	margin-bottom: 1em;
 }
+.measures-list .list-item {
+	justify-content: flex-start;
+}
+.measures-list .list-item .controls {
+	margin-left: auto;
+}
 .interval.interval {
 	font-size: 1.65em;
-	padding: 0.5em 1.15em 0.5em 0.5em;
-	margin: -0.7em -1em -0.7em -0.7em;
+	margin-left: -0.6em;
+	padding: 0.35em;
+	padding-right: 0.2em;
 	opacity: 0.35;
 	cursor: pointer;
 	z-index: 1;

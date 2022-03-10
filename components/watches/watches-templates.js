@@ -29,13 +29,10 @@ const listWatches = component => {
 	for (const watch of component.watches) {
 		htmlString += `
 		<li class="list-item" watch-id="${watch._id}">
-			<div>${watch.name}</div>
+			<a href="#/watches/detail/${watch._id}">${watch.name}</a>
 			<div class="controls nowrap">
-				<button class="edit-watch button ultra-compact low-priority" watch-id="${watch._id}">
+				<button class="edit-watch button ultra-compact" watch-id="${watch._id}">
 					<gwbw-icon name="settings"></gwbw-icon>
-				</button>
-				<button class="view-watch button ultra-compact" watch-id="${watch._id}">
-					<gwbw-icon name="insert_chart"></gwbw-icon>
 				</button>
 				<button class="delete-watch button negative ultra-compact" watch-id="${watch._id}">
 					<gwbw-icon name="delete"></gwbw-icon>
