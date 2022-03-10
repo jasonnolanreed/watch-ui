@@ -4,11 +4,11 @@ export const makeTemplate = (component) => (
 <form novalidate>
 	<div class="form-input">
 		<label for="email">Email</label>
-		<input type="text" name="email" autocomplete="email" maxlength="250">
+		<input type="text" id="email" name="email" autocomplete="email" maxlength="250">
 	</div>
 	<div class="form-input">
 		<label for="password">Password</label>
-		<input type="password" name="password" autocomplete="current-password" maxlength="250">
+		<input type="password" id="password" name="password" autocomplete="current-password" maxlength="250">
 	</div>
 	<div class="form-controls">
 		<button type="submit" class="button">Login</button>

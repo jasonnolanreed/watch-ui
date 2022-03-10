@@ -4,21 +4,21 @@ const makeHtml = (component) => (
 <form>
 	<div class="form-input">
 		<label for="name">Name</label>
-		<input type="text" name="name" maxlength="200">
+		<input type="text" id="name" name="name" maxlength="200">
 	</div>
 	<div class="form-input">
 		<label for="goodTolerancePlus">"Good" Tolerance, Fast</label>
-		<input type="number" name="goodTolerancePlus" maxlength="200" value="20" min="0">
+		<input type="number" id="goodTolerancePlus" name="goodTolerancePlus" maxlength="200" value="20" min="0">
 		<small>Goal accuracy in seconds fast per day</small>
 	</div>
 	<div class="form-input">
 		<label for="goodToleranceMinus">"Good" Tolerance, Slow</label>
-		<input type="number" name="goodToleranceMinus" maxlength="200" value="10" min="0">
+		<input type="number" id="goodToleranceMinus" name="goodToleranceMinus" maxlength="200" value="10" min="0">
 		<small>Goal accuracy in seconds slow per day</small>
 	</div>
 	<div class="form-input">
 		<label for="note">Note</label>
-		<textarea name="note" maxlength="500"></textarea>
+		<textarea id="note" name="note" maxlength="500"></textarea>
 	</div>
 	<div class="form-controls">
 		<a class="button negative" href="#/watches">Cancel</a>
