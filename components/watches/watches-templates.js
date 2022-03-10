@@ -16,6 +16,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 .list-item { cursor: default; }
+.watch-link { padding-right: 1.5em; }
 .controls { display: flex; align-items: center; }
 </style>
 `
@@ -29,7 +30,7 @@ const listWatches = component => {
 	for (const watch of component.watches) {
 		htmlString += `
 		<li class="list-item" watch-id="${watch._id}">
-			<a href="#/watches/detail/${watch._id}">${watch.name}</a>
+			<a class="watch-link" href="#/watches/detail/${watch._id}">${watch.name}</a>
 			<div class="controls nowrap">
 				<button class="edit-watch button ultra-compact" watch-id="${watch._id}">
 					<gwbw-icon name="settings"></gwbw-icon>

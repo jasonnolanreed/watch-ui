@@ -80,15 +80,8 @@ const showMeasures = component => {
 	let html = ``;
 	html += `
 	<div class="list-headers">
-		<div>
-		<gwbw-icon class="invisible interval" name="straighten"></gwbw-icon>
-			Date, Time
-		</div>
-		<div class="header-deviation">
-			Deviation
-			<button class="invisible button ultra-compact"><gwbw-icon name="account_box"></gwbw-icon></button>
-			<button class="invisible button ultra-compact"><gwbw-icon name="account_box"></gwbw-icon></button>
-		</div>
+		<div class="header-date-time">Date, Time</div>
+		<div class="header-deviation">Deviation</div>
 	</div>
 	`;
 	html += `<ul class="list measures-list">`;
@@ -173,13 +166,13 @@ const makeCss = (component) => (
 .session-selection.session-selection { display: flex; align-items: center; margin: -1em 0 2em 0; }
 .session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
-.date-time { display: flex; align-items: center; font-size: 0.9em; }
-.header-deviation { display: flex; align-items: flex-end; }
-.header-deviation .button { margin-left: 0.5em; }
-.session-interval-link { margin-bottom: 0.5em; line-height: 1.4; }
+.header-date-time { margin-left: 1.65em; }
+.header-deviation { margin-right: 7.35em; }
+.session-interval-link { margin-bottom: 2em; line-height: 1.4; }
 .session-interval-link *, .session-interval-link:hover * { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
 .session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em 0 -.38em; position: relative; top: 0.16em; transform: scaleX(0.7); }
+.date-time { display: flex; align-items: center; font-size: 0.9em; margin-right: 1em; }
 .controls { display: flex; align-items: center; color: var(--light-blue); }
 .controls.fast:before { content: "+"; }
 .total.good-watch { color: var(--green); }
