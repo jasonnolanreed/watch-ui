@@ -218,7 +218,7 @@ const makeCss = (component) => (
 	font-size: 1.65em;
 	color: var(--blue);
 	margin-left: -0.6em;
-	padding: 0.35em;
+	padding: 0.125em 0.35em;
 	padding-right: 0.2em;
 	opacity: 0.35;
 	cursor: pointer;
