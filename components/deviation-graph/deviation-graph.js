@@ -18,7 +18,6 @@ export class DeviationGraph extends GWBWElement {
 		this.watchData = null;
 		this.graph = null;
 
-		// this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		this.fetchRequiredScripts([`../../vendor/chart.js`])
 		.then(_ => {
 			this._hasChartJS = true;
@@ -137,27 +136,7 @@ export class DeviationGraph extends GWBWElement {
 					chartAreaBorder: {
 						borderColor: `${lightBlue}55`,
 						borderWidth: 1
-					},
-					// annotation: {
-					// 	annotations: {
-					// 		fastest: {
-					// 			type: `line`,
-					// 			drawTime: `beforeDraw`,
-					// 			yMin: _ => fastestPoint,
-					// 			yMax: _ => fastestPoint,
-					// 			borderColor: `${blue}15`,
-					// 			borderWidth: 3,
-					// 		},
-					// 		slowest: {
-					// 			type: `line`,
-					// 			drawTime: `beforeDraw`,
-					// 			yMin: _ => slowestPoint,
-					// 			yMax: _ => slowestPoint,
-					// 			borderColor: `${blue}15`,
-					// 			borderWidth: 3,
-					// 		}
-					// 	}
-					// }
+					}
 				}
 			},
 			plugins: [
