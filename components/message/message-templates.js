@@ -33,7 +33,7 @@ const makeCss = (component) => (
 	padding: .55em;
 	margin: -.55em;
 	margin-left: auto;
-	cursor: pointer;
+	color: #fff;
 }
 
 .text { margin-right: 1em; }
@@ -63,7 +63,11 @@ const getCloseIcon = component => {
 	if (component.getAttribute(`dismissable`) !== `true`) {
 		return ``;
 	} else {
-		return `<gwbw-icon class="close" name="cancel"></gwbw-icon>`;
+		return `
+			<button class="close sneaky-button">
+				<gwbw-icon name="cancel"></gwbw-icon>
+			</button>
+		`;
 	}
 };
 

@@ -23,6 +23,8 @@ export class Message extends GWBWElement {
 	render() {
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.setAttribute(`tabindex`, `0`);
+			this.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
