@@ -77,4 +77,5 @@ button[disabled] {
 	-webkit-appearance: none;
 	line-height: inherit;
 	min-height: auto;
+	cursor: pointer;
 }
