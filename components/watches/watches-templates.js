@@ -16,7 +16,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 .list-item { cursor: default; }
-.watch-link { padding-right: 1.5em; }
+.watch-link { min-width: 60px; margin-right: 25px; }
 .controls { display: flex; align-items: center; }
 </style>
 `
