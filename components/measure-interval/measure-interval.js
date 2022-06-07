@@ -57,7 +57,7 @@ export class MeasureInterval extends GWBWElement {
 					if (this.startMeasure.targetMoment === thisMeasure.targetMoment) {
 						matchingSession = thisSession;
 						if (
-							this.startMeasure.targetMoment !== thisSession[0].targetMoment &&
+							this.startMeasure.targetMoment !== thisSession[0].targetMoment ||
 							this.endMeasure.targetMoment !== thisSession[thisSession.length - 1].targetMoment
 						) {
 							this.expandSessionLink = `#/measure/interval/${thisSession[0]._id}/${thisSession[thisSession.length - 1]._id}`;
