@@ -25,6 +25,20 @@ const makeHtml = (component) => (
 	<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
 	<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
 </div>
+${component.expandSessionLink ? `
+<div class="session-interval-link">
+	<a href="javascript:window.location.replace('${component.expandSessionLink}');">
+		<span class="nowrap">
+			<gwbw-icon name="straighten"></gwbw-icon>
+			<gwbw-icon name="open_in_full"></gwbw-icon>
+			<gwbw-icon name="straighten"></gwbw-icon>
+		<span>
+		<span class="nowrap">
+			Expand to Full Session
+		</span>
+	</a>
+</div>
+` : ``}
 <hr>
 <div class="positions-detail">
 	<gwbw-positions-detail
@@ -54,6 +68,10 @@ p { margin-top: -1.2em; }
 .good-bad-message.good-watch .good { display: block; color: var(--green); }
 .good-bad-message.bad-watch .bad { display: block; color: var(--red); }
 .positions-detail { margin-bottom: 2em; }
+.session-interval-link { margin-bottom: 2em; line-height: 1.4; }
+.session-interval-link *, .session-interval-link:hover * { text-decoration: none; }
+.session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
+.session-interval-link gwbw-icon[name="open_in_full"] { font-size: 1.5em; transform: rotate(45deg); position: relative; top: 0.1em; margin: 0 -0.2em; }
 </style>
 `
 );

@@ -5,6 +5,7 @@ import {WatchApi} from '../../api-helpers/watch.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
 import {Format, Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
+import {parseSessionsFromMeasures} from '../../utilities/measure.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
 
@@ -97,7 +98,7 @@ export class WatchDetail extends GWBWElement {
 		.then(responses => {
 			this.watch = responses[0];
 			this.measures = responses[1];
-			this.sessions = this.parseSessionsFromMeasures();
+			this.sessions = parseSessionsFromMeasures(this.measures);
 			this.currentSessionIndex = this.sessions.length - 1;
 			if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
 				this.currentSessionIndex = +router.query.sessionIndex;
@@ -106,27 +107,6 @@ export class WatchDetail extends GWBWElement {
 			this.render();
 		})
 		.catch(error => null);
-	}
-
-	parseSessionsFromMeasures() {
-		const allMeasures = this.measures;
-		if (allMeasures && allMeasures.length) { allMeasures[0].firstOfSession = true; }
-		let sessions = [];
-		let measuresOfSession = [];
-		let lastMeasureDate;
-		for (const measure of allMeasures) {
-			const thisMeasureDate = Format.date(measure.targetMoment);
-			measure.firstOfDay = thisMeasureDate !== lastMeasureDate;
-			if (!measure.firstOfSession) {
-				measuresOfSession.push(measure);
-			} else {
-				if (measuresOfSession.length) { sessions.push(measuresOfSession); }
-				measuresOfSession = [measure];
-			}
-			lastMeasureDate = thisMeasureDate;
-		}
-		if (measuresOfSession.length) { sessions.push(measuresOfSession); }
-		return sessions;
 	}
 
 	getMomentDiff(measure) {

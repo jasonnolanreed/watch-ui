@@ -19,12 +19,6 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 * Add `127.0.0.1 gwbwdevelop.com` to /etc/hosts
 * Add `127.0.0.1 api.gwbwdevelop.com` to /etc/hosts
 
-* Install Python v2.7.18 via:
-* `brew install pyenv`
-* `pyenv install 2.7.18`
-* `pyenv global 2.7.18`
-* Add `eval "$(pyenv init --path)"` to ~/.zshrc
-
 * API server runs on api.gwbwdevelop.com:8001, whereas static server runs on gwbwdevelop.com
 
 # Development flow
