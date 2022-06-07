@@ -69,7 +69,7 @@ export class LoadView {
 
 	static _scrollToTop() {
 		try {
-			const doScroll = window.blah || window.scroll || window.scrollTo;
+			const doScroll = window.scroll || window.scrollTo;
 			doScroll({top: 0, left: 0, behavior: `smooth`});
 		} catch(error) {
 			try {
