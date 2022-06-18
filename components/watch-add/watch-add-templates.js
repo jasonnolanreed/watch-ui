@@ -8,12 +8,12 @@ const makeHtml = (component) => (
 	</div>
 	<div class="form-input">
 		<label for="goodTolerancePlus">"Good" Tolerance, Fast</label>
-		<input type="number" id="goodTolerancePlus" name="goodTolerancePlus" maxlength="200" value="20" min="0">
+		<input type="number" id="goodTolerancePlus" name="goodTolerancePlus" maxlength="200" value="20" min="0" step="0.001">
 		<small>Goal accuracy in seconds fast per day</small>
 	</div>
 	<div class="form-input">
 		<label for="goodToleranceMinus">"Good" Tolerance, Slow</label>
-		<input type="number" id="goodToleranceMinus" name="goodToleranceMinus" maxlength="200" value="10" min="0">
+		<input type="number" id="goodToleranceMinus" name="goodToleranceMinus" maxlength="200" value="10" min="0" step="0.001">
 		<small>Goal accuracy in seconds slow per day</small>
 	</div>
 	<div class="form-input">
