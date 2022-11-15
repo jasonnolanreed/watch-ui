@@ -63,7 +63,7 @@ export class Preferences extends GWBWElement {
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
 			if (messages) {
-				messages.add({message: `Your new atomic offset been saved.`, type: `success`});
+				messages.add({message: `Your new atomic offset was saved.`, type: `success`});
 			}
 		} else {
 			GA.event(`preference`, `preference update fail`);
