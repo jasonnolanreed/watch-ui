@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136438475-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,27 +16,12 @@
 	<link href="styles/global-styles.css" rel="stylesheet">
 </head>
 <body>
-	<style>
-	body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		padding: 60px 20px;
-		line-height: 1.4;
-		text-align: center !important;
-	}
-	body > * {
-		max-width: 700px;
-	}
-	img {
-		display: block;
-		width: 80%;
-		margin: 1em 0 1.5em 0;
-	}
-	</style>
-	<img src="./assets/images/logo.svg" alt="Good Watch Bad Watch Logo">
-	<h2>All watches are good watches.</h2>
-	<p>GWBW has (at least temporarily) decided to stop operation. If you have any questions, please direct them to goodwatchbadwatch@gmail.com</p>
+	<gwbw-messages></gwbw-messages>
+	<div id="view"></div>
+	<gwbw-loader></gwbw-loader>
+	<script src="components/loader/loader.js" type="module"></script>
+	<script src="https://browser.sentry-cdn.com/4.6.5/bundle.min.js" crossorigin="anonymous"></script>
+	<script defer src="app.js" type="module"></script>
+	<script src="components/messages/messages.js" type="module"></script>
 </body>
 </html>
