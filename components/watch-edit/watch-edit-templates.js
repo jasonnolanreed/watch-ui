@@ -6,15 +6,17 @@ const makeHtml = (component) => (
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" maxlength="200" value="${component.watch.name}">
 	</div>
-	<div class="form-input">
-		<label for="goodTolerancePlus">"Good" Tolerance, Fast</label>
-		<input type="number" id="goodTolerancePlus" name="goodTolerancePlus" maxlength="200" value="${component.watch.goodTolerancePlus}" min="0" step="0.001">
-		<small>Goal accuracy in seconds fast per day</small>
-	</div>
-	<div class="form-input">
-		<label for="goodToleranceMinus">"Good" Tolerance, Slow</label>
-		<input type="number" id="goodToleranceMinus" name="goodToleranceMinus" maxlength="200" value="${component.watch.goodToleranceMinus}" min="0" step="0.001">
-		<small>Goal accuracy in seconds slow per day</small>
+	<div class="form-input--two-wide">
+		<div class="form-input">
+			<label for="goodToleranceMinus">"Good" Tolerance, Slow</label>
+			<input type="number" id="goodToleranceMinus" name="goodToleranceMinus" maxlength="200" value="${component.watch.goodToleranceMinus}" min="0" step="0.001">
+			<small>Goal accuracy in seconds slow per day</small>
+		</div>
+		<div class="form-input">
+			<label for="goodTolerancePlus">"Good" Tolerance, Fast</label>
+			<input type="number" id="goodTolerancePlus" name="goodTolerancePlus" maxlength="200" value="${component.watch.goodTolerancePlus}" min="0" step="0.001">
+			<small>Goal accuracy in seconds fast per day</small>
+		</div>
 	</div>
 	<div class="form-input">
 		<label for="note">Note</label>

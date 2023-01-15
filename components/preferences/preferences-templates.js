@@ -2,11 +2,13 @@ const makeHtml = (component) => (
 `
 <h1><gwbw-icon name="settings"></gwbw-icon> Preferences</h1>
 
-<b>Logged in as:</b>
-<p>${component.user.email}</p>
-
-<button type="button" class="logout button" href="javascript:void(0);">Logout</button>
-<hr>
+<div class="logged-in-box">
+	<div>
+		<b>Logged in as:</b>
+		<div>${component.user.email}</div>
+	</div>
+	<button type="button" class="logout button" href="javascript:void(0);">Logout</button>
+</div>
 
 <form>
 	<h2>Atomic Offset</h2>
@@ -51,6 +53,18 @@ const makeCss = (component) => (
 `
 <style>
 @import "styles/global-styles.css";
+
+.logged-in-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1.5em;
+	padding: 1.5em;
+	background-color: var(--silver);
+	margin-bottom: 2.5em;
+	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);
+}
 </style>
 `
 );

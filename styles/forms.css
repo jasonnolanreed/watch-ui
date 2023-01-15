@@ -61,6 +61,15 @@ label.check [type=radio] {
 	margin-left: 0.35em;
 }
 
+.form-input--two-wide {
+	display: flex;
+	gap: 1.5em;
+}
+
+.form-input--two-wide > * {
+	width: calc(50%);
+}
+
 input[type=text], input[type=password], input[type=number], textarea {
 	display: block;
 	width: 100%;
