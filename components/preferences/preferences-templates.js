@@ -2,6 +2,9 @@ const makeHtml = (component) => (
 `
 <h1><gwbw-icon name="settings"></gwbw-icon> Preferences</h1>
 
+<b>Logged in as:</b>
+<p>${component.user.email}</p>
+
 <button type="button" class="logout button" href="javascript:void(0);">Logout</button>
 <hr>
 

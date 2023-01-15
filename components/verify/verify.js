@@ -36,16 +36,20 @@ export class Verify extends GWBWElement {
 	async verify($form) {
 		const didVerify = await AuthApi.verify($form);
 		if (didVerify) {
-			Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
-			GA.event(`verfy`, `verify success`);
+			try {
+				Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
+				GA.event(`verfy`, `verify success`);
+			} catch(error) {}
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`, persistent: true});
 			}
 			router.navigate(`/login`);
 		} else {
-			GA.event(`verfy`, `verify fail`);
-			Sentry.captureMessage(`registration verify ERROR: ${getFormData($form).email}`);
+			try {
+				GA.event(`verfy`, `verify fail`);
+				Sentry.captureMessage(`registration verify ERROR: ${getFormData($form).email}`);
+			} catch(error) {}
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`, type: `error`});

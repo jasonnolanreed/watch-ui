@@ -35,12 +35,16 @@ export class Register extends GWBWElement {
 		const registrationSuccessful = await AuthApi.register(target);
 		this.stopWorking();
 		if (registrationSuccessful) {
-			Sentry.captureMessage(`registration attempt SUCCESS: ${getFormData(target).email}`);
+			try {
+				Sentry.captureMessage(`registration attempt SUCCESS: ${getFormData(target).email}`);
+			} catch(error) {}
 			GA.event(`register`, `register success`);
 			router.navigate(`/pre-verify`);
 		} else {
 			GA.event(`register`, `register fail`);
-			Sentry.captureMessage(`registration attempt ERROR: ${getFormData(target).email}`);
+			try {
+				Sentry.captureMessage(`registration attempt ERROR: ${getFormData(target).email}`);
+			} catch(error) {}
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Registration failed. Try again?`, type: `error`});

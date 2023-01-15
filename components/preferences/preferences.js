@@ -35,13 +35,10 @@ export class Preferences extends GWBWElement {
 		}
 	}
 
-	getData() {
-		PreferenceApi.getPreferences()
-		.then(preferences => {
-			this.preferences = preferences;
-			this.render();
-		})
-		.catch(error => null)
+	async getData() {
+		this.preferences = await PreferenceApi.getPreferences();
+		this.user = AuthApi.userData;
+		this.render();
 	}
 
 	async onLogout(event, target) {
