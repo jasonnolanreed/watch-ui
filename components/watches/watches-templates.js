@@ -49,6 +49,10 @@ const listWatches = component => {
 };
 
 const showSortControls = component => {
+	if (!component.watches || component.watches.length < 2) {
+		return ``;
+	}
+
 	return `
 	<div class="sort-controls">
 		<label>Sort by:</label>

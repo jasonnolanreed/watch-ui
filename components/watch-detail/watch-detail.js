@@ -30,6 +30,7 @@ export class WatchDetail extends GWBWElement {
 	}
 
 	disconnectedCallback() {
+		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
 		super.disconnectedCallback();
 	}
 
@@ -38,6 +39,7 @@ export class WatchDetail extends GWBWElement {
 		try {
 			this.sortSessionMeasures();
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.detectSticky();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -138,6 +140,8 @@ export class WatchDetail extends GWBWElement {
 	}
 
 	sortSessionMeasures() {
+		if (!this.currentSession || !this.currentSession.length) { return; }
+
 		this.currentSessionSorted = [...this.currentSession];
 		this.currentSessionSorted.sort((thisMeasure, nextMeasure) => {
 			if (this.preferences.measuresSort.includes('Asc')) {
@@ -146,6 +150,17 @@ export class WatchDetail extends GWBWElement {
 				return +thisMeasure.targetMoment >= +nextMeasure.targetMoment ? -1 : 1;
 			}
 		});
+	}
+
+	detectSticky() {
+		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
+
+		this.stickyObserver = new IntersectionObserver(
+			([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
+			{threshold: [0]}
+		);
+		
+		this.stickyObserver.observe(this.shadowRoot.querySelector(`.new-measure-outer`));
 	}
 }
 

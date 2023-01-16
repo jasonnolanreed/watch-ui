@@ -12,9 +12,13 @@ ${showSessionTotal(component)}
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
-	<a href="#/watches/measure/${component.watch._id}" class="new-measure big-link">Add New Measure</a>
+	<div class="new-measure-outer">
+		<div class="new-measure">
+			<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
+		</div>
+	</div>
 	<form class="measures-form">
-		${showMeasures(component)}
+	${showMeasures(component)}
 	</form>
 </div>
 `
@@ -144,6 +148,10 @@ const showSessionTotal = component => {
 };
 
 const showSortControls = component => {
+	if (!component.currentSessionSorted || component.currentSessionSorted.length < 2) {
+		return ``;
+	}
+
 	return `
 	<div class="sort-controls">
 		<label>Sort:</label>
@@ -216,12 +224,20 @@ const makeCss = (component) => (
 	display: flex;
 	flex-wrap: wrap;
 }
-.new-measure {
+.new-measure-outer {
 	order: 2;
 }
+.new-measure-outer[stuck] .new-measure {
+	position: fixed;
+	bottom: 0; left: 0; right: 0;
+	padding: 2em;
+	background: #fff;
+	box-shadow: 0 -1em 2em 0 rgba(0, 0, 0, 0.2);
+	z-index: 2;
+}
 .measures-form {
-	width: 100%;
 	order: 1;
+	width: 100%;
 	margin-bottom: 1em;
 }
 .measures-list .list-item {
