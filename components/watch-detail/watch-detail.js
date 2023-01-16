@@ -143,13 +143,10 @@ export class WatchDetail extends GWBWElement {
 		if (!this.currentSession || !this.currentSession.length) { return; }
 
 		this.currentSessionSorted = [...this.currentSession];
-		this.currentSessionSorted.sort((thisMeasure, nextMeasure) => {
-			if (this.preferences.measuresSort.includes('Asc')) {
-				return +thisMeasure.targetMoment <= +nextMeasure.targetMoment ? -1 : 1;
-			} else {
-				return +thisMeasure.targetMoment >= +nextMeasure.targetMoment ? -1 : 1;
-			}
-		});
+
+		if (this.preferences.measuresSort.includes(`Desc`)) {
+			this.currentSessionSorted = this.currentSessionSorted.reverse();
+		}
 	}
 
 	detectSticky() {

@@ -94,7 +94,10 @@ const showMeasures = component => {
 	html += `<ul class="list measures-list">`;
 	component.currentSessionSorted.forEach((measure, index) => {
 		html += `
-		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
+		<li class="list-item
+			${measure.firstOfDay ? component.preferences.measuresSort.includes('Asc') ? `separation-above` : `separation-below` : ``}"
+			measure-id="${measure._id}"
+		>
 			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} sneaky-button" measure-index="${index}">
 				<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
 				<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>

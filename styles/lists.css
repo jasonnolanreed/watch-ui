@@ -43,6 +43,11 @@
 	border-top-color: rgba(0, 0, 0, 0.15);
 }
 
+.list-item:not(:last-of-type).separation-below {
+	border-bottom-width: 4px;
+	border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
 .list-item > * {
 	width: auto;
 }
