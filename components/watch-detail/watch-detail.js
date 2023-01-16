@@ -3,7 +3,8 @@ import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
-import {Format, Difference} from '../../utilities/date-time.js';
+import {PreferenceApi} from '../../api-helpers/preference.js';
+import {Difference} from '../../utilities/date-time.js';
 import {roundToTwoDecimals} from '../../utilities/number.js';
 import {parseSessionsFromMeasures} from '../../utilities/measure.js';
 
@@ -19,6 +20,7 @@ export class WatchDetail extends GWBWElement {
 			{target: `.view-measure`, handler: this.viewMeasure},
 			{target: `.delete-measure`, handler: this.removeMeasure},
 			{target: `.interval`, handler: this.selectInterval},
+			{target: `.toggle-buttons button`, handler: this.onChangeSort},
 		]);
 	}
 
@@ -34,6 +36,7 @@ export class WatchDetail extends GWBWElement {
 	render() {
 		super.render();
 		try {
+			this.sortSessionMeasures();
 			this.shadowRoot.innerHTML = makeTemplate(this);
 		} catch(error) {
 			console.error(`Error rendering`, error);
@@ -93,11 +96,13 @@ export class WatchDetail extends GWBWElement {
 	getData() {
 		Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
-			MeasureApi.getMeasures(router.params[`watchId`])
+			MeasureApi.getMeasures(router.params[`watchId`]),
+			PreferenceApi.getPreferences()
 		])
 		.then(responses => {
 			this.watch = responses[0];
 			this.measures = responses[1];
+			this.preferences = responses[2];
 			this.sessions = parseSessionsFromMeasures(this.measures);
 			this.currentSessionIndex = this.sessions.length - 1;
 			if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
@@ -123,6 +128,24 @@ export class WatchDetail extends GWBWElement {
 			averageRate: roundToTwoDecimals(sessionDrift / sessionDistance),
 			sessionDistance
 		};
+	}
+
+	onChangeSort(event, target) {
+		const newSortValue = target.classList.contains('Asc') ? 'targetAsc' : 'targetDesc';
+		this.preferences.measuresSort = newSortValue;
+		this.render();
+		PreferenceApi.updatePreferences({measuresSort: newSortValue});
+	}
+
+	sortSessionMeasures() {
+		this.currentSessionSorted = [...this.currentSession];
+		this.currentSessionSorted.sort((thisMeasure, nextMeasure) => {
+			if (this.preferences.measuresSort.includes('Asc')) {
+				return +thisMeasure.targetMoment <= +nextMeasure.targetMoment ? -1 : 1;
+			} else {
+				return +thisMeasure.targetMoment >= +nextMeasure.targetMoment ? -1 : 1;
+			}
+		});
 	}
 }
 

@@ -10,6 +10,7 @@ ${showSessionsSelection(component)}
 ${showDeviationGraph(component)}
 ${showSessionTotal(component)}
 ${showSessionIntervalLink(component)}
+${showSortControls(component)}
 <div class="reverse-order">
 	<a href="#/watches/measure/${component.watch._id}" class="new-measure big-link">Add New Measure</a>
 	<form class="measures-form">
@@ -85,7 +86,7 @@ const showMeasures = component => {
 	</div>
 	`;
 	html += `<ul class="list measures-list">`;
-	component.currentSession.forEach((measure, index) => {
+	component.currentSessionSorted.forEach((measure, index) => {
 		html += `
 		<li class="list-item ${measure.firstOfDay ? `separation-above` : ``}" measure-id="${measure._id}">
 			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} sneaky-button" measure-index="${index}">
@@ -140,6 +141,28 @@ const showSessionTotal = component => {
 	} else {
 		return `<p>Average rate will be shown here when multiple measures are taken within this session.</p>`;
 	}
+};
+
+const showSortControls = component => {
+	return `
+	<div class="sort-controls">
+		<label>Sort:</label>
+		<div class="toggle-buttons">
+			<button type="button" class="Asc ${component.preferences.measuresSort.includes('Asc') ? 'selected' : ''}">
+				Asc
+				<gwbw-icon
+					name="arrow_downward"
+				></gwbw-icon>
+			</button>
+			<button type="button" class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}">
+				Desc
+				<gwbw-icon
+					name="arrow_upward"
+				></gwbw-icon>
+			</button>
+		</div>
+	</div>
+	`;
 };
 
 const getTotalClasses = (component, sessionTotalData) => {
@@ -217,6 +240,7 @@ const makeCss = (component) => (
 	cursor: pointer;
 	z-index: 1;
 }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; }
 @media (hover: hover) {
 	.interval:hover { opacity: 1; }
 }

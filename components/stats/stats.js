@@ -27,12 +27,9 @@ export class Stats extends GWBWElement {
 		}
 	}
 
-	getData() {
-		StatsApi.getStats()
-		.then(stats => {
-			this.stats = stats;
-			this.render();
-		});
+	async getData() {
+		this.stats = await StatsApi.getStats();
+		this.render();
 	}
 }
 

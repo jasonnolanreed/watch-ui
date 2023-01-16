@@ -94,11 +94,12 @@ small {
 
 hr {
 	display: block;
-	height: 5px;
-	margin: 1.5em 0;
+	height: 3px;
+	margin: 3em 0;
 	background-color: var(--light-blue);
 	border: none;
-	border-radius: 5px;
+	border-radius: 3px;
+	opacity: 0.8;
 }
 
 .block {
@@ -115,6 +116,10 @@ hr {
 
 .wrap {
 	white-space: normal;
+}
+
+.hidden {
+	display: none !important;
 }
 
 .invisible {

@@ -1,6 +1,7 @@
 const makeHtml = (component) => (
 `
 <h1><gwbw-icon name="watch"></gwbw-icon> Watches</h1>
+${showSortControls(component)}
 <form>
 	${listWatches(component)}
 	<div class="form-controls">
@@ -15,6 +16,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
 .list-item { cursor: default; }
 .watch-link { min-width: 60px; margin-right: 25px; }
 .controls { display: flex; align-items: center; }
@@ -44,6 +46,30 @@ const listWatches = component => {
 	}
 	htmlString += `</ul>`;
 	return htmlString;
+};
+
+const showSortControls = component => {
+	return `
+	<div class="sort-controls">
+		<label>Sort by:</label>
+		<div class="toggle-buttons">
+			<button type="button" class="created ${component.preferences.watchesSort.includes('created') ? 'selected' : ''}">
+				Created
+				<gwbw-icon
+					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
+					class="${component.preferences.watchesSort.includes('created') ? '' : 'hidden'}"
+				></gwbw-icon>
+			</button>
+			<button type="button" class="name ${component.preferences.watchesSort.includes('name') ? 'selected' : ''}">
+				Name
+				<gwbw-icon
+					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
+					class="${component.preferences.watchesSort.includes('name') ? '' : 'hidden'}"
+				></gwbw-icon>
+			</button>
+		</div>
+	</div>
+	`;
 };
 
 export const makeTemplate = (component) => {

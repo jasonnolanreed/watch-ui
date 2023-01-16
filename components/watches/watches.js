@@ -2,6 +2,7 @@ import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
+import {PreferenceApi} from '../../api-helpers/preference.js';
 
 import {makeTemplate} from './watches-templates.js';
 
@@ -11,13 +12,14 @@ export class Watches extends GWBWElement {
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
 			{target: `.edit-watch`, handler: this.onEdit},
-			{target: `.delete-watch`, handler: this.onDelete}
+			{target: `.delete-watch`, handler: this.onDelete},
+			{target: `.toggle-buttons button`, handler: this.onChangeSort}
 		]);
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.getWatches();
+		this.getData();
 	}
 
 	disconnectedCallback() {
@@ -27,15 +29,23 @@ export class Watches extends GWBWElement {
 	render() {
 		super.render();
 		try {
+			this.sortWatches();
 			this.shadowRoot.innerHTML = makeTemplate(this);
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
 	}
 
-	async getWatches() {
-		this.watches = await WatchApi.getWatches();
-		this.render();
+	async getData() {
+		Promise.all([
+			WatchApi.getWatches(),
+			PreferenceApi.getPreferences()
+		])
+		.then(data => {
+			this.watches = data[0];
+			this.preferences = data[1];
+			this.render();
+		});
 	}
 
 	onEdit(event, target) {
@@ -52,7 +62,7 @@ export class Watches extends GWBWElement {
 		this.stopWorking();
 		if (deleteSuccessful) {
 			GA.event(`watch`, `watch delete success`);
-			this.getWatches();
+			this.getData();
 		} else {
 			GA.event(`watch`, `watch delete fail`);
 			const messages = document.querySelector(`gwbw-messages`);
@@ -60,6 +70,25 @@ export class Watches extends GWBWElement {
 				messages.add({message: `Failed to delete watch. Try again?`, type: `error`});
 			}
 		}
+	}
+
+	onChangeSort(event, target) {
+		let newSortValue = target.classList.contains('name') ? 'name' : 'created';
+		newSortValue += this.preferences.watchesSort.includes('Asc') ? 'Desc' : 'Asc';
+		this.preferences.watchesSort = newSortValue;
+		this.render();
+		PreferenceApi.updatePreferences({watchesSort: newSortValue});
+	}
+
+	sortWatches() {
+		const sortField = this.preferences.watchesSort.includes(`name`) ? `name` : `_id`;
+		this.watches.sort((thisWatch, nextWatch) => {
+			if (this.preferences.watchesSort.includes(`Asc`)) {
+				return thisWatch[sortField] >= nextWatch[sortField] ? 1 : -1;
+			} else {
+				return thisWatch[sortField] <= nextWatch[sortField] ? 1 : -1;
+			}
+		});
 	}
 }
 

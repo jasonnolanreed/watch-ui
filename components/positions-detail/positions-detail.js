@@ -59,13 +59,11 @@ export class PositionsDetail extends HTMLElement {
 		}
 	}
 
-	getData() {
+	async getData() {
 		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerancePlus || !this.hasSet.toleranceMinus) { return; }
-		MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid)
-		.then(measures => {
-			this.parsePositions(measures);
-			this.render();
-		});
+		const measures = await MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid);
+		this.parsePositions(measures);
+		this.render();
 	}
 	
 	parsePositions(measures) {
