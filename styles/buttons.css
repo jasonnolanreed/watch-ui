@@ -82,14 +82,17 @@ button[disabled] {
 
 .toggle-buttons {
 	display: flex;
-	box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, 0.08);
 }
 
 .toggle-buttons button {
+	display: flex;
+	align-items: center;
+	gap: 5px;
 	margin: 0 0 0 -1px;
-	padding: 0.35em 1em;
+	padding: 0.25em 1em;
 	color: var(--dark-blue);
-	font-size: 0.9em;
+	font-size: 0.85rem;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: normal;
 	text-decoration: none;
@@ -101,8 +104,11 @@ button[disabled] {
 	-webkit-appearance: none;
 }
 
+.toggle-buttons gwbw-icon {
+	font-size: 1.1rem;
+}
+
 .toggle-buttons button.selected {
-	font-weight: bold;
 	background-color: var(--blue);
 	color: #fff;
 	z-index: 1;

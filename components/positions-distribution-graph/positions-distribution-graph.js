@@ -73,6 +73,7 @@ export class PositionsDistributionGraph extends GWBWElement {
 				}]
 			},
 			options: {
+				animation: false,
 				responsive: true,
 				plugins: {
 					legend: {

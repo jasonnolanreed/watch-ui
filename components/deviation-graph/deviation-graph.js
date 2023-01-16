@@ -94,6 +94,7 @@ export class DeviationGraph extends GWBWElement {
 				]
 			},
 			options: {
+				animation: false,
 				layout: {
 					autoPadding: false
 				},

@@ -83,6 +83,7 @@ export class PositionsGraph extends GWBWElement {
 				}]
 			},
 			options: {
+				animation: false,
 				responsive: true,
 				scales: {
 					y: {

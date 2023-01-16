@@ -59,8 +59,8 @@ const makeCss = (component) => (
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	gap: 1.5em;
-	padding: 1.5em;
+	gap: 1em;
+	padding: 1em;
 	background-color: var(--silver);
 	margin-bottom: 2.5em;
 	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);

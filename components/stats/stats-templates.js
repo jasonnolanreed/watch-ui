@@ -26,7 +26,7 @@ const outputLatestMeasures = latestMeasures => {
 			<div><b>${Format.dateAndTime(measure.date)}:</b></div>
 			<div><a href="#/watches/detail/${measure.watchId}">${measure.watch}</a></div>
 			<div>${measure.user}</div>
-			<hr/>
+			<hr class="compact"/>
 		`;
 	});
 	return html;
