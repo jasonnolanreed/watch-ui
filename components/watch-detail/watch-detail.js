@@ -20,7 +20,7 @@ export class WatchDetail extends GWBWElement {
 			{target: `.view-measure`, handler: this.viewMeasure},
 			{target: `.delete-measure`, handler: this.removeMeasure},
 			{target: `.interval`, handler: this.selectInterval},
-			{target: `.toggle-buttons button`, handler: this.onChangeSort},
+			{target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort},
 		]);
 	}
 

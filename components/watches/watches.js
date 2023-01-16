@@ -73,8 +73,18 @@ export class Watches extends GWBWElement {
 	}
 
 	onChangeSort(event, target) {
-		let newSortValue = target.classList.contains('name') ? 'name' : 'created';
-		newSortValue += this.preferences.watchesSort.includes('Asc') ? 'Desc' : 'Asc';
+		let newSortValue = target.classList.contains(`name`) ? `name` : `created`;
+		if (
+			target.classList.contains(`name`) && this.preferences.watchesSort.includes(`name`)
+			||
+			target.classList.contains(`created`) && this.preferences.watchesSort.includes(`created`)
+		) {
+			// just toggling direction
+			newSortValue += this.preferences.watchesSort.includes(`Asc`) ? `Desc` : `Asc`;
+		} else {
+			// changing sort type, default to asc
+			newSortValue += `Asc`;
+		}
 		this.preferences.watchesSort = newSortValue;
 		this.render();
 		PreferenceApi.updatePreferences({watchesSort: newSortValue});

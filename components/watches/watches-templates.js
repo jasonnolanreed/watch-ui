@@ -16,7 +16,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
 .list-item { cursor: default; }
 .watch-link { min-width: 60px; margin-right: 25px; }
 .controls { display: flex; align-items: center; }
@@ -65,11 +65,11 @@ const showSortControls = component => {
 				></gwbw-icon>
 			</button>
 			<button type="button" class="name ${component.preferences.watchesSort.includes('name') ? 'selected' : ''}">
-				Name
 				<gwbw-icon
 					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
 					class="${component.preferences.watchesSort.includes('name') ? '' : 'hidden'}"
 				></gwbw-icon>
+				Name
 			</button>
 		</div>
 	</div>
