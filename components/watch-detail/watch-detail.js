@@ -65,8 +65,8 @@ export class WatchDetail extends GWBWElement {
 			target.classList.add(`interval-start`);
 		} else {
 			if (this.intervalStartIndex !== index) {
-				const measureOne = this.currentSession[this.intervalStartIndex]._id;
-				const measureTwo = this.currentSession[index]._id;
+				const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
+				const measureTwo = this.currentSessionSorted[index]._id;
 				router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
 			} else {
 				this.intervalStartIndex = null;
