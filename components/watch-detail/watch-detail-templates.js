@@ -14,7 +14,9 @@ ${showSortControls(component)}
 <div class="reverse-order">
 	<div class="new-measure-outer">
 		<div class="new-measure">
-			<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
+			<div class="new-measure-inner">
+				<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
+			</div>
 		</div>
 	</div>
 	<form class="measures-form">
@@ -226,6 +228,7 @@ const makeCss = (component) => (
 }
 .new-measure-outer {
 	order: 2;
+	width: 100%;
 }
 .new-measure-outer[stuck] .new-measure {
 	position: fixed;
@@ -234,6 +237,11 @@ const makeCss = (component) => (
 	background: #fff;
 	box-shadow: 0 -1em 2em 0 rgba(0, 0, 0, 0.2);
 	z-index: 2;
+}
+.new-measure-outer[stuck] .new-measure-inner {
+	width: 100%;
+	margin: 0 auto;
+	max-width: calc(800px - 4em);
 }
 .measures-form {
 	order: 1;
