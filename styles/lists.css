@@ -48,6 +48,10 @@
 	border-bottom-color: rgba(0, 0, 0, 0.15);
 }
 
+.list-item.spacious {
+	padding: 1em;
+}
+
 .list-item > * {
 	width: auto;
 }

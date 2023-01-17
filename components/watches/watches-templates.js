@@ -16,7 +16,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; color: var(--blue); }
 .list-item { cursor: default; }
 .watch-link { min-width: 60px; margin-right: 25px; }
 .controls { display: flex; align-items: center; }
@@ -31,7 +31,7 @@ const listWatches = component => {
 	let htmlString = `<ul class="list">`;
 	for (const watch of component.watches) {
 		htmlString += `
-		<li class="list-item" watch-id="${watch._id}">
+		<li class="list-item spacious" watch-id="${watch._id}">
 			<a class="watch-link" href="#/watches/detail/${watch._id}">${watch.name}</a>
 			<div class="controls nowrap">
 				<button class="edit-watch button ultra-compact" watch-id="${watch._id}">
@@ -58,7 +58,7 @@ const showSortControls = component => {
 		<label>Sort by:</label>
 		<div class="toggle-buttons">
 			<button type="button" class="created ${component.preferences.watchesSort.includes('created') ? 'selected' : ''}">
-				Created
+				Added
 				<gwbw-icon
 					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
 					class="${component.preferences.watchesSort.includes('created') ? '' : 'hidden'}"

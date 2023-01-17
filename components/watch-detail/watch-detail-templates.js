@@ -267,7 +267,7 @@ const makeCss = (component) => (
 	cursor: pointer;
 	z-index: 1;
 }
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; color: var(--blue); }
 .sort-controls .toggle-buttons button.selected { cursor: default; }
 @media (hover: hover) {
 	.interval:hover { opacity: 1; }
