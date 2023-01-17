@@ -217,7 +217,7 @@ const makeCss = (component) => (
 .total.good-watch { color: var(--green); }
 .total.bad-watch { color: var(--red); }
 .total.fast .number:before { content: "+"; }
-.good-bad-message > * { display: none; margin-top: -1.5em; }
+.good-bad-message > * { display: none; margin-top: -1rem; }
 .good-bad-message.good-watch .good { display: block; color: var(--green); }
 .good-bad-message.bad-watch .bad { display: block; color: var(--red); }
 .short-session-alert {
