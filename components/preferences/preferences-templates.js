@@ -1,6 +1,9 @@
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="settings"></gwbw-icon> Preferences</h1>
+<div class="page-title">
+	<gwbw-icon name="settings"></gwbw-icon>
+	<h1>Preferences</h1>
+</div>
 
 <div class="logged-in-box">
 	<div>

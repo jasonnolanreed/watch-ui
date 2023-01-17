@@ -8,7 +8,12 @@ const makeCss = (component) => (
 
 const makeHtml = (component) => (
 `
-<h1>Verifying Email Address...</h1>
+<div class="page-title">
+	<gwbw-icon name="email"></gwbw-icon>
+	<h1>Verifying Email Address...</h1>
+</div>
+
+<h1></h1>
 <form>
 	<input type="hidden" name="email" value="${component.email}">
 	<input type="hidden" name="verificationCode" value="${component.verificationCode}">

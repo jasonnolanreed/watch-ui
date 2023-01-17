@@ -60,17 +60,33 @@ a.big-link {
 }
 
 h1, h2, h3, h4, h5 {
-	margin: 0 0 1em 0;
+	margin: 0 0 1rem 0;
 	font-family: var(--serif-font), serif;
 	font-weight: 700;
 }
 
-.more-info-header { margin: -3em 0 2em; }
-.more-info-header h1 { display: inline; }
-.more-info-header h3 { display: inline; }
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+h3 {
+	font-size: 1.17rem;
+}
+
+h4 {
+	font-size: 1rem;
+}
+
+h5 {
+	font-size: 0.83rem;
+}
 
 p {
-	margin: 0 0 1.5em 0;
+	margin: 0 0 1.5rem 0;
 }
 
 em {
@@ -80,21 +96,21 @@ em {
 }
 
 small {
-	font-size: 0.85em;
+	font-size: 0.85rem;
 	color: var(--light-blue);
 }
 
 hr {
 	display: block;
 	height: 3px;
-	margin: 3em 0;
+	margin: 3rem 0;
 	background-color: var(--light-blue);
 	border: none;
 	border-radius: 3px;
 	opacity: 0.8;
 }
 hr.compact {
-	margin: 1em 0;
+	margin: 1rem 0;
 }
 
 .block {
@@ -134,13 +150,34 @@ hr.compact {
 .content-container {
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 2em 1em 3em 1em;
+	padding: 2rem 1rem 3rem 1rem;
 	opacity: 0;
 	transition: opacity 0.6s ease;
 }
 
 .content-container.in {
 	opacity: 1;
+}
+
+.page-title {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.page-title gwbw-icon {
+	font-size: 2rem;
+}
+
+.page-title h1,
+.page-title h3 {
+	margin: 0;
+}
+
+.page-title h3 {
+	margin-top: -0.2rem;
 }
 
 footer {
@@ -150,6 +187,6 @@ footer {
 footer .content {
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 1.75em 1em;
+	padding: 1.75rem 1rem;
 	color: var(--silver);
 }

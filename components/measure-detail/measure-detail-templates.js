@@ -3,11 +3,14 @@ import {positionsMap} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="attachment"></gwbw-icon> Measure Details</h1>
-<div class="more-info-header">
-	<h1 class="invisible"><gwbw-icon name="attachment"></gwbw-icon></h1>
-	${' '}<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
+<div class="page-title">
+	<gwbw-icon name="attachment"></gwbw-icon>
+	<div>
+		<h1>Measure Details</h1>
+		<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
+	</div>
 </div>
+
 <form>
 	<div class="form-input">
 		<label class="check">

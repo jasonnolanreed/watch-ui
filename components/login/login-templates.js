@@ -1,6 +1,10 @@
 export const makeTemplate = (component) => (
 `
-<h1><gwbw-icon name="exit_to_app"></gwbw-icon> Login</h1>
+<div class="page-title">
+	<gwbw-icon name="exit_to_app"></gwbw-icon>
+	<h1>Login</h1>
+</div>
+
 <form novalidate>
 	<div class="form-input">
 		<label for="email">Email</label>

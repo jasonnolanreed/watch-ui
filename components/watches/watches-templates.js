@@ -1,6 +1,10 @@
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="watch"></gwbw-icon> Watches</h1>
+<div class="page-title">
+	<gwbw-icon name="watch"></gwbw-icon>
+	<h1>Watches</h1>
+</div>
+
 ${showSortControls(component)}
 <form>
 	${listWatches(component)}

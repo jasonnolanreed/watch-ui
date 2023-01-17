@@ -4,11 +4,14 @@ import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="straighten"></gwbw-icon> Measure Interval</h1>
-<div class="more-info-header">
-	<h1 class="invisible"><gwbw-icon name="straighten"></gwbw-icon></h1>
-	${' '}<h3>${component.watch.name}</h3>
+<div class="page-title">
+	<gwbw-icon name="straighten"></gwbw-icon>
+	<div>
+		<h1>Measure Interval</h1>
+		<h3>${component.watch.name}</h3>
+	</div>
 </div>
+
 <h2>
 	<span class="session-days-range nowrap" title="${Format.dateAndTime(component.startMeasure.targetMoment) + ' - ' + Format.dateAndTime(component.endMeasure.targetMoment)}">
 		${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
@@ -58,13 +61,13 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-h1 gwbw-icon { transform: rotate(90deg); }
+.page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }
 p { margin-top: -1.2em; }
 .average.good-watch { color: var(--green); }
 .average.bad-watch { color: var(--red); }
 .rate.fast:before { content: "+"; }
-.good-bad-message > * { display: none; margin-top: -1.5em; }
+.good-bad-message > * { display: none; margin-top: -1rem; }
 .good-bad-message.good-watch .good { display: block; color: var(--green); }
 .good-bad-message.bad-watch .bad { display: block; color: var(--red); }
 .positions-detail { margin-bottom: 2em; }

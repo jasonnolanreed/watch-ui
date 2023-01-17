@@ -4,7 +4,10 @@ import {getIconNameForPosition} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="insert_chart"></gwbw-icon> ${component.watch.name}</h1>
+<div class="page-title">
+	<gwbw-icon name="insert_chart"></gwbw-icon>
+	<h1>${component.watch.name}</h1>
+</div>
 ${showSessionsInfo(component)}
 ${showSessionsSelection(component)}
 ${showDeviationGraph(component)}

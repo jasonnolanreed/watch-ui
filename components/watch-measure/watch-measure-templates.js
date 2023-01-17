@@ -1,6 +1,10 @@
 const makeHtml = (component) => (
 `
-<h1><gwbw-icon name="insert_chart"></gwbw-icon> Measure ${component.watch.name}</h1>
+<div class="page-title">
+	<gwbw-icon name="insert_chart"></gwbw-icon>
+	<h1>Measure ${component.watch.name}</h1>
+</div>
+
 <form>
 	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set your watch</p>
 	<div class="form-input">

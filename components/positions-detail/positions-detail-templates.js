@@ -21,7 +21,7 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.positions { margin-top: -0.5em; }
+.positions {}
 .position { margin-bottom: 0.25em; }
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
 .rate { white-space: nowrap; }
