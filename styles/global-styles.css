@@ -12,9 +12,7 @@
 :root {
 	--serif-font: 'Merriweather';
 	--sans-font: 'Montserrat';
-}
 
-:root {
 	--light-blue: #B2BDCF;
 	--blue: #396B97;
 	--dark-blue: #1E3760;
@@ -23,6 +21,8 @@
 	--red: #DA3848;
 	--almost-white: #F5F5F5;
 	--silver: #F0F0F0;
+
+	--main-max-width: 700px;
 }
 
 html, body {
@@ -148,7 +148,7 @@ hr.compact {
 }
 
 .content-container {
-	max-width: 800px;
+	max-width: var(--main-max-width);
 	margin: 0 auto;
 	padding: 2rem 1rem 3rem 1rem;
 	opacity: 0;
@@ -185,7 +185,7 @@ footer {
 }
 
 footer .content {
-	max-width: 800px;
+	max-width: var(--main-max-width);
 	margin: 0 auto;
 	padding: 1.75rem 1rem;
 	color: var(--silver);

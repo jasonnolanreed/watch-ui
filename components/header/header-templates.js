@@ -23,7 +23,7 @@ picture {
 :host([namedsize=large]) picture,
 :host([namedsize=huge]) picture {
 	width: 80%;
-	max-width: 600px;
+	max-width: 500px;
 }
 </style>
 `

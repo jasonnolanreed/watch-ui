@@ -22,7 +22,7 @@ nav {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	max-width: 800px;
+	max-width: var(--main-max-width);
 	margin: 0 auto;
 	padding: 0 1em;
 }

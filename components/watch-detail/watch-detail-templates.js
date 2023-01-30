@@ -239,7 +239,6 @@ const makeCss = (component) => (
 .new-measure-outer[stuck] .new-measure {
 	position: fixed;
 	bottom: 0; left: 0; right: 0;
-	padding: 1.5em 2em;
 	background: #fff;
 	box-shadow: 0 -1em 2em 0 rgba(0, 0, 0, 0.2);
 	z-index: 2;
@@ -247,7 +246,8 @@ const makeCss = (component) => (
 .new-measure-outer[stuck] .new-measure-inner {
 	width: 100%;
 	margin: 0 auto;
-	max-width: calc(800px - 4em);
+	padding: 1.5em 1em;
+	max-width: var(--main-max-width);
 }
 .measures-form {
 	order: 1;
