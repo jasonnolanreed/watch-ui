@@ -83,6 +83,7 @@ button[disabled] {
 .toggle-buttons {
 	display: flex;
 	border-radius: 4px;
+	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);
 }
 
 .toggle-buttons button {
