@@ -164,13 +164,19 @@ const showSortControls = component => {
 	<div class="sort-controls">
 		<label>Sort:</label>
 		<div class="toggle-buttons">
-			<button type="button" class="Asc ${component.preferences.measuresSort.includes('Asc') ? 'selected' : ''}">
+			<button type="button"
+				class="Asc ${component.preferences.measuresSort.includes('Asc') ? 'selected' : ''}"
+				${component.preferences.measuresSort.includes('Asc') && 'tabindex="-1" style="pointer-events: none;"'}
+			>
 				Asc
 				<gwbw-icon
 					name="arrow_downward"
 				></gwbw-icon>
 			</button>
-			<button type="button" class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}">
+			<button type="button"
+				class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}"
+				${component.preferences.measuresSort.includes('Desc') && 'tabindex="-1" style="pointer-events: none;"'}
+			>
 				Desc
 				<gwbw-icon
 					name="arrow_upward"
@@ -271,7 +277,7 @@ const makeCss = (component) => (
 	z-index: 1;
 }
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; color: var(--blue); }
-.sort-controls .toggle-buttons button.selected { cursor: default; }
+.sort-controls .toggle-buttons button.selected { pointer-events: none; }
 @media (hover: hover) {
 	.interval:hover { opacity: 1; }
 }
