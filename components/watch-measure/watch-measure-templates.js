@@ -2,7 +2,10 @@ const makeHtml = (component) => (
 `
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
-	<h1>Measure ${component.watch.name}</h1>
+	<div>
+		<h1>Add Measure</h1>
+		<h3>${component.watch.name}</h3>
+	</div>
 </div>
 
 <form>

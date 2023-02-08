@@ -40,7 +40,32 @@ const makeHtml = (component) => (
 
 
 <div class="details">
-...details...
+	<h2>Watch Details</h2>
+
+	<form>
+		<div class="form-input--two-wide">
+			<div class="form-input">
+				<label>"Good" tolerance, fast</label>
+				<div class="faux-input" disabled>${component.watch.goodTolerancePlus}</div>
+			</div>
+			<div class="form-input">
+				<label>"Good" tolerance, slow</label>
+				<div class="faux-input" disabled>${component.watch.goodToleranceMinus}</div>
+			</div>
+		</div>
+
+		<div class="form-input">
+			<label>Notes</label>
+			<div class="faux-input" disabled>${component.watch.note.split(`\n`).join(`<br/>`)}</div>
+		</div>
+
+		<div class="form-controls">
+			<a class="button" href="#/watches/edit/${component.watch._id}">
+				<gwbw-icon name="settings"></gwbw-icon>
+				Edit Watch
+			</a>
+		</div>
+	</form>
 </div>
 `
 );

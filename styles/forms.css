@@ -70,7 +70,17 @@ label.check [type=radio] {
 	width: calc(50%);
 }
 
-input[type=text], input[type=password], input[type=number], textarea {
+.form-input--three-wide {
+	display: flex;
+	gap: 1em;
+}
+
+.form-input--three-wide > * {
+	width: calc(100% / 3);
+}
+
+input[type=text], input[type=password], input[type=number],
+textarea, .faux-input {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -88,6 +98,11 @@ input[type=text], input[type=password], input[type=number], textarea {
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, textarea:focus {
 	box-shadow: 0 0 0 1px var(--blue);
+}
+
+input[disabled], textarea[disabled],
+.faux-input[disabled] {
+	color: var(--dark-blue);
 }
 
 textarea {
