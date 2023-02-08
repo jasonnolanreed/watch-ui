@@ -1,4 +1,5 @@
 import {router} from '../../router.js';
+import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
@@ -12,6 +13,7 @@ export class Timegrapher extends GWBWElement {
 		this.setClickEvents([
 			{target: `.previous-results`, handler: this.viewPreviousResults},
 			{target: `.next-results`, handler: this.viewNextResults},
+			{target: `.delete-button`, handler: this.deleteResults},
 		]);
 	}
 
@@ -59,6 +61,26 @@ export class Timegrapher extends GWBWElement {
 
 	viewNextResults(event, target) {
 		router.navigate(`/timegrapher/${router.params['watchId']}/?resultsIndex=${this.currentResultsIndex + 1}`);
+	}
+
+	async deleteResults(event, target) {
+		const resultId = this.currentResults._id;
+		const confirmDelete = confirm(`Do you really want to delete this timegrapher result?`);
+		if (!confirmDelete) { return; }
+		this.startWorking();
+		const deleteSuccessful = await TimegrapherApi.delete(resultId);
+		this.stopWorking();
+		if (deleteSuccessful) {
+			GA.event(`timegrapher`, `timegrapher delete success`);
+			router.navigate(`/timegrapher/${router.params['watchId']}`);
+			this.getData();
+		} else {
+			GA.event(`timegrapher`, `timegrapher delete fail`);
+			const messages = document.querySelector(`gwbw-messages`);
+			if (messages) {
+				messages.add({message: `Failed to delete timegrapher result. Try again?`, type: `error`});
+			}
+		}
 	}
 
 	detectSticky() {

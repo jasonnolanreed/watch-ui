@@ -23,4 +23,15 @@ export class TimegrapherApi {
 			.catch(_ => resolve(false));
 		});
 	}
+
+	// Always resolves, with boolean payload
+	static delete(resultsId) {
+		return new Promise((resolve, reject) => {
+			fetch(`${apiHost}timegrapher-result/${resultsId}`, getOptionsForDelete({}))
+			.then(response => LoggedOutApi.checkLoggedOut(response))
+			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
+			.then(response => resolve(true))
+			.catch(_ => resolve(false));
+		});
+	}
 }

@@ -24,6 +24,17 @@ ${showResultsSelection(component)}
 
 <gwbw-timegrapher-table timegrapherresults="${encodeURI(JSON.stringify(component.currentResults))}"></gwbw-timegrapher-table>
 
+${component?.currentResults &&
+`
+<div class="form-controls">
+	<button class="delete-button button negative" type="button">Delete</button>
+	<button class="edit-button button" type="button">Edit</button>
+</div>
+`
+||
+``
+}
+
 ${component?.currentResults?.note &&
 `
 <div class="faux-input">${component.currentResults.note.split('\n').join('<br/>')}</div>
