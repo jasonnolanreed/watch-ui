@@ -1,0 +1,40 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: inset 0 0 0 1.5px #f3f3f3;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+table tr {
+	border-bottom: 1px solid #f3f3f3;
+}
+
+table tr:nth-of-type(odd) {
+	background-color: var(--almost-white);
+}
+
+table tr:last-of-type {
+	border: none;
+}
+
+table th {
+	color: #fff;
+	background: var(--dark-blue);
+	text-align: right;
+	font-weight: normal;
+	padding: 0.8em 0.5em;
+}
+
+table th:first-of-type {
+	text-align: left;
+}
+
+table td {
+	text-align: right;
+	padding: 0.8em 0.5em;
+}
+
+table td:first-of-type {
+	text-align: left;
+}

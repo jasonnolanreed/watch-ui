@@ -5,7 +5,7 @@ const makeHtml = (component) => (
 	<h1>Preferences</h1>
 </div>
 
-<div class="logged-in-box">
+<div class="logged-in-box feature-box">
 	<div>
 		<b>Logged in as:</b>
 		<div>${component.user.email}</div>
@@ -63,10 +63,7 @@ const makeCss = (component) => (
 	justify-content: space-between;
 	align-items: center;
 	gap: 1em;
-	padding: 1em;
-	background-color: var(--silver);
 	margin-bottom: 2.5em;
-	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);
 }
 </style>
 `

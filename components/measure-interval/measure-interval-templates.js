@@ -4,6 +4,11 @@ import {roundToTwoDecimals} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
+<a class="back-link" href="javascript:history.back();">
+	<gwbw-icon name="arrow_back"></gwbw-icon>
+	<span>Back to Measures<span>
+</a>
+
 <div class="page-title">
 	<gwbw-icon name="straighten"></gwbw-icon>
 	<div>
@@ -52,7 +57,6 @@ ${component.expandSessionLink ? `
 		goodtoleranceminus="${component.watch.goodToleranceMinus}"
 	></gwbw-positions-detail>
 </div>
-<a class="big-link" href="javascript:history.back();">Back to Measures</button>
 `
 );
 

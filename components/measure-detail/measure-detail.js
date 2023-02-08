@@ -51,7 +51,7 @@ export class MeasureDetail extends GWBWElement {
 	onCancel(event, target) {
 		if (this.mode === `add`) {
 			GA.event(`measure`, `measure add cancel`);
-			this.goBackToWatch();
+			this.goBackToSession();
 		} else {
 			history.back();
 		}
@@ -76,7 +76,7 @@ export class MeasureDetail extends GWBWElement {
 			const didAdd = await MeasureApi.addMeasure(getFormData(target));
 			if (didAdd) {
 				GA.event(`measure`, `measure add success`);
-				this.goBackToWatch();
+				this.goBackToSession();
 			} else {
 				GA.event(`measure`, `measure add fail`);
 				const messages = document.querySelector(`gwbw-messages`);
@@ -88,10 +88,10 @@ export class MeasureDetail extends GWBWElement {
 		}
 	}
 
-	goBackToWatch() {
+	goBackToSession() {
 		// Prevent user from hitting back and getting this view back
-		// Instead they will go back to /watches/measure
-		history.replaceState(null, null, `#/watches/detail/${this.measure.watchId}`);
+		// Instead they will go back to /sessions/:watchId
+		history.replaceState(null, null, `#/sessions/${this.measure.watchId}`);
 		router.resolve();
 	}
 }

@@ -66,22 +66,32 @@ router
 		router.navigate(`/login`);
 	}
 })
-.on(`/watches/detail/:watchId`, async (params, query) => {
-	router.params = params;
-	router.query = formatQuery(query);
-	if (await AuthApi.isLoggedIn()) {
-		LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
-		GA.view(`/watches/detail`, `Watch Details`);
-	} else {
-		router.navigate(`/login`);
-	}
-})
 .on(`/watches/edit/:watchId`, async (params, query) => {
 	router.params = params;
 	router.query = formatQuery(query);
 	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/watch-edit-view.html`);
 		GA.view(`/watches/edit`, `Edit a Watch`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
+.on(`/watches/:watchId`, async (params, query) => {
+	router.params = params;
+	router.query = formatQuery(query);
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
+		GA.view(`/watches/:watchId`, `Watch Details`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
+.on(`/sessions/:watchId`, async (params, query) => {
+	router.params = params;
+	router.query = formatQuery(query);
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/sessions-view.html`);
+		GA.view(`/sessions`, `Sessions`);
 	} else {
 		router.navigate(`/login`);
 	}
@@ -118,6 +128,15 @@ router
 	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/measure-interval-view.html`);
 		GA.view(`/measure/interval`, `Measure Interval`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
+.on(`/timegrapher/add/:watchId`, async (params, query) => {
+	router.params = params;
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/timegrapher-add-view.html`);
+		GA.view(`/timegrapher/add/:watchId`, `Add Timegrapher Results`);
 	} else {
 		router.navigate(`/login`);
 	}

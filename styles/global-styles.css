@@ -1,6 +1,7 @@
 @import "buttons.css";
 @import "forms.css";
 @import "lists.css";
+@import "tables.css";
 @import "a11y.css";
 
 *, *:before, *:after { box-sizing: border-box; }
@@ -138,6 +139,14 @@ hr.compact {
 	pointer-events: none;
 }
 
+.expand {
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
 #view {
 	position: relative;
 	height: 100%;
@@ -157,6 +166,36 @@ hr.compact {
 
 .content-container.in {
 	opacity: 1;
+}
+
+.feature-box {
+	padding: 1em;
+	background-color: var(--silver);
+	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);
+}
+
+.feature-box-alt {
+	padding: 1.5em;
+	border: 1px solid rgba(0, 0, 0, 0.035);
+	box-shadow: 0 0 4em rgba(0, 0, 0, 0.08);
+	border-radius: 2px;
+}
+
+.back-link {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.back-link gwbw-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	text-align: center;
+	color: #fff;
+	background-color: var(--light-blue);
+	border-radius: 2px;
 }
 
 .page-title {
