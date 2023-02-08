@@ -30,8 +30,14 @@ const makeHtml = (component) => (
 	</div>
 	${makeHiddenFields(component)}
 	<div class="form-controls">
-		<button type="button" class="button negative cancel-button">Cancel</button>
-		<button type="submit" class="button positive">Save Measure</button>
+		<button type="button" class="button negative cancel-button">
+			<gwbw-icon name="do_not_disturb"></gwbw-icon>
+			Cancel
+		</button>
+		<button type="submit" class="button positive">
+			<gwbw-icon name="save"></gwbw-icon>
+			Save Measure
+		</button>
 	</div>
 </form>
 `

@@ -10,7 +10,10 @@ const makeHtml = (component) => (
 		<b>Logged in as:</b>
 		<div>${component.user.email}</div>
 	</div>
-	<button type="button" class="logout button" href="javascript:void(0);">Logout</button>
+	<button type="button" class="logout button" href="javascript:void(0);">
+		<gwbw-icon name="logout"></gwbw-icon>
+		Logout
+	</button>
 </div>
 
 <form>
@@ -25,7 +28,10 @@ const makeHtml = (component) => (
 		</small>
 	</div>
 	<div class="form-controls">
-		<button type="submit" class="button--save-atomic-time button positive">Save Atomic Offset</button>
+		<button type="submit" class="button--save-atomic-time button positive">
+			<gwbw-icon name="save"></gwbw-icon>
+			Save Atomic Offset
+		</button>
 	</div>
 </form>
 
@@ -46,7 +52,10 @@ const makeHtml = (component) => (
 		<input type="password" id="confirmNewPassword" name="confirmNewPassword"/>
 	</div>
 	<div class="form-controls">
-		<button type="submit" class="button--change-password button positive">Change Password</button>
+		<button type="submit" class="button--change-password button positive">
+			<gwbw-icon name="save"></gwbw-icon>
+			Change Password
+		</button>
 	</div>
 </form>
 `

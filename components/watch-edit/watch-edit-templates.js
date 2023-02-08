@@ -30,8 +30,14 @@ const makeHtml = (component) => (
 		<textarea id="note" name="note" maxlength="500">${component.watch.note}</textarea>
 	</div>
 	<div class="form-controls">
-		<a class="button negative" href="#/watches">Cancel</a>
-		<button type="submit" class="button positive">Save Watch</button>
+		<a class="button negative" href="#/watches">
+			<gwbw-icon name="do_not_disturb"></gwbw-icon>
+			Cancel
+		</a>
+		<button type="submit" class="button positive">
+			<gwbw-icon name="save"></gwbw-icon>
+			Save Watch
+		</button>
 	</div>
 	<input type="hidden" name="watchId" value="${component.watch._id}">
 </form>

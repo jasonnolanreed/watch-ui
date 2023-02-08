@@ -11,7 +11,7 @@ export class MeasureDetail extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
-			{target: `.cancel`, handler: this.onCancel}
+			{target: `.cancel-button`, handler: this.onCancel}
 		]);
 	}
 

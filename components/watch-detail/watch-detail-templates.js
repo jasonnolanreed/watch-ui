@@ -18,10 +18,10 @@ const makeHtml = (component) => (
 	></gwbw-session-total>
 	<br/>
 	<div class="feature-controls">
-		<a href="#/sessions/${component.watch._id}" class="button strong mid-compact feature-button">
+		<a href="#/sessions/${component.watch._id}" class="button strong">
 			<gwbw-icon name="insert_chart"></gwbw-icon> Sessions
 		</a>
-		<a href="#/watches/measure/${component.watch._id}" class="button positive mid-compact feature-button">
+		<a href="#/watches/measure/${component.watch._id}" class="button positive">
 			<gwbw-icon name="add_circle"></gwbw-icon> Add
 		</a>
 	</div>
@@ -36,11 +36,13 @@ const makeHtml = (component) => (
 	></gwbw-timegrapher-table>
 	<br/>
 	<div class="feature-controls">
-		<a href="#/timegrapher/${component.watch._id}" class="button strong mid-compact feature-button">
-			<gwbw-icon name="mic_external_on"></gwbw-icon> Timegrapher
+		<a href="#/timegrapher/${component.watch._id}" class="button strong">
+			<gwbw-icon name="mic_external_on"></gwbw-icon>
+			Timegrapher
 		</a>
-		<a href="#/timegrapher/add/${component.watch._id}" class="button positive mid-compact feature-button">
-			<gwbw-icon name="add_circle"></gwbw-icon> Add
+		<a href="#/timegrapher/add/${component.watch._id}" class="button positive">
+			<gwbw-icon name="add_circle"></gwbw-icon>
+			Add
 		</a>
 	</div>
 </div>
@@ -90,22 +92,15 @@ const makeCss = (component) => (
 	gap: 0.25rem;
 }
 
-.feature-button.feature-button.feature-button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.25em;
-}
-
-.feature-button:first-of-type {
+.feature-controls .button:first-of-type {
 	width: 60%;
 }
 
-.feature-button:last-of-type {
+.feature-controls .button:last-of-type {
 	width: 40%;
 }
 
-.feature-button gwbw-icon {
+.feature-controls .button gwbw-icon {
 	font-size: 1.4em;
 }
 </style>

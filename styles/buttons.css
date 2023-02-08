@@ -1,6 +1,8 @@
 .button.button {
-	align-items: flex-start;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
 	position: relative;
 	margin: 0;
 	padding: 0.75em 1.5em;
@@ -19,6 +21,11 @@
 	-webkit-appearance: none;
 }
 
+.button gwbw-icon {
+	font-size: 1.2em;
+	margin: -0.2em 0; /* offset height increase */
+}
+
 .button.button.mid-compact {
 	padding: 0.5em 1em;
 }
@@ -29,7 +36,7 @@
 
 .button.button.ultra-compact {
 	min-width: 3em;
-	padding: 0.4em;
+	padding: 0.5em;
 }
 
 .button.button.ultra-compact gwbw-icon {

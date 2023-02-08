@@ -38,6 +38,7 @@ export class Login extends GWBWElement {
 			if (
 				AuthApi.preAuthHash &&
 				AuthApi.preAuthHash !== `/login` &&
+				AuthApi.preAuthHash !== `/register` &&
 				!AuthApi.preAuthHash.startsWith(`/verify`)
 			) {
 				router.navigate(AuthApi.preAuthHash);

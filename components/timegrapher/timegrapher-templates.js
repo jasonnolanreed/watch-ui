@@ -27,8 +27,14 @@ ${showResultsSelection(component)}
 ${component?.currentResults &&
 `
 <div class="form-controls">
-	<button class="delete-button button negative" type="button">Delete</button>
-	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button" type="button">Edit</a>
+	<button class="delete-button button negative" type="button">
+		<gwbw-icon name="delete"></gwbw-icon>
+		Delete
+	</button>
+	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button" type="button">
+		<gwbw-icon name="settings"></gwbw-icon>
+		Edit
+	</a>
 </div>
 `
 ||

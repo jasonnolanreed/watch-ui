@@ -19,8 +19,14 @@ const makeHtml = (component) => (
 		<textarea name="note"></textarea>
 	</div>
 	<div class="form-controls">
-		<a href="javascript:history.back();" class="button negative">Cancel</a>
-		<button class="button positive" type="submit">Save</button>
+		<a href="javascript:history.back();" class="button negative">
+			<gwbw-icon name="do_not_disturb"></gwbw-icon>
+			Cancel
+		</a>
+		<button class="button positive" type="submit">
+			<gwbw-icon name="save"></gwbw-icon>
+			Save
+		</button>
 	</div>
 </form>
 `
