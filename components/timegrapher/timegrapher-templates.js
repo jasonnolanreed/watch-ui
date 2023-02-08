@@ -28,7 +28,7 @@ ${component?.currentResults &&
 `
 <div class="form-controls">
 	<button class="delete-button button negative" type="button">Delete</button>
-	<button class="edit-button button" type="button">Edit</button>
+	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button" type="button">Edit</a>
 </div>
 `
 ||
@@ -37,8 +37,12 @@ ${component?.currentResults &&
 
 ${component?.currentResults?.note &&
 `
-<div class="faux-input">${component.currentResults.note.split('\n').join('<br/>')}</div>
-<br/><br/>
+<br/>
+<div class="form-input">
+	<label>Note</label>
+	<div class="faux-input">${component.currentResults.note.split('\n').join('<br/>')}</div>
+</div>
+<br/>
 `
 ||
 ``

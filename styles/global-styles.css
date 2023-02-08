@@ -40,6 +40,18 @@ html, body {
 	color: var(--dark-blue);
 }
 
+@media (max-width: 500px) {
+	html, body {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 400px) {
+	html, body {
+		font-size: 13px;
+	}
+}
+
 img {
 	display: block;
 	width: 100%;

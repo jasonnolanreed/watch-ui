@@ -151,6 +151,15 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/timegrapher/edit/:timegrapherResultsId`, async (params, query) => {
+	router.params = params;
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/timegrapher-edit-view.html`);
+		GA.view(`/timegrapher/edit/:timegrapherResultsId`, `Edit Timegrapher Results`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .on(`/stats`, async (params, query) => {
 	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/stats-view.html`);

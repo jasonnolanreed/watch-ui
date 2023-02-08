@@ -29,7 +29,7 @@ const makeHtml = (component) => (
 	<p><em>Step 3)</em> Hit the "Now!" button at the exact moment your watch matches the above time</p>
 	<p>You can add more optional details next</p>
 	<div class="form-controls">
-		<a href="#/sessions/${component.watch._id}" class="button negative">Cancel</a>
+		<a href="javascript:history.back()" class="button negative">Cancel</a>
 		<button type="button" class="button positive now">Now!</button>
 	</div>
 	${component.atomicOffset && +component.atomicOffset !== 0 ?

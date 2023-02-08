@@ -5,9 +5,9 @@ import {WatchApi} from '../../api-helpers/watch.js';
 import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
 import {getFormData} from '../../utilities/form.js';
 
-import {makeTemplate} from './timegrapher-add-templates.js';
+import {makeTemplate} from './timegrapher-edit-templates.js';
 
-export class TimegrapherAdd extends GWBWElement {
+export class TimegrapherEdit extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -23,15 +23,10 @@ export class TimegrapherAdd extends GWBWElement {
 		super.disconnectedCallback();
 	}
 
-	getData() {
-		Promise.all([
-			WatchApi.getWatch(router.params[`watchId`]),
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.render();
-		})
-		.catch(error => null);
+	async getData() {
+		this.timegrapherResults = await TimegrapherApi.getTimegrapherResultsById(router.params[`timegrapherResultsId`]);
+		this.watch = await WatchApi.getWatch(this.timegrapherResults.watchId);
+		this.render();
 	}
 
 	render() {
@@ -45,19 +40,19 @@ export class TimegrapherAdd extends GWBWElement {
 
 	async onSubmit(event, target) {
 		this.startWorking();
-		const addSuccessful = await TimegrapherApi.add(getFormData(target));
+		const addSuccessful = await TimegrapherApi.update(this.timegrapherResults._id, getFormData(target));
 		this.stopWorking();
 		if (addSuccessful) {
-			GA.event(`timegrapher`, `timegrapher add success`);
-			router.navigate(`/timegrapher/${this.watch._id}`);
+			GA.event(`timegrapher`, `timegrapher edit success`);
+			history.back();
 		} else {
-			GA.event(`timegrapher`, `timegrapher add fail`);
+			GA.event(`timegrapher`, `timegrapher edit fail`);
 			const messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
-				messages.add({message: `Failed to add results. Try again?`, type: `error`});
+				messages.add({message: `Failed to edit results. Try again?`, type: `error`});
 			}
 		}
 	}
 }
 
-customElements.define(`gwbw-timegrapher-add`, TimegrapherAdd);
+customElements.define(`gwbw-timegrapher-edit`, TimegrapherEdit);

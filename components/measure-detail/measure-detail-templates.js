@@ -15,7 +15,7 @@ const makeHtml = (component) => (
 	<div class="form-input">
 		<label class="check">
 			<input type="checkbox" name="firstOfSession" ${component.measure.firstOfSession ? `checked` : ``}>
-			<div>First measure of session<br><small>(first since having set time on watch)</small></div>
+			<div>First measure of session<br/><small>(first since having set time on watch)</small></div>
 		</label>
 	</div>
 	<hr>
@@ -30,7 +30,7 @@ const makeHtml = (component) => (
 	</div>
 	${makeHiddenFields(component)}
 	<div class="form-controls">
-		<button type="button" class="button negative cancel">Cancel</button>
+		<button type="button" class="button negative cancel-button">Cancel</button>
 		<button type="submit" class="button positive">Save Measure</button>
 	</div>
 </form>

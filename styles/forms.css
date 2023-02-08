@@ -25,13 +25,15 @@ form.working:before {
 	animation: working 2s ease infinite;
 }
 
-form label:not(.check) {
+form label:not(.check),
+.form-input label:not(.check) {
 	display: block;
 	margin-bottom: 5px;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 
-form label:not(.check):after {
+form label:not(.check):after,
+.form-input label:not(.check):after {
 	content: ":";
 }
 
@@ -72,7 +74,7 @@ label.check [type=radio] {
 
 .form-input--three-wide {
 	display: flex;
-	gap: 1em;
+	gap: 0.5rem;
 }
 
 .form-input--three-wide > * {

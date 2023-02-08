@@ -12,7 +12,7 @@ export const makeTemplate = (component) => (
 <div><b>Watches:</b> ${component.stats.watchesCount}</div>
 <div><b>Measures:</b> ${component.stats.measuresCount}</div>
 
-<br><br>
+<br/><br/>
 
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>

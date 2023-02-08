@@ -77,20 +77,20 @@ const showPositionsGraph = component => {
 		goodtoleranceplus="${component.goodtoleranceplus}"
 		goodtoleranceminus="${component.goodtoleranceminus}"
 	></gwbw-positions-graph>
-	<br><br>
+	<br/><br/>
 	`;
 };
 
 const showPositionsDistributionGraph = component => {
 	return ``;
 	return `
-	<br>
+	<br/>
 	<gwbw-positions-distribution-graph
 		positions="${encodeURI(JSON.stringify(component.positions))}"
 	></gwbw-positions-graph>
-	<br>
-	<br>
-	<br>
+	<br/>
+	<br/>
+	<br/>
 	`;
 };
 
