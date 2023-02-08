@@ -19,6 +19,10 @@
 	-webkit-appearance: none;
 }
 
+.button.button.mid-compact {
+	padding: 0.5em 1em;
+}
+
 .button.button.compact {
 	padding: 0.25em 0.75em;
 }

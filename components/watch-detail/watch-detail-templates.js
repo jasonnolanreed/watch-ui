@@ -17,9 +17,14 @@ const makeHtml = (component) => (
 		goodtoleranceminus="${component.watch.goodToleranceMinus}"
 	></gwbw-session-total>
 	<br>
-	<a href="#/sessions/${component.watch._id}" class="button strong feature-button">
-		<gwbw-icon name="insert_chart"></gwbw-icon> Sessions
-	</a>
+	<div class="feature-controls">
+		<a href="#/sessions/${component.watch._id}" class="button strong mid-compact feature-button">
+			<gwbw-icon name="insert_chart"></gwbw-icon> View
+		</a>
+		<a href="#/watches/measure/${component.watch._id}" class="button positive mid-compact feature-button">
+			<gwbw-icon name="add_circle"></gwbw-icon> Add
+		</a>
+	</div>
 </div>
 
 <br><br>
@@ -30,9 +35,14 @@ const makeHtml = (component) => (
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
 	></gwbw-timegrapher-table>
 	<br>
-	<a href="#/timegrapher/${component.watch._id}" class="button strong feature-button">
-		<gwbw-icon name="mic_external_on"></gwbw-icon> Timegrapher
-	</a>
+	<div class="feature-controls">
+		<a href="#/timegrapher/${component.watch._id}" class="button strong mid-compact feature-button">
+			<gwbw-icon name="mic_external_on"></gwbw-icon> View
+		</a>
+		<a href="#/timegrapher/add/${component.watch._id}" class="button positive mid-compact feature-button">
+			<gwbw-icon name="add_circle"></gwbw-icon> Add
+		</a>
+	</div>
 </div>
 
 
@@ -75,9 +85,14 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+.feature-controls {
+	display: flex;
+	gap: 0.25rem;
+}
+
 .feature-button.feature-button.feature-button {
 	display: flex;
-	width: 100%;
+	width: 50%;
 	justify-content: center;
 	align-items: center;
 	gap: 0.25em;
