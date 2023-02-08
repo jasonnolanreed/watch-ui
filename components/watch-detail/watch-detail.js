@@ -2,7 +2,7 @@ import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
-import {TimegrapherResultApi} from '../../api-helpers/timegrapher-result.js';
+import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
 import {parseSessionsFromMeasures} from '../../utilities/measure.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
@@ -35,7 +35,7 @@ export class WatchDetail extends GWBWElement {
 		Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
 			MeasureApi.getMeasures(router.params[`watchId`]),
-			TimegrapherResultApi.getTimegrapherResults(router.params[`watchId`])
+			TimegrapherApi.getTimegrapherResults(router.params[`watchId`])
 		])
 		.then(responses => {
 			this.watch = responses[0];

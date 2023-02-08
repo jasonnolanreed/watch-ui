@@ -4,7 +4,7 @@ const makeCss = (component) => (
 @import "styles/global-styles.css";
 
 gwbw-deviation-graph[loading] {
-	background-color: var(--silver);
+	// background-color: var(--silver);
 }
 
 gwbw-deviation-graph[loading] canvas {
@@ -15,11 +15,13 @@ gwbw-deviation-graph[loading] canvas {
 `
 );
 
-const makeHtml = (component) => (
-`
-<canvas></canvas>
-`
-);
+const makeHtml = (component) => {
+	if (!component.measuresData) {
+		return `<p>This watch hasn't been measured yet</p>`;
+	} else {
+		return `<canvas></canvas>`
+	}
+};
 
 export const makeTemplate = (component) => {
 	return makeCss(component) + makeHtml(component);

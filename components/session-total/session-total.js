@@ -18,7 +18,9 @@ export class SessionTotal extends GWBWElement {
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `session` && newValue !== oldValue) {
-			this.sessionData = JSON.parse(decodeURI(this.session));
+			if (this.session !== "undefined") {
+				this.sessionData = JSON.parse(decodeURI(this.session));
+			}
 			this.render();
 		}
 		if (name === `goodtoleranceplus` && newValue !== oldValue) {

@@ -1,18 +1,22 @@
 import {timegrapherPositions} from "../../utilities/timgrapher.js";
 
-const makeHtml = (component) => (
-`
-<table>
-	<tr>
-		<th>Position</th>
-		<th>Rate</th>
-		<th>Beat Error</th>
-		<th>Amplitude</th>
-	</tr>
-	${renderRows(component)}
-</table>
-`
-);
+const makeHtml = (component) => {
+if (!component.timegrapherResultsData) {
+	return `<p>This watch hasn't been measured yet</p>`;
+} else {
+	return `
+	<table>
+		<tr>
+			<th>Position</th>
+			<th>Rate</th>
+			<th>Beat Error</th>
+			<th>Amplitude</th>
+		</tr>
+		${renderRows(component)}
+	</table>
+	`;
+}
+};
 
 const renderRows = component => {
 	let html = ``;
@@ -40,6 +44,10 @@ const makeCss = (component) => (
 `
 <style>
 @import "styles/global-styles.css";
+
+table {
+	margin: 2rem 0;
+}
 </style>
 `
 );

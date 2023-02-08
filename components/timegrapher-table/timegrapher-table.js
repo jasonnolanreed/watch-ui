@@ -14,7 +14,9 @@ export class TimegrapherTable extends GWBWElement {
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `timegrapherresults` && newValue !== oldValue) {
-			this.timegrapherResultsData = JSON.parse(decodeURI(this.timegrapherresults));
+			if (this.timegrapherresults !== "undefined") {
+				this.timegrapherResultsData = JSON.parse(decodeURI(this.timegrapherresults));
+			}
 			this.render();
 		}
 	}

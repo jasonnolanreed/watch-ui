@@ -33,7 +33,9 @@ export class DeviationGraph extends GWBWElement {
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `measures` && newValue !== oldValue) {
-			this.measuresData = JSON.parse(decodeURI(this.measures));
+			if (this.measures !== "undefined") {
+				this.measuresData = JSON.parse(decodeURI(this.measures));
+			}
 			this.render();
 		}
 		if (name === `watch` && newValue !== oldValue) {

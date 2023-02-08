@@ -50,6 +50,10 @@
 	background-color: var(--red);
 }
 
+.button.strong {
+	background-color: var(--dark-blue);
+}
+
 .button.low-priority {
 	background-color: var(--light-blue);
 }

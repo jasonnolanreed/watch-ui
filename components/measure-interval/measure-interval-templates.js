@@ -17,22 +17,19 @@ const makeHtml = (component) => (
 	</div>
 </div>
 
-<h2>
+<h3>
 	<span class="session-days-range nowrap" title="${Format.dateAndTime(component.startMeasure.targetMoment) + ' - ' + Format.dateAndTime(component.endMeasure.targetMoment)}">
 		${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
 	</span>
 	<small class="session-duration-in-days nowrap" title="${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}">
 		(${roundToTwoDecimals(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days)
 	</small>
-</h2>
-<h3 class="average ${getClasses(component)}">
-	Average:${` `}
-	<span class="rate ${getRate(component) >= 0 ? `fast` : `slow`}">${getRate(component)} seconds/day</span>
 </h3>
-<div class="good-bad-message ${getClasses(component)}">
-	<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
-	<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
-</div>
+<gwbw-session-total
+	session="${encodeURI(JSON.stringify(component.sessions[component.sessions.length - 1]))}"
+	goodtoleranceplus="${component.watch.goodTolerancePlus}"
+	goodtoleranceminus="${component.watch.goodToleranceMinus}"
+></gwbw-session-total>
 ${component.expandSessionLink ? `
 <div class="session-interval-link">
 	<a href="javascript:window.location.replace('${component.expandSessionLink}');">
@@ -68,12 +65,6 @@ const makeCss = (component) => (
 .page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }
 p { margin-top: -1.2em; }
-.average.good-watch { color: var(--green); }
-.average.bad-watch { color: var(--red); }
-.rate.fast:before { content: "+"; }
-.good-bad-message > * { display: none; margin-top: -1rem; }
-.good-bad-message.good-watch .good { display: block; color: var(--green); }
-.good-bad-message.bad-watch .bad { display: block; color: var(--red); }
 .positions-detail { margin-bottom: 2em; }
 .session-interval-link { margin-bottom: 2em; line-height: 1.4; }
 .session-interval-link *, .session-interval-link:hover * { text-decoration: none; }

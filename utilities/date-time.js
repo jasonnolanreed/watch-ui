@@ -10,10 +10,15 @@ export class Format {
 	}
 
 	// Example: `Feb 3rd`
+	// If year differs from current year, `Feb 3rd, 2022`
 	static date(timestamp) {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
-		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}`;
+		let output = `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}`;
+		if (date.getFullYear() !== new Date().getFullYear()) {
+			output += ` ${date.getFullYear()}`;
+		}
+		return output;
 	}
 
 	// Example: `Feb 3rd, 8:13 am`

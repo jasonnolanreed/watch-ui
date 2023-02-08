@@ -1,0 +1,16 @@
+.sticky-controls-outer {
+	width: 100%;
+}
+.sticky-controls-outer[stuck] .sticky-controls {
+	position: fixed;
+	bottom: 0; left: 0; right: 0;
+	background: #fff;
+	box-shadow: 0 -1em 2em 0 rgba(0, 0, 0, 0.2);
+	z-index: 2;
+}
+.sticky-controls-outer[stuck] .sticky-controls-inner {
+	width: 100%;
+	margin: 0 auto;
+	padding: 1.5em 1em;
+	max-width: var(--main-max-width);
+}

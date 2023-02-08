@@ -7,7 +7,7 @@ const makeHtml = (component) => {
 	if (sessionTotalData) {
 		let html =
 		`
-		<h2 class="total ${totalClasses}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h2>
+		<h3 class="total ${totalClasses}">Average: <span class="number">${sessionTotalData.averageRate}</span> seconds/day</h3>
 		`;
 		if (sessionTotalData.sessionDistance < 0.5) {
 			html += `

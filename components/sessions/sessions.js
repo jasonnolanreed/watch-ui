@@ -105,9 +105,9 @@ export class Sessions extends GWBWElement {
 			this.preferences = responses[2];
 			this.sessions = parseSessionsFromMeasures(this.measures);
 			this.currentSessionIndex = this.sessions.length - 1;
-			if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
-				this.currentSessionIndex = +router.query.sessionIndex;
-			}
+				if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
+					this.currentSessionIndex = +router.query.sessionIndex;
+				}
 			this.currentSession = this.sessions[this.currentSessionIndex];
 			this.render();
 		})
@@ -139,7 +139,7 @@ export class Sessions extends GWBWElement {
 			{threshold: [0]}
 		);
 		
-		this.stickyObserver.observe(this.shadowRoot.querySelector(`.new-measure-outer`));
+		this.stickyObserver.observe(this.shadowRoot.querySelector(`.sticky-controls-outer`));
 	}
 }
 

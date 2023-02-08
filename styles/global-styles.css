@@ -2,6 +2,7 @@
 @import "forms.css";
 @import "lists.css";
 @import "tables.css";
+@import "sticky-controls.css";
 @import "a11y.css";
 
 *, *:before, *:after { box-sizing: border-box; }
@@ -14,7 +15,7 @@
 	--serif-font: 'Merriweather';
 	--sans-font: 'Montserrat';
 
-	--light-blue: #B2BDCF;
+	--light-blue: #9eafcb;
 	--blue: #396B97;
 	--dark-blue: #1E3760;
 	--bright-blue: #86D9ED;

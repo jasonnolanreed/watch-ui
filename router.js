@@ -132,6 +132,16 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/timegrapher/:watchId`, async (params, query) => {
+	router.params = params;
+	router.query = formatQuery(query);
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/timegrapher-view.html`);
+		GA.view(`/timegrapher/:watchId`, `Timgrapher View`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .on(`/timegrapher/add/:watchId`, async (params, query) => {
 	router.params = params;
 	if (await AuthApi.isLoggedIn()) {

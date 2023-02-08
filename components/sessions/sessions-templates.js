@@ -27,9 +27,9 @@ ${showDeviationGraph(component)}
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
-	<div class="new-measure-outer">
-		<div class="new-measure">
-			<div class="new-measure-inner">
+	<div class="sticky-controls-outer">
+		<div class="sticky-controls">
+			<div class="sticky-controls-inner">
 				<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
 			</div>
 		</div>
@@ -46,9 +46,9 @@ const showSessionsInfo = component => {
 	let html = `<h3>Session: `;
 	const startDate = Format.date(component.currentSession[0].targetMoment);
 	const endDate = Format.date(component.currentSession[component.currentSession.length - 1].targetMoment);
-	html += startDate;
+html += `<span class="nowrap">${startDate}</span>`;
 	if (startDate !== endDate) {
-		html += ` - ${endDate}`;
+		html += ` - <span class="nowrap">${endDate}</span>`;
 	}
 	html += `</h3>`;
 	return html;
@@ -65,15 +65,14 @@ const showSessionsSelection = component => {
 	`;
 };
 
-const showDeviationGraph = component => {
-	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
-	return `
-	<gwbw-deviation-graph
-		measures="${encodeURI(JSON.stringify(component.currentSession))}"
-		watch="${encodeURI(JSON.stringify(component.watch))}"
-	></gwbw-deviation-graph>
-	`;
-};
+const showDeviationGraph = component => (
+`
+<gwbw-deviation-graph
+	measures="${encodeURI(JSON.stringify(component.currentSession))}"
+	watch="${encodeURI(JSON.stringify(component.watch))}"
+></gwbw-deviation-graph>
+`
+);
 
 const showSessionIntervalLink = component => {
 	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
@@ -97,7 +96,7 @@ const getNextDisabled = component => component.currentSessionIndex === (componen
 
 const showMeasures = component => {
 	if (!component.measures || !component.measures.length) {
-		return `<p>This watch hasn't been measured yet</p>`;
+		return ``;
 	}
 	let html = ``;
 	html += `
@@ -189,27 +188,13 @@ const makeCss = (component) => (
 	display: flex;
 	flex-wrap: wrap;
 }
-.new-measure-outer {
-	order: 2;
-	width: 100%;
-}
-.new-measure-outer[stuck] .new-measure {
-	position: fixed;
-	bottom: 0; left: 0; right: 0;
-	background: #fff;
-	box-shadow: 0 -1em 2em 0 rgba(0, 0, 0, 0.2);
-	z-index: 2;
-}
-.new-measure-outer[stuck] .new-measure-inner {
-	width: 100%;
-	margin: 0 auto;
-	padding: 1.5em 1em;
-	max-width: var(--main-max-width);
-}
 .measures-form {
 	order: 1;
 	width: 100%;
 	margin-bottom: 1em;
+}
+.sticky-controls-outer {
+	order: 2;
 }
 .measures-list .list-item {
 	justify-content: flex-start;
