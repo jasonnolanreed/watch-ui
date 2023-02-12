@@ -24,7 +24,7 @@ const makeHtml = (component) => (
 	</div>
 	<div class="form-input">
 		<label for="note">Note</label>
-		<textarea id="note" name="note" maxlength="500"></textarea>
+		<textarea id="note" class="large" name="note" maxlength="500"></textarea>
 	</div>
 	<div class="form-controls">
 		<a class="button negative" href="#/watches">

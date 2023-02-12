@@ -95,6 +95,7 @@ textarea, .faux-input {
 	outline: none;
 	background-color: var(--almost-white);
 	box-shadow: 0 0 0 1px var(--silver);
+	appearance: none;
 	-webkit-appearance: none;
 }
 
@@ -113,8 +114,12 @@ input[disabled], textarea[disabled],
 }
 
 textarea {
-	height: 18em;
+	height: 10rem;
 	resize: vertical;
+}
+
+textarea.large {
+	height: 18rem;
 }
 
 @keyframes working {

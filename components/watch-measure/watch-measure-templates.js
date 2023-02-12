@@ -27,7 +27,6 @@ const makeHtml = (component) => (
 		<h1 class="target-time">${component.targetTimeString}</h1>
 	</div>
 	<p><em>Step 3)</em> Hit the "Now!" button at the exact moment your watch matches the above time</p>
-	<p>You can add more optional details next</p>
 	<div class="form-controls">
 		<a href="javascript:history.back()" class="button negative">
 			<gwbw-icon name="do_not_disturb"></gwbw-icon>

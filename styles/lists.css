@@ -1,14 +1,14 @@
 .list {
-	margin: 1.5em 0;
+	margin: 1.5rem 0;
 	padding: 0;
-	box-shadow: 0 0 2em rgba(0, 0, 0, 0.08)
+	box-shadow: 0 0 2rem rgba(0, 0, 0, 0.08)
 }
 
 .list-headers {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: -1em;
-	padding: 0 1em;
+	margin-bottom: -1rem;
+	padding: 0 1rem;
 	color: var(--blue);
 	opacity: 0.5;
 }
@@ -24,7 +24,7 @@
 	position: relative;
 	list-style-type: none;
 	margin: 0 0 -1px 0;
-	padding: 0.5em 1em;
+	padding: 0.5rem 0.75rem;
 	background-color: var(--almost-white);
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -50,7 +50,7 @@
 }
 
 .list-item.spacious {
-	padding: 1em;
+	padding: 1rem 0.75rem;
 }
 
 .list-item > * {
@@ -58,15 +58,15 @@
 }
 
 .list-item .button {
-	margin-left: 0.35em;
+	margin-left: 0.35rem;
 }
 
 .list-item .button.compact {
-	margin-left: 0.2em;
+	margin-left: 0.2rem;
 }
 
 .list-item .button.ultra-compact {
-	margin-left: 0.35em;
+	margin-left: 0.35rem;
 }
 
 .list-item:nth-of-type(even) {

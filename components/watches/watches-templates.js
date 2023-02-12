@@ -8,8 +8,13 @@ const makeHtml = (component) => (
 ${showSortControls(component)}
 <form>
 	${listWatches(component)}
-	<div class="form-controls">
-		<a class="big-link" href="#/watches/add">Add New Watch</a>
+	<br/>
+	<div class="sticky-controls-outer">
+		<div class="sticky-controls">
+			<div class="sticky-controls-inner">
+				<a href="#/watches/add" class="big-link">Add New Watch</a>
+			</div>
+		</div>
 	</div>
 </form>
 `
