@@ -59,21 +59,28 @@ const showSortControls = component => {
 
 	return `
 	<div class="sort-controls">
-		<label>Sort by:</label>
+		<label>Sort:</label>
 		<div class="toggle-buttons">
 			<button type="button" class="created ${component.preferences.watchesSort.includes('created') ? 'selected' : ''}">
 				Added
 				<gwbw-icon
-					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
+					name="${component.preferences.watchesSort.includes('Asc') ? 'expand_more' : 'expand_less'}"
 					class="${component.preferences.watchesSort.includes('created') ? '' : 'hidden'}"
 				></gwbw-icon>
 			</button>
-			<button type="button" class="name ${component.preferences.watchesSort.includes('name') ? 'selected' : ''}">
+			<button type="button" class="measured ${component.preferences.watchesSort.includes('measured') ? 'selected' : ''}">
+				Last Measured
 				<gwbw-icon
-					name="${component.preferences.watchesSort.includes('Asc') ? 'arrow_downward' : 'arrow_upward'}"
+					name="${component.preferences.watchesSort.includes('Asc') ? 'expand_more' : 'expand_less'}"
+					class="${component.preferences.watchesSort.includes('measured') ? '' : 'hidden'}"
+				></gwbw-icon>
+			</button>
+			<button type="button" class="name ${component.preferences.watchesSort.includes('name') ? 'selected' : ''}">
+				Name
+				<gwbw-icon
+					name="${component.preferences.watchesSort.includes('Asc') ? 'expand_more' : 'expand_less'}"
 					class="${component.preferences.watchesSort.includes('name') ? '' : 'hidden'}"
 				></gwbw-icon>
-				Name
 			</button>
 		</div>
 	</div>

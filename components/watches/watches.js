@@ -73,9 +73,14 @@ export class Watches extends GWBWElement {
 	}
 
 	onChangeSort(event, target) {
-		let newSortValue = target.classList.contains(`name`) ? `name` : `created`;
+		let newSortValue =
+			target.classList.contains(`name`) ? `name` :
+			target.classList.contains(`measured`) ? `measured` :
+			`created`;
 		if (
 			target.classList.contains(`name`) && this.preferences.watchesSort.includes(`name`)
+			||
+			target.classList.contains(`measured`) && this.preferences.watchesSort.includes(`measured`)
 			||
 			target.classList.contains(`created`) && this.preferences.watchesSort.includes(`created`)
 		) {
@@ -91,7 +96,11 @@ export class Watches extends GWBWElement {
 	}
 
 	sortWatches() {
-		const sortField = this.preferences.watchesSort.includes(`name`) ? `name` : `_id`;
+		const sortField =
+			this.preferences.watchesSort.includes(`name`) ? `name` :
+			this.preferences.watchesSort.includes(`measured`) ? `lastMeasured` :
+			`_id`;
+
 		this.watches.sort((thisWatch, nextWatch) => {
 			if (this.preferences.watchesSort.includes(`Asc`)) {
 				return thisWatch[sortField] >= nextWatch[sortField] ? 1 : -1;

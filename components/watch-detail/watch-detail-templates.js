@@ -5,7 +5,7 @@ const makeHtml = (component) => (
 	<h1>${component.watch.name}</h1>
 </div>
 
-<div class="session feature-box-alt">
+<div class="session feature-box">
 	<h2>Latest Session</h2>
 	<gwbw-deviation-graph
 		measures="${encodeURI(JSON.stringify(component.latestSession))}"
@@ -19,7 +19,8 @@ const makeHtml = (component) => (
 	<br/>
 	<div class="feature-controls">
 		<a href="#/sessions/${component.watch._id}" class="button strong">
-			<gwbw-icon name="insert_chart"></gwbw-icon> Sessions
+			<gwbw-icon name="insert_chart"></gwbw-icon>
+			Sessions
 		</a>
 		<a href="#/watches/measure/${component.watch._id}" class="button positive">
 			<gwbw-icon name="add_circle"></gwbw-icon> Add
@@ -29,7 +30,7 @@ const makeHtml = (component) => (
 
 <br/>
 
-<div class="timegrapher feature-box-alt">
+<div class="timegrapher feature-box">
 	<h2>Timegrapher Results</h2>
 	<gwbw-timegrapher-table
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
@@ -37,8 +38,8 @@ const makeHtml = (component) => (
 	<br/>
 	<div class="feature-controls">
 		<a href="#/timegrapher/${component.watch._id}" class="button strong">
-			<gwbw-icon name="mic_external_on"></gwbw-icon>
-			Timegrapher
+			<gwbw-icon name="precision_manufacturing"></gwbw-icon>
+			Results
 		</a>
 		<a href="#/timegrapher/add/${component.watch._id}" class="button positive">
 			<gwbw-icon name="add_circle"></gwbw-icon>
@@ -66,10 +67,16 @@ const makeHtml = (component) => (
 			</div>
 		</div>
 
+		${component.watch.note &&
+		`
 		<div class="form-input">
-			<label>Notes</label>
+			<label>Note</label>
 			<div class="faux-input" disabled>${component.watch.note.split(`\n`).join(`<br/>`)}</div>
 		</div>
+		`
+		||
+		``
+		}
 
 		<div class="form-controls">
 			<a class="button" href="#/watches/edit/${component.watch._id}">
@@ -89,7 +96,7 @@ const makeCss = (component) => (
 
 .feature-controls {
 	display: flex;
-	gap: 0.25rem;
+	gap: 0.5rem;
 }
 
 .feature-controls .button:first-of-type {

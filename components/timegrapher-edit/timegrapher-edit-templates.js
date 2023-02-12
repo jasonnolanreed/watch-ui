@@ -3,7 +3,7 @@ import {timegrapherPositions} from "../../utilities/timgrapher.js";
 const makeHtml = (component) => (
 `
 <div class="page-title">
-	<gwbw-icon name="mic_external_on"></gwbw-icon>
+	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 	<div>
 		<h1>Edit Timegrapher Results</h1>
 		<h3>${component.watch.name}</h3>
@@ -14,6 +14,7 @@ const makeHtml = (component) => (
 	<input type="hidden" name="watchId" value="${component.watch._id}"/>
 	<input type="hidden" name="moment" value="${component.timegrapherResults.moment}"/>
 	${renderFields(component)}
+	<br/>
 	<div class="form-input">
 		<label for="note">Note</label>
 		<textarea name="note"></textarea>

@@ -149,18 +149,14 @@ const showSortControls = component => {
 				${component.preferences.measuresSort.includes('Asc') && 'tabindex="-1" style="pointer-events: none;"'}
 			>
 				Asc
-				<gwbw-icon
-					name="arrow_downward"
-				></gwbw-icon>
+				<gwbw-icon name="expand_more"></gwbw-icon>
 			</button>
 			<button type="button"
 				class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}"
 				${component.preferences.measuresSort.includes('Desc') && 'tabindex="-1" style="pointer-events: none;"'}
 			>
 				Desc
-				<gwbw-icon
-					name="arrow_upward"
-				></gwbw-icon>
+				<gwbw-icon name="expand_less"></gwbw-icon>
 			</button>
 		</div>
 	</div>
