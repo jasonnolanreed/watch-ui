@@ -22,7 +22,10 @@ ${component?.currentResults?.moment &&
 
 ${showResultsSelection(component)}
 
-<gwbw-timegrapher-table timegrapherresults="${encodeURI(JSON.stringify(component.currentResults))}"></gwbw-timegrapher-table>
+<gwbw-timegrapher-table
+	watch="${encodeURI(JSON.stringify(component.watch))}"
+	timegrapherresults="${encodeURI(JSON.stringify(component.currentResults))}"
+></gwbw-timegrapher-table>
 
 ${component?.currentResults &&
 `

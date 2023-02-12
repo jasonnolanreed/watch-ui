@@ -8,11 +8,19 @@ export class TimegrapherTable extends GWBWElement {
 		this.attachShadow({mode: `open`});
 	}
 
-	static get observedAttributes() { return [`timegrapherresults`]; }
+	static get observedAttributes() { return [`watch`, `timegrapherresults`]; }
+	get watch() { return this.getAttribute(`watch`); }
+	set watch(stringifiedWatch) { this.setAttribute(`watch`, stringifiedWatch); }
 	get timegrapherresults() { return this.getAttribute(`timegrapherresults`); }
 	set timegrapherresults(stringifiedResults) { this.setAttribute(`timegrapherresults`, stringifiedResults); }
 
 	attributeChangedCallback(name, oldValue, newValue) {
+		if (name === `watch` && newValue !== oldValue) {
+			if (this.watch !== "undefined") {
+				this.watchData = JSON.parse(decodeURI(this.watch));
+			}
+			this.render();
+		}
 		if (name === `timegrapherresults` && newValue !== oldValue) {
 			if (this.timegrapherresults !== "undefined") {
 				this.timegrapherResultsData = JSON.parse(decodeURI(this.timegrapherresults));

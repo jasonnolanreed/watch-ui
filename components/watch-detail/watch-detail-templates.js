@@ -33,6 +33,7 @@ const makeHtml = (component) => (
 <div class="timegrapher feature-box">
 	<h2>Timegrapher Results</h2>
 	<gwbw-timegrapher-table
+		watch="${encodeURI(JSON.stringify(component.watch))}"
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
 	></gwbw-timegrapher-table>
 	<br/>

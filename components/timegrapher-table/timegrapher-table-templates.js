@@ -30,7 +30,7 @@ const renderRows = component => {
 			const rate = component.timegrapherResultsData[position.id + "Rate"];
 			let row = `<tr>`;
 			row += `<td>${position.label}</td>`;
-			row += `<td>${rate > 0 ? '+' : ''}${rate}s/d</td>`;
+			row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${rate}s/d</td>`;
 			row += `<td>${component.timegrapherResultsData[position.id + "BeatError"]}ms</td>`;
 			row += `<td>${component.timegrapherResultsData[position.id + "Amplitude"]}&deg;</td>`;
 			row += `</tr>`;
@@ -40,6 +40,15 @@ const renderRows = component => {
 	return html;
 };
 
+const getGoodBadClass = (component, rate) => {
+	const {goodTolerancePlus, goodToleranceMinus} = component.watchData;
+	if (rate <= goodTolerancePlus && rate >= goodToleranceMinus) {
+		return `good`;
+	} else {
+		return `bad`;
+	}
+};
+
 const makeCss = (component) => (
 `
 <style>
@@ -47,6 +56,14 @@ const makeCss = (component) => (
 
 table {
 	margin: 2rem 0;
+}
+
+td.good {
+	color: var(--green);
+}
+
+td.bad {
+	color: var(--red);
 }
 </style>
 `
