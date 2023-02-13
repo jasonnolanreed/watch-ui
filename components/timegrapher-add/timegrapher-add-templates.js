@@ -10,6 +10,8 @@ const makeHtml = (component) => (
 	</div>
 </div>
 
+<p>Using your timing machine (timegrapher), enter as many data points as you're interested in here. Do this as often as you'd like to track variances over time and against the same positions in your real-life sessions data.</p>
+
 <form>
 	<input type="hidden" name="watchId" value="${component.watch._id}"/>
 	<input type="hidden" name="moment" value="${Date.now()}"/>

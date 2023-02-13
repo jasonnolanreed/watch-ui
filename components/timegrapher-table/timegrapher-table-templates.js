@@ -2,7 +2,7 @@ import {timegrapherPositions} from "../../utilities/timgrapher.js";
 
 const makeHtml = (component) => {
 if (!component.timegrapherResultsData) {
-	return `<p>This watch hasn't been measured yet</p>`;
+	return `<p>No results have been entered yet</p>`;
 } else {
 	return `
 	<table>

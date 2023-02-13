@@ -9,9 +9,9 @@ const makeHtml = (component) => (
 </div>
 
 <form>
-	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set your watch</p>
+	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set the time on your watch</p>
 	<div class="form-input">
-		<label class="check">
+		<label class="check new-session">
 			<input type="checkbox" name="firstOfSession" ${component.isNewSession ? `checked` : ``}>
 			${` `}Start new session
 		</label>
@@ -49,6 +49,11 @@ const makeCss = (component) => (
 `
 <style>
 @import "styles/global-styles.css";
+
+.new-session {
+	font-size: 1.2rem;
+	font-weight: bold;
+}
 
 .target-time {
 	display: flex;
