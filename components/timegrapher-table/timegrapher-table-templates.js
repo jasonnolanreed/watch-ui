@@ -30,9 +30,9 @@ const renderRows = component => {
 			const rate = component.timegrapherResultsData[position.id + "Rate"];
 			let row = `<tr>`;
 			row += `<td>${position.label}</td>`;
-			row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${rate}s/d</td>`;
-			row += `<td>${component.timegrapherResultsData[position.id + "BeatError"]}ms</td>`;
-			row += `<td>${component.timegrapherResultsData[position.id + "Amplitude"]}&deg;</td>`;
+			row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${rate ? rate + 's/d' : '-'}</td>`;
+			row += `<td>${component.timegrapherResultsData[position.id + "BeatError"] ? component.timegrapherResultsData[position.id + "BeatError"] + 'ms' : '-'}</td>`;
+			row += `<td>${component.timegrapherResultsData[position.id + "Amplitude"] ? component.timegrapherResultsData[position.id + "Amplitude"] + '&deg;' : '-'}</td>`;
 			row += `</tr>`;
 			html += row;
 		}
@@ -42,7 +42,9 @@ const renderRows = component => {
 
 const getGoodBadClass = (component, rate) => {
 	const {goodTolerancePlus, goodToleranceMinus} = component.watchData;
-	if (rate <= goodTolerancePlus && rate >= goodToleranceMinus) {
+	if (!rate) {
+		return ``;
+	} else if (rate <= goodTolerancePlus && rate >= goodToleranceMinus) {
 		return `good`;
 	} else {
 		return `bad`;

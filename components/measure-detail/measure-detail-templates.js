@@ -52,6 +52,7 @@ const showPositionsRadios = component => {
 			<input type="radio" name="position" value=${position} ${component.measure.position === position ? `checked` : ``}>
 			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
 		</label>
+		<br/>
 		`;
 	}
 	return html;

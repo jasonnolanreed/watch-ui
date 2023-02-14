@@ -27,7 +27,7 @@ const makeHtml = (component) => {
 		}
 		return html;
 	} else {
-		return `<p>Average rate will be shown here when multiple measures are taken within this session.</p>`;
+		return `<p>Average rate will be shown here when multiple measures are taken within this session</p>`;
 	}
 };
 

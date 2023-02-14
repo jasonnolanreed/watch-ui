@@ -43,7 +43,10 @@ const makeHtml = (component) => (
 	<div class="form-input">
 		<label class="check">
 			<input type="checkbox" name="showTimegrapherFeatures" ${component.preferences.showTimegrapherFeatures ? `checked` : ``}>
-			<div>Show timegrapher features</div>
+			<div class="timegrapher-feature-label">
+				<gwbw-icon name="precision_manufacturing"></gwbw-icon>
+				Show timegrapher features
+			</div>
 		</label>
 	</div>
 	<div class="form-controls">
@@ -97,6 +100,16 @@ const makeCss = (component) => (
 [name="showTimegrapherFeatures"] + div {
 	font-weight: bold;
 	font-size: 1.1rem;
+}
+
+.timegrapher-feature-label {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.timegrapher-feature-label gwbw-icon {
+	font-size: 1.75rem;
 }
 </style>
 `
