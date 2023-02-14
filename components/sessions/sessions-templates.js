@@ -147,18 +147,18 @@ const showSortControls = component => {
 		<label>Sort:</label>
 		<div class="toggle-buttons">
 			<button type="button"
-				class="Asc ${component.preferences.measuresSort.includes('Asc') ? 'selected' : ''}"
-				${component.preferences.measuresSort.includes('Asc') && 'tabindex="-1" style="pointer-events: none;"'}
-			>
-				Asc
-				<gwbw-icon name="expand_more"></gwbw-icon>
-			</button>
-			<button type="button"
 				class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}"
 				${component.preferences.measuresSort.includes('Desc') && 'tabindex="-1" style="pointer-events: none;"'}
 			>
-				Desc
+				New First
 				<gwbw-icon name="expand_less"></gwbw-icon>
+			</button>
+			<button type="button"
+				class="Asc ${component.preferences.measuresSort.includes('Asc') ? 'selected' : ''}"
+				${component.preferences.measuresSort.includes('Asc') && 'tabindex="-1" style="pointer-events: none;"'}
+			>
+				Old First
+				<gwbw-icon name="expand_more"></gwbw-icon>
 			</button>
 		</div>
 	</div>
