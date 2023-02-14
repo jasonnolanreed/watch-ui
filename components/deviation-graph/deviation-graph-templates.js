@@ -18,6 +18,8 @@ gwbw-deviation-graph[loading] canvas {
 const makeHtml = (component) => {
 	if (!component.measuresData) {
 		return `<p>This watch hasn't been measured yet</p>`;
+	} else if (component.measuresData.length < 2) {
+		return ``;
 	} else {
 		return `<canvas></canvas>`
 	}
