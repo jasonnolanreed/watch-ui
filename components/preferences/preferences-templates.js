@@ -35,7 +35,26 @@ const makeHtml = (component) => (
 	</div>
 </form>
 
-<hr>
+<hr/>
+
+<form>
+	<h2>Timgrapher Features</h2>
+	<p>Do you have a timing machine (timegrapher)? You can choose to show or hide timegrapher features.</p>
+	<div class="form-input">
+		<label class="check">
+			<input type="checkbox" name="showTimegrapherFeatures" ${component.preferences.showTimegrapherFeatures ? `checked` : ``}>
+			<div>Show timegrapher features</div>
+		</label>
+	</div>
+	<div class="form-controls">
+		<button type="submit" class="button--save-timegrapher button positive">
+			<gwbw-icon name="save"></gwbw-icon>
+			Save Feature
+		</button>
+	</div>
+</form>
+
+<hr/>
 
 <form>
 	<h2>Change Password</h2>
@@ -73,6 +92,11 @@ const makeCss = (component) => (
 	align-items: center;
 	gap: 1em;
 	margin-bottom: 2.5em;
+}
+
+[name="showTimegrapherFeatures"] + div {
+	font-weight: bold;
+	font-size: 1.1rem;
 }
 </style>
 `

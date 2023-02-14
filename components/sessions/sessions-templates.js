@@ -5,9 +5,11 @@ import {getIconNameForPosition} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
+${component.preferences.showTimegrapherFeatures ? `
 <a class="back-link" href="#/watches/${component.watch._id}">
 	<gwbw-icon name="arrow_back"></gwbw-icon><span>Back to watch</span>
 </a>
+` : ``}
 
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>

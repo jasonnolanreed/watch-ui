@@ -21,7 +21,7 @@ export const makeTemplate = (component) => (
 		</button>
 	</div>
 </form>
-<hr>
+<hr/>
 <a href="#/login">Already have an account? Login here.</a>
 `
 );

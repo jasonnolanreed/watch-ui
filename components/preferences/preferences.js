@@ -13,6 +13,7 @@ export class Preferences extends GWBWElement {
 		this.setClickEvents([
 			{target: `.logout`, handler: this.onLogout},
 			{target: `.button--save-atomic-time`, handler: this.onSaveAtomicTime},
+			{target: `.button--save-timegrapher`, handler: this.onSaveTimegrapher},
 			{target: `.button--change-password`, handler: this.onChangePassword}
 		]);
 	}
@@ -54,8 +55,9 @@ export class Preferences extends GWBWElement {
 	async onSaveAtomicTime(event, target) {
 		event.preventDefault();
 		const form = target.form;
+		const {atomicOffset} = getFormData(form);
 		this.startWorking(form);
-		const didSave = await PreferenceApi.updatePreferences(getFormData(form));
+		const didSave = await PreferenceApi.updatePreferences({atomicOffset});
 		const messages = document.querySelector(`gwbw-messages`);
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
@@ -66,6 +68,27 @@ export class Preferences extends GWBWElement {
 			GA.event(`preference`, `preference update fail`);
 			if (messages) {
 				messages.add({message: `Failed to save new atomic offset. Try again?`, type: `error`});
+			}
+		}
+		this.stopWorking(form);
+	}
+
+	async onSaveTimegrapher(event, target) {
+		event.preventDefault();
+		const form = target.form;
+		const {showTimegrapherFeatures} = getFormData(form);
+		this.startWorking(form);
+		const didSave = await PreferenceApi.updatePreferences({showTimegrapherFeatures});
+		const messages = document.querySelector(`gwbw-messages`);
+		if (didSave) {
+			GA.event(`preference`, `preference update success`);
+			if (messages) {
+				messages.add({message: `Your timegrapher preference was saved.`, type: `success`});
+			}
+		} else {
+			GA.event(`preference`, `preference update fail`);
+			if (messages) {
+				messages.add({message: `Failed to save timegrapher preference. Try again?`, type: `error`});
 			}
 		}
 		this.stopWorking(form);

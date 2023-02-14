@@ -18,7 +18,7 @@ const makeHtml = (component) => (
 			<div>First measure of session<br/><small>(first since having set time on watch)</small></div>
 		</label>
 	</div>
-	<hr>
+	<hr/>
 	<div class="form-input">
 		<label for="note">Note</label>
 		<textarea id="note" name="note" maxlength="500">${component.measure.note}</textarea>

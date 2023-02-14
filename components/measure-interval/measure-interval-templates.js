@@ -6,7 +6,7 @@ const makeHtml = (component) => (
 `
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
-	<span>Back to measures<span>
+	<span>Back to sessions<span>
 </a>
 
 <div class="page-title">
@@ -44,7 +44,7 @@ ${component.expandSessionLink ? `
 	</a>
 </div>
 ` : ``}
-<hr>
+<hr/>
 <div class="positions-detail">
 	<gwbw-positions-detail
 		watchid="${component.watch._id}"
