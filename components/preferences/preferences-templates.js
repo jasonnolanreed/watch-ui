@@ -10,7 +10,7 @@ const makeHtml = (component) => (
 		<b>Logged in as:</b>
 		<div>${component.user.email}</div>
 	</div>
-	<button type="button" class="logout button" href="javascript:void(0);">
+	<button type="button" class="logout button negative" href="javascript:void(0);">
 		<gwbw-icon name="logout"></gwbw-icon>
 		Logout
 	</button>
@@ -99,7 +99,6 @@ const makeCss = (component) => (
 
 [name="showTimegrapherFeatures"] + div {
 	font-weight: bold;
-	font-size: 1.1rem;
 }
 
 .timegrapher-feature-label {

@@ -44,7 +44,7 @@ const getGoodBadClass = (component, rate) => {
 	const {goodTolerancePlus, goodToleranceMinus} = component.watchData;
 	if (!rate) {
 		return ``;
-	} else if (rate <= goodTolerancePlus && rate >= goodToleranceMinus) {
+	} else if (rate <= goodTolerancePlus && rate >= -1 * goodToleranceMinus) {
 		return `good`;
 	} else {
 		return `bad`;
