@@ -4,7 +4,7 @@ import {positionsMap} from '../../utilities/position.js';
 const makeHtml = (component) => (
 `
 <div class="page-title">
-	<gwbw-icon name="attachment"></gwbw-icon>
+	<gwbw-icon name="straighten"></gwbw-icon>
 	<div>
 		<h1>Measure Details</h1>
 		<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
@@ -71,6 +71,10 @@ const makeCss = (component) => (
 `
 <style>
 @import "styles/global-styles.css";
+
+.page-title gwbw-icon {
+	transform: rotate(90deg);
+}
 
 .position gwbw-icon {
 	font-size: 2.2em;
