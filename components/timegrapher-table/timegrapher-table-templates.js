@@ -30,9 +30,9 @@ const renderRows = component => {
 			const rate = component.timegrapherResultsData[position.id + "Rate"];
 			let row = `<tr>`;
 			row += `<td>${position.label}</td>`;
-			row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${rate ? rate + 's/d' : '-'}</td>`;
-			row += `<td>${component.timegrapherResultsData[position.id + "BeatError"] ? component.timegrapherResultsData[position.id + "BeatError"] + 'ms' : '-'}</td>`;
-			row += `<td>${component.timegrapherResultsData[position.id + "Amplitude"] ? component.timegrapherResultsData[position.id + "Amplitude"] + '&deg;' : '-'}</td>`;
+			row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${rate ? rate + 's/d' : '&mdash;'}</td>`;
+			row += `<td>${component.timegrapherResultsData[position.id + "BeatError"] ? component.timegrapherResultsData[position.id + "BeatError"] + 'ms' : '&mdash;'}</td>`;
+			row += `<td>${component.timegrapherResultsData[position.id + "Amplitude"] ? component.timegrapherResultsData[position.id + "Amplitude"] + '&deg;' : '&mdash;'}</td>`;
 			row += `</tr>`;
 			html += row;
 		}

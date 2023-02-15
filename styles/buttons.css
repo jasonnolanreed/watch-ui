@@ -120,7 +120,7 @@ button[disabled] {
 	text-decoration: none;
 	background-color: var(--almost-white);
 	border: none;
-	box-shadow: 0 0 0 1px #999;
+	box-shadow: 0 0 0 1px #ddd;
 	outline: none;
 	cursor: pointer;
 	appearance: none;

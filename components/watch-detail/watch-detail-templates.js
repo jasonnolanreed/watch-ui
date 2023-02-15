@@ -59,12 +59,12 @@ const makeHtml = (component) => (
 	<form>
 		<div class="form-input--two-wide">
 			<div class="form-input">
-				<label>"Good" tolerance, fast</label>
-				<div class="faux-input" disabled>${component.watch.goodTolerancePlus}</div>
-			</div>
-			<div class="form-input">
 				<label>"Good" tolerance, slow</label>
 				<div class="faux-input" disabled>${component.watch.goodToleranceMinus}</div>
+			</div>
+			<div class="form-input">
+				<label>"Good" tolerance, fast</label>
+				<div class="faux-input" disabled>${component.watch.goodTolerancePlus}</div>
 			</div>
 		</div>
 
