@@ -112,7 +112,7 @@ button[disabled] {
 	align-items: center;
 	gap: 2px;
 	padding: 0.4rem 1.2rem;
-	color: var(--dark-blue);
+	color: var(--blue);
 	text-shadow: none;
 	font-size: 0.85rem;
 	font-family: var(--sans-font), sans-serif;

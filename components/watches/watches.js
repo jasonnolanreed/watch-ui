@@ -23,7 +23,6 @@ export class Watches extends GWBWElement {
 	}
 
 	disconnectedCallback() {
-		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
 		super.disconnectedCallback();
 	}
 
@@ -32,7 +31,6 @@ export class Watches extends GWBWElement {
 		try {
 			this.sortWatches();
 			this.shadowRoot.innerHTML = makeTemplate(this);
-			this.detectSticky();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -110,17 +108,6 @@ export class Watches extends GWBWElement {
 				return thisWatch[sortField] <= nextWatch[sortField] ? 1 : -1;
 			}
 		});
-	}
-
-	detectSticky() {
-		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
-
-		this.stickyObserver = new IntersectionObserver(
-			([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
-			{threshold: [0]}
-		);
-		
-		this.stickyObserver.observe(this.shadowRoot.querySelector(`.sticky-controls-outer`));
 	}
 }
 
