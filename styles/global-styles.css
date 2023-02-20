@@ -38,6 +38,7 @@ html, body {
 	font-family: var(--sans-font), sans-serif;
 	font-weight: 400;
 	color: var(--dark-blue);
+	background-color: #fff;
 }
 
 @media (max-width: 500px) {
