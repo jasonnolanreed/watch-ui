@@ -146,7 +146,12 @@ export class GWBWElement extends HTMLElement {
 		this._hasSetupResizeListener = true;
 		if (`ResizeObserver` in window) {
 			this._resizeObserver = new ResizeObserver(elements => {
-				this._setNamedSizeAttribute(elements[0].contentRect.width);
+				window.requestAnimationFrame(_ => {
+					if (!Array.isArray(elements) || !elements.length) {
+						return;
+					}
+					this._setNamedSizeAttribute(elements[0].contentRect.width);
+				});
 			});
 			setTimeout(_ => {
 				this._resizeObserver.observe(this);
