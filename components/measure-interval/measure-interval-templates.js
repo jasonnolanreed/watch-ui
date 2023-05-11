@@ -26,7 +26,7 @@ const makeHtml = (component) => (
 	</small>
 </h3>
 <gwbw-session-total
-	session="${encodeURI(JSON.stringify(component.sessions[component.sessions.length - 1]))}"
+	session="${encodeURI(JSON.stringify([component.startMeasure, component.endMeasure]))}"
 	goodtoleranceplus="${component.watch.goodTolerancePlus}"
 	goodtoleranceminus="${component.watch.goodToleranceMinus}"
 ></gwbw-session-total>
