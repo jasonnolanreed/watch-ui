@@ -1,6 +1,6 @@
 import {MeasureApi} from '../../api-helpers/measure.js';
 import {Difference} from '../../utilities/date-time.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
 
 import {makeTemplate} from './positions-detail-templates.js';
 
@@ -89,7 +89,7 @@ export class PositionsDetail extends HTMLElement {
 		// Calculate rate for each position
 		for (const positionName of Object.keys(this.positions)) {
 			this.positions[positionName].rate =
-				roundToTwoDecimals(this.positions[positionName].secondsDrift / this.positions[positionName].days);
+				roundToOneDecimal(this.positions[positionName].secondsDrift / this.positions[positionName].days);
 		}
 	}
 }

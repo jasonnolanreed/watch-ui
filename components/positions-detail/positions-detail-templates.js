@@ -1,5 +1,5 @@
 import {positionsMap, getIconNameForPosition} from '../../utilities/position.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
@@ -46,8 +46,8 @@ const showPositions = component => {
 			</em>
 			<span class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}">${position.rate} seconds/day</span>
 			<small class="duration">
-				<span class="nowrap">Duration: ${roundToTwoDecimals(position.days)} days /</span>
-				<span class="nowrap">Average: ${roundToTwoDecimals(position.days / position.positionCount)} days</span>
+				<span class="nowrap">Duration: ${roundToOneDecimal(position.days)} days /</span>
+				<span class="nowrap">Average: ${roundToOneDecimal(position.days / position.positionCount)} days</span>
 			</small>
 		</div>
 		`;

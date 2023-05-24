@@ -1,5 +1,5 @@
 import {Difference, Format} from './date-time.js';
-import {roundToTwoDecimals} from './number.js';
+import {roundToOneDecimal} from './number.js';
 
 export const parseSessionsFromMeasures = allMeasures => {
 	if (allMeasures && allMeasures.length) { allMeasures[0].firstOfSession = true; }
@@ -32,7 +32,7 @@ export const getSessionTotalData = session => {
 		const sessionDrift =
 			getMomentDiffFromMeasure(session[session.length - 1]) - getMomentDiffFromMeasure(session[0]);
 		return {
-			averageRate: roundToTwoDecimals(sessionDrift / sessionDistance),
+			averageRate: roundToOneDecimal(sessionDrift / sessionDistance),
 			sessionDistance
 		};
 };

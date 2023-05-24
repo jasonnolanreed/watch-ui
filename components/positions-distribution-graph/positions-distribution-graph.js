@@ -1,6 +1,6 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {positionsMap} from '../../utilities/position.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
 import {makeTemplate} from './positions-distribution-graph-templates.js';
 
 export class PositionsDistributionGraph extends GWBWElement {
@@ -109,7 +109,7 @@ export class PositionsDistributionGraph extends GWBWElement {
 
 		function getLabel(point) {
 			const position = positionsData[positionsOrder[point.dataIndex]];
-			return `${positionsMap[position.name].label}: ${roundToTwoDecimals(position.days)} days`;
+			return `${positionsMap[position.name].label}: ${roundToOneDecimal(position.days)} days`;
 		}
 	}
 }

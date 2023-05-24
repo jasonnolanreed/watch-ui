@@ -1,6 +1,6 @@
 import {Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
 import {getIconNameForPosition} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
@@ -122,7 +122,7 @@ const showMeasures = component => {
 				${Format.dateAndTimeCompact(measure.targetMoment)}
 			</a>
 			<div class="controls nowrap ${getMomentDiffFromMeasure(measure) < 0 ? `slow` : `fast`}">
-				<span class="measure-deviation">${roundToTwoDecimals(getMomentDiffFromMeasure(measure))}s</span>
+				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
 				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
 					<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>
 				</button>

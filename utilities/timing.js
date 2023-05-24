@@ -1,9 +1,9 @@
-import {roundToTwoDecimals} from './number.js';
+import {roundToOneDecimal} from './number.js';
 import {Difference} from './date-time.js';
 
 export class Timing {
-	// Returns number in spd, rounded to 2 decimals
-	// Example: -1.23
+	// Returns number in spd, rounded to 1 decimal
+	// Example: -1.2
 	static rate(startTarget, startMoment, endTarget, endMoment) {
 		startTarget = +startTarget;
 		startMoment = +startMoment;
@@ -14,6 +14,6 @@ export class Timing {
 		const diffAtEnd = Difference.seconds(endMoment, endTarget);
 		const diffAtStart = Difference.seconds(startMoment, startTarget);
 		const intervalDrift = diffAtEnd - diffAtStart;
-		return roundToTwoDecimals(intervalDrift / intervalDistanceInDays);
+		return roundToOneDecimal(intervalDrift / intervalDistanceInDays);
 	}
 }

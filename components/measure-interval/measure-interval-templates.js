@@ -1,6 +1,6 @@
 import {Format, Difference} from '../../utilities/date-time.js';
 import {Timing} from '../../utilities/timing.js';
-import {roundToTwoDecimals} from '../../utilities/number.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
@@ -22,7 +22,7 @@ const makeHtml = (component) => (
 		${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
 	</span>
 	<small class="session-duration-in-days nowrap" title="${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}">
-		(${roundToTwoDecimals(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days)
+		(${roundToOneDecimal(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days)
 	</small>
 </h3>
 <gwbw-session-total
