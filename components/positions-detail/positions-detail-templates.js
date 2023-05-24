@@ -47,9 +47,9 @@ const showPositions = component => {
 				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 				<span>${positionsMap[positionName].label}:</span>
 			</em>
-			<span class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}">
-				${displayRate}
-			</span>
+			<span
+				class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}"
+			>${displayRate}</span>
 			<small class="duration">
 				<span class="nowrap">Duration: ${roundToOneDecimal(position.days)} days /</span>
 				<span class="nowrap">Average: ${roundToOneDecimal(position.days / position.positionCount)} days</span>
