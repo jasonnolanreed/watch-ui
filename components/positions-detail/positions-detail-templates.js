@@ -38,13 +38,18 @@ const showPositions = component => {
 	for (const positionName of Object.keys(positionsMap)) {
 		const position = component.positions[positionName];
 		if (!position) { continue; }
+		const displayRate = (position.rate !== 0) ?
+			`${position.rate} seconds/day` :
+			"Perfect";
 		positionsHtml += `
 		<div class="position">
 			<em>
 				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 				<span>${positionsMap[positionName].label}:</span>
 			</em>
-			<span class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}">${position.rate} seconds/day</span>
+			<span class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}">
+				${displayRate}
+			</span>
 			<small class="duration">
 				<span class="nowrap">Duration: ${roundToOneDecimal(position.days)} days /</span>
 				<span class="nowrap">Average: ${roundToOneDecimal(position.days / position.positionCount)} days</span>
@@ -59,7 +64,7 @@ const getRateClasses = (rate, goodTolerancePlus, goodToleranceMinus) => {
 	let classes = [];
 	if (rate < 0) {
 		classes.push(`slow`);
-	} else {
+	} else if (rate > 0) {
 		classes.push(`fast`);
 	}
 	if (rate <= goodTolerancePlus && rate >= -1 * goodToleranceMinus) {

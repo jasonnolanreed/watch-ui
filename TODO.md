@@ -1,5 +1,4 @@
 - Interval: sort positions by default|rate
-- 0.0s -> "Perfect."
 - "ResizeObserver loop completed with undelivered notifications."
 - User options page
 	- "Room for error"
