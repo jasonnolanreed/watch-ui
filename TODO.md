@@ -1,4 +1,3 @@
-- Interval: sort positions by default|rate
 - "ResizeObserver loop completed with undelivered notifications."
 - User options page
 	- "Room for error"

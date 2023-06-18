@@ -3,6 +3,7 @@ import {roundToOneDecimal} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
+${showSortControls(component)}
 <div class="graph">
 ${showPositionsGraph(component)}
 </div>
@@ -21,6 +22,8 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; color: var(--blue); }
+.sort-controls .toggle-buttons button.selected { pointer-events: none; }
 .positions {}
 .position { margin-bottom: 0.25em; }
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
@@ -33,9 +36,33 @@ const makeCss = (component) => (
 `
 );
 
+const showSortControls = component => {
+	return `
+	<div class="sort-controls">
+		<label>Sort:</label>
+		<div class="toggle-buttons">
+			<button type="button"
+				class="default ${component.preferences.positionsSort.includes('default') ? 'selected' : ''}"
+				${component.preferences.positionsSort.includes('default') && 'tabindex="-1" style="pointer-events: none;"'}
+			>
+				Default
+				<gwbw-icon name="expand_less"></gwbw-icon>
+			</button>
+			<button type="button"
+				class="rate ${component.preferences.positionsSort.includes('rate') ? 'selected' : ''}"
+				${component.preferences.positionsSort.includes('rate') && 'tabindex="-1" style="pointer-events: none;"'}
+			>
+				Rate
+				<gwbw-icon name="expand_more"></gwbw-icon>
+			</button>
+		</div>
+	</div>
+	`;
+};
+
 const showPositions = component => {
 	let positionsHtml = ``;
-	for (const positionName of Object.keys(positionsMap)) {
+	for (const positionName of component.sortedPositionNames) {
 		const position = component.positions[positionName];
 		if (!position) { continue; }
 		const displayRate = (position.rate !== 0) ?
@@ -81,6 +108,7 @@ const showPositionsGraph = component => {
 		positions="${encodeURI(JSON.stringify(component.positions))}"
 		goodtoleranceplus="${component.goodtoleranceplus}"
 		goodtoleranceminus="${component.goodtoleranceminus}"
+		sortedpositionnames="${component.sortedPositionNames.join(',')}"
 	></gwbw-positions-graph>
 	<br/><br/>
 	`;

@@ -23,13 +23,15 @@ export class PositionsGraph extends GWBWElement {
 		});
 	}
 
-	static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`]; }
+	static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
 	get positions() { return this.getAttribute(`positions`); }
 	set positions(stringifiedPositions) { this.setAttribute(`positions`, stringifiedPositions); }
 	get goodtoleranceplus() { return this.getAttribute(`goodtoleranceplus`); }
 	set goodtolerance(goodTolerancePlus) { this.setAttribute(`goodtoleranceplus`, goodTolerancePlus); }
 	get goodtoleranceminus() { return this.getAttribute(`goodtoleranceminus`); }
 	set goodtoleranceminus(goodToleranceMinus) { this.setAttribute(`goodtoleranceminus`, goodToleranceMinus); }
+	get sortedpositionnames() { return this.getAttribute(`goodtoleranceminus`); }
+	set sortedpositionnames(sortedPositionNames) { this.setAttribute(`sortedpositionnames`, sortedPositionNames); }
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `positions` && newValue !== oldValue) {
@@ -42,6 +44,10 @@ export class PositionsGraph extends GWBWElement {
 		}
 		if (name === `goodtoleranceminus` && newValue !== oldValue) {
 			this.goodToleranceMinusNumber = +this.goodtoleranceminus;
+			this.render();
+		}
+		if (name === `sortedpositionnames` && newValue !== oldValue) {
+			this.sortedPositionNamesArray = newValue.split(`,`);
 			this.render();
 		}
 	}
@@ -168,11 +174,19 @@ export class PositionsGraph extends GWBWElement {
 
 		// get list of used positions in order of positionsMap
 		let sortedPositionsList = [];
-		Object.keys(positionsMap).map(positionKey => {
-			if (positionsData[positionKey]) {
-				sortedPositionsList.push(positionKey);
-			}
-		});
+		if (this.sortedPositionNamesArray) {
+			this.sortedPositionNamesArray.map(positionName => {
+				if (positionsData[positionName]) {
+					sortedPositionsList.push(positionName);
+				}
+			});
+		} else {
+			Object.keys(positionsMap).map(positionKey => {
+				if (positionsData[positionKey]) {
+					sortedPositionsList.push(positionKey);
+				}
+			});
+		}
 
 		let positionLabels = [];
 		let rates = [];

@@ -44,7 +44,7 @@ ${component.expandSessionLink ? `
 	</a>
 </div>
 ` : ``}
-<hr/>
+<br/>
 <div class="positions-detail">
 	<gwbw-positions-detail
 		watchid="${component.watch._id}"

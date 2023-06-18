@@ -1,13 +1,19 @@
+import {GWBWElement} from '../../classes/gwbw-element.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
+import {PreferenceApi} from '../../api-helpers/preference.js';
 import {Difference} from '../../utilities/date-time.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
+import {positionsMap} from '../../utilities/position.js';
 
 import {makeTemplate} from './positions-detail-templates.js';
 
-export class PositionsDetail extends HTMLElement {
+export class PositionsDetail extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
+		this.setClickEvents([
+			{target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort},
+		]);
 		this.hasSet = {watch: false, start: false, end: false, tolerancePlus: false, toleranceMinus: false};
 		this.positions = {};
 	}
@@ -53,6 +59,7 @@ export class PositionsDetail extends HTMLElement {
 
 	render() {
 		try {
+			this.sortedPositionNames = this.getSortedPositionNames();
 			this.shadowRoot.innerHTML = makeTemplate(this);
 		} catch(error) {
 			console.error(`Error rendering`, error);
@@ -61,9 +68,18 @@ export class PositionsDetail extends HTMLElement {
 
 	async getData() {
 		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerancePlus || !this.hasSet.toleranceMinus) { return; }
-		const measures = await MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid);
-		this.parsePositions(measures);
-		this.render();
+
+		Promise.all([
+			MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid),
+			PreferenceApi.getPreferences()
+		])
+		.then(responses => {
+			const measures = responses[0];
+			this.preferences = responses[1];
+			this.parsePositions(measures);
+			this.render();
+		})
+		.catch(error => null);
 	}
 	
 	parsePositions(measures) {
@@ -91,6 +107,28 @@ export class PositionsDetail extends HTMLElement {
 			this.positions[positionName].rate =
 				roundToOneDecimal(this.positions[positionName].secondsDrift / this.positions[positionName].days);
 		}
+	}
+
+	getSortedPositionNames() {
+		const positionNames = Object.keys(positionsMap);
+		if (this.preferences.positionsSort === `default`) {
+			return positionNames;
+		}
+		const vettedPositionNames = [...positionNames].filter(positionName => {
+			return !!this.positions[positionName];
+		});
+		return vettedPositionNames.sort((positionName1, positionName2) => {
+			const position1 = this.positions[positionName1];
+			const position2 = this.positions[positionName2];
+			return position1.rate < position2.rate ? -1 : 1;
+		});
+	}
+
+	onChangeSort(event, target) {
+		const newSortValue = target.classList.contains('rate') ? 'rate' : 'default';
+		this.preferences.positionsSort = newSortValue;
+		this.render();
+		PreferenceApi.updatePreferences({positionsSort: newSortValue});
 	}
 }
 
