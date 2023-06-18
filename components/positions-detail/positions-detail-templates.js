@@ -46,14 +46,14 @@ const showSortControls = component => {
 				${component.preferences.positionsSort.includes('default') && 'tabindex="-1" style="pointer-events: none;"'}
 			>
 				Default
-				<gwbw-icon name="expand_less"></gwbw-icon>
+				<gwbw-icon name="expand_more"></gwbw-icon>
 			</button>
 			<button type="button"
 				class="rate ${component.preferences.positionsSort.includes('rate') ? 'selected' : ''}"
 				${component.preferences.positionsSort.includes('rate') && 'tabindex="-1" style="pointer-events: none;"'}
 			>
 				Rate
-				<gwbw-icon name="expand_more"></gwbw-icon>
+				<gwbw-icon name="expand_less"></gwbw-icon>
 			</button>
 		</div>
 	</div>
