@@ -15,7 +15,6 @@ export class Sessions extends GWBWElement {
 		this.setClickEvents([
 			{target: `.previous-session`, handler: this.viewPreviousSession},
 			{target: `.next-session`, handler: this.viewNextSession},
-			{target: `.view-measure`, handler: this.viewMeasure},
 			{target: `.delete-measure`, handler: this.removeMeasure},
 			{target: `.interval`, handler: this.selectInterval},
 			{target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort},
@@ -49,10 +48,6 @@ export class Sessions extends GWBWElement {
 
 	viewNextSession(event, target) {
 		router.navigate(`/sessions/${router.params['watchId']}/?sessionIndex=${this.currentSessionIndex + 1}`);
-	}
-
-	viewMeasure(event, target) {
-		router.navigate(`/measure/${target.getAttribute(`measure-id`)}`);
 	}
 
 	selectInterval(event, target) {

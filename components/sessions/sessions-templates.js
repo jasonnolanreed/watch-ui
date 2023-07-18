@@ -123,9 +123,12 @@ const showMeasures = component => {
 			</a>
 			<div class="controls nowrap ${getMomentDiffFromMeasure(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
-				<button class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}" measure-id="${measure._id}">
+				<a href="#/measure/${measure._id}"
+					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
+					${measure.note.length ? `title="${measure.note}"` : ``}
+				>
 					<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>
-				</button>
+				</a>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
 					<gwbw-icon name="delete"></gwbw-icon>
 				</button>
