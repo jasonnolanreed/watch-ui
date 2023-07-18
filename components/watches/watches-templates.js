@@ -38,9 +38,9 @@ const listWatches = component => {
 		<li class="list-item spacious" watch-id="${watch._id}">
 			<a class="watch-link" href="#/watches/${watch._id}">${watch.name}</a>
 			<div class="controls nowrap">
-				<button class="edit-watch button ultra-compact" watch-id="${watch._id}">
+				<a href="#/watches/edit/${watch._id}" class="edit-watch button ultra-compact">
 					<gwbw-icon name="settings"></gwbw-icon>
-				</button>
+				</a>
 				<button class="delete-watch button negative ultra-compact" watch-id="${watch._id}">
 					<gwbw-icon name="delete"></gwbw-icon>
 				</button>

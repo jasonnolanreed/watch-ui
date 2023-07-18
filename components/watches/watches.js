@@ -11,7 +11,6 @@ export class Watches extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
-			{target: `.edit-watch`, handler: this.onEdit},
 			{target: `.delete-watch`, handler: this.onDelete},
 			{target: `.toggle-buttons button`, handler: this.onChangeSort}
 		]);
@@ -46,11 +45,6 @@ export class Watches extends GWBWElement {
 			this.preferences = data[1];
 			this.render();
 		});
-	}
-
-	onEdit(event, target) {
-		const watchId = target.getAttribute(`watch-id`);
-		router.navigate(`/watches/edit/${watchId}`);
 	}
 
 	async onDelete(event, target) {
