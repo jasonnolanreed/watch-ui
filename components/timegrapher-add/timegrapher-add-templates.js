@@ -1,4 +1,4 @@
-import {timegrapherPositions} from "../../utilities/timgrapher.js";
+import {timegrapherPositions} from "../../utilities/timegrapher.js";
 
 const makeHtml = (component) => (
 `

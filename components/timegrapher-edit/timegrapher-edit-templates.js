@@ -1,4 +1,4 @@
-import {timegrapherPositions} from "../../utilities/timgrapher.js";
+import {timegrapherPositions} from "../../utilities/timegrapher.js";
 
 const makeHtml = (component) => (
 `
@@ -17,7 +17,7 @@ const makeHtml = (component) => (
 	<br/>
 	<div class="form-input">
 		<label for="note">Note</label>
-		<textarea name="note"></textarea>
+		<textarea name="note">${component.timegrapherResults.note}</textarea>
 	</div>
 	<div class="form-controls">
 		<a href="javascript:history.back();" class="button negative">

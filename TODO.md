@@ -1,3 +1,6 @@
+- Buttons with only icons need aria-label
+- Container queries in place of namedsize
+- Views go home if necessary data is missing, e.g. #/watches/nope
 - "ResizeObserver loop completed with undelivered notifications."
 - User options page
 	- "Room for error"

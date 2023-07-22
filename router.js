@@ -145,7 +145,7 @@ router
 	router.query = formatQuery(query);
 	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/timegrapher-view.html`);
-		GA.view(`/timegrapher/:watchId`, `Timgrapher View`);
+		GA.view(`/timegrapher/:watchId`, `Timegrapher View`);
 	} else {
 		router.navigate(`/login`);
 	}

@@ -38,7 +38,7 @@ const makeHtml = (component) => (
 <hr/>
 
 <form>
-	<h2>Timgrapher Features</h2>
+	<h2>Timegrapher Features</h2>
 	<p>Do you have a timing machine (timegrapher)? You can choose to show or hide timegrapher features.</p>
 	<div class="form-input">
 		<label class="check">
