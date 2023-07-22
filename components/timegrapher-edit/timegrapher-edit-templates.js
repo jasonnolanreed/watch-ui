@@ -44,15 +44,15 @@ const renderFields = component => {
 		html += `<input type="number" name="${position.id}Rate" maxlength="200" step="0.1" value="${component.timegrapherResults[position.id + 'Rate']}">`;
 		html += `<small>Rate (s/d)</small>`;
 		html += `</div>`;
-		
-		html += `<div class="form-input">`;
-		html += `<input type="number" name="${position.id}BeatError" maxlength="200" min=0" step="0.1" value="${component.timegrapherResults[position.id + 'BeatError']}">`;
-		html += `<small>Beat Error (ms)</small>`;
-		html += `</div>`;
 
 		html += `<div class="form-input">`;
 		html += `<input type="number" name="${position.id}Amplitude" maxlength="200" min="0" step="0.1" value="${component.timegrapherResults[position.id + 'Amplitude']}">`;
 		html += `<small>Amplitude (&deg;)</small>`;
+		html += `</div>`;
+
+		html += `<div class="form-input">`;
+		html += `<input type="number" name="${position.id}BeatError" maxlength="200" min=0" step="0.1" value="${component.timegrapherResults[position.id + 'BeatError']}">`;
+		html += `<small>Beat Error (ms)</small>`;
 		html += `</div>`;
 
 		html += `</div>`;
