@@ -16,10 +16,6 @@ export class WatchMeasure extends GWBWElement {
 			{target: `.decrease-quarter`, handler: this.decreaseQuarter},
 			{target: `.now`, handler: this.addMeasure}
 		]);
-		this.setNamedSizes([
-			{name: `small`, width: 1},
-			{name: `large`, width: 600}
-		]);
 	}
 
 	connectedCallback() {

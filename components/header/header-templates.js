@@ -6,6 +6,8 @@ const makeCss = (component) => (
 header {
 	padding: 2em 2em 1em 2em;
 	background-color: var(--silver);
+	container-type: inline-size;
+	container-name: cq-header;
 }
 
 picture {
@@ -15,15 +17,11 @@ picture {
 	margin: 0 auto;
 }
 
-:host(:not([namedsize])) picture {
-	display: none;
-}
-
-:host([namedsize=medium]) picture,
-:host([namedsize=large]) picture,
-:host([namedsize=huge]) picture {
-	width: 80%;
-	max-width: 500px;
+@container cq-header (min-width: 900px) {
+	picture {
+		width: 80%;
+		max-width: 500px;
+	}
 }
 </style>
 `

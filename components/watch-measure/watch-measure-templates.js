@@ -50,6 +50,11 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
+:host {
+	container-type: inline-size;
+	container-name: cq-watch-measure;
+}
+
 .new-session {
 	font-size: 1.2rem;
 	font-weight: bold;
@@ -78,17 +83,19 @@ const makeCss = (component) => (
 	min-width: 10em;
 }
 
-:host([namedsize=small]) .form-controls {
-	display: flex;
-}
+@container cq-watch-measure (width < 500px) {
+	.form-controls {
+		display: flex;
+	}
 
-:host([namedsize=small]) .form-controls .button {
-	font-size: 1.2em;
-	padding: 0.8em 1em;
-}
+	.form-controls .button {
+		font-size: 1.2em;
+		padding: 0.8em 1em;
+	}
 
-:host([namedsize=small]) .now {
-	width: 100%;
+	.now {
+		width: 100%;
+	}
 }
 </style>
 `

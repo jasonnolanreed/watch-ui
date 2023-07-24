@@ -9,7 +9,6 @@ export class Header extends GWBWElement {
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.setNamedSizes(null);
 		this.render();
 	}
 
