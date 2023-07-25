@@ -78,6 +78,7 @@ tr.averages {
 
 tr.averages td {
 	border-top: 1px solid var(--medium-gray);
+	font-weight: bold;
 }
 
 td.good {
