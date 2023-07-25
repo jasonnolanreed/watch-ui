@@ -13,6 +13,18 @@ if (!component.timegrapherResultsData) {
 			<th>Beat Error</th>
 		</tr>
 		${renderRows(component)}
+		<tr class="averages">
+			<td>Average</td>
+			<td class="${getGoodBadClass(component, component.averages.rate)}">
+				${component.averages.rate > 0 ? '+' : ''}${typeof component.averages.rate === "number" ? component.averages.rate + 's/d' : '&mdash;'}
+			</td>
+			<td>
+				${typeof component.averages.amplitude === "number" ? component.averages.amplitude + '&deg;' : '&mdash;'}
+			</td>
+			<td>
+				${typeof component.averages.beatError === "number" ? component.averages.beatError + 'ms' : '&mdash;'}
+			</td>
+		</tr>
 	</table>
 	`;
 }
@@ -58,6 +70,14 @@ const makeCss = (component) => (
 
 table {
 	margin: 2rem 0;
+}
+
+tr.averages {
+	background-color: var(--gray);
+}
+
+tr.averages td {
+	border-top: 1px solid var(--medium-gray);
 }
 
 td.good {

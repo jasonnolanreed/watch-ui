@@ -1,4 +1,6 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {roundToOneDecimal} from '../../utilities/number.js';
+import {timegrapherPositions} from '../../utilities/timegrapher.js';
 
 import {makeTemplate} from './timegrapher-table-templates.js';
 
@@ -6,6 +8,11 @@ export class TimegrapherTable extends GWBWElement {
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
+		this.averages = {
+			rate: ``,
+			amplitude: ``,
+			beatError: ``
+		};
 	}
 
 	static get observedAttributes() { return [`watch`, `timegrapherresults`]; }
@@ -24,9 +31,34 @@ export class TimegrapherTable extends GWBWElement {
 		if (name === `timegrapherresults` && newValue !== oldValue) {
 			if (this.timegrapherresults !== "undefined") {
 				this.timegrapherResultsData = JSON.parse(decodeURI(this.timegrapherresults));
+				this.setAverages();
 			}
 			this.render();
 		}
+	}
+
+	setAverages() {
+		let rates = [];
+		let amplitudes = [];
+		let beatErrors = [];
+		
+		timegrapherPositions.forEach(position => {
+			if (this.timegrapherResultsData[position.id + "Rate"]) {
+				rates.push(Number(this.timegrapherResultsData[position.id + "Rate"]));
+			}
+			if (this.timegrapherResultsData[position.id + "BeatError"]) {
+				beatErrors.push(Number(this.timegrapherResultsData[position.id + "BeatError"]));
+			}
+			if (this.timegrapherResultsData[position.id + "Amplitude"]) {
+				amplitudes.push(Number(this.timegrapherResultsData[position.id + "Amplitude"]));
+			}
+		});
+		
+		this.averages = {
+			rate: roundToOneDecimal(rates.reduce((accumulator, thisValue) => accumulator + thisValue) / rates.length),
+			amplitude: Math.round(amplitudes.reduce((accumulator, thisValue) => accumulator + thisValue) / amplitudes.length),
+			beatError: roundToOneDecimal(beatErrors.reduce((accumulator, thisValue) => accumulator + thisValue) / beatErrors.length),
+		};
 	}
 
 	connectedCallback() {
