@@ -72,12 +72,9 @@ table {
 	margin: 2rem 0;
 }
 
-tr.averages {
-	background-color: var(--gray);
-}
-
 tr.averages td {
-	border-top: 1px solid var(--medium-gray);
+	background-color: #fff;
+	border-top: 4px solid var(--gray);
 	font-weight: bold;
 }
 
