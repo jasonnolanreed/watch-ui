@@ -1,5 +1,6 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {Difference, Format} from '../../utilities/date-time.js';
+import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
 import {positionsMap} from '../../utilities/position.js';
 import {Timing} from '../../utilities/timing.js';
@@ -248,7 +249,8 @@ export class DeviationGraph extends GWBWElement {
 			const endMeasure = measuresData[point.dataIndex];
 			if (!startMeasure || !endMeasure) { return; }
 			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
-			return `${positionsMap[endMeasure.position].label}: ${rate > 0 ? '+' : ''}${rate} seconds/day`;
+			const deviation = roundToOneDecimal(getMomentDiffFromMeasure(endMeasure))
+			return `${positionsMap[endMeasure.position].label}: ${rate > 0 ? '+' : ''}${rate} seconds/day${'\n'}Deviation: ${deviation < 0 ? deviation : '+' + deviation}s`;
 		}
 	}
 }
