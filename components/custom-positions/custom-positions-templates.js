@@ -1,7 +1,7 @@
 const makeHtml = (component) => (
 `
 <div class="page-title">
-	<gwbw-icon name="border_color"></gwbw-icon>
+	<gwbw-icon name="edit"></gwbw-icon>
 	<h1>Custom Positions</h1>
 </div>
 

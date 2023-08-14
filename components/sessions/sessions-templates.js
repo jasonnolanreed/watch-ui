@@ -142,7 +142,7 @@ const showMeasures = component => {
 
 const showPositionIcon = measure => {
 	if (measure.customPositionId) {
-		return `<gwbw-icon name="border_color"></gwbw-icon>`;
+		return `<gwbw-icon name="edit"></gwbw-icon>`;
 	} else {
 		return `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
 	}

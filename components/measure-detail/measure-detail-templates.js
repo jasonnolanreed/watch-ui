@@ -61,7 +61,7 @@ const showPositionsRadios = component => {
 		`
 		<label class="check">
 			<input class="custom" type="radio" name="position" value="customid:${customPosition._id}" ${component.measure.customPositionId === customPosition._id ? `checked` : ``}>
-			<gwbw-icon name="border_color"></gwbw-icon> ${customPosition.name}
+			<gwbw-icon name="edit"></gwbw-icon> ${customPosition.name}
 		</label>
 		<br/>
 		`;

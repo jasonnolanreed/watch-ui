@@ -11,5 +11,5 @@ export const positionsMap = {
 };
 
 export const getIconNameForPosition = position => {
-	return positionsMap[position] ? positionsMap[position].icon : positionsMap.unspecified.icon;
+	return positionsMap[position]?.icon || `edit`;
 };
