@@ -127,7 +127,7 @@ const showMeasures = component => {
 					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
 					${measure.note.length ? `title="${measure.note}"` : ``}
 				>
-					<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>
+					${showPositionIcon(measure)}
 				</a>
 				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
 					<gwbw-icon name="delete"></gwbw-icon>
@@ -138,6 +138,14 @@ const showMeasures = component => {
 	});
 	html += `</ul>`;
 	return html;
+};
+
+const showPositionIcon = measure => {
+	if (measure.customPositionId) {
+		return `<gwbw-icon name="border_color"></gwbw-icon>`;
+	} else {
+		return `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
+	}
 };
 
 const showSortControls = component => {

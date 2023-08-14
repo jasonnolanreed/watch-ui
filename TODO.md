@@ -1,5 +1,7 @@
-- Buttons with only icons need aria-label
+- Click on deviation graph point to view interval for segment
+- Buttons with only icons need [title] or [aria-label]
 - Views go home if necessary data is missing, e.g. #/watches/nope
+	- Error message up top
 - "ResizeObserver loop completed with undelivered notifications."
 - User options page
 	- "Room for error"
@@ -10,7 +12,6 @@
 - Home page
 - Keyboard shortcuts (abstracted in gwbw-element) (with little ui hints)
 - New optional extra data during add measure
-	- "Other" position, user input value
 	- Temperature
 - Request throttling (https://github.com/nfriedly/express-rate-limit)
 - Add more data to analytics events (userid, watchid, measureid, etc)

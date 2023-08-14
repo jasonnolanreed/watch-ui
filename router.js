@@ -168,6 +168,14 @@ router
 		router.navigate(`/login`);
 	}
 })
+.on(`/custom-positions`, async (params, query) => {
+	if (await AuthApi.isLoggedIn()) {
+		LoadView.layout($view, layouts.main, `views/custom-positions-view.html`);
+		GA.view(`/custom-positions`, `Custom Positions`);
+	} else {
+		router.navigate(`/login`);
+	}
+})
 .on(`/stats`, async (params, query) => {
 	if (await AuthApi.isLoggedIn()) {
 		LoadView.layout($view, layouts.main, `views/stats-view.html`);

@@ -16,6 +16,13 @@ const makeHtml = (component) => (
 	</button>
 </div>
 
+<div>
+	<h2>Custom Positions</h2>
+	<a href="/#/custom-positions">Manage custom preferences</a>
+</div>
+
+<hr/>
+
 <form>
 	<h2>Atomic Offset</h2>
 	<div class="form-input">

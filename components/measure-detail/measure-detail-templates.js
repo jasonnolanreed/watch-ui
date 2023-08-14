@@ -39,6 +39,7 @@ const makeHtml = (component) => (
 			Save Measure
 		</button>
 	</div>
+	<br/>
 </form>
 `
 );
@@ -49,12 +50,27 @@ const showPositionsRadios = component => {
 		html +=
 		`
 		<label class="check">
-			<input type="radio" name="position" value=${position} ${component.measure.position === position ? `checked` : ``}>
+			<input type="radio" name="position" value="${position}" ${component.measure.position === position ? `checked` : ``}>
 			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
 		</label>
 		<br/>
 		`;
 	}
+	for (const customPosition of component.customPositions) {
+		html +=
+		`
+		<label class="check">
+			<input class="custom" type="radio" name="position" value="customid:${customPosition._id}" ${component.measure.customPositionId === customPosition._id ? `checked` : ``}>
+			<gwbw-icon name="border_color"></gwbw-icon> ${customPosition.name}
+		</label>
+		<br/>
+		`;
+	}
+	html += `
+	<br/>
+	<a href="/#/custom-positions">Manage custom positions</a>
+	<br/>
+	`;
 	return html;
 };
 

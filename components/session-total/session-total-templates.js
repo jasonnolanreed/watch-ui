@@ -1,7 +1,7 @@
 import {getSessionTotalData} from "../../utilities/measure.js";
 
 const makeHtml = (component) => {
-	if (!component.sessionData || !component.sessionData.length) { return ``; }
+	if (!component?.sessionData?.length || component.sessionData.length < 2) { return ``; }
 	const sessionTotalData = getSessionTotalData(component.sessionData);
 	const totalClasses = getTotalClasses(component, sessionTotalData);
 	const displayRate = (sessionTotalData.averageRate !== 0) ?

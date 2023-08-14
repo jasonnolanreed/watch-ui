@@ -71,7 +71,7 @@ export class Sessions extends GWBWElement {
 
 	async removeMeasure(event, target) {
 		const measureId = target.getAttribute(`measure-id`);
-		const confirmDelete = confirm(`Do you really want to delete this measure?`);
+		const confirmDelete = window.confirm(`Do you really want to delete this measure?`);
 		if (!confirmDelete) { return; }
 		this.startWorking();
 		const didRemove = await MeasureApi.removeMeasure({measureId});

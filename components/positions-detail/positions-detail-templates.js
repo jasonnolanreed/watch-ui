@@ -72,7 +72,7 @@ const showPositions = component => {
 		<div class="position">
 			<em>
 				<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
-				<span>${positionsMap[positionName].label}:</span>
+				<span>${positionsMap[positionName]?.label || positionName}:</span>
 			</em>
 			<span
 				class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}"
@@ -106,9 +106,10 @@ const showPositionsGraph = component => {
 	return `
 	<gwbw-positions-graph
 		positions="${encodeURI(JSON.stringify(component.positions))}"
+		custompositions="${encodeURI(JSON.stringify(component.customPositions))}"
 		goodtoleranceplus="${component.goodtoleranceplus}"
 		goodtoleranceminus="${component.goodtoleranceminus}"
-		sortedpositionnames="${component.sortedPositionNames.join(',')}"
+		sortedpositionnames="${component.sortedPositionNames.join(';;;')}"
 	></gwbw-positions-graph>
 	<br/><br/>
 	`;

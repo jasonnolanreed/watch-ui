@@ -56,7 +56,10 @@ export class DeviationGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.measuresData && this.watchData && this._hasChartJS) { this.initChart(); }
+			if (
+				this.measuresData && this.measuresData.length > 1 &&
+				this.watchData && this._hasChartJS
+			) { this.initChart(); }
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}

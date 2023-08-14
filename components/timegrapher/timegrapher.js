@@ -65,7 +65,7 @@ export class Timegrapher extends GWBWElement {
 
 	async deleteResults(event, target) {
 		const resultId = this.currentResults._id;
-		const confirmDelete = confirm(`Do you really want to delete this timegrapher result?`);
+		const confirmDelete = window.confirm(`Do you really want to delete this timegrapher result?`);
 		if (!confirmDelete) { return; }
 		this.startWorking();
 		const deleteSuccessful = await TimegrapherApi.delete(resultId);

@@ -49,7 +49,7 @@ export class Watches extends GWBWElement {
 
 	async onDelete(event, target) {
 		const watchId = target.getAttribute(`watch-id`);
-		const confirmDelete = confirm(`Do you really want to delete this watch and all its data?`);
+		const confirmDelete = window.confirm(`Do you really want to delete this watch and all its data?`);
 		if (!confirmDelete) { return; }
 		this.startWorking();
 		const deleteSuccessful = await WatchApi.delete({watchId});

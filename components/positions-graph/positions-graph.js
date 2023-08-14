@@ -23,9 +23,11 @@ export class PositionsGraph extends GWBWElement {
 		});
 	}
 
-	static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
+	static get observedAttributes() { return [`positions`, `custompositions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
 	get positions() { return this.getAttribute(`positions`); }
 	set positions(stringifiedPositions) { this.setAttribute(`positions`, stringifiedPositions); }
+	get custompositions() { return this.getAttribute(`custompositions`); }
+	set custompositions(stringifiedCustomPositions) { this.setAttribute(`custompositions`, stringifiedCustomPositions); }
 	get goodtoleranceplus() { return this.getAttribute(`goodtoleranceplus`); }
 	set goodtolerance(goodTolerancePlus) { this.setAttribute(`goodtoleranceplus`, goodTolerancePlus); }
 	get goodtoleranceminus() { return this.getAttribute(`goodtoleranceminus`); }
@@ -38,6 +40,10 @@ export class PositionsGraph extends GWBWElement {
 			this.positionsData = JSON.parse(decodeURI(this.positions));
 			this.render();
 		}
+		if (name === `custompositions` && newValue !== oldValue) {
+			this.customPositionsData = JSON.parse(decodeURI(this.custompositions));
+			this.render();
+		}
 		if (name === `goodtoleranceplus` && newValue !== oldValue) {
 			this.goodTolerancePlusNumber = +this.goodtoleranceplus;
 			this.render();
@@ -47,7 +53,7 @@ export class PositionsGraph extends GWBWElement {
 			this.render();
 		}
 		if (name === `sortedpositionnames` && newValue !== oldValue) {
-			this.sortedPositionNamesArray = newValue.split(`,`);
+			this.sortedPositionNamesArray = newValue.split(`;;;`);
 			this.render();
 		}
 	}
@@ -63,7 +69,9 @@ export class PositionsGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) { this.initChart(); }
+			if (this.positionsData && this.customPositionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) {
+				this.initChart();
+			}
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -174,26 +182,18 @@ export class PositionsGraph extends GWBWElement {
 
 		// get list of used positions in order of positionsMap
 		let sortedPositionsList = [];
-		if (this.sortedPositionNamesArray) {
-			this.sortedPositionNamesArray.map(positionName => {
-				if (positionsData[positionName]) {
-					sortedPositionsList.push(positionName);
-				}
-			});
-		} else {
-			Object.keys(positionsMap).map(positionKey => {
-				if (positionsData[positionKey]) {
-					sortedPositionsList.push(positionKey);
-				}
-			});
-		}
+		this.sortedPositionNamesArray.map(positionName => {
+			if (positionsData[positionName]) {
+				sortedPositionsList.push(positionName);
+			}
+		});
 
 		let positionLabels = [];
 		let rates = [];
 		let colors = [];
 		sortedPositionsList.forEach(positionKey => {
 			const position = positionsData[positionKey];
-			positionLabels.push(positionsMap[position.name].label);
+			positionLabels.push(positionsMap[position.name]?.label || positionKey);
 			rates.push(position.rate);
 			const isGood = position.rate <= this.goodTolerancePlusNumber && position.rate >= -1 * this.goodToleranceMinusNumber;
 			colors.push(isGood ? `${green}ee` : `${red}ee`);

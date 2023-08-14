@@ -1,4 +1,5 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
 import {PreferenceApi} from '../../api-helpers/preference.js';
 import {Difference} from '../../utilities/date-time.js';
@@ -71,11 +72,13 @@ export class PositionsDetail extends GWBWElement {
 
 		Promise.all([
 			MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid),
-			PreferenceApi.getPreferences()
+			PreferenceApi.getPreferences(),
+			CustomPositionsApi.getCustomPositions(),
 		])
 		.then(responses => {
 			const measures = responses[0];
 			this.preferences = responses[1];
+			this.customPositions = responses[2];
 			this.parsePositions(measures);
 			this.render();
 		})
@@ -89,6 +92,9 @@ export class PositionsDetail extends GWBWElement {
 			if (!previousMeasure) {
 				previousMeasure = measure;
 				continue;
+			}
+			if (measure.customPositionId) {
+				measure.position = this.getCustomPositionNameById(measure.customPositionId);
 			}
 			if (!this.positions[measure.position]) {
 				this.positions[measure.position] = {name: measure.position, days: 0, secondsDrift: 0, positionCount: 0};
@@ -110,7 +116,10 @@ export class PositionsDetail extends GWBWElement {
 	}
 
 	getSortedPositionNames() {
-		const positionNames = Object.keys(positionsMap);
+		let positionNames = Object.keys(positionsMap);
+		this.customPositions.forEach(customPosition => {
+			positionNames.push(customPosition.name);
+		});
 		if (this.preferences.positionsSort === `default`) {
 			return positionNames;
 		}
@@ -129,6 +138,17 @@ export class PositionsDetail extends GWBWElement {
 		this.preferences.positionsSort = newSortValue;
 		this.render();
 		PreferenceApi.updatePreferences({positionsSort: newSortValue});
+	}
+
+	getCustomPositionNameById(customPositionId) {
+		let positionName = `[name not found]`;
+		for (const customPosition of this.customPositions) {
+			if (customPositionId === customPosition._id) {
+				positionName = customPosition.name;
+				break;
+			}
+		}
+		return positionName;
 	}
 }
 

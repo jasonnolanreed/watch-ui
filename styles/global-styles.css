@@ -130,6 +130,10 @@ hr {
 hr.compact {
 	margin: 1rem 0;
 }
+hr.minimal {
+	margin: 0.25rem;
+	opacity: 0.25;
+}
 
 .block {
 	display: block;

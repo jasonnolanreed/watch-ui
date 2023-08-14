@@ -1,6 +1,7 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
 import {getFormData} from '../../utilities/form.js';
 
@@ -28,9 +29,11 @@ export class MeasureDetail extends GWBWElement {
 				targetMoment: router.params[`targetMoment`],
 				firstOfSession: router.params[`firstOfSession`] === `true`,
 				note: ``,
-				position: `unspecified`
+				position: `unspecified`,
+				customPositionId: null,
 			};
 		}
+		this.customPositions = await CustomPositionsApi.getCustomPositions();
 		this.bindShadowForm();
 		this.render();
 	}
@@ -59,8 +62,15 @@ export class MeasureDetail extends GWBWElement {
 
 	async onSubmit(event, target) {
 		this.startWorking();
+		const formData = getFormData(target);
+		if (formData.position.startsWith(`customid:`)) {
+			formData.customPositionId = formData.position.replace(`customid:`, ``);
+			formData.position = ``;
+		} else {
+			formData.customPositionId = ``;
+		}
 		if (this.mode === `view`) {
-			const didSave = await MeasureApi.updateMeasure(this.measure._id, getFormData(target));
+			const didSave = await MeasureApi.updateMeasure(this.measure._id, formData);
 			if (didSave) {
 				GA.event(`measure`, `measure update success`);
 				history.back();
@@ -73,7 +83,7 @@ export class MeasureDetail extends GWBWElement {
 			}
 			this.stopWorking();
 		} else if (this.mode === `add`) {
-			const didAdd = await MeasureApi.addMeasure(getFormData(target));
+			const didAdd = await MeasureApi.addMeasure(formData);
 			if (didAdd) {
 				GA.event(`measure`, `measure add success`);
 				this.goBackToSession();
