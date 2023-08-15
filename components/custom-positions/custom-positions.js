@@ -42,30 +42,27 @@ export class CustomPositions extends GWBWElement {
 
 		if (this.handleDuplicateName(newName)) { return; }
 
-		CustomPositionsApi.addPosition({name: newName}).then(response => {
-			this.getData();
-		});
+		await CustomPositionsApi.addPosition({name: newName});
+		this.getData();
 	}
 
-	editPosition(event, target) {
+	async editPosition(event, target) {
 		const currentName = target.getAttribute("position-name");
 		const positionId = target.getAttribute("position-id");
 		const newName = window.prompt("New Custom Position Name", currentName) || "Custom Position";
 
 		if (this.handleDuplicateName(newName)) { return; }
 
-		CustomPositionsApi.updateCustomPosition(positionId, {name: newName}).then(response => {
-			this.getData();
-		});
+		await CustomPositionsApi.updateCustomPosition(positionId, {name: newName});
+		this.getData();
 	}
 
-	deletePosition(event, target) {
+	async deletePosition(event, target) {
 		const didConfirm = window.confirm(`Do you really want to delete this position?`);
 		if (!didConfirm) { return; }
 		const positionId = target.getAttribute("position-id");
-		CustomPositionsApi.deleteCustomPosition(positionId, {}).then(response => {
-			this.getData();
-		});
+		await CustomPositionsApi.deleteCustomPosition(positionId, {});
+		this.getData();
 	}
 
 	handleDuplicateName(proposedName = "") {

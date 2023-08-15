@@ -1,4 +1,5 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {Difference, Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
@@ -20,8 +21,9 @@ export class DeviationGraph extends GWBWElement {
 		this.graph = null;
 
 		this.fetchRequiredScripts([`../../vendor/chart.js`])
-		.then(_ => {
+		.then(async (_) => {
 			this._hasChartJS = true;
+			this.customPositions = await CustomPositionsApi.getCustomPositions();
 			this.render();
 		});
 	}
@@ -58,7 +60,7 @@ export class DeviationGraph extends GWBWElement {
 			this.innerHTML = makeTemplate(this);
 			if (
 				this.measuresData && this.measuresData.length > 1 &&
-				this.watchData && this._hasChartJS
+				this.watchData && this._hasChartJS && this.customPositions
 			) { this.initChart(); }
 		} catch(error) {
 			console.error(`Error rendering`, error);
@@ -67,7 +69,7 @@ export class DeviationGraph extends GWBWElement {
 
 	initChart() {
 		this.removeAttribute(`loading`);
-		const {measuresData, watchData} = this;
+		const {measuresData, watchData, customPositions} = this;
 		const cssStyles = window.getComputedStyle(document.body);
 		const blue = cssStyles.getPropertyValue(`--blue`);
 		const lightBlue = cssStyles.getPropertyValue(`--light-blue`);
@@ -252,8 +254,17 @@ export class DeviationGraph extends GWBWElement {
 			const endMeasure = measuresData[point.dataIndex];
 			if (!startMeasure || !endMeasure) { return; }
 			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
-			const deviation = roundToOneDecimal(getMomentDiffFromMeasure(endMeasure))
-			return `${positionsMap[endMeasure.position].label}: ${rate > 0 ? '+' : ''}${rate} seconds/day${'\n'}Deviation: ${deviation < 0 ? deviation : '+' + deviation}s`;
+			const deviation = roundToOneDecimal(getMomentDiffFromMeasure(endMeasure));
+
+			return `${getPositionName(endMeasure)}: ${rate > 0 ? '+' : ''}${rate} seconds/day${'\n'}Deviation: ${deviation < 0 ? deviation : '+' + deviation}s`;
+		}
+
+		function getPositionName(measure) {
+			if (!measure.customPositionId) {
+				return positionsMap[measure.position].label;
+			} else {
+				return customPositions.find(thisPosition => measure.customPositionId === thisPosition._id).name;
+			}
 		}
 	}
 }

@@ -17,7 +17,7 @@ export class CustomPositionsApi {
 			fetch(`${apiHost}custom-position`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
-			.then(response => resolve(response))
+			.then(response => resolve(response || []))
 			.catch(_ => resolve({}));
 		});
 	}
