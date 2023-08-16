@@ -10,16 +10,9 @@ export class PositionsDistributionGraph extends GWBWElement {
 		this.setAttribute(`loading`, true);
 		this.render(); // render immmediately for placeholder UI
 		this.initChart = this.initChart.bind(this);
-
 		this._hasChartJS = false;
 		this.positionsData = null;
 		this.graph = null;
-
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
-		.then(_ => {
-			this._hasChartJS = true;
-			this.render();
-		});
 	}
 
 	static get observedAttributes() { return [`positions`]; }
@@ -33,8 +26,11 @@ export class PositionsDistributionGraph extends GWBWElement {
 		}
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		super.connectedCallback();
+		await this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this._hasChartJS = true;
+		this.render();
 	}
 
 	disconnectedCallback() {

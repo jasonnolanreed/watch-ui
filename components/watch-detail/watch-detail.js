@@ -31,24 +31,22 @@ export class WatchDetail extends GWBWElement {
 		}
 	}
 
-	getData() {
-		Promise.all([
+	async getData() {
+		const responses = await Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
 			MeasureApi.getMeasures(router.params[`watchId`]),
 			TimegrapherApi.getTimegrapherResults(router.params[`watchId`])
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.measures = responses[1];
-			this.timegrapherResults = responses[2];
+		]);
 
-			this.sessions = parseSessionsFromMeasures(this.measures);
-			this.latestSession = this.sessions[this.sessions.length - 1];
-			this.latestTimegrapherResults = this.timegrapherResults[this.timegrapherResults.length - 1];
+		this.watch = responses[0];
+		this.measures = responses[1];
+		this.timegrapherResults = responses[2];
 
-			this.render();
-		})
-		.catch(error => null);
+		this.sessions = parseSessionsFromMeasures(this.measures);
+		this.latestSession = this.sessions[this.sessions.length - 1];
+		this.latestTimegrapherResults = this.timegrapherResults[this.timegrapherResults.length - 1];
+
+		this.render();
 	}
 }
 

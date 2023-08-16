@@ -3,7 +3,7 @@ import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {Difference, Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
-import {positionsMap} from '../../utilities/position.js';
+import {getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
 import {Timing} from '../../utilities/timing.js';
 import {makeTemplate} from './deviation-graph-templates.js';
 
@@ -14,18 +14,10 @@ export class DeviationGraph extends GWBWElement {
 		this.setAttribute(`loading`, true);
 		this.render(); // render immmediately for placeholder UI
 		this.initChart = this.initChart.bind(this);
-
 		this._hasChartJS = false;
 		this.measuresData = null;
 		this.watchData = null;
 		this.graph = null;
-
-		this.fetchRequiredScripts([`../../vendor/chart.js`])
-		.then(async (_) => {
-			this._hasChartJS = true;
-			this.customPositions = await CustomPositionsApi.getCustomPositions();
-			this.render();
-		});
 	}
 
 	static get observedAttributes() { return [`measures`, `watch`]; }
@@ -47,8 +39,12 @@ export class DeviationGraph extends GWBWElement {
 		}
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		super.connectedCallback();
+		await this.fetchRequiredScripts([`../../vendor/chart.js`])
+		this._hasChartJS = true;
+		this.customPositions = await CustomPositionsApi.getCustomPositions();
+		this.render();
 	}
 
 	disconnectedCallback() {
@@ -256,15 +252,7 @@ export class DeviationGraph extends GWBWElement {
 			const rate = -1 * Timing.rate(startMeasure.moment, startMeasure.targetMoment, endMeasure.moment, endMeasure.targetMoment);
 			const deviation = roundToOneDecimal(getMomentDiffFromMeasure(endMeasure));
 
-			return `${getPositionName(endMeasure)}: ${rate > 0 ? '+' : ''}${rate} seconds/day${'\n'}Deviation: ${deviation < 0 ? deviation : '+' + deviation}s`;
-		}
-
-		function getPositionName(measure) {
-			if (!measure.customPositionId) {
-				return positionsMap[measure.position].label;
-			} else {
-				return customPositions.find(thisPosition => measure.customPositionId === thisPosition._id).name;
-			}
+			return `${getPositionNameForMeasure(endMeasure, customPositions)}: ${rate > 0 ? '+' : ''}${rate} seconds/day${'\n'}Deviation: ${deviation < 0 ? deviation : '+' + deviation}s`;
 		}
 	}
 }

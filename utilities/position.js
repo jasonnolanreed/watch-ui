@@ -13,3 +13,11 @@ export const positionsMap = {
 export const getIconNameForPosition = position => {
 	return positionsMap[position]?.icon || `edit`;
 };
+
+export const getPositionNameForMeasure = (measure, customPositions) => {
+	if (measure.customPositionId && customPositions?.length) {
+		return customPositions.find(thisPosition => measure.customPositionId === thisPosition._id)?.name || ``;
+	} else {
+		return positionsMap[measure.position]?.label || ``;
+	}
+}

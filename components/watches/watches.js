@@ -36,15 +36,13 @@ export class Watches extends GWBWElement {
 	}
 
 	async getData() {
-		Promise.all([
+		const data = await Promise.all([
 			WatchApi.getWatches(),
 			PreferenceApi.getPreferences()
-		])
-		.then(data => {
-			this.watches = data[0];
-			this.preferences = data[1];
-			this.render();
-		});
+		]);
+		this.watches = data[0];
+		this.preferences = data[1];
+		this.render();
 	}
 
 	async onDelete(event, target) {

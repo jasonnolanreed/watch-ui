@@ -4,7 +4,7 @@ import {MeasureApi} from '../../api-helpers/measure.js';
 import {PreferenceApi} from '../../api-helpers/preference.js';
 import {Difference} from '../../utilities/date-time.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
-import {positionsMap} from '../../utilities/position.js';
+import {getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
 
 import {makeTemplate} from './positions-detail-templates.js';
 
@@ -70,19 +70,16 @@ export class PositionsDetail extends GWBWElement {
 	async getData() {
 		if (!this.hasSet.watch || !this.hasSet.start || !this.hasSet.end || !this.hasSet.tolerancePlus || !this.hasSet.toleranceMinus) { return; }
 
-		Promise.all([
+		const responses = await Promise.all([
 			MeasureApi.getMeasuresByRange(this.watchid, this.startmeasureid, this.endmeasureid),
 			PreferenceApi.getPreferences(),
 			CustomPositionsApi.getCustomPositions(),
-		])
-		.then(responses => {
-			const measures = responses[0];
-			this.preferences = responses[1];
-			this.customPositions = responses[2];
-			this.parsePositions(measures);
-			this.render();
-		})
-		.catch(error => null);
+		]);
+		const measures = responses[0];
+		this.preferences = responses[1];
+		this.customPositions = responses[2];
+		this.parsePositions(measures);
+		this.render();
 	}
 	
 	parsePositions(measures) {
@@ -94,7 +91,7 @@ export class PositionsDetail extends GWBWElement {
 				continue;
 			}
 			if (measure.customPositionId) {
-				measure.position = this.getCustomPositionNameById(measure.customPositionId);
+				measure.position = getPositionNameForMeasure(measure, this.customPositions);
 			}
 			if (!this.positions[measure.position]) {
 				this.positions[measure.position] = {name: measure.position, days: 0, secondsDrift: 0, positionCount: 0};
@@ -138,17 +135,6 @@ export class PositionsDetail extends GWBWElement {
 		this.preferences.positionsSort = newSortValue;
 		this.render();
 		PreferenceApi.updatePreferences({positionsSort: newSortValue});
-	}
-
-	getCustomPositionNameById(customPositionId) {
-		let positionName = `[name not found]`;
-		for (const customPosition of this.customPositions) {
-			if (customPositionId === customPosition._id) {
-				positionName = customPosition.name;
-				break;
-			}
-		}
-		return positionName;
 	}
 }
 

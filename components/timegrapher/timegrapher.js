@@ -27,22 +27,19 @@ export class Timegrapher extends GWBWElement {
 		super.disconnectedCallback();
 	}
 
-	getData() {
-		Promise.all([
+	async getData() {
+		const responses = await Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
 			TimegrapherApi.getTimegrapherResults(router.params[`watchId`]),
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.timegrapherResults = responses[1];
-			this.currentResultsIndex = this.timegrapherResults.length - 1;
-			if (router.query && router.query.resultsIndex && router.query.resultsIndex > -1 && router.query.resultsIndex < this.timegrapherResults.length) {
-				this.currentResultsIndex = +router.query.resultsIndex;
-			}
-			this.currentResults = this.timegrapherResults[this.currentResultsIndex];
-			this.render();
-		})
-		.catch(error => null);
+		]);
+		this.watch = responses[0];
+		this.timegrapherResults = responses[1];
+		this.currentResultsIndex = this.timegrapherResults.length - 1;
+		if (router.query && router.query.resultsIndex && router.query.resultsIndex > -1 && router.query.resultsIndex < this.timegrapherResults.length) {
+			this.currentResultsIndex = +router.query.resultsIndex;
+		}
+		this.currentResults = this.timegrapherResults[this.currentResultsIndex];
+		this.render();
 	}
 
 	render() {

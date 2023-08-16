@@ -4,6 +4,7 @@ import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {MeasureApi} from '../../api-helpers/measure.js';
 import {PreferenceApi} from '../../api-helpers/preference.js';
+import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {parseSessionsFromMeasures} from '../../utilities/measure.js';
 
 import {makeTemplate} from './sessions-templates.js';
@@ -88,25 +89,24 @@ export class Sessions extends GWBWElement {
 		}
 	}
 
-	getData() {
-		Promise.all([
+	async getData() {
+		const responses = await Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
 			MeasureApi.getMeasures(router.params[`watchId`]),
-			PreferenceApi.getPreferences()
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.measures = responses[1];
-			this.preferences = responses[2];
-			this.sessions = parseSessionsFromMeasures(this.measures);
-			this.currentSessionIndex = this.sessions.length - 1;
-				if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
-					this.currentSessionIndex = +router.query.sessionIndex;
-				}
-			this.currentSession = this.sessions[this.currentSessionIndex];
-			this.render();
-		})
-		.catch(error => null);
+			PreferenceApi.getPreferences(),
+			CustomPositionsApi.getCustomPositions(),
+		]);
+		this.watch = responses[0];
+		this.measures = responses[1];
+		this.preferences = responses[2];
+		this.customPositions = responses[3];
+		this.sessions = parseSessionsFromMeasures(this.measures);
+		this.currentSessionIndex = this.sessions.length - 1;
+		if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
+			this.currentSessionIndex = +router.query.sessionIndex;
+		}
+		this.currentSession = this.sessions[this.currentSessionIndex];
+		this.render();
 	}
 
 	onChangeSort(event, target) {

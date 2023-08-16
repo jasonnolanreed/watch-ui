@@ -17,14 +17,20 @@ const makeHtml = (component) => (
 </div>
 
 <div>
-	<h2>Custom Positions</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="account_circle"></gwbw-icon>
+		<h2>Custom Positions</h2>
+	</div>
 	<a href="/#/custom-positions">Manage custom preferences</a>
 </div>
 
 <hr/>
 
 <form>
-	<h2>Atomic Offset</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="update"></gwbw-icon>
+		<h2>Atomic Offset</h2>
+	</div>
 	<div class="form-input">
 		<label for="atomicOffset">Offset</label>
 		<input type="number" id="atomicOffset" name="atomicOffset" step="any" value="${component.preferences.atomicOffset}"/>
@@ -45,13 +51,15 @@ const makeHtml = (component) => (
 <hr/>
 
 <form>
-	<h2>Timegrapher Features</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="precision_manufacturing"></gwbw-icon>
+		<h2>Timegrapher Features</h2>
+	</div>
 	<p>Do you have a timing machine (timegrapher)? You can choose to show or hide timegrapher features.</p>
 	<div class="form-input">
 		<label class="check">
 			<input type="checkbox" name="showTimegrapherFeatures" ${component.preferences.showTimegrapherFeatures ? `checked` : ``}>
 			<div class="timegrapher-feature-label">
-				<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 				Show timegrapher features
 			</div>
 		</label>
@@ -67,7 +75,10 @@ const makeHtml = (component) => (
 <hr/>
 
 <form>
-	<h2>Change Password</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="lock"></gwbw-icon>
+		<h2>Change Password</h2>
+	</div>
 	<div class="form-input">
 		<label for="currentPassword">Current Password</label>
 		<input type="password" id="currentPassword" name="currentPassword"/>
@@ -106,16 +117,6 @@ const makeCss = (component) => (
 
 [name="showTimegrapherFeatures"] + div {
 	font-weight: bold;
-}
-
-.timegrapher-feature-label {
-	display: flex;
-	align-items: center;
-	gap: 2px;
-}
-
-.timegrapher-feature-label gwbw-icon {
-	font-size: 1.75rem;
 }
 </style>
 `

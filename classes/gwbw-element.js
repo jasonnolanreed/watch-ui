@@ -41,7 +41,7 @@ export class GWBWElement extends HTMLElement {
 		this._clickEvents = clickEvents;
 	}
 
-	fetchRequiredScripts(requiredScriptSources) {
+	async fetchRequiredScripts(requiredScriptSources) {
 		return new Promise((resolve, reject) => {
 			let scriptsFetched = 0;
 			requiredScriptSources.forEach(src => {

@@ -74,16 +74,13 @@ export class WatchMeasure extends GWBWElement {
 	}
 
 	async getData() {
-		Promise.all([
+		const responses = await Promise.all([
 			WatchApi.getWatch(router.params[`watchId`]),
 			PreferenceApi.getPreferences(),
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.atomicOffset = responses[1].atomicOffset;
-			this.render();
-		})
-		.catch(error => null);
+		]);
+		this.watch = responses[0];
+		this.atomicOffset = responses[1].atomicOffset;
+		this.render();
 	}
 }
 

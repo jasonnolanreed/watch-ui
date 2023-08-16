@@ -23,15 +23,9 @@ export class TimegrapherAdd extends GWBWElement {
 		super.disconnectedCallback();
 	}
 
-	getData() {
-		Promise.all([
-			WatchApi.getWatch(router.params[`watchId`]),
-		])
-		.then(responses => {
-			this.watch = responses[0];
-			this.render();
-		})
-		.catch(error => null);
+	async getData() {
+		this.watch = await WatchApi.getWatch(router.params[`watchId`]);
+		this.render();
 	}
 
 	render() {

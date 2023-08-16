@@ -1,7 +1,7 @@
 import {Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
-import {getIconNameForPosition} from '../../utilities/position.js';
+import {getIconNameForPosition, getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
 
 const makeHtml = (component) => (
 `
@@ -125,7 +125,10 @@ const showMeasures = component => {
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
 				<a href="#/measure/${measure._id}"
 					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
-					${measure.note.length ? `title="${measure.note}"` : ``}
+					${measure.note.length ?
+					`title="${measure.note}"` :
+					`title="${getPositionNameForMeasure(measure, component?.customPositions)}"`
+					}
 				>
 					${showPositionIcon(measure)}
 				</a>
@@ -142,7 +145,7 @@ const showMeasures = component => {
 
 const showPositionIcon = measure => {
 	if (measure.customPositionId) {
-		return `<gwbw-icon name="edit"></gwbw-icon>`;
+		return `<gwbw-icon name="account_circle"></gwbw-icon>`;
 	} else {
 		return `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
 	}

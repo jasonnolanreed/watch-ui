@@ -9,18 +9,11 @@ export class PositionsGraph extends GWBWElement {
 		this.setAttribute(`loading`, true);
 		this.render(); // render immmediately for placeholder UI
 		this.initChart = this.initChart.bind(this);
-
 		this._hasChartJS = false;
 		this.positionsData = null;
 		this.goodTolerancePlusNumber = null;
 		this.goodToleranceMinusNumber = null;
 		this.graph = null;
-
-		this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
-		.then(_ => {
-			this._hasChartJS = true;
-			this.render();
-		});
 	}
 
 	static get observedAttributes() { return [`positions`, `custompositions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
@@ -58,8 +51,11 @@ export class PositionsGraph extends GWBWElement {
 		}
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		super.connectedCallback();
+		await this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
+		this._hasChartJS = true;
+		this.render();
 	}
 
 	disconnectedCallback() {

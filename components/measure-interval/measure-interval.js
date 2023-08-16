@@ -30,44 +30,40 @@ export class MeasureInterval extends GWBWElement {
 		}
 	}
 
-	getData() {
-		Promise.all([
+	async getData() {
+		const measures = await Promise.all([
 			MeasureApi.getMeasure(router.params[`measureOne`]),
 			MeasureApi.getMeasure(router.params[`measureTwo`])
-		])
-		.then(measures => {
-			const {watchId} = measures[0];
-			this.startMeasure = (measures[0].targetMoment < measures[1].targetMoment) ? measures[0] : measures[1];
-			this.endMeasure = (measures[0].targetMoment < measures[1].targetMoment) ? measures[1] : measures[0];
-			// These calls are chained since watchId isn't immediately available
-			return Promise.all([
-				WatchApi.getWatch(watchId),
-				MeasureApi.getMeasures(watchId)
-			]);
-		})
-		.then(data => {
-			this.watch = data[0];
-			this.allMeasures = data[1];
-			this.sessions = parseSessionsFromMeasures(this.allMeasures);
-			this.expandSessionLink = ``;
-			let matchingSession = null;
-			for (const thisSession of this.sessions) {
-				if (matchingSession) { break; }
-				for (const thisMeasure of thisSession) {
-					if (this.startMeasure.targetMoment === thisMeasure.targetMoment) {
-						matchingSession = thisSession;
-						if (
-							this.startMeasure.targetMoment !== thisSession[0].targetMoment ||
-							this.endMeasure.targetMoment !== thisSession[thisSession.length - 1].targetMoment
-						) {
-							this.expandSessionLink = `#/measure/interval/${thisSession[0]._id}/${thisSession[thisSession.length - 1]._id}`;
-						}
-						break;
+		]);
+		const {watchId} = measures[0];
+		this.startMeasure = (measures[0].targetMoment < measures[1].targetMoment) ? measures[0] : measures[1];
+		this.endMeasure = (measures[0].targetMoment < measures[1].targetMoment) ? measures[1] : measures[0];
+		// These calls are chained since watchId isn't immediately available
+		const otherData = await Promise.all([
+			WatchApi.getWatch(watchId),
+			MeasureApi.getMeasures(watchId)
+		]);
+		this.watch = otherData[0];
+		this.allMeasures = otherData[1];
+		this.sessions = parseSessionsFromMeasures(this.allMeasures);
+		this.expandSessionLink = ``;
+		let matchingSession = null;
+		for (const thisSession of this.sessions) {
+			if (matchingSession) { break; }
+			for (const thisMeasure of thisSession) {
+				if (this.startMeasure.targetMoment === thisMeasure.targetMoment) {
+					matchingSession = thisSession;
+					if (
+						this.startMeasure.targetMoment !== thisSession[0].targetMoment ||
+						this.endMeasure.targetMoment !== thisSession[thisSession.length - 1].targetMoment
+					) {
+						this.expandSessionLink = `#/measure/interval/${thisSession[0]._id}/${thisSession[thisSession.length - 1]._id}`;
 					}
+					break;
 				}
 			}
-			this.render();
-		});
+		}
+		this.render();
 	}
 }
 
