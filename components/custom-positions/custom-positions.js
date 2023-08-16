@@ -38,10 +38,10 @@ export class CustomPositions extends GWBWElement {
 	}
 
 	async addPosition(event, target) {
-		const newName = window.prompt("New Custom Position Name") || "Custom Position";
-
+		let newName = window.prompt("New Custom Position Name");
+		if (newName === null) { return; }
+		newName = newName || "Custom Position";
 		if (this.handleDuplicateName(newName)) { return; }
-
 		await CustomPositionsApi.addPosition({name: newName});
 		this.getData();
 	}
@@ -49,10 +49,10 @@ export class CustomPositions extends GWBWElement {
 	async editPosition(event, target) {
 		const currentName = target.getAttribute("position-name");
 		const positionId = target.getAttribute("position-id");
-		const newName = window.prompt("New Custom Position Name", currentName) || "Custom Position";
-
+		let newName = window.prompt("New Custom Position Name", currentName);
+		if (newName === null) { return; }
+		newName = newName || "Custom Position";
 		if (this.handleDuplicateName(newName)) { return; }
-
 		await CustomPositionsApi.updateCustomPosition(positionId, {name: newName});
 		this.getData();
 	}
