@@ -11,7 +11,7 @@ export const positionsMap = {
 };
 
 export const getIconNameForPosition = position => {
-	return positionsMap[position]?.icon || `edit`;
+	return positionsMap[position]?.icon || `account_circle`;
 };
 
 export const getPositionNameForMeasure = (measure, customPositions) => {
