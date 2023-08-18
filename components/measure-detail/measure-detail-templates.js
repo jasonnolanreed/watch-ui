@@ -46,22 +46,22 @@ const makeHtml = (component) => (
 
 const showPositionsRadios = component => {
 	let html = ``;
-	for (const position in positionsMap) {
-		html +=
-		`
-		<label class="check">
-			<input type="radio" name="position" value="${position}" ${component.measure.position === position ? `checked` : ``}>
-			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
-		</label>
-		<br/>
-		`;
-	}
 	for (const customPosition of component.customPositions) {
 		html +=
 		`
 		<label class="check">
 			<input class="custom" type="radio" name="position" value="customid:${customPosition._id}" ${component.measure.customPositionId === customPosition._id ? `checked` : ``}>
 			<gwbw-icon name="account_circle"></gwbw-icon> ${customPosition.name}
+		</label>
+		<br/>
+		`;
+	}
+	for (const position in positionsMap) {
+		html +=
+		`
+		<label class="check">
+			<input type="radio" name="position" value="${position}" ${component.measure.position === position ? `checked` : ``}>
+			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
 		</label>
 		<br/>
 		`;

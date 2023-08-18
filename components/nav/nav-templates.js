@@ -43,10 +43,6 @@ a, a:visited {
 	}
 }
 
-a:active {
-	color: var(--bright-blue);
-}
-
 gwbw-icon {
 	font-size: 1.5em;
 }

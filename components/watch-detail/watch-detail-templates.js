@@ -6,7 +6,10 @@ const makeHtml = (component) => (
 </div>
 
 <div class="session feature-box">
-	<h2>Latest Session</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="insert_chart"/></gwbw-icon>
+		<h2>Latest Session</h2>
+	</div>
 	<gwbw-deviation-graph
 		measures="${encodeURI(JSON.stringify(component.latestSession))}"
 		watch="${encodeURI(JSON.stringify(component.watch))}"
@@ -23,7 +26,8 @@ const makeHtml = (component) => (
 			Sessions
 		</a>
 		<a href="#/watches/measure/${component.watch._id}" class="button positive">
-			<gwbw-icon name="add_circle"></gwbw-icon> Add
+			<gwbw-icon name="add_circle"></gwbw-icon>
+			Quick Add
 		</a>
 	</div>
 </div>
@@ -31,7 +35,10 @@ const makeHtml = (component) => (
 <br/>
 
 <div class="timegrapher feature-box">
-	<h2>Timegrapher Results</h2>
+	<div class="page-title page-subtitle">
+		<gwbw-icon name="precision_manufacturing"></gwbw-icon>
+		<h2>Timegrapher Results</h2>
+	</div>
 	<gwbw-timegrapher-table
 		watch="${encodeURI(JSON.stringify(component.watch))}"
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
@@ -44,7 +51,7 @@ const makeHtml = (component) => (
 		</a>
 		<a href="#/timegrapher/add/${component.watch._id}" class="button positive">
 			<gwbw-icon name="add_circle"></gwbw-icon>
-			Add
+			Quick Add
 		</a>
 	</div>
 </div>
@@ -100,12 +107,8 @@ const makeCss = (component) => (
 	gap: 0.5rem;
 }
 
-.feature-controls .button:first-of-type {
-	width: 60%;
-}
-
-.feature-controls .button:last-of-type {
-	width: 40%;
+.feature-controls .button {
+	width: 50%;
 }
 
 .feature-controls .button gwbw-icon {
