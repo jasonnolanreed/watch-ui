@@ -25,10 +25,17 @@ const showPositions = component => {
 		<li class="list-item spacious">
 			<div>${position.name}</div>
 			<div class="controls no-wrap">
-				<button position-name="${position.name}" position-id="${position._id}" class="edit-position button ultra-compact">
+				<button position-name="${position.name}"
+					position-id="${position._id}"
+					class="edit-position button ultra-compact"
+					title="Edit position"
+				>
 					<gwbw-icon name="settings"></gwbw-icon>
 				</button>
-				<button position-id="${position._id}" class="delete-position button negative ultra-compact">
+				<button position-id="${position._id}"
+					class="delete-position button negative ultra-compact"
+					title="Delete position"
+				>
 					<gwbw-icon name="delete"></gwbw-icon>
 				</button>
 			</div>

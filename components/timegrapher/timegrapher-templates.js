@@ -72,8 +72,8 @@ const showResultsSelection = component => {
 	if (component.timegrapherResults.length < 2) { return ``; }
 	return `
 	<p class="results-selection form-controls">
-		<button class="previous-results button compact low-priority" ${getPreviousDisabled(component)}><gwbw-icon name="arrow_back"></gwbw-icon></button>
-		<button class="next-results button compact low-priority" ${getNextDisabled(component)}><gwbw-icon name="arrow_forward"></gwbw-icon></button>
+		<button class="previous-results button compact low-priority" ${getPreviousDisabled(component)} title="Previous results"><gwbw-icon name="arrow_back"></gwbw-icon></button>
+		<button class="next-results button compact low-priority" ${getNextDisabled(component)}><gwbw-icon name="arrow_forward" title="Next results"></gwbw-icon></button>
 		<small class="pages">(${component.currentResultsIndex + 1} of ${component.timegrapherResults.length})</small>
 	</p>
 	`;

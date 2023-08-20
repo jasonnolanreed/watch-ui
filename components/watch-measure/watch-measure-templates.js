@@ -18,10 +18,10 @@ const makeHtml = (component) => (
 	</div>
 	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
 	<div class="form-input target-time">
-		<button type="button" class="decrease-quarter button compact low-priority">
+		<button type="button" class="decrease-quarter button compact low-priority" title="Back 15 seconds">
 			<gwbw-icon name="arrow_back"></gwbw-icon>
 		</button>
-		<button type="button" class="increase-quarter button compact low-priority">
+		<button type="button" class="increase-quarter button compact low-priority" title="Forward 15 seconds">
 			<gwbw-icon name="arrow_forward"></gwbw-icon>
 		</button>
 		<h1 class="target-time">${component.targetTimeString}</h1>

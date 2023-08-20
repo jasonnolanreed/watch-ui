@@ -1,5 +1,4 @@
 - Click on deviation graph point to view interval for segment
-- Buttons with only icons need [title] or [aria-label]
 - Views go home if necessary data is missing, e.g. #/watches/nope
 	- Error message up top
 - "ResizeObserver loop completed with undelivered notifications."

@@ -60,8 +60,8 @@ const showSessionsSelection = component => {
 	if (component.sessions.length < 2) { return ``; }
 	return `
 	<p class="session-selection form-controls">
-		<button class="previous-session button compact low-priority" ${getPreviousDisabled(component)}><gwbw-icon name="arrow_back"></gwbw-icon></button>
-		<button class="next-session button compact low-priority" ${getNextDisabled(component)}><gwbw-icon name="arrow_forward"></gwbw-icon></button>
+		<button class="previous-session button compact low-priority" ${getPreviousDisabled(component)} title="Previous session"><gwbw-icon name="arrow_back"></gwbw-icon></button>
+		<button class="next-session button compact low-priority" ${getNextDisabled(component)} title="Next session"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
 		<small class="pages">(${component.currentSessionIndex + 1} of ${component.sessions.length})</small>
 	</p>
 	`;
@@ -115,8 +115,8 @@ const showMeasures = component => {
 			measure-id="${measure._id}"
 		>
 			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} sneaky-button" measure-index="${index}">
-				<gwbw-icon class="interval-other" name="straighten"></gwbw-icon>
-				<gwbw-icon class="interval-start" name="straighten"></gwbw-icon>
+				<gwbw-icon class="interval-other" name="straighten" title="Select interval"></gwbw-icon>
+				<gwbw-icon class="interval-start" name="straighten" title="Deselect interval"></gwbw-icon>
 			</button>
 			<a class="date-time" href="#/measure/${measure._id}">
 				${Format.dateAndTimeCompact(measure.targetMoment)}
@@ -125,6 +125,7 @@ const showMeasures = component => {
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
 				<a href="#/measure/${measure._id}"
 					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
+					aria-label="Edit measure"
 					${measure.note.length ?
 					`title="${measure.note}"` :
 					`title="${getPositionNameForMeasure(measure, component?.customPositions)}"`
@@ -132,7 +133,10 @@ const showMeasures = component => {
 				>
 					${showPositionIcon(measure)}
 				</a>
-				<button class="button negative ultra-compact delete-measure" measure-id="${measure._id}">
+				<button class="button negative ultra-compact delete-measure"
+					measure-id="${measure._id}"
+					title="Delete measure"
+				>
 					<gwbw-icon name="delete"></gwbw-icon>
 				</button>
 			</div>
