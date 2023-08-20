@@ -53,7 +53,7 @@ export class PositionsGraph extends GWBWElement {
 
 	async connectedCallback() {
 		super.connectedCallback();
-		await this.fetchRequiredScripts([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
+		await this.fetchRequiredScriptsInSequence([`../../vendor/chart.js`, `../../vendor/chart-annotations.js`])
 		this._hasChartJS = true;
 		this.render();
 	}

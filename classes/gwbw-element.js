@@ -62,6 +62,34 @@ export class GWBWElement extends HTMLElement {
 		});
 	}
 
+	async fetchRequiredScriptsInSequence(requiredScriptSources) {
+		const component = this;
+
+		return new Promise((resolve, reject) => {
+			let scriptsFetched = 0;
+
+			_fetchScript(requiredScriptSources[0]);
+
+			function _fetchScript(scriptSrc) {
+				const $script = document.createElement(`script`);
+				const $parent = component.shadowRoot || document.body;
+				$script.src = scriptSrc;
+				$script.onload = _done;
+				$script.onerror = _done;
+				$parent.appendChild($script);
+			}
+
+			function _done() {
+				scriptsFetched++;
+				if (scriptsFetched === requiredScriptSources.length) {
+					resolve();
+				} else {
+					_fetchScript(requiredScriptSources[scriptsFetched]);
+				}
+			}
+		});
+	}
+
 	startWorking($givenForm) {
 		if ($givenForm) {
 			$givenForm.classList.add(`working`);
