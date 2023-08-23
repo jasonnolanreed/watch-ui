@@ -127,7 +127,7 @@ const showMeasures = component => {
 					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
 					aria-label="Edit measure"
 					${measure.note.length ?
-					`title="${measure.note}"` :
+					`title="Note: ${measure.note}"` :
 					`title="${getPositionNameForMeasure(measure, component?.customPositions)}"`
 					}
 				>
