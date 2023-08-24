@@ -127,6 +127,9 @@ hr {
 	border: none;
 	outline: none;
 }
+hr.semi-compact {
+	margin: 2rem 0;
+}
 hr.compact {
 	margin: 1rem 0;
 }

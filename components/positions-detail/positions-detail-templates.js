@@ -3,16 +3,9 @@ import {roundToOneDecimal} from '../../utilities/number.js';
 
 const makeHtml = (component) => (
 `
-${showSortControls(component)}
-<div class="graph">
-${showPositionsGraph(component)}
-</div>
 <h2>Positions</h2>
 <div class="positions">
 ${showPositions(component)}
-</div>
-<div class="graph">
-${showPositionsDistributionGraph(component)}
 </div>
 `
 );
@@ -22,8 +15,6 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; color: var(--blue); }
-.sort-controls .toggle-buttons button.selected { pointer-events: none; }
 .positions {}
 .position { margin-bottom: 0.25em; }
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
@@ -36,34 +27,10 @@ const makeCss = (component) => (
 `
 );
 
-const showSortControls = component => {
-	return `
-	<div class="sort-controls">
-		<label>Sort:</label>
-		<div class="toggle-buttons">
-			<button type="button"
-				class="default ${component.preferences.positionsSort.includes('default') ? 'selected' : ''}"
-				${component.preferences.positionsSort.includes('default') && 'tabindex="-1" style="pointer-events: none;"'}
-			>
-				Default
-				<gwbw-icon name="expand_more"></gwbw-icon>
-			</button>
-			<button type="button"
-				class="rate ${component.preferences.positionsSort.includes('rate') ? 'selected' : ''}"
-				${component.preferences.positionsSort.includes('rate') && 'tabindex="-1" style="pointer-events: none;"'}
-			>
-				Rate
-				<gwbw-icon name="expand_less"></gwbw-icon>
-			</button>
-		</div>
-	</div>
-	`;
-};
-
 const showPositions = component => {
 	let positionsHtml = ``;
-	for (const positionName of component.sortedPositionNames) {
-		const position = component.positions[positionName];
+	for (const positionName of component.sortedPositionNamesArray) {
+		const position = component.positionsData[positionName];
 		if (!position) { continue; }
 		const displayRate = (position.rate !== 0) ?
 			`${position.rate} seconds/day` :
@@ -75,7 +42,7 @@ const showPositions = component => {
 				<span>${positionsMap[positionName]?.label || positionName}:</span>
 			</em>
 			<span
-				class="rate ${getRateClasses(position.rate, component.goodtoleranceplus, component.goodtoleranceminus)}"
+				class="rate ${getRateClasses(position.rate, component.goodTolerancePlusNumber, component.goodToleranceMinusNumber)}"
 			>${displayRate}</span>
 			<small class="duration">
 				<span class="nowrap">Duration: ${roundToOneDecimal(position.days)} days /</span>
@@ -100,32 +67,6 @@ const getRateClasses = (rate, goodTolerancePlus, goodToleranceMinus) => {
 		classes.push(`bad-watch`);
 	}
 	return classes.length ? classes.join(` `) : ``;
-};
-
-const showPositionsGraph = component => {
-	return `
-	<gwbw-positions-graph
-		positions="${encodeURI(JSON.stringify(component.positions))}"
-		custompositions="${encodeURI(JSON.stringify(component.customPositions))}"
-		goodtoleranceplus="${component.goodtoleranceplus}"
-		goodtoleranceminus="${component.goodtoleranceminus}"
-		sortedpositionnames="${component.sortedPositionNames.join(';;;')}"
-	></gwbw-positions-graph>
-	<br/><br/>
-	`;
-};
-
-const showPositionsDistributionGraph = component => {
-	return ``;
-	return `
-	<br/>
-	<gwbw-positions-distribution-graph
-		positions="${encodeURI(JSON.stringify(component.positions))}"
-	></gwbw-positions-graph>
-	<br/>
-	<br/>
-	<br/>
-	`;
 };
 
 export const makeTemplate = (component) => {

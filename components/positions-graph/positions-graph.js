@@ -16,13 +16,11 @@ export class PositionsGraph extends GWBWElement {
 		this.graph = null;
 	}
 
-	static get observedAttributes() { return [`positions`, `custompositions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
+	static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
 	get positions() { return this.getAttribute(`positions`); }
 	set positions(stringifiedPositions) { this.setAttribute(`positions`, stringifiedPositions); }
-	get custompositions() { return this.getAttribute(`custompositions`); }
-	set custompositions(stringifiedCustomPositions) { this.setAttribute(`custompositions`, stringifiedCustomPositions); }
 	get goodtoleranceplus() { return this.getAttribute(`goodtoleranceplus`); }
-	set goodtolerance(goodTolerancePlus) { this.setAttribute(`goodtoleranceplus`, goodTolerancePlus); }
+	set goodtoleranceplus(goodTolerancePlus) { this.setAttribute(`goodtoleranceplus`, goodTolerancePlus); }
 	get goodtoleranceminus() { return this.getAttribute(`goodtoleranceminus`); }
 	set goodtoleranceminus(goodToleranceMinus) { this.setAttribute(`goodtoleranceminus`, goodToleranceMinus); }
 	get sortedpositionnames() { return this.getAttribute(`goodtoleranceminus`); }
@@ -31,10 +29,6 @@ export class PositionsGraph extends GWBWElement {
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `positions` && newValue !== oldValue) {
 			this.positionsData = JSON.parse(decodeURI(this.positions));
-			this.render();
-		}
-		if (name === `custompositions` && newValue !== oldValue) {
-			this.customPositionsData = JSON.parse(decodeURI(this.custompositions));
 			this.render();
 		}
 		if (name === `goodtoleranceplus` && newValue !== oldValue) {
@@ -65,7 +59,7 @@ export class PositionsGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.positionsData && this.customPositionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) {
+			if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) {
 				this.initChart();
 			}
 		} catch(error) {

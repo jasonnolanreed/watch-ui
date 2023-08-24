@@ -18,14 +18,16 @@ ${component.preferences.showTimegrapherFeatures ? `
 		<h3>${component.watch.name}</h3>
 	</div>
 </div>
-${showSessionsInfo(component)}
-${showSessionsSelection(component)}
-${showDeviationGraph(component)}
-<gwbw-session-total
-	session="${encodeURI(JSON.stringify(component.currentSession))}"
-	goodtoleranceplus="${component.watch.goodTolerancePlus}"
-	goodtoleranceminus="${component.watch.goodToleranceMinus}"
-></gwbw-session-total>
+<div class="feature-box">
+	${showSessionsInfo(component)}
+	${showSessionsSelection(component)}
+	${showDeviationGraph(component)}
+	<gwbw-session-total
+		session="${encodeURI(JSON.stringify(component.currentSession))}"
+		goodtoleranceplus="${component.watch.goodTolerancePlus}"
+		goodtoleranceminus="${component.watch.goodToleranceMinus}"
+	></gwbw-session-total>
+</div>
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
@@ -188,12 +190,13 @@ const makeCss = (component) => (
 <style>
 @import "styles/global-styles.css";
 
-.session-selection.session-selection { display: flex; align-items: center; margin: -0.5em 0 2em 0; }
+.session-selection.session-selection { display: flex; align-items: center; margin: -0.5em 0 1em 0; }
 .session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
 .header-date-time { margin-left: 1.65em; }
 .header-deviation { margin-right: 7.35em; }
-.session-interval-link { margin-bottom: 2em; line-height: 1.4; }
+.good-bad-message h4 { margin-bottom: 0; }
+.session-interval-link { margin: 1em 0 2em 0; line-height: 1.4; }
 .session-interval-link *, .session-interval-link:hover * { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
 .session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em 0 -.38em; position: relative; top: 0.16em; transform: scaleX(0.7); }
