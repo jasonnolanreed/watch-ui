@@ -20,6 +20,7 @@ const makeHtml = (component) => (
 		goodtoleranceminus="${component.watch.goodToleranceMinus}"
 	></gwbw-session-total>
 	<br/>
+	<br/>
 	<div class="feature-controls">
 		<a href="#/sessions/${component.watch._id}" class="button strong">
 			<gwbw-icon name="insert_chart"></gwbw-icon>
@@ -43,7 +44,6 @@ const makeHtml = (component) => (
 		watch="${encodeURI(JSON.stringify(component.watch))}"
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
 	></gwbw-timegrapher-table>
-	<br/>
 	<div class="feature-controls">
 		<a href="#/timegrapher/${component.watch._id}" class="button strong">
 			<gwbw-icon name="precision_manufacturing"></gwbw-icon>

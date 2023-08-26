@@ -2,7 +2,7 @@ import {timegrapherPositions} from "../../utilities/timegrapher.js";
 
 const makeHtml = (component) => {
 if (!component.timegrapherResultsData) {
-	return `<p>No results have been entered yet</p>`;
+	return `<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
 } else {
 	return `
 	<table>

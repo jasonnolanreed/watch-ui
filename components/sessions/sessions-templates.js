@@ -28,6 +28,7 @@ ${component.preferences.showTimegrapherFeatures ? `
 		goodtoleranceminus="${component.watch.goodToleranceMinus}"
 	></gwbw-session-total>
 </div>
+<br/>
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
@@ -84,14 +85,19 @@ const showSessionIntervalLink = component => {
 	const intervalHref =
 		`#/measure/interval/${session[0]._id}/${session[session.length -1]._id}`;
 	return `
-	<div class="session-interval-link">
-		<a href="${intervalHref}">
+	<br/>
+	<a href="${intervalHref}" class="session-interval-link">
+		<span>
 			<gwbw-icon name="straighten"></gwbw-icon>
 			<gwbw-icon name="arrow_right_alt"></gwbw-icon>
 			<gwbw-icon name="straighten"></gwbw-icon>
+		</span>
+		<span>
 			View Position Data for Session
-		</a>
-	</div>
+		</span>
+	</a>
+	<br/>
+	<br/>
 	`;
 }
 
@@ -196,10 +202,10 @@ const makeCss = (component) => (
 .header-date-time { margin-left: 1.65em; }
 .header-deviation { margin-right: 7.35em; }
 .good-bad-message h4 { margin-bottom: 0; }
-.session-interval-link { margin: 1em 0 2em 0; line-height: 1.4; }
-.session-interval-link *, .session-interval-link:hover * { text-decoration: none; }
+.session-interval-link, .session-interval-link > * { display: inline-flex; align-items: center; gap: 4px; }
+.session-interval-link, .session-interval-link:hover { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
-.session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em 0 -.38em; position: relative; top: 0.16em; transform: scaleX(0.7); }
+.session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em; transform: scaleX(0.7); }
 .date-time { display: flex; align-items: center; font-size: 0.9em; margin-right: 1em; }
 .controls { display: flex; align-items: center; color: var(--light-blue); }
 .controls.fast:before { content: "+"; }
