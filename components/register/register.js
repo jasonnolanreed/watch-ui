@@ -25,6 +25,7 @@ export class Register extends GWBWElement {
 		super.render();
 		try {
 			this.innerHTML = makeTemplate(this);
+			this.querySelector(`input#email`)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}

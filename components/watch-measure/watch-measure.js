@@ -39,6 +39,7 @@ export class WatchMeasure extends GWBWElement {
 		this.targetTimeString = Format.timeWithSeconds(this.moment);
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.shadowRoot.querySelector(`button.now`)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}

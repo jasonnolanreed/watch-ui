@@ -32,6 +32,7 @@ export class TimegrapherAdd extends GWBWElement {
 		super.render();
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.shadowRoot.querySelector(`input:not([type=hidden]):first-of-type`)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}

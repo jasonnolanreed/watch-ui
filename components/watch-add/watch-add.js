@@ -26,6 +26,7 @@ export class WatchAdd extends GWBWElement {
 		super.render();
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.shadowRoot.querySelector(`input#name`)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
