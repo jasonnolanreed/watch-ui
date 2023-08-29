@@ -42,7 +42,7 @@ const makeHtml = (component) => (
 
 <div class="sort-controls">
 	<label>Sort:</label>
-	<div class="toggle-buttons">
+	<nav class="toggle-buttons" aria-label="Sort positions">
 		<button type="button"
 			class="default ${component.preferences.positionsSort.includes('default') ? 'selected' : ''}"
 			${component.preferences.positionsSort.includes('default') && 'tabindex="-1" style="pointer-events: none;"'}
@@ -57,7 +57,7 @@ const makeHtml = (component) => (
 			Rate
 			<gwbw-icon name="expand_less"></gwbw-icon>
 		</button>
-	</div>
+	</nav>
 </div>
 
 <div class="positions-detail">

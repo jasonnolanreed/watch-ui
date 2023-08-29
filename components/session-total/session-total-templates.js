@@ -65,7 +65,7 @@ const makeCss = (component) => (
 	display: flex;
 	justify-items: flex-start;
 	align-items: center;
-	margin-top: -0.8em;
+	margin: 2em 0 0 0;
 	color: var(--red);
 }
 .short-session-alert gwbw-icon { font-size: 1.5em; margin-right: 0.5em; }

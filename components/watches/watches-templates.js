@@ -65,7 +65,7 @@ const showSortControls = component => {
 	return `
 	<div class="sort-controls">
 		<label>Sort:</label>
-		<div class="toggle-buttons">
+		<nav class="toggle-buttons" aria-label="Sort watches">
 			<button type="button" class="created ${component.preferences.watchesSort.includes('created') ? 'selected' : ''}">
 				Added
 				<gwbw-icon
@@ -87,7 +87,7 @@ const showSortControls = component => {
 					class="${component.preferences.watchesSort.includes('name') ? '' : 'hidden'}"
 				></gwbw-icon>
 			</button>
-		</div>
+		</nav>
 	</div>
 	`;
 };

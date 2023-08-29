@@ -171,7 +171,7 @@ const showSortControls = component => {
 	return `
 	<div class="sort-controls">
 		<label>Sort:</label>
-		<div class="toggle-buttons">
+		<nav class="toggle-buttons" aria-label="Sort measures">
 			<button type="button"
 				class="Desc ${component.preferences.measuresSort.includes('Desc') ? 'selected' : ''}"
 				${component.preferences.measuresSort.includes('Desc') && 'tabindex="-1" style="pointer-events: none;"'}
@@ -186,7 +186,7 @@ const showSortControls = component => {
 				Old First
 				<gwbw-icon name="expand_more"></gwbw-icon>
 			</button>
-		</div>
+		</nav>
 	</div>
 	`;
 };
