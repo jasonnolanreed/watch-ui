@@ -1,3 +1,5 @@
+- Position details for timegrapher results
+- Image aspect ratios
 - Click on deviation graph point to view interval for segment
 - Views go home if necessary data is missing, e.g. #/watches/nope
 	- Error message up top

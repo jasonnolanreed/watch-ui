@@ -63,6 +63,7 @@ img {
 a, a:visited {
 	color: var(--blue);
 	text-decoration: underline;
+	text-underline-offset: 0.23em;
 }
 
 a.big-link {
