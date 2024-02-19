@@ -37,7 +37,7 @@ export class DeviationGraph extends GWBWElement {
     }
     async connectedCallback() {
         super.connectedCallback();
-        await this.fetchRequiredScriptsInSequence([`../../vendor/chart.js`]);
+        await this.fetchRequiredScriptsInSequence([`../built/vendor/chart.js`]);
         this._hasChartJS = true;
         this.customPositions = await CustomPositionsApi.getCustomPositions();
         this.render();

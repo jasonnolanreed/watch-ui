@@ -6,7 +6,7 @@ export const apiHost =
 	(environment === `development`) ? `http://api.gwbwdevelop.com:8001/` :
 	`https://api.goodwatchbadwatch.com/`;
 
-export const getOptionsForBasicGet = _ => ({
+export const getOptionsForBasicGet = (): RequestInit => ({
 	credentials: `include`,
 	mode: `cors`,
 	headers: {
@@ -15,7 +15,7 @@ export const getOptionsForBasicGet = _ => ({
 	}
 });
 
-export const getOptionsForPost = (data) => {
+export const getOptionsForPost = (data): RequestInit => {
 	return {
 		method: `POST`,
 		body: JSON.stringify(data),
@@ -28,13 +28,13 @@ export const getOptionsForPost = (data) => {
 	};
 };
 
-export const getOptionsForPut = (data) => {
+export const getOptionsForPut = (data): RequestInit => {
 	let options = getOptionsForPost(data);
 	options.method = `PUT`;
 	return options;
 };
 
-export const getOptionsForDelete = (data) => {
+export const getOptionsForDelete = (data): RequestInit => {
 	let options = getOptionsForPost(data);
 	options.method = `DELETE`;
 	return options;

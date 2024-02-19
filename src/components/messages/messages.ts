@@ -1,4 +1,5 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {Message} from '../message/message.js';
 import {makeCss, getMessageElement} from './messages-templates.js';
 
 export class Messages extends GWBWElement {
@@ -42,7 +43,7 @@ export class Messages extends GWBWElement {
 	}
 
 	closeNonPersistent() {
-		const messages = this.shadowRoot.querySelectorAll(`gwbw-message`);
+		const messages: NodeListOf<Message> = this.shadowRoot.querySelectorAll(`gwbw-message`);
 		if (!messages.length) { return; }
 		messages.forEach(thisMessage => {
 			if (thisMessage.getAttribute(`persistent`) !== "true") {

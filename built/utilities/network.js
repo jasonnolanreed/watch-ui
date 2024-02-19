@@ -3,7 +3,7 @@ export const environment = (location.hostname === `gwbwdevelop.com`) ?
     `production`;
 export const apiHost = (environment === `development`) ? `http://api.gwbwdevelop.com:8001/` :
     `https://api.goodwatchbadwatch.com/`;
-export const getOptionsForBasicGet = _ => ({
+export const getOptionsForBasicGet = () => ({
     credentials: `include`,
     mode: `cors`,
     headers: {

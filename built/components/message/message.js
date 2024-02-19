@@ -1,6 +1,7 @@
 import { GWBWElement } from '../../classes/gwbw-element.js';
 import { makeTemplate } from './message-templates.js';
 export class Message extends GWBWElement {
+    close;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });

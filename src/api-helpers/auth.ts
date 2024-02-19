@@ -2,20 +2,20 @@ import {apiHost, getOptionsForPost, getOptionsForPut, getOptionsForBasicGet} fro
 import {getFormData} from '../utilities/form.js';
 
 export class AuthApi {
-	constructor() {
-		AuthApi.cachedUserData = null;
-		AuthApi.isLoggedInCache = null;
-		AuthApi.preAuthRequestHash = null;
-	}
+	static cachedUserData: userData = null;
+	static isLoggedInCache = null;
+	static preAuthRequestHash = null;
+
+	constructor() {}
 
 	static get userData() { return AuthApi.cachedUserData; }
-	static set userData(data) { return null; }
+	static set userData(data) {}
 	static get preAuthHash() { return AuthApi.preAuthRequestHash; }
 	static set preAuthHash(hash) { AuthApi.preAuthRequestHash = hash; }
 
 	// Always resolves, with boolean payload
 	static isLoggedIn() {
-		if (typeof AuthApi.isLoggedInCache === `boolean` && AuthApi.isLoggedInCache) {
+		if (AuthApi.isLoggedInCache !== null && AuthApi.isLoggedInCache) {
 			return Promise.resolve(true);
 		} else {
 			return new Promise((resolve, reject) => {
@@ -101,3 +101,7 @@ export class AuthApi {
 }
 
 new AuthApi();
+
+interface userData {
+	email: string;
+}
