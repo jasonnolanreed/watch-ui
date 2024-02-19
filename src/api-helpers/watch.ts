@@ -4,7 +4,7 @@ import {LoggedOutApi} from './logged-out.js';
 export class WatchApi {
 	// Always resolves, with boolean payload
 	static getWatches() {
-		return new Promise((resolve, reject) => {
+		return new Promise<Watch[]>((resolve, reject) => {
 			fetch(`${apiHost}watch`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -15,12 +15,12 @@ export class WatchApi {
 
 	// Always resolves, with boolean payload
 	static getWatch(watchId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<Watch>((resolve, reject) => {
 			fetch(`${apiHost}watch/${watchId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
-			.catch(_ => resolve([]));
+			.catch(_ => resolve(null));
 		});
 	}
 
@@ -56,4 +56,13 @@ export class WatchApi {
 			.catch(_ => resolve(false));
 		});
 	}
+}
+
+export interface Watch {
+	_id: string,
+	goodTolerancePlus: number,
+	goodToleranceMinus: number,
+	note: string,
+	userId: string,
+	name: string,
 }

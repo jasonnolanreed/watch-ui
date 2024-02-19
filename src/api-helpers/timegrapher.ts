@@ -4,7 +4,7 @@ import {LoggedOutApi} from './logged-out.js';
 export class TimegrapherApi {
 	// Always resolves, with boolean payload
 	static getTimegrapherResults(watchId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<TimegrapherResult[]>((resolve, reject) => {
 			fetch(`${apiHost}timegrapher-result/watch/${watchId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -15,7 +15,7 @@ export class TimegrapherApi {
 
 	// Always resolves, with boolean payload
 	static getTimegrapherResultsById(timegrapherResultsId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<TimegrapherResult[]>((resolve, reject) => {
 			fetch(`${apiHost}timegrapher-result/${timegrapherResultsId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -56,4 +56,30 @@ export class TimegrapherApi {
 			.catch(_ => resolve(false));
 		});
 	}
+}
+
+export interface TimegrapherResult {
+	_id: string,
+	userId: string,
+	watchId: string,
+	moment: string,
+	dialUpRate: number,
+	dialUpAmplitude: number,
+	dialUpBeatError: number,
+	dialDownRate: number,
+	dialDownAmplitude: number,
+	dialDownBeatError: number,
+	crownRightRate: number,
+	crownRightAmplitude: number,
+	crownRightBeatError: number,
+	crownDownRate: number,
+	crownDownAmplitude: number,
+	crownDownBeatError: number,
+	crownLeftRate: number,
+	crownLeftAmplitude: number,
+	crownLeftBeatError: number,
+	crownUpRate: number,
+	crownUpAmplitude: number,
+	crownUpBeatError: number,
+	note: string,
 }

@@ -4,7 +4,7 @@ import {LoggedOutApi} from './logged-out.js';
 export class MeasureApi {
 	// Always resolves, with boolean payload
 	static getMeasures(watchId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<Measure[]>((resolve, reject) => {
 			fetch(`${apiHost}measure/watch/${watchId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -15,18 +15,18 @@ export class MeasureApi {
 
 	// Always resolves, with boolean payload
 	static getMeasure(measureId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<Measure>((resolve, reject) => {
 			fetch(`${apiHost}measure/${measureId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
-			.catch(_ => resolve([]));
+			.catch(_ => resolve(null));
 		});
 	}
 
 	// Always resolves, with boolean payload
 	static getMeasuresByRange(watchId, startMeasureId, endMeasureId) {
-		return new Promise((resolve, reject) => {
+		return new Promise<Measure[]>((resolve, reject) => {
 			fetch(`${apiHost}measure/watch/${watchId}/range/${startMeasureId}/${endMeasureId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -67,4 +67,15 @@ export class MeasureApi {
 			.catch(_ => resolve(false));
 		});
 	}
+}
+
+export interface Measure {
+	_id: string,
+	note: string,
+	position: string,
+	userId: string,
+	watchId: string,
+	moment: string,
+	targetMoment: string,
+	firstOfSession: boolean,
 }
