@@ -70,12 +70,13 @@ export class MeasureApi {
 }
 
 export interface Measure {
-	_id: string,
-	note: string,
-	position: string,
-	userId: string,
-	watchId: string,
-	moment: string,
-	targetMoment: string,
-	firstOfSession: boolean,
+	_id?: string;
+	note: string;
+	position: string;
+	userId?: string;
+	watchId: string;
+	moment: string;
+	targetMoment: string;
+	firstOfSession: boolean;
+	customPositionId?: any;
 }

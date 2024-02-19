@@ -1,9 +1,9 @@
 import iconData from './icons-data.js';
 import uuid from '../../utilities/uuid.js';
 export class Icon extends HTMLElement {
+    uniqueIconName = `icon-${uuid()}`;
     constructor() {
         super();
-        this.uniqueIconName = `icon-${uuid()}`;
         this.classList.add(`inline-block`);
     }
     static get observedAttributes() { return [`name`, `color`]; }
@@ -11,7 +11,7 @@ export class Icon extends HTMLElement {
     set name(newName) { this.setAttribute(`name`, newName); }
     get color() { return this.getAttribute(`color`); }
     set color(newColor) { this.setAttribute(`color`, newColor); }
-    static get iconNumber() { }
+    static get iconNumber() { return null; }
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue === oldValue) {
             return;

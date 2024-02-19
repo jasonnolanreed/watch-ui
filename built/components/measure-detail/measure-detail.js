@@ -6,6 +6,9 @@ import { MeasureApi } from '../../api-helpers/measure.js';
 import { getFormData } from '../../utilities/form.js';
 import { makeTemplate } from './measure-detail-templates.js';
 export class MeasureDetail extends GWBWElement {
+    mode;
+    measure;
+    customPositions = null;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -15,18 +18,18 @@ export class MeasureDetail extends GWBWElement {
     }
     async connectedCallback() {
         super.connectedCallback();
-        if (router.params.measureId) {
+        if (router[`params`].measureId) {
             this.mode = `view`;
-            this.measure = await MeasureApi.getMeasure(router.params[`measureId`]);
+            this.measure = await MeasureApi.getMeasure(router[`params`][`measureId`]);
             ;
         }
         else {
             this.mode = `add`;
             this.measure = {
-                watchId: router.params[`watchId`],
-                moment: router.params[`moment`],
-                targetMoment: router.params[`targetMoment`],
-                firstOfSession: router.params[`firstOfSession`] === `true`,
+                watchId: router[`params`][`watchId`],
+                moment: router[`params`][`moment`],
+                targetMoment: router[`params`][`targetMoment`],
+                firstOfSession: router[`params`][`firstOfSession`] === `true`,
                 note: ``,
                 position: `unspecified`,
                 customPositionId: null,

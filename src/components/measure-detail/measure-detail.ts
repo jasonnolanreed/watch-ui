@@ -1,13 +1,18 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
-import {MeasureApi} from '../../api-helpers/measure.js';
+import {CustomPosition, CustomPositionsApi} from '../../api-helpers/custom-positions.js';
+import {Measure, MeasureApi} from '../../api-helpers/measure.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './measure-detail-templates.js';
+import { Messages } from '../messages/messages.js';
 
 export class MeasureDetail extends GWBWElement {
+	mode;
+	measure: Measure;
+	customPositions: CustomPosition[] = null;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -18,16 +23,16 @@ export class MeasureDetail extends GWBWElement {
 
 	async connectedCallback() {
 		super.connectedCallback();
-		if (router.params.measureId) {
+		if (router[`params`].measureId) {
 			this.mode = `view`;
-			this.measure = await MeasureApi.getMeasure(router.params[`measureId`]);;
+			this.measure = await MeasureApi.getMeasure(router[`params`][`measureId`]);;
 		} else {
 			this.mode = `add`;
 			this.measure = {
-				watchId: router.params[`watchId`],
-				moment: router.params[`moment`],
-				targetMoment: router.params[`targetMoment`],
-				firstOfSession: router.params[`firstOfSession`] === `true`,
+				watchId: router[`params`][`watchId`],
+				moment: router[`params`][`moment`],
+				targetMoment: router[`params`][`targetMoment`],
+				firstOfSession: router[`params`][`firstOfSession`] === `true`,
 				note: ``,
 				position: `unspecified`,
 				customPositionId: null,
@@ -76,7 +81,7 @@ export class MeasureDetail extends GWBWElement {
 				history.back();
 			} else {
 				GA.event(`measure`, `measure update fail`);
-				const messages = document.querySelector(`gwbw-messages`);
+				const messages: Messages = document.querySelector(`gwbw-messages`);
 				if (messages) {
 					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
 				}
@@ -89,7 +94,7 @@ export class MeasureDetail extends GWBWElement {
 				this.goBackToSession();
 			} else {
 				GA.event(`measure`, `measure add fail`);
-				const messages = document.querySelector(`gwbw-messages`);
+				const messages: Messages = document.querySelector(`gwbw-messages`);
 				if (messages) {
 					messages.add({message: `Failed to save measure. Try again?`, type: `error`});
 				}

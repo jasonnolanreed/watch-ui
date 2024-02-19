@@ -1,23 +1,27 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
+import {CustomPosition, CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {Difference, Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
-import {getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
+import {getPositionNameForMeasure} from '../../utilities/position.js';
 import {Timing} from '../../utilities/timing.js';
 import {makeTemplate} from './deviation-graph-templates.js';
 
+declare const Chart: any;
+
 export class DeviationGraph extends GWBWElement {
+	private _hasChartJS = false;
+	measuresData = null;
+	watchData = null;
+	graph = null;
+	customPositions: CustomPosition[] = null;
+
 	constructor() {
 		super();
 		super.render(); // kill default loading UI immediately
-		this.setAttribute(`loading`, true);
+		this.setAttribute(`loading`, `true`);
 		this.render(); // render immmediately for placeholder UI
 		this.initChart = this.initChart.bind(this);
-		this._hasChartJS = false;
-		this.measuresData = null;
-		this.watchData = null;
-		this.graph = null;
 	}
 
 	static get observedAttributes() { return [`measures`, `watch`]; }
@@ -41,7 +45,7 @@ export class DeviationGraph extends GWBWElement {
 
 	async connectedCallback() {
 		super.connectedCallback();
-		await this.fetchRequiredScriptsInSequence([`../built/vendor/chart.js`])
+		await this.fetchRequiredScriptsInSequence([`../built/vendor/chart.js`]);
 		this._hasChartJS = true;
 		this.customPositions = await CustomPositionsApi.getCustomPositions();
 		this.render();

@@ -3,20 +3,21 @@ import { CustomPositionsApi } from '../../api-helpers/custom-positions.js';
 import { Difference, Format } from '../../utilities/date-time.js';
 import { getMomentDiffFromMeasure } from '../../utilities/measure.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
-import { getPositionNameForMeasure, positionsMap } from '../../utilities/position.js';
+import { getPositionNameForMeasure } from '../../utilities/position.js';
 import { Timing } from '../../utilities/timing.js';
 import { makeTemplate } from './deviation-graph-templates.js';
 export class DeviationGraph extends GWBWElement {
+    _hasChartJS = false;
+    measuresData = null;
+    watchData = null;
+    graph = null;
+    customPositions = null;
     constructor() {
         super();
         super.render(); // kill default loading UI immediately
-        this.setAttribute(`loading`, true);
+        this.setAttribute(`loading`, `true`);
         this.render(); // render immmediately for placeholder UI
         this.initChart = this.initChart.bind(this);
-        this._hasChartJS = false;
-        this.measuresData = null;
-        this.watchData = null;
-        this.graph = null;
     }
     static get observedAttributes() { return [`measures`, `watch`]; }
     get measures() { return this.getAttribute(`measures`); }
