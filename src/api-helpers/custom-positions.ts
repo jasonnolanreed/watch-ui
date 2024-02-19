@@ -13,12 +13,12 @@ export class CustomPositionsApi {
 	}
 
 	static getCustomPositions() {
-		return new Promise((resolve, reject) => {
+		return new Promise<CustomPosition[]>((resolve, reject) => {
 			fetch(`${apiHost}custom-position`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response || []))
-			.catch(_ => resolve({}));
+			.catch(_ => resolve([]));
 		});
 	}
 
@@ -41,4 +41,10 @@ export class CustomPositionsApi {
 			.catch(_ => resolve(false));
 		});
 	}
+}
+
+export interface CustomPosition {
+	_id: string;
+	userId: string;
+	name: string;
 }

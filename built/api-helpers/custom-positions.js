@@ -20,7 +20,7 @@ export class CustomPositionsApi {
                 return response.json();
             } throw new Error(); }, error => { throw new Error(); })
                 .then(response => resolve(response || []))
-                .catch(_ => resolve({}));
+                .catch(_ => resolve([]));
         });
     }
     static updateCustomPosition(customPositionId, data) {

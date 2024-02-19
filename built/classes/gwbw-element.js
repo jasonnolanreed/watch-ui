@@ -1,13 +1,16 @@
 export class GWBWElement extends HTMLElement {
+    _clickEvents = null;
+    _hasSetupResizeListener = false;
+    _hasConnected = false;
+    _hasForm;
+    _hasShadowForm;
+    _resizeObserver;
     constructor() {
         super();
         this.startWorking = this.startWorking.bind(this);
         this.stopWorking = this.stopWorking.bind(this);
         this._onClick = this._onClick.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
-        this._clickEvents = null;
-        this._hasSetupResizeListener = false;
-        this._hasConnected = false;
     }
     connectedCallback() {
         this._hasConnected = true;
@@ -27,7 +30,8 @@ export class GWBWElement extends HTMLElement {
         }
     }
     render() {
-        document.querySelector(`gwbw-loader`).loading = false;
+        const $loader = document.querySelector(`gwbw-loader`);
+        $loader.loading = false;
     }
     bindForm() {
         this._hasForm = true;
@@ -54,7 +58,7 @@ export class GWBWElement extends HTMLElement {
             function _done() {
                 scriptsFetched++;
                 if (scriptsFetched === requiredScriptSources.length) {
-                    resolve();
+                    resolve(null);
                 }
             }
         });
@@ -75,7 +79,7 @@ export class GWBWElement extends HTMLElement {
             function _done() {
                 scriptsFetched++;
                 if (scriptsFetched === requiredScriptSources.length) {
-                    resolve();
+                    resolve(null);
                 }
                 else {
                     _fetchScript(requiredScriptSources[scriptsFetched]);
@@ -144,12 +148,11 @@ export class GWBWElement extends HTMLElement {
             }
             if (target.matches(`form`)) {
                 event.preventDefault();
-                if (typeof this.onSubmit === `function`) {
-                    this.onSubmit.call(this, event, target);
-                }
+                this.onSubmit.call(this, event, target);
                 break;
             }
         }
         event.preventDefault();
     }
+    onSubmit(event, target) { }
 }

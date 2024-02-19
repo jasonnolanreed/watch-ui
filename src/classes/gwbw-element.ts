@@ -1,13 +1,19 @@
+import { Loader } from "../components/loader/loader";
+
 export class GWBWElement extends HTMLElement {
+	protected _clickEvents = null;
+	protected _hasSetupResizeListener = false;
+	protected _hasConnected = false;
+	protected _hasForm;
+	protected _hasShadowForm;
+	protected _resizeObserver;
+
 	constructor() {
 		super();
 		this.startWorking = this.startWorking.bind(this);
 		this.stopWorking = this.stopWorking.bind(this);
 		this._onClick = this._onClick.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);
-		this._clickEvents = null;
-		this._hasSetupResizeListener = false;
-		this._hasConnected = false;
 	}
 
 	connectedCallback() {
@@ -24,7 +30,8 @@ export class GWBWElement extends HTMLElement {
 	}
 
 	render() {
-		document.querySelector(`gwbw-loader`).loading = false;
+		const $loader: Loader = document.querySelector(`gwbw-loader`);
+		$loader.loading = false;
 	}
 
 	bindForm() {
@@ -56,7 +63,7 @@ export class GWBWElement extends HTMLElement {
 			function _done() {
 				scriptsFetched++;
 				if (scriptsFetched === requiredScriptSources.length) {
-					resolve();
+					resolve(null);
 				}
 			}
 		});
@@ -82,7 +89,7 @@ export class GWBWElement extends HTMLElement {
 			function _done() {
 				scriptsFetched++;
 				if (scriptsFetched === requiredScriptSources.length) {
-					resolve();
+					resolve(null);
 				} else {
 					_fetchScript(requiredScriptSources[scriptsFetched]);
 				}
@@ -90,7 +97,7 @@ export class GWBWElement extends HTMLElement {
 		});
 	}
 
-	startWorking($givenForm) {
+	startWorking($givenForm?) {
 		if ($givenForm) {
 			$givenForm.classList.add(`working`);
 		} else {
@@ -104,7 +111,7 @@ export class GWBWElement extends HTMLElement {
 		}
 	}
 
-	stopWorking($givenForm) {
+	stopWorking($givenForm?) {
 		if ($givenForm) {
 			$givenForm.classList.remove(`working`);
 		} else {
@@ -140,12 +147,12 @@ export class GWBWElement extends HTMLElement {
 			if (typeof target.matches !== `function`) { continue; }
 			if (target.matches(`form`)) {
 				event.preventDefault();
-				if (typeof this.onSubmit === `function`) {
-					this.onSubmit.call(this, event, target);
-				}
+				this.onSubmit.call(this, event, target);
 				break;
 			}
 		}
 		event.preventDefault();
 	}
+
+	onSubmit(event, target) {}
 }

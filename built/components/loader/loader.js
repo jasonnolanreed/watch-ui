@@ -1,16 +1,16 @@
 import { GWBWElement } from '../../classes/gwbw-element.js';
 import { makeTemplate } from './loader-templates.js';
 export class Loader extends GWBWElement {
+    loadingTimeout = null;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
-        this.loadingTimeout = null;
     }
     static get observedAttributes() {
         return [`loading`];
     }
     get loading() {
-        return this.getAttribute(`loading`);
+        return !!this.getAttribute(`loading`);
     }
     set loading(newValue) {
         if (typeof newValue !== `boolean`) {
@@ -18,7 +18,7 @@ export class Loader extends GWBWElement {
         }
         if (newValue === true) {
             this.loadingTimeout = setTimeout(_ => {
-                this.setAttribute(`loading`, newValue);
+                this.setAttribute(`loading`, String(newValue));
             }, 1000);
         }
         else {

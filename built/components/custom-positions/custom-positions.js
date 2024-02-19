@@ -3,6 +3,7 @@ import { CustomPositionsApi } from '../../api-helpers/custom-positions.js';
 import { positionsMap } from '../../utilities/position.js';
 import { makeTemplate } from './custom-positions-templates.js';
 export class CustomPositions extends GWBWElement {
+    customPositions = null;
     constructor() {
         super();
         this.getData();

@@ -1,10 +1,13 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
+import {Messages} from '../messages/messages.js';
+import {CustomPosition, CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {positionsMap} from '../../utilities/position.js';
 
 import {makeTemplate} from './custom-positions-templates.js';
 
 export class CustomPositions extends GWBWElement {
+	customPositions: CustomPosition[] = null;
+
 	constructor() {
 		super();
 		this.getData();
@@ -69,7 +72,7 @@ export class CustomPositions extends GWBWElement {
 		if (!positionsMap[proposedName.trim().toLowerCase()]) {
 			return false;
 		} else {
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			messages.add({message: `A position with this name already exists. Try again?`, type: `error`, ttl: 5000});
 			return true;
 		}
