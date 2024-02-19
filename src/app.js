@@ -1,11 +1,11 @@
-import {measurementId} from './ga.js';
+// import {measurementId} from './ga.js';
 import {environment} from './utilities/network.js';
 import './router.js';
 import './components/icon/icon.js';
 
 try {
-	gtag(`js`, new Date());
-	gtag(`config`, measurementId);
+	// gtag(`js`, new Date());
+	// gtag(`config`, measurementId);
 	
 	if (window.Sentry) {
 		Sentry.init({
@@ -14,5 +14,5 @@ try {
 		});
 	}
 } catch(error) {
-	console.warn("Error initializing 3rd party services");
+	console.warn("Error initializing 3rd party services", error);
 }
