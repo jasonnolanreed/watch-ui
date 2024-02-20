@@ -3,6 +3,11 @@ import {GWBWElement} from '../../classes/gwbw-element.js';
 import {makeTemplate} from './positions-detail-templates.js';
 
 export class PositionsDetail extends GWBWElement {
+	positionsData: {};
+	goodTolerancePlusNumber: number;
+	goodToleranceMinusNumber: number;
+	sortedPositionNamesArray: string[];
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -21,6 +26,7 @@ export class PositionsDetail extends GWBWElement {
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (name === `positions` && newValue !== oldValue) {
 			this.positionsData = JSON.parse(decodeURI(this.positions));
+			console.log(`nolan positionsData`, this.positionsData);
 			this.render();
 		}
 		if (name === `goodtoleranceplus` && newValue !== oldValue) {

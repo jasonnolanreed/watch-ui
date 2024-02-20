@@ -6,10 +6,12 @@ import {AuthApi} from '../../api-helpers/auth.js';
 import {makeTemplate} from './nav-templates.js';
 
 export class Nav extends GWBWElement {
+	loggedIn = false;
+	isLoginView: boolean;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.loggedIn = false;
 	}
 
 	async connectedCallback() {

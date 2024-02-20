@@ -14,7 +14,7 @@ export class AuthApi {
 	static set preAuthHash(hash) { AuthApi.preAuthRequestHash = hash; }
 
 	// Always resolves, with boolean payload
-	static isLoggedIn() {
+	static isLoggedIn(): Promise<boolean> {
 		if (AuthApi.isLoggedInCache !== null && AuthApi.isLoggedInCache) {
 			return Promise.resolve(true);
 		} else {

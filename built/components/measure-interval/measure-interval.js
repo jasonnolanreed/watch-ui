@@ -10,22 +10,22 @@ import { roundToOneDecimal } from '../../utilities/number.js';
 import { getPositionNameForMeasure, positionsMap } from '../../utilities/position.js';
 import { makeTemplate } from './measure-interval-templates.js';
 export class MeasureInterval extends GWBWElement {
+    startMeasure;
+    endMeasure;
+    // this.measures is only selected range within session
+    measures;
+    positions;
+    customPositions;
+    sortedPositionNames;
+    preferences;
+    watch;
+    expandSessionLink;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
         this.setClickEvents([
             { target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort },
         ]);
-        this.startMeasure;
-        this.endMeasure;
-        // this.measures is only selected range within session
-        this.measures;
-        this.positions;
-        this.customPositions;
-        this.sortedPositionNames;
-        this.preferences;
-        this.watch;
-        this.expandSessionLink;
     }
     async connectedCallback() {
         super.connectedCallback();
@@ -47,8 +47,8 @@ export class MeasureInterval extends GWBWElement {
     }
     async getData() {
         const responses1 = await Promise.all([
-            MeasureApi.getMeasure(router.params[`measureOne`]),
-            MeasureApi.getMeasure(router.params[`measureTwo`]),
+            MeasureApi.getMeasure(router[`params`][`measureOne`]),
+            MeasureApi.getMeasure(router[`params`][`measureTwo`]),
             PreferenceApi.getPreferences(),
             CustomPositionsApi.getCustomPositions(),
         ]);

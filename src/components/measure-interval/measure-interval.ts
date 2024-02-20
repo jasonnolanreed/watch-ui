@@ -1,10 +1,10 @@
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 
-import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
-import {MeasureApi} from '../../api-helpers/measure.js';
-import {PreferenceApi} from '../../api-helpers/preference.js';
-import {WatchApi} from '../../api-helpers/watch.js';
+import {CustomPosition, CustomPositionsApi} from '../../api-helpers/custom-positions.js';
+import {Measure, MeasureApi} from '../../api-helpers/measure.js';
+import {PreferenceApi, Preferences} from '../../api-helpers/preference.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
 
 import {Difference} from '../../utilities/date-time.js';
 import {parseSessionsFromMeasures} from '../../utilities/measure.js';
@@ -14,6 +14,17 @@ import {getPositionNameForMeasure, positionsMap} from '../../utilities/position.
 import {makeTemplate} from './measure-interval-templates.js';
 
 export class MeasureInterval extends GWBWElement {
+	startMeasure: Measure;
+	endMeasure: Measure;
+	// this.measures is only selected range within session
+	measures: Measure[];
+	positions: {[`positionName`]?: Position};
+	customPositions: CustomPosition[];
+	sortedPositionNames: string[];
+	preferences: Preferences;
+	watch: Watch;
+	expandSessionLink: string;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -21,16 +32,6 @@ export class MeasureInterval extends GWBWElement {
 			{target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort},
 		]);
 
-		this.startMeasure;
-		this.endMeasure;
-		// this.measures is only selected range within session
-		this.measures;
-		this.positions;
-		this.customPositions;
-		this.sortedPositionNames;
-		this.preferences;
-		this.watch;
-		this.expandSessionLink;
 	}
 
 	async connectedCallback() {
@@ -55,8 +56,8 @@ export class MeasureInterval extends GWBWElement {
 
 	async getData() {
 		const responses1 = await Promise.all([
-			MeasureApi.getMeasure(router.params[`measureOne`]),
-			MeasureApi.getMeasure(router.params[`measureTwo`]),
+			MeasureApi.getMeasure(router[`params`][`measureOne`]),
+			MeasureApi.getMeasure(router[`params`][`measureTwo`]),
 			PreferenceApi.getPreferences(),
 			CustomPositionsApi.getCustomPositions(),
 		]);
@@ -131,7 +132,7 @@ export class MeasureInterval extends GWBWElement {
 	}
 
 	setSortedPositionNames() {
-		let positionNames = [];
+		let positionNames: string[] = [];
 		this.customPositions.forEach(customPosition => {
 			positionNames.push(customPosition.name);
 		});
@@ -161,3 +162,10 @@ export class MeasureInterval extends GWBWElement {
 }
 
 customElements.define(`gwbw-measure-interval`, MeasureInterval);
+
+interface Position {
+	name: string;
+	days: number;
+	secondsDrift: number;
+	positionCount: number;
+}
