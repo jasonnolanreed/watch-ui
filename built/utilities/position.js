@@ -9,7 +9,7 @@ export const positionsMap = {
     crownup: { label: `Crown Up`, icon: `text_rotate_up` },
     winder: { label: `Winder`, icon: `rotate_right` }
 };
-export const getIconNameForPosition = position => {
+export const getIconNameForPosition = (position) => {
     return positionsMap[position]?.icon || `account_circle`;
 };
 export const getPositionNameForMeasure = (measure, customPositions) => {

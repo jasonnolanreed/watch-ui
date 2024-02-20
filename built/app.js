@@ -5,7 +5,7 @@ import './components/icon/icon.js';
 try {
     // gtag(`js`, new Date());
     // gtag(`config`, measurementId);
-    if (window.Sentry) {
+    if (Sentry) {
         Sentry.init({
             environment,
             dsn: `https://4ec231e6bf774e5bbc2546a1d11f5578@sentry.io/1426110`

@@ -9,7 +9,7 @@ import {makeTemplate} from './measure-detail-templates.js';
 import { Messages } from '../messages/messages.js';
 
 export class MeasureDetail extends GWBWElement {
-	mode;
+	mode: string;
 	measure: Measure;
 	customPositions: CustomPosition[] = null;
 

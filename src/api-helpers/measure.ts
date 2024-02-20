@@ -78,5 +78,7 @@ export interface Measure {
 	moment: string;
 	targetMoment: string;
 	firstOfSession: boolean;
+
 	customPositionId?: any;
+	firstOfDay?: boolean;
 }

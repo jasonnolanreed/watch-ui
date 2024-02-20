@@ -33,7 +33,7 @@ router
     GA.view(`/pre-verify`, `Pre-Verify`);
 })
     .on(`/verify/:email/:verificationCode`, (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     LoadView.layout($view, layouts.main, `views/verify-view.html`);
     GA.view(`/verify`, `Verify`);
 })
@@ -69,8 +69,8 @@ router
     }
 })
     .on(`/watches/edit/:watchId`, async (params, query) => {
-    router.params = params;
-    router.query = formatQuery(query);
+    router[`params`] = params;
+    router[`query`] = formatQuery(query);
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/watch-edit-view.html`);
         GA.view(`/watches/edit`, `Edit a Watch`);
@@ -80,8 +80,8 @@ router
     }
 })
     .on(`/watches/:watchId`, async (params, query) => {
-    router.params = params;
-    router.query = formatQuery(query);
+    router[`params`] = params;
+    router[`query`] = formatQuery(query);
     if (await AuthApi.isLoggedIn()) {
         const preferences = await PreferenceApi.getPreferences();
         if (preferences.showTimegrapherFeatures) {
@@ -99,8 +99,8 @@ router
     }
 })
     .on(`/sessions/:watchId`, async (params, query) => {
-    router.params = params;
-    router.query = formatQuery(query);
+    router[`params`] = params;
+    router[`query`] = formatQuery(query);
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/sessions-view.html`);
         GA.view(`/sessions`, `Sessions`);
@@ -110,7 +110,7 @@ router
     }
 })
     .on(`/watches/measure/:watchId`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/watch-measure-view.html`);
         GA.view(`/watches/measure`, `Measure a Watch`);
@@ -120,7 +120,7 @@ router
     }
 })
     .on(`/measure/:measureId`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
         GA.view(`/measure`, `Measure Details`);
@@ -130,7 +130,7 @@ router
     }
 })
     .on(`/measure/now/:watchId/:targetMoment/:moment/:firstOfSession`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/measure-detail-view.html`);
         GA.view(`/measure/now`, `Save New Measure`);
@@ -140,7 +140,7 @@ router
     }
 })
     .on(`/measure/interval/:measureOne/:measureTwo`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/measure-interval-view.html`);
         GA.view(`/measure/interval`, `Measure Interval`);
@@ -150,8 +150,8 @@ router
     }
 })
     .on(`/timegrapher/:watchId`, async (params, query) => {
-    router.params = params;
-    router.query = formatQuery(query);
+    router[`params`] = params;
+    router[`query`] = formatQuery(query);
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/timegrapher-view.html`);
         GA.view(`/timegrapher/:watchId`, `Timegrapher View`);
@@ -161,7 +161,7 @@ router
     }
 })
     .on(`/timegrapher/add/:watchId`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/timegrapher-add-view.html`);
         GA.view(`/timegrapher/add/:watchId`, `Add Timegrapher Results`);
@@ -171,7 +171,7 @@ router
     }
 })
     .on(`/timegrapher/edit/:timegrapherResultsId`, async (params, query) => {
-    router.params = params;
+    router[`params`] = params;
     if (await AuthApi.isLoggedIn()) {
         LoadView.layout($view, layouts.main, `views/timegrapher-edit-view.html`);
         GA.view(`/timegrapher/edit/:timegrapherResultsId`, `Edit Timegrapher Results`);

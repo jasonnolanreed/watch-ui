@@ -1,17 +1,17 @@
 export class Format {
 	// Example: `3:43 pm`
-	static time(timestamp) {
+	static time(timestamp): string {
 		return FromDate.getTimeWithAmPm(new window.Date(+timestamp));
 	}
 
 	// Example: `3:43:15 pm`
-	static timeWithSeconds(timestamp) {
+	static timeWithSeconds(timestamp): string {
 		return FromDate.getTimeWithSecondsAndAmPm(new window.Date(+timestamp));
 	}
 
 	// Example: `Feb 3rd`
 	// If year differs from current year, `Feb 3rd, 2022`
-	static date(timestamp) {
+	static date(timestamp): string {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		let output = `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}`;
@@ -22,21 +22,21 @@ export class Format {
 	}
 
 	// Example: `Feb 3rd, 8:13 am`
-	static dateAndTime(timestamp) {
+	static dateAndTime(timestamp): string {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		return `${FromDate.getShortMonth(date)} ${FromDate.getDayOfMonth(date)}, ${FromDate.getTimeWithAmPm(date)}`;
 	}
 
 	// Example: `Feb 3, 8:13a`
-	static dateAndTimeCompact(timestamp) {
+	static dateAndTimeCompact(timestamp): string {
 		timestamp = +timestamp;
 		const date = new window.Date(timestamp);
 		return `${FromDate.getShortMonth(date)} ${date.getDate()}, ${FromDate.getTimeWithCompactAmPm(date)}`;
 	}
 
 	// Example: `5 days, 13 hours, 38 minutes, 3 seconds`
-	static durationLong(timestamp1, timestamp2) {
+	static durationLong(timestamp1, timestamp2): string {
 		const startTimestamp = Math.min(+timestamp1, +timestamp2);
 		const endTimestamp = Math.max(+timestamp1, +timestamp2);
 		let secondsOfDuration = Difference.seconds(startTimestamp, endTimestamp);
@@ -63,7 +63,7 @@ export class Format {
 		return durationSections.join(`, `);
 	}
 	// Example: "Feb 11th" or "Feb 11th - Feb 21st"
-	static dateRange(timestamp1, timestamp2) {
+	static dateRange(timestamp1, timestamp2): string {
 		const startDate = Format.date(timestamp1);
 		const endDate = Format.date(timestamp2);
 		return startDate === endDate ? startDate : startDate + ` - ` + endDate;
@@ -72,17 +72,17 @@ export class Format {
 
 export class FromDate {
 	// Example: `Mon`
-	static getShortDay(date) {
+	static getShortDay(date): string {
 		return date.toDateString().split(` `)[0];
 	}
 
 	// Example: `Feb`
-	static getShortMonth(date) {
+	static getShortMonth(date): string {
 		return date.toDateString().split(` `)[1];
 	}
 
 	// Example: `3rd`
-	static getDayOfMonth(date) {
+	static getDayOfMonth(date): string {
 		const dateNumber = date.getDate();
 		let suffix = `th`;
 		if ([1, 21, 31].includes(dateNumber)) { suffix = `st`; }
@@ -92,7 +92,7 @@ export class FromDate {
 	}
 
 	// Example: `8:13 am`
-	static getTimeWithAmPm(date) {
+	static getTimeWithAmPm(date): string {
 		const parts = date.toLocaleString().split(` `);
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
@@ -100,7 +100,7 @@ export class FromDate {
 	}
 
 	// Example: `8:13p`
-	static getTimeWithCompactAmPm(date) {
+	static getTimeWithCompactAmPm(date): string {
 		const parts = date.toLocaleString().split(` `);
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
@@ -108,7 +108,7 @@ export class FromDate {
 	}
 
 	// Example: `8:13:42 am`
-	static getTimeWithSecondsAndAmPm(date) {
+	static getTimeWithSecondsAndAmPm(date): string {
 		const parts = date.toLocaleString().split(` `);
 		const amPm = parts[2].toLowerCase();
 		return `${parts[1]} ${amPm}`;
@@ -116,21 +116,21 @@ export class FromDate {
 }
 
 export class Difference {
-	static seconds(startTimestamp, endTimestamp) {
+	static seconds(startTimestamp, endTimestamp): number {
 		return (+endTimestamp - +startTimestamp) / 1000;
 	}
 
-	static days(startTimestamp, endTimestamp) {
+	static days(startTimestamp, endTimestamp): number {
 		return (+endTimestamp - +startTimestamp) / 86400000;
 	}
 }
 
 export class Shift {
-	static seconds(timestamp, secondsDifference) {
+	static seconds(timestamp, secondsDifference): number {
 		return timestamp + (secondsDifference * 1000);
 	}
 
-	static minutes(timestamp, minutesDifference) {
+	static minutes(timestamp, minutesDifference): number {
 		return timestamp + (minutesDifference * 60000);
 	}
 }

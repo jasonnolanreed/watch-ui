@@ -1,6 +1,6 @@
 import { Difference, Format } from './date-time.js';
 import { roundToOneDecimal } from './number.js';
-export const parseSessionsFromMeasures = allMeasures => {
+export const parseSessionsFromMeasures = (allMeasures) => {
     if (allMeasures && allMeasures.length) {
         allMeasures[0].firstOfSession = true;
     }
@@ -29,7 +29,7 @@ export const parseSessionsFromMeasures = allMeasures => {
 export const getMomentDiffFromMeasure = measure => {
     return Difference.seconds(measure.moment, measure.targetMoment);
 };
-export const getSessionTotalData = session => {
+export const getSessionTotalData = (session) => {
     if (!session || session.length < 2) {
         return null;
     }

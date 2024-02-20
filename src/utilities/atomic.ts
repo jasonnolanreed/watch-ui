@@ -2,9 +2,7 @@ import {GA} from '../ga.js';
 import {Difference} from './date-time.js';
 
 export class Atomic {
-	constructor() {
-		this.atomicOffsetPromise = null;
-	}
+	static atomicOffsetPromise: Promise<any> = null;
 
 	// Always resolves, with payload as number (positive when device is fast), or null
 	static clearAtomicOffset() {
@@ -12,17 +10,17 @@ export class Atomic {
 	}
 
 	// Always resolves, with payload as number (positive when device is fast), or null
-	static getAtomicOffset() {
+	static getAtomicOffset(): Promise<number> {
 		// Disable atomic offset feature
-		return new Promise((resolve, reject) => {
-			sessionStorage.setItem(`atomic-offset`, 0);
+		return new Promise<number>((resolve, reject) => {
+			sessionStorage.setItem(`atomic-offset`, `0`);
 			resolve(0);
 		});
 		if (this.atomicOffsetPromise) {
 			return this.atomicOffsetPromise;
 		} else {
 			this.atomicOffsetPromise = new Promise((resolve, reject) => {
-				const ssAtomicOffset = sessionStorage.getItem(`atomic-offset`);
+				const ssAtomicOffset = Number(sessionStorage.getItem(`atomic-offset`));
 				if (ssAtomicOffset) {
 					this.atomicOffsetPromise = null;
 					resolve(ssAtomicOffset); return;
@@ -37,19 +35,19 @@ export class Atomic {
 					if (fetchDuration > 2500) {
 						GA.event(`atomic`, `atomic too slow`);
 						this.atomicOffsetPromise = null;
-						sessionStorage.setItem(`atomic-offset`, 0);
+						sessionStorage.setItem(`atomic-offset`, `0`);
 						resolve(0); return;
 					}
 					// No response
 					if (!response) {
 						this.atomicOffsetPromise = null;
-						sessionStorage.setItem(`atomic-offset`, 0);
+						sessionStorage.setItem(`atomic-offset`, `0`);
 						resolve(0); return;
 					}
 					// Not expected response
 					if (typeof response.microtime !== `number`) {
 						this.atomicOffsetPromise = null;
-						sessionStorage.setItem(`atomic-offset`, 0);
+						sessionStorage.setItem(`atomic-offset`, `0`);
 						resolve(0); return;
 					}
 					const atomicTime = +((`` + response.microtime).split(`.`).join(``).substring(0, 13));
@@ -60,18 +58,18 @@ export class Atomic {
 					if (Math.abs(adjustedDiff) > 1500) {
 						GA.event(`atomic`, `atomic diff too large`);
 						this.atomicOffsetPromise = null;
-						sessionStorage.setItem(`atomic-offset`, 0);
+						sessionStorage.setItem(`atomic-offset`, `0`);
 						resolve(0); return;
 					}
 					GA.event(`atomic`, `atomic using diff`);
 					this.atomicOffsetPromise = null;
-					sessionStorage.setItem(`atomic-offset`, adjustedDiff);
+					sessionStorage.setItem(`atomic-offset`, String(adjustedDiff));
 					resolve(adjustedDiff);
 				})
 				.catch(error => {
 					GA.event(`atomic`, `atomic error`);
 					this.atomicOffsetPromise = null;
-					sessionStorage.setItem(`atomic-offset`, 0);
+					sessionStorage.setItem(`atomic-offset`, `0`);
 					resolve(0); return;
 				});
 			});

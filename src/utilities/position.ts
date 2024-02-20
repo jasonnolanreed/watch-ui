@@ -10,11 +10,11 @@ export const positionsMap = {
 	winder: {label: `Winder`, icon: `rotate_right`}
 };
 
-export const getIconNameForPosition = position => {
+export const getIconNameForPosition = (position): string => {
 	return positionsMap[position]?.icon || `account_circle`;
 };
 
-export const getPositionNameForMeasure = (measure, customPositions) => {
+export const getPositionNameForMeasure = (measure, customPositions): string => {
 	if (measure.customPositionId && customPositions?.length) {
 		return customPositions.find(thisPosition => measure.customPositionId === thisPosition._id)?.name || ``;
 	} else {

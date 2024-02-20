@@ -1,7 +1,8 @@
 import {Difference, Format} from './date-time.js';
 import {roundToOneDecimal} from './number.js';
+import {Measure} from '../api-helpers/measure.js';
 
-export const parseSessionsFromMeasures = allMeasures => {
+export const parseSessionsFromMeasures = (allMeasures: Measure[]): Measure[][] => {
 	if (allMeasures && allMeasures.length) { allMeasures[0].firstOfSession = true; }
 	let sessions = [];
 	let measuresOfSession = [];
@@ -25,7 +26,7 @@ export const getMomentDiffFromMeasure = measure => {
 	return Difference.seconds(measure.moment, measure.targetMoment);
 };
 
-export const getSessionTotalData = session => {
+export const getSessionTotalData = (session: Measure[]) => {
 	if (!session || session.length < 2) { return null; }
 		const sessionDistance =
 			Difference.days(session[0].targetMoment, session[session.length - 1].targetMoment);
