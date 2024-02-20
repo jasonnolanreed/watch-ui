@@ -1,13 +1,20 @@
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {WatchApi} from '../../api-helpers/watch.js';
-import {MeasureApi} from '../../api-helpers/measure.js';
-import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
+import {Measure, MeasureApi} from '../../api-helpers/measure.js';
+import {TimegrapherApi, TimegrapherResult} from '../../api-helpers/timegrapher.js';
 import {parseSessionsFromMeasures} from '../../utilities/measure.js';
 
 import {makeTemplate} from './watch-detail-templates.js';
 
 export class WatchDetail extends GWBWElement {
+	watch: Watch;
+	measures: Measure[];
+	timegrapherResults: TimegrapherResult[];
+	sessions: Measure[][];
+	latestSession: Measure[];
+	latestTimegrapherResults: TimegrapherResult;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -33,9 +40,9 @@ export class WatchDetail extends GWBWElement {
 
 	async getData() {
 		const responses = await Promise.all([
-			WatchApi.getWatch(router.params[`watchId`]),
-			MeasureApi.getMeasures(router.params[`watchId`]),
-			TimegrapherApi.getTimegrapherResults(router.params[`watchId`])
+			WatchApi.getWatch(router[`params`][`watchId`]),
+			MeasureApi.getMeasures(router[`params`][`watchId`]),
+			TimegrapherApi.getTimegrapherResults(router[`params`][`watchId`])
 		]);
 
 		this.watch = responses[0];

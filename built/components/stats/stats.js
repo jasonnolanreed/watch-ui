@@ -2,6 +2,7 @@ import { GWBWElement } from '../../classes/gwbw-element.js';
 import { StatsApi } from '../../api-helpers/stats.js';
 import { makeTemplate } from './stats-templates.js';
 export class Stats extends GWBWElement {
+    stats;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });

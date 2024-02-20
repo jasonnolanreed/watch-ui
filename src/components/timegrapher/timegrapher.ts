@@ -1,12 +1,19 @@
 import {router} from '../../router.js';
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {WatchApi} from '../../api-helpers/watch.js';
-import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
+import {Messages} from '../messages/messages.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
+import {TimegrapherApi, TimegrapherResult} from '../../api-helpers/timegrapher.js';
 
 import {makeTemplate} from './timegrapher-templates.js';
 
 export class Timegrapher extends GWBWElement {
+	currentResultsIndex: number;
+	stickyObserver: IntersectionObserver;
+	watch: Watch;
+	timegrapherResults: TimegrapherResult[];
+	currentResults: TimegrapherResult;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -29,14 +36,19 @@ export class Timegrapher extends GWBWElement {
 
 	async getData() {
 		const responses = await Promise.all([
-			WatchApi.getWatch(router.params[`watchId`]),
-			TimegrapherApi.getTimegrapherResults(router.params[`watchId`]),
+			WatchApi.getWatch(router[`params`][`watchId`]),
+			TimegrapherApi.getTimegrapherResults(router[`params`][`watchId`]),
 		]);
 		this.watch = responses[0];
 		this.timegrapherResults = responses[1];
 		this.currentResultsIndex = this.timegrapherResults.length - 1;
-		if (router.query && router.query.resultsIndex && router.query.resultsIndex > -1 && router.query.resultsIndex < this.timegrapherResults.length) {
-			this.currentResultsIndex = +router.query.resultsIndex;
+		if (
+			router[`query`] &&
+			router[`query`].resultsIndex &&
+			router[`query`].resultsIndex > -1 &&
+			router[`query`].resultsIndex < this.timegrapherResults.length
+		) {
+			this.currentResultsIndex = +router[`query`].resultsIndex;
 		}
 		this.currentResults = this.timegrapherResults[this.currentResultsIndex];
 		this.render();
@@ -53,11 +65,11 @@ export class Timegrapher extends GWBWElement {
 	}
 
 	viewPreviousResults(event, target) {
-		router.navigate(`/timegrapher/${router.params['watchId']}/?resultsIndex=${this.currentResultsIndex - 1}`);
+		router.navigate(`/timegrapher/${router['params']['watchId']}/?resultsIndex=${this.currentResultsIndex - 1}`);
 	}
 
 	viewNextResults(event, target) {
-		router.navigate(`/timegrapher/${router.params['watchId']}/?resultsIndex=${this.currentResultsIndex + 1}`);
+		router.navigate(`/timegrapher/${router['params']['watchId']}/?resultsIndex=${this.currentResultsIndex + 1}`);
 	}
 
 	async deleteResults(event, target) {
@@ -69,11 +81,11 @@ export class Timegrapher extends GWBWElement {
 		this.stopWorking();
 		if (deleteSuccessful) {
 			GA.event(`timegrapher`, `timegrapher delete success`);
-			router.navigate(`/timegrapher/${router.params['watchId']}`);
+			router.navigate(`/timegrapher/${router['params']['watchId']}`);
 			this.getData();
 		} else {
 			GA.event(`timegrapher`, `timegrapher delete fail`);
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Failed to delete timegrapher result. Try again?`, type: `error`});
 			}

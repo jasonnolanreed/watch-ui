@@ -3,14 +3,16 @@ import { roundToOneDecimal } from '../../utilities/number.js';
 import { timegrapherPositions } from '../../utilities/timegrapher.js';
 import { makeTemplate } from './timegrapher-table-templates.js';
 export class TimegrapherTable extends GWBWElement {
+    averages = {
+        rate: 0,
+        amplitude: 0,
+        beatError: 0,
+    };
+    watchData;
+    timegrapherResultsData;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
-        this.averages = {
-            rate: ``,
-            amplitude: ``,
-            beatError: ``
-        };
     }
     static get observedAttributes() { return [`watch`, `timegrapherresults`]; }
     get watch() { return this.getAttribute(`watch`); }

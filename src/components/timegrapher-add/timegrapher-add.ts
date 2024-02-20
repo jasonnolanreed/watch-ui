@@ -1,13 +1,16 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {WatchApi} from '../../api-helpers/watch.js';
+import {Messages} from '../messages/messages.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
 import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './timegrapher-add-templates.js';
 
 export class TimegrapherAdd extends GWBWElement {
+	watch: Watch;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -24,7 +27,7 @@ export class TimegrapherAdd extends GWBWElement {
 	}
 
 	async getData() {
-		this.watch = await WatchApi.getWatch(router.params[`watchId`]);
+		this.watch = await WatchApi.getWatch(router[`params`][`watchId`]);
 		this.render();
 	}
 
@@ -32,7 +35,7 @@ export class TimegrapherAdd extends GWBWElement {
 		super.render();
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
-			this.shadowRoot.querySelector(`input:not([type=hidden]):first-of-type`)?.focus();
+			(this.shadowRoot.querySelector(`input:not([type=hidden]):first-of-type`) as HTMLElement)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -47,7 +50,7 @@ export class TimegrapherAdd extends GWBWElement {
 			router.navigate(`/timegrapher/${this.watch._id}`);
 		} else {
 			GA.event(`timegrapher`, `timegrapher add fail`);
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Failed to add results. Try again?`, type: `error`});
 			}

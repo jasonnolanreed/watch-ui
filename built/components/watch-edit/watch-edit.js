@@ -5,6 +5,7 @@ import { WatchApi } from '../../api-helpers/watch.js';
 import { getFormData } from '../../utilities/form.js';
 import { makeTemplate } from './watch-edit-templates.js';
 export class WatchEdit extends GWBWElement {
+    watch;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -27,7 +28,7 @@ export class WatchEdit extends GWBWElement {
         }
     }
     async getData() {
-        this.watch = await WatchApi.getWatch(router.params[`watchId`]);
+        this.watch = await WatchApi.getWatch(router[`params`][`watchId`]);
         this.render();
     }
     async onSubmit(event, target) {

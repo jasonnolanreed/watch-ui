@@ -1,12 +1,18 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {Messages} from '../messages/messages.js';
 import {AuthApi} from '../../api-helpers/auth.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './verify-templates.js';
 
+declare const Sentry: any;
+
 export class Verify extends GWBWElement {
+	email: string;
+	verificationCode: string;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -14,8 +20,8 @@ export class Verify extends GWBWElement {
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.email = router.params.email;
-		this.verificationCode = router.params.verificationCode;
+		this.email = router[`params`][`email`];
+		this.verificationCode = router[`params`][`verificationCode`];
 		this.render();
 		this.verify(this.shadowRoot.querySelector(`form`));
 	}
@@ -40,7 +46,7 @@ export class Verify extends GWBWElement {
 				Sentry.captureMessage(`registration verify SUCCESS: ${getFormData($form).email}`);
 				GA.event(`verfy`, `verify success`);
 			} catch(error) {}
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Your email address has been verified. You may now log in`, type: `success`, persistent: true});
 			}
@@ -50,7 +56,7 @@ export class Verify extends GWBWElement {
 				GA.event(`verfy`, `verify fail`);
 				Sentry.captureMessage(`registration verify ERROR: ${getFormData($form).email}`);
 			} catch(error) {}
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Something went wrong. You may need to bother goodwatchbadwatch@gmail.com about this`, type: `error`});
 			}

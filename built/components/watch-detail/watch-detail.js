@@ -6,6 +6,12 @@ import { TimegrapherApi } from '../../api-helpers/timegrapher.js';
 import { parseSessionsFromMeasures } from '../../utilities/measure.js';
 import { makeTemplate } from './watch-detail-templates.js';
 export class WatchDetail extends GWBWElement {
+    watch;
+    measures;
+    timegrapherResults;
+    sessions;
+    latestSession;
+    latestTimegrapherResults;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -28,9 +34,9 @@ export class WatchDetail extends GWBWElement {
     }
     async getData() {
         const responses = await Promise.all([
-            WatchApi.getWatch(router.params[`watchId`]),
-            MeasureApi.getMeasures(router.params[`watchId`]),
-            TimegrapherApi.getTimegrapherResults(router.params[`watchId`])
+            WatchApi.getWatch(router[`params`][`watchId`]),
+            MeasureApi.getMeasures(router[`params`][`watchId`]),
+            TimegrapherApi.getTimegrapherResults(router[`params`][`watchId`])
         ]);
         this.watch = responses[0];
         this.measures = responses[1];

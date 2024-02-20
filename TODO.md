@@ -1,3 +1,6 @@
+- TSC as part of npm scripts
+- Move TS interfaces to /types directory for fewer requests
+- Gitignore /built, use GitHub actions
 - Position details for timegrapher results
 - Image aspect ratios
 - Click on deviation graph point to view interval for segment

@@ -1,18 +1,23 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {Watch} from '../../api-helpers/watch.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
 import {timegrapherPositions} from '../../utilities/timegrapher.js';
 
 import {makeTemplate} from './timegrapher-table-templates.js';
+import { TimegrapherResult } from '../../api-helpers/timegrapher.js';
 
 export class TimegrapherTable extends GWBWElement {
+	averages = {
+		rate: 0,
+		amplitude: 0,
+		beatError: 0,
+	};
+	watchData: Watch;
+	timegrapherResultsData: TimegrapherResult;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
-		this.averages = {
-			rate: ``,
-			amplitude: ``,
-			beatError: ``
-		};
 	}
 
 	static get observedAttributes() { return [`watch`, `timegrapherresults`]; }

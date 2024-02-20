@@ -15,12 +15,12 @@ export class TimegrapherApi {
 
 	// Always resolves, with boolean payload
 	static getTimegrapherResultsById(timegrapherResultsId) {
-		return new Promise<TimegrapherResult[]>((resolve, reject) => {
+		return new Promise<TimegrapherResult>((resolve, reject) => {
 			fetch(`${apiHost}timegrapher-result/${timegrapherResultsId}`, getOptionsForBasicGet())
 			.then(response => LoggedOutApi.checkLoggedOut(response))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
 			.then(response => resolve(response))
-			.catch(_ => resolve([]));
+			.catch(_ => resolve(null));
 		});
 	}
 

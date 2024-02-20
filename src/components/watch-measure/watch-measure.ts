@@ -1,13 +1,19 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {WatchApi} from '../../api-helpers/watch.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
 import {PreferenceApi} from '../../api-helpers/preference.js';
 import {Shift, Format} from '../../utilities/date-time.js';
 
 import {makeTemplate} from './watch-measure-templates.js';
 
 export class WatchMeasure extends GWBWElement {
+	moment: number;
+	isNewSession: boolean;
+	targetTimeString: string;
+	atomicOffset: number;
+	watch: Watch;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -32,14 +38,14 @@ export class WatchMeasure extends GWBWElement {
 
 	render() {
 		super.render();
-		const $firstOfSession = this.shadowRoot.querySelector(`input[name=firstOfSession]`);
+		const $firstOfSession: HTMLInputElement = this.shadowRoot.querySelector(`input[name=firstOfSession]`);
 		if ($firstOfSession) {
 			this.isNewSession = !!$firstOfSession.checked;
 		}
 		this.targetTimeString = Format.timeWithSeconds(this.moment);
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
-			this.shadowRoot.querySelector(`button.now`)?.focus();
+			(this.shadowRoot.querySelector(`button.now`) as HTMLElement)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -49,7 +55,7 @@ export class WatchMeasure extends GWBWElement {
 		this.moment = Shift.seconds(this.moment, 15);
 		this.render();
 		try {
-			this.shadowRoot.querySelector(".increase-quarter").focus();
+			(this.shadowRoot.querySelector(".increase-quarter") as HTMLElement).focus();
 		} catch(error) {}
 	}
 
@@ -57,7 +63,7 @@ export class WatchMeasure extends GWBWElement {
 		this.moment = Shift.seconds(this.moment, -15);
 		this.render();
 		try {
-			this.shadowRoot.querySelector(".decrease-quarter").focus();
+			(this.shadowRoot.querySelector(".decrease-quarter") as HTMLElement).focus();
 		} catch(error) {}
 	}
 
@@ -69,14 +75,14 @@ export class WatchMeasure extends GWBWElement {
 			(this.atomicOffset > 0) ?
 			Shift.seconds(measuredMoment, (-1 * Math.abs(this.atomicOffset))) :
 			Shift.seconds(measuredMoment, Math.abs(this.atomicOffset));
-		const firstOfSession = this.shadowRoot.querySelector(`[name=firstOfSession]`).checked;
+		const firstOfSession = (this.shadowRoot.querySelector(`[name=firstOfSession]`) as HTMLInputElement).checked;
 		const url = `/measure/now/${this.watch._id}/${targetMoment}/${adjustedMeasuredMoment}/${firstOfSession}`;
 		router.navigate(url);
 	}
 
 	async getData() {
 		const responses = await Promise.all([
-			WatchApi.getWatch(router.params[`watchId`]),
+			WatchApi.getWatch(router[`params`][`watchId`]),
 			PreferenceApi.getPreferences(),
 		]);
 		this.watch = responses[0];

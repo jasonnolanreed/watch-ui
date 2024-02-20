@@ -1,13 +1,17 @@
 import {GA} from '../../ga.js';
 import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {WatchApi} from '../../api-helpers/watch.js';
-import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
+import {Messages} from '../messages/messages.js';
+import {Watch, WatchApi} from '../../api-helpers/watch.js';
+import {TimegrapherApi, TimegrapherResult} from '../../api-helpers/timegrapher.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './timegrapher-edit-templates.js';
 
 export class TimegrapherEdit extends GWBWElement {
+	timegrapherResults: TimegrapherResult;
+	watch: Watch;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -24,7 +28,7 @@ export class TimegrapherEdit extends GWBWElement {
 	}
 
 	async getData() {
-		this.timegrapherResults = await TimegrapherApi.getTimegrapherResultsById(router.params[`timegrapherResultsId`]);
+		this.timegrapherResults = await TimegrapherApi.getTimegrapherResultsById(router[`params`][`timegrapherResultsId`]);
 		this.watch = await WatchApi.getWatch(this.timegrapherResults.watchId);
 		this.render();
 	}
@@ -47,7 +51,7 @@ export class TimegrapherEdit extends GWBWElement {
 			history.back();
 		} else {
 			GA.event(`timegrapher`, `timegrapher edit fail`);
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Failed to edit results. Try again?`, type: `error`});
 			}

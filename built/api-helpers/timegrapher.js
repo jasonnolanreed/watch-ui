@@ -22,7 +22,7 @@ export class TimegrapherApi {
                 return response.json();
             } throw new Error(); }, error => { throw new Error(); })
                 .then(response => resolve(response))
-                .catch(_ => resolve([]));
+                .catch(_ => resolve(null));
         });
     }
     // Always resolves, with boolean payload

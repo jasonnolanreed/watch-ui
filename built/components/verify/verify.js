@@ -5,14 +5,16 @@ import { AuthApi } from '../../api-helpers/auth.js';
 import { getFormData } from '../../utilities/form.js';
 import { makeTemplate } from './verify-templates.js';
 export class Verify extends GWBWElement {
+    email;
+    verificationCode;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
     }
     connectedCallback() {
         super.connectedCallback();
-        this.email = router.params.email;
-        this.verificationCode = router.params.verificationCode;
+        this.email = router[`params`][`email`];
+        this.verificationCode = router[`params`][`verificationCode`];
         this.render();
         this.verify(this.shadowRoot.querySelector(`form`));
     }

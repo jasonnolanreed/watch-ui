@@ -1,7 +1,7 @@
 import { Format } from '../../utilities/date-time.js';
 import { getMomentDiffFromMeasure } from '../../utilities/measure.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
-import { getIconNameForPosition, getPositionNameForMeasure, positionsMap } from '../../utilities/position.js';
+import { getIconNameForPosition, getPositionNameForMeasure } from '../../utilities/position.js';
 const makeHtml = (component) => (`
 ${component.preferences.showTimegrapherFeatures ? `
 <a class="back-link" href="#/watches/${component.watch._id}">

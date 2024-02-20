@@ -1,10 +1,11 @@
 import { GA } from '../../ga.js';
-import { router } from '../../router.js';
 import { GWBWElement } from '../../classes/gwbw-element.js';
 import { WatchApi } from '../../api-helpers/watch.js';
 import { PreferenceApi } from '../../api-helpers/preference.js';
 import { makeTemplate } from './watches-templates.js';
 export class Watches extends GWBWElement {
+    watches;
+    preferences;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });

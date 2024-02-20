@@ -6,6 +6,7 @@ import { TimegrapherApi } from '../../api-helpers/timegrapher.js';
 import { getFormData } from '../../utilities/form.js';
 import { makeTemplate } from './timegrapher-add-templates.js';
 export class TimegrapherAdd extends GWBWElement {
+    watch;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -19,7 +20,7 @@ export class TimegrapherAdd extends GWBWElement {
         super.disconnectedCallback();
     }
     async getData() {
-        this.watch = await WatchApi.getWatch(router.params[`watchId`]);
+        this.watch = await WatchApi.getWatch(router[`params`][`watchId`]);
         this.render();
     }
     render() {

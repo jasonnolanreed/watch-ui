@@ -8,6 +8,16 @@ import { CustomPositionsApi } from '../../api-helpers/custom-positions.js';
 import { parseSessionsFromMeasures } from '../../utilities/measure.js';
 import { makeTemplate } from './sessions-templates.js';
 export class Sessions extends GWBWElement {
+    stickyObserver;
+    currentSessionIndex;
+    intervalStartIndex;
+    currentSession;
+    currentSessionSorted;
+    watch;
+    measures;
+    preferences;
+    customPositions;
+    sessions;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -41,10 +51,10 @@ export class Sessions extends GWBWElement {
         }
     }
     viewPreviousSession(event, target) {
-        router.navigate(`/sessions/${router.params['watchId']}/?sessionIndex=${this.currentSessionIndex - 1}`);
+        router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${this.currentSessionIndex - 1}`);
     }
     viewNextSession(event, target) {
-        router.navigate(`/sessions/${router.params['watchId']}/?sessionIndex=${this.currentSessionIndex + 1}`);
+        router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${this.currentSessionIndex + 1}`);
     }
     selectInterval(event, target) {
         const index = target.getAttribute(`measure-index`);
@@ -89,8 +99,8 @@ export class Sessions extends GWBWElement {
     }
     async getData() {
         const responses = await Promise.all([
-            WatchApi.getWatch(router.params[`watchId`]),
-            MeasureApi.getMeasures(router.params[`watchId`]),
+            WatchApi.getWatch(router[`params`][`watchId`]),
+            MeasureApi.getMeasures(router[`params`][`watchId`]),
             PreferenceApi.getPreferences(),
             CustomPositionsApi.getCustomPositions(),
         ]);
@@ -100,8 +110,10 @@ export class Sessions extends GWBWElement {
         this.customPositions = responses[3];
         this.sessions = parseSessionsFromMeasures(this.measures);
         this.currentSessionIndex = this.sessions.length - 1;
-        if (router.query && router.query.sessionIndex && router.query.sessionIndex > -1 && router.query.sessionIndex < this.sessions.length) {
-            this.currentSessionIndex = +router.query.sessionIndex;
+        if (router[`query`] && router[`query`].sessionIndex &&
+            router[`query`].sessionIndex > -1 &&
+            router[`query`].sessionIndex < this.sessions.length) {
+            this.currentSessionIndex = +router[`query`].sessionIndex;
         }
         this.currentSession = this.sessions[this.currentSessionIndex];
         this.render();

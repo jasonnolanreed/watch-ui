@@ -6,6 +6,11 @@ import { PreferenceApi } from '../../api-helpers/preference.js';
 import { Shift, Format } from '../../utilities/date-time.js';
 import { makeTemplate } from './watch-measure-templates.js';
 export class WatchMeasure extends GWBWElement {
+    moment;
+    isNewSession;
+    targetTimeString;
+    atomicOffset;
+    watch;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -69,7 +74,7 @@ export class WatchMeasure extends GWBWElement {
     }
     async getData() {
         const responses = await Promise.all([
-            WatchApi.getWatch(router.params[`watchId`]),
+            WatchApi.getWatch(router[`params`][`watchId`]),
             PreferenceApi.getPreferences(),
         ]);
         this.watch = responses[0];
