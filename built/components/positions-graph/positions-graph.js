@@ -2,17 +2,18 @@ import { GWBWElement } from '../../classes/gwbw-element.js';
 import { positionsMap } from '../../utilities/position.js';
 import { makeTemplate } from './positions-graph-templates.js';
 export class PositionsGraph extends GWBWElement {
+    _hasChartJS = false;
+    positionsData = null;
+    goodTolerancePlusNumber = null;
+    goodToleranceMinusNumber = null;
+    graph = null;
+    sortedPositionNamesArray;
     constructor() {
         super();
         super.render(); // kill default loading UI immediately
-        this.setAttribute(`loading`, true);
+        this.setAttribute(`loading`, `true`);
         this.render(); // render immmediately for placeholder UI
         this.initChart = this.initChart.bind(this);
-        this._hasChartJS = false;
-        this.positionsData = null;
-        this.goodTolerancePlusNumber = null;
-        this.goodToleranceMinusNumber = null;
-        this.graph = null;
     }
     static get observedAttributes() { return [`positions`, `goodtoleranceplus`, `goodtoleranceminus`, `sortedpositionnames`]; }
     get positions() { return this.getAttribute(`positions`); }
@@ -182,7 +183,7 @@ export class PositionsGraph extends GWBWElement {
         config.data.labels = positionLabels;
         config.data.datasets[0].data = rates;
         config.data.datasets[0].backgroundColor = colors;
-        config.data.datasets[0].borderColor = colors;
+        config.data.datasets[0][`borderColor`] = colors;
         this.graph = new Chart(this.querySelector(`canvas`), config);
         function getTooltip(point) {
             const position = positionsData[sortedPositionsList[point.dataIndex]];

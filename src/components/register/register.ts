@@ -1,10 +1,13 @@
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {Messages} from '../messages/messages.js';
 import {AuthApi} from '../../api-helpers/auth.js';
 import {router} from '../../router.js';
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './register-templates.js';
+
+declare const Sentry: any;
 
 export class Register extends GWBWElement {
 	constructor() {
@@ -25,7 +28,7 @@ export class Register extends GWBWElement {
 		super.render();
 		try {
 			this.innerHTML = makeTemplate(this);
-			this.querySelector(`input#email`)?.focus();
+			(this.querySelector(`input#email`) as HTMLElement)?.focus();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -46,7 +49,7 @@ export class Register extends GWBWElement {
 			try {
 				Sentry.captureMessage(`registration attempt ERROR: ${getFormData(target).email}`);
 			} catch(error) {}
-			const messages = document.querySelector(`gwbw-messages`);
+			const messages: Messages = document.querySelector(`gwbw-messages`);
 			if (messages) {
 				messages.add({message: `Registration failed. Try again?`, type: `error`});
 			}

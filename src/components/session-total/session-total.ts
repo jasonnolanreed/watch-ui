@@ -1,8 +1,13 @@
+import { Measure } from '../../api-helpers/measure.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 
 import {makeTemplate} from './session-total-templates.js';
 
 export class SessionTotal extends GWBWElement {
+	sessionData: Measure[];
+	goodTolerancePlusValue: number;
+	goodToleranceMinusValue: number;
+
 	constructor() {
 		super();
 		this.attachShadow({mode: `open`});
@@ -20,15 +25,16 @@ export class SessionTotal extends GWBWElement {
 		if (name === `session` && newValue !== oldValue) {
 			if (this.session !== "undefined") {
 				this.sessionData = JSON.parse(decodeURI(this.session));
+				console.log(`nolan sessionData`, this.sessionData);
 			}
 			this.render();
 		}
 		if (name === `goodtoleranceplus` && newValue !== oldValue) {
-			this.goodTolerancePlusValue = this.goodtoleranceplus;
+			this.goodTolerancePlusValue = +this.goodtoleranceplus;
 			this.render();
 		}
 		if (name === `goodtoleranceminus` && newValue !== oldValue) {
-			this.goodToleranceMinusValue = this.goodtoleranceminus;
+			this.goodToleranceMinusValue = +this.goodtoleranceminus;
 			this.render();
 		}
 	}

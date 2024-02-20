@@ -6,6 +6,8 @@ import { PreferenceApi } from "../../api-helpers/preference.js";
 import { getFormData } from '../../utilities/form.js';
 import { makeTemplate } from './preferences-templates.js';
 export class Preferences extends GWBWElement {
+    preferences;
+    user;
     constructor() {
         super();
         this.setClickEvents([

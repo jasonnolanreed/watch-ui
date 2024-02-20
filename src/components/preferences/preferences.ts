@@ -1,13 +1,17 @@
 import {router} from '../../router.js';
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {AuthApi} from '../../api-helpers/auth.js';
-import {PreferenceApi} from "../../api-helpers/preference.js";
+import {Messages} from '../messages/messages.js';
+import {AuthApi, UserData} from '../../api-helpers/auth.js';
+import {Preferences as PreferencesData, PreferenceApi} from "../../api-helpers/preference.js";
 import {getFormData} from '../../utilities/form.js';
 
 import {makeTemplate} from './preferences-templates.js';
 
 export class Preferences extends GWBWElement {
+	preferences: PreferencesData;
+	user: UserData;
+
 	constructor() {
 		super();
 		this.setClickEvents([
@@ -58,7 +62,7 @@ export class Preferences extends GWBWElement {
 		const {atomicOffset} = getFormData(form);
 		this.startWorking(form);
 		const didSave = await PreferenceApi.updatePreferences({atomicOffset});
-		const messages = document.querySelector(`gwbw-messages`);
+		const messages: Messages = document.querySelector(`gwbw-messages`);
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
 			if (messages) {
@@ -79,7 +83,7 @@ export class Preferences extends GWBWElement {
 		const {showTimegrapherFeatures} = getFormData(form);
 		this.startWorking(form);
 		const didSave = await PreferenceApi.updatePreferences({showTimegrapherFeatures});
-		const messages = document.querySelector(`gwbw-messages`);
+		const messages: Messages = document.querySelector(`gwbw-messages`);
 		if (didSave) {
 			GA.event(`preference`, `preference update success`);
 			if (messages) {
@@ -96,7 +100,7 @@ export class Preferences extends GWBWElement {
 
 	async onChangePassword(event, target) {
 		event.preventDefault();
-		const messages = document.querySelector(`gwbw-messages`);
+		const messages: Messages = document.querySelector(`gwbw-messages`);
 		const form = target.form;
 		const {currentPassword, newPassword, confirmNewPassword} = target.form;
 		if (!currentPassword.value || !newPassword.value || !confirmNewPassword.value) {

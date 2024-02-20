@@ -3,16 +3,19 @@ import {positionsMap} from '../../utilities/position.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
 import {makeTemplate} from './positions-distribution-graph-templates.js';
 
+declare const Chart: any;
+
 export class PositionsDistributionGraph extends GWBWElement {
+	_hasChartJS = false;
+	positionsData = null;
+	graph = null;
+
 	constructor() {
 		super();
 		super.render(); // kill default loading UI immediately
-		this.setAttribute(`loading`, true);
+		this.setAttribute(`loading`, `true`);
 		this.render(); // render immmediately for placeholder UI
 		this.initChart = this.initChart.bind(this);
-		this._hasChartJS = false;
-		this.positionsData = null;
-		this.graph = null;
 	}
 
 	static get observedAttributes() { return [`positions`]; }

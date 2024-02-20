@@ -2,7 +2,7 @@ import {apiHost, getOptionsForPost, getOptionsForPut, getOptionsForBasicGet} fro
 import {getFormData} from '../utilities/form.js';
 
 export class AuthApi {
-	static cachedUserData: userData = null;
+	static cachedUserData: UserData = null;
 	static isLoggedInCache = null;
 	static preAuthRequestHash = null;
 
@@ -102,6 +102,6 @@ export class AuthApi {
 
 new AuthApi();
 
-interface userData {
+export interface UserData {
 	email: string;
 }
