@@ -1,3 +1,5 @@
+- TSC as part of npm scripts
+- Gitignore /built, use GitHub actions
 - Position details for timegrapher results
 - Image aspect ratios
 - Click on deviation graph point to view interval for segment
