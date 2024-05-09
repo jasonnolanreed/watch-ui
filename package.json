@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' && 'rm -rf ./built && ./node_modules/.bin/tsc -w'",
+    "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run build'",
+    "build": "rm -rf ./built && ./node_modules/.bin/tsc -w",
     "postinstall": "sh ./shell-scripts/vendor.sh"
   },
   "keywords": [],

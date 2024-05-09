@@ -23,7 +23,7 @@ export class GWBWElement extends HTMLElement {
             this.removeEventListener(`submit`, this._onSubmit);
         }
         if (this._hasShadowForm) {
-            this.shadowRoot.removeEventListener(`submit`, this._onSubmit);
+            this.shadowRoot?.removeEventListener(`submit`, this._onSubmit);
         }
         if (this._resizeObserver) {
             this._resizeObserver.disconnect();
@@ -39,7 +39,7 @@ export class GWBWElement extends HTMLElement {
     }
     bindShadowForm() {
         this._hasShadowForm = true;
-        this.shadowRoot.addEventListener(`submit`, this._onSubmit);
+        this.shadowRoot?.addEventListener(`submit`, this._onSubmit);
     }
     setClickEvents(clickEvents) {
         this._clickEvents = clickEvents;

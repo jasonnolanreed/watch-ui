@@ -4,6 +4,7 @@ export class LoadView {
     // view (if supplied), parses and loads ITS contained scripts, and inserts
     // into DOM for $view -> .content-container as parent
     static layout($view, layoutUrl, viewUrl) {
+        window.scrollTo({ top: 0, left: 0, behavior: `instant` });
         fetch(layoutUrl)
             .then(response => response.text(), error => { throw new Error(); })
             .then(responseAsText => {
@@ -28,7 +29,6 @@ export class LoadView {
             }
         })
             .catch(error => null);
-        LoadView._scrollToTop();
         document.querySelector(`gwbw-loader`).loading = true;
         const $contentContainer = $view.querySelector(`.content-container`);
         if ($contentContainer) {
@@ -64,17 +64,5 @@ export class LoadView {
                 $view.classList.add(`in`);
             });
         });
-    }
-    static _scrollToTop() {
-        try {
-            const doScroll = window.scroll || window.scrollTo;
-            doScroll({ top: 0, left: 0, behavior: `smooth` });
-        }
-        catch (error) {
-            try {
-                window.scrollTo(0, 0);
-            }
-            catch (error) { }
-        }
     }
 }
