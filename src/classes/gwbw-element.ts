@@ -1,7 +1,7 @@
 import {Loader} from "../types/components";
 
 export class GWBWElement extends HTMLElement {
-	protected _clickEvents: ClickEvent[] = null;
+	protected _clickEvents: ClickEvent[] | null = null;
 	protected _hasSetupResizeListener = false;
 	protected _hasConnected = false;
 	protected _hasForm: boolean;
@@ -25,12 +25,12 @@ export class GWBWElement extends HTMLElement {
 	disconnectedCallback() {
 		this.removeEventListener(`click`, this._onClick);
 		if (this._hasForm) { this.removeEventListener(`submit`, this._onSubmit); }
-		if (this._hasShadowForm) { this.shadowRoot.removeEventListener(`submit`, this._onSubmit); }
+		if (this._hasShadowForm) { this.shadowRoot?.removeEventListener(`submit`, this._onSubmit); }
 		if (this._resizeObserver) { this._resizeObserver.disconnect(); }
 	}
 
 	render() {
-		const $loader: Loader = document.querySelector(`gwbw-loader`);
+		const $loader: Loader = document.querySelector(`gwbw-loader`)!;
 		$loader.loading = false;
 	}
 
@@ -41,7 +41,7 @@ export class GWBWElement extends HTMLElement {
 
 	bindShadowForm() {
 		this._hasShadowForm = true;
-		this.shadowRoot.addEventListener(`submit`, this._onSubmit);
+		this.shadowRoot?.addEventListener(`submit`, this._onSubmit);
 	}
 
 	setClickEvents(clickEvents: ClickEvent[]) {
