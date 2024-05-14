@@ -1,8 +1,12 @@
 name: GitHub Action Front End Build
-run-name: ${{ github.actor }} is running front end build
 on: [push]
 jobs:
-  Run-Front-End-Build:
+  Front-End-Build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21.7.3'
       - run: npm run build
