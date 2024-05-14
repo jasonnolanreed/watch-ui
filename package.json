@@ -9,7 +9,7 @@
     "build:watch": "npm run clean && ./node_modules/.bin/tsc -p tsconfig.json -w",
     "github:build": "./node_modules/.bin/tsc -p tsconfig.json",
     "clean": "rm -rf ./built",
-    "postinstall": "sh ./shell-scripts/vendor.sh"
+    "vendor": "sh ./shell-scripts/vendor.sh"
   },
   "keywords": [],
   "author": "",
