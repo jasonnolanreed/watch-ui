@@ -9,4 +9,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '21.7.3'
+      - run: echo "checking tsc"
+      - run: which tsc
       - run: npm run github:build

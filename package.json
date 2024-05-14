@@ -2,7 +2,7 @@
   "name": "watch-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run vendor' 'npm run build:watch'",
     "build": "rm -rf ./built && ./node_modules/.bin/tsc && npm run vendor",
