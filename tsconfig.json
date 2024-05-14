@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "built",
+		"outDir": "/home/runner/work/watch-ui/watch-ui/built",
 		"allowJs": true,
 		"target": "ESNext",
 		"listFiles": true
