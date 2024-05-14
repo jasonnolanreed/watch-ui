@@ -5,9 +5,10 @@
   "main": "built/app.js",
   "scripts": {
     "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run build:watch'",
-    "build": "rm -rf ./built && ./node_modules/.bin/tsc -p tsconfig.json",
-    "build:watch": "rm -rf ./built && ./node_modules/.bin/tsc -p tsconfig.json -w",
-    "github:build": "npm run build",
+    "build": "npm run clean && ./node_modules/.bin/tsc -p tsconfig.json",
+    "build:watch": "npm run clean && ./node_modules/.bin/tsc -p tsconfig.json -w",
+    "github:build": "./node_modules/.bin/tsc -p tsconfig.json",
+    "clean": "rm -rf ./built",
     "postinstall": "sh ./shell-scripts/vendor.sh"
   },
   "keywords": [],
