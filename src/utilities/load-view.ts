@@ -47,7 +47,6 @@ export class LoadView {
 	// Fetches HTML for view, parses and loads contained scripts,
 	// and inserts into DOM with $view as parent
 	static _fetch($view: HTMLElement, viewUrl: string) {
-		console.log(`nolan loadView for:`, viewUrl);
 		fetch(viewUrl)
 		.then(response => response.text())
 		.then(responseAsText => {
