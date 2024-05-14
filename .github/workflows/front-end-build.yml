@@ -9,6 +9,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '21.7.3'
-      - run: echo "checking tsc"
-      - run: which tsc
+      - run: echo "Running typescript compilation"
       - run: npm run github:build
