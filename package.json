@@ -8,7 +8,7 @@
     "build": "rm -rf ./built && ./node_modules/.bin/tsc && npm run vendor",
     "build:watch": "rm -rf ./built && ./node_modules/.bin/tsc -w",
     "vendor": "sh ./shell-scripts/vendor.sh",
-    "github:build": "npm run build",
+    "github:build": "rm -rf ./built && ./node_modules/.bin/tsc",
     "postinstall": "npm run vendor"
   },
   "keywords": [],
