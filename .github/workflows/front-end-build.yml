@@ -9,7 +9,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '21.7.3'
-      - run: echo "Cleaning /built directory"
-      - run: npm run github:clean
+      - run: echo "Installing npm dependencies"
+      - run: npm install
       - run: echo "Running typescript compilation"
       - run: npm run github:build
