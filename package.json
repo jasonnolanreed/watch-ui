@@ -7,7 +7,8 @@
     "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run vendor' 'npm run build:watch'",
     "build": "rm -rf ./built && ./node_modules/.bin/tsc && npm run vendor",
     "build:watch": "rm -rf ./built && ./node_modules/.bin/tsc -w",
-    "vendor": "sh ./shell-scripts/vendor.sh"
+    "vendor": "sh ./shell-scripts/vendor.sh",
+    "github:build": "rm -rf ./built && tsc && npm run vendor"
   },
   "keywords": [],
   "author": "",

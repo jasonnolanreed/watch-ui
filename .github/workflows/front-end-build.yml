@@ -9,4 +9,4 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '21.7.3'
-      - run: npm run build
+      - run: npm run github:build
