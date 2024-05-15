@@ -2,11 +2,14 @@
   "name": "watch-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "built/app.js",
   "scripts": {
-    "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run build'",
-    "build": "rm -rf ./built && ./node_modules/.bin/tsc -w",
-    "postinstall": "sh ./shell-scripts/vendor.sh"
+    "dev": "concurrently './node_modules/.bin/http-server ./ -p 80' 'cd ../watch-api && npm run start:develop' 'npm run build:watch'",
+    "build": "npm run clean && ./node_modules/.bin/tsc -p tsconfig.json",
+    "build:watch": "npm run clean && ./node_modules/.bin/tsc -p tsconfig.json -w",
+    "clean": "rm -rf ./built",
+    "vendor": "sh ./shell-scripts/vendor.sh",
+    "postinstall": "npm run vendor"
   },
   "keywords": [],
   "author": "",

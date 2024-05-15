@@ -23,10 +23,10 @@ Name.com has a "GitHub Pages" DNS Records template, but it's outdated and won't 
 
 # Development flow
 
-* No build tools are used!
+* The only build tool used is TypeScript
 
 ```
-# Serve static files, start mongo, start api server
+# Build typescript, serve static files, start mongo, start api server
 npm run dev
 ```
 
