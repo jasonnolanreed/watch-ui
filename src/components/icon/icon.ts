@@ -14,7 +14,6 @@ export class Icon extends HTMLElement {
 	set name(newName) { this.setAttribute(`name`, newName); }
 	get color() { return this.getAttribute(`color`); }
 	set color(newColor) { this.setAttribute(`color`, newColor); }
-	static get iconNumber() { return null; }
 
 	attributeChangedCallback(name, oldValue, newValue) {
 		if (newValue === oldValue) { return; }

@@ -54,7 +54,13 @@ export class Sessions extends GWBWElement {
         router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${this.currentSessionIndex - 1}`);
     }
     viewNextSession(event, target) {
-        router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${this.currentSessionIndex + 1}`);
+        const newSessionIndex = this.currentSessionIndex + 1;
+        if (newSessionIndex + 1 === this.sessions.length) {
+            router.navigate(`/sessions/${router[`params`]['watchId']}`);
+        }
+        else {
+            router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${newSessionIndex}`);
+        }
     }
     selectInterval(event, target) {
         const index = target.getAttribute(`measure-index`);
