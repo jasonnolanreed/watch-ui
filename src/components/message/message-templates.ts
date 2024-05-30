@@ -44,7 +44,7 @@ const makeCss = (component) => (
 
 const makeHtml = (component) => (
 `
-<div class="message">
+<div class="message" role="alert">
 	${getTypeIcon(component)}${` `}
 	<span class="text">${component.getAttribute(`message`)}</span>
 	${getCloseIcon(component)}
@@ -65,7 +65,7 @@ const getCloseIcon = component => {
 		return ``;
 	} else {
 		return `
-			<button class="close sneaky-button">
+			<button class="close sneaky-button" aria-label="Dismiss message">
 				<gwbw-icon name="cancel"></gwbw-icon>
 			</button>
 		`;

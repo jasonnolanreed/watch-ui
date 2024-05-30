@@ -9,15 +9,22 @@ header {
 	container-name: cq-header;
 }
 
-picture {
-	display: block;
-	width: 55%;
-	max-width: 450px;
+img[class*="logo"] {
+	display: none;
 	margin: 0 auto;
 }
 
-@container cq-header (min-width: 900px) {
-	picture {
+@container cq-header (width < 700px) {
+	img.small-logo {
+		display: block;
+		width: 55%;
+		max-width: 275px;
+	}
+}
+
+@container cq-header (width >= 700px) {
+	img.large-logo {
+		display: block;
 		width: 80%;
 		max-width: 500px;
 	}
@@ -26,15 +33,20 @@ picture {
 `);
 const makeHtml = (component) => (`
 <header>
-	<picture>
-		<source srcset="assets/images/logo-small.svg"
-				media="(max-width: 600px)" alt="Good Watch Bad Watch Logo">
-		<source srcset="assets/images/logo-medium.svg"
-				media="(max-width: 900px)" alt="Good Watch Bad Watch Logo">
-		<source srcset="assets/images/logo.svg"
-				media="(min-width: 900px)" alt="Good Watch Bad Watch Logo">
-		<img src="assets/images/logo.svg" alt="Good Watch Bad Watch Logo">
-	</picture>
+	<img
+		class="large-logo"
+		src="assets/images/logo.svg"
+		alt="Good Watch Bad Watch Logo"
+		loading="lazy"
+		style="aspect-ratio: 500 / 77;"
+	>
+	<img
+		class="small-logo"
+		src="assets/images/logo-small.svg"
+		alt="Good Watch Bad Watch Logo"
+		loading="lazy"
+		style="aspect-ratio: 275 / 96;"
+	>
 </header>
 `);
 export const makeTemplate = (component) => {
