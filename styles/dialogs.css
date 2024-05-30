@@ -1,0 +1,29 @@
+:root {
+	--dialog-width: 450px;
+	--dialog-height: 300px;
+	--dialog-x-margin: 2rem;
+	--dialog-y-margin: 3rem;
+	--dialog-padding: 2rem;
+}
+
+dialog {
+	border: none;
+	inset-inline-start: unset;
+	inset-inline-end: unset;
+	top: 50%;
+	left: 50%;
+	transform: translate(calc(-50% - var(--dialog-x-margin)), calc(-50% - var(--dialog-y-margin)));
+	margin: var(--dialog-y-margin) var(--dialog-x-margin);
+	padding: var(--dialog-padding);
+	width: var(--dialog-width);
+	max-width: calc(100% - (var(--dialog-x-margin) * 2));
+	height: var(--dialog-height);
+	background-color: #fff;
+	color: var(--dark-blue);
+	border-radius: 3px;
+	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.4);
+}
+
+::backdrop {
+	background-color: rgba(0, 0, 0, 0.45);
+}
