@@ -224,6 +224,11 @@ hr.minimal {
 	border-radius: 2px;
 }
 
+.back-link .label {
+	position: relative;
+	bottom: 0.125em;
+}
+
 .page-title {
 	display: flex;
 	justify-content: flex-start;

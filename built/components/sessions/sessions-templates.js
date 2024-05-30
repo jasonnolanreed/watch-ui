@@ -5,7 +5,8 @@ import { getIconNameForPosition, getPositionNameForMeasure } from '../../utiliti
 const makeHtml = (component) => (`
 ${component.preferences.showTimegrapherFeatures ? `
 <a class="back-link" href="#/watches/${component.watch._id}">
-	<gwbw-icon name="arrow_back"></gwbw-icon><span>Back to watch</span>
+	<gwbw-icon name="arrow_back"></gwbw-icon>
+	<span class="label">Back to watch</span>
 </a>
 ` : ``}
 

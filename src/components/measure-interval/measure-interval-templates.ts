@@ -5,7 +5,7 @@ const makeHtml = (component) => (
 `
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
-	<span>Back to sessions<span>
+	<span class="label">Back to sessions<span>
 </a>
 
 <div class="page-title">
