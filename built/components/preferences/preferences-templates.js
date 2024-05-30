@@ -56,7 +56,7 @@ const makeHtml = (component) => (`
 	</div>
 	<p>Do you have a timing machine (timegrapher)? You can choose to show or hide timegrapher features.</p>
 	<div class="form-input">
-		<label class="check">
+		<label class="check pointer">
 			<input type="checkbox" name="showTimegrapherFeatures" ${component.preferences.showTimegrapherFeatures ? `checked` : ``}>
 			<div class="timegrapher-feature-label">
 				Show timegrapher features

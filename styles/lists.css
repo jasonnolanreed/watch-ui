@@ -72,13 +72,3 @@
 .list-item:nth-of-type(even) {
 	background-color: var(--silver);
 }
-
-/* Darken even rows very slightly */
-.list-item:nth-of-type(even):before {
-	content: "";
-	position: absolute;
-	top: 0; right: 0; bottom: 0; left: 0;
-	background-color: #000;
-	opacity: 0.015;
-	pointer-events: none;
-}

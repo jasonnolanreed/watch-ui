@@ -49,6 +49,10 @@ label.check [type=radio] {
 	margin-right: 0.5em;
 }
 
+label:has(input[type=checkbox]) {
+	cursor: pointer;
+}
+
 .form-input {
 	margin-bottom: 1.5em;
 }

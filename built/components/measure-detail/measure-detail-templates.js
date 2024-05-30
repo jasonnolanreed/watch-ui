@@ -11,7 +11,7 @@ const makeHtml = (component) => (`
 
 <form>
 	<div class="form-input">
-		<label class="check">
+		<label class="check pointer">
 			<input type="checkbox" name="firstOfSession" ${component.measure.firstOfSession ? `checked` : ``}>
 			<div>First measure of session<br/><small>(first since having set time on watch)</small></div>
 		</label>

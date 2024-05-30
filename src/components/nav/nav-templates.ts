@@ -24,7 +24,7 @@ nav {
 	align-items: center;
 	max-width: var(--main-max-width);
 	margin: 0 auto;
-	padding: 0 1em;
+	padding: 0 1rem;
 }
 
 a, a:visited {
@@ -38,7 +38,7 @@ a, a:visited {
 
 @media (hover: hover) {
 	a:hover {
-		color: var(--light-blue);
+		color: var(--gray);
 		text-decoration: none;
 	}
 }

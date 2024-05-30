@@ -3,8 +3,7 @@ const makeCss = (component) => (`
 @import "styles/global-styles.css";
 
 header {
-	padding: 2em 2em 1em 2em;
-	background-color: var(--silver);
+	padding: 2rem 2rem 1.5rem 2rem;
 	container-type: inline-size;
 	container-name: cq-header;
 }

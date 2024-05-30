@@ -11,7 +11,7 @@ const makeHtml = (component) => (
 <form>
 	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set the time on your watch</p>
 	<div class="form-input">
-		<label class="check new-session">
+		<label class="check new-session pointer">
 			<input type="checkbox" name="firstOfSession" ${component.isNewSession ? `checked` : ``}>
 			${` `}Start new session
 		</label>
