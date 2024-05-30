@@ -42,11 +42,13 @@
 .list-item:not(:first-of-type).separation-above {
 	border-top-width: 4px;
 	border-top-color: rgba(0, 0, 0, 0.15);
+	border-top-width: 0;
 }
 
 .list-item:not(:last-of-type).separation-below {
 	border-bottom-width: 4px;
 	border-bottom-color: rgba(0, 0, 0, 0.15);
+	border-bottom-width: 0;
 }
 
 .list-item.spacious {

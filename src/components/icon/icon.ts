@@ -6,7 +6,9 @@ export class Icon extends HTMLElement {
 
 	constructor() {
 		super();
-		this.classList.add(`inline-block`);
+		requestAnimationFrame(_ => {
+			this.classList.add(`inline-block`);
+		});
 	}
 
 	static get observedAttributes() { return [`name`, `color`]; }

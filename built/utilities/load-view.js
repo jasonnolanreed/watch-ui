@@ -5,6 +5,20 @@ export class LoadView {
     // into DOM for $view -> .content-container as parent
     static layout($view, layoutUrl, viewUrl) {
         window.scrollTo(0, 0);
+        // Turn <gwbw-loader> on
+        document.querySelector(`gwbw-loader`).loading = true;
+        // Fade out content container
+        const $contentContainer = $view.querySelector(`.content-container`);
+        if ($contentContainer) {
+            requestAnimationFrame(_ => {
+                $contentContainer.classList.remove(`in`);
+            });
+        }
+        // Close non-persistent messages
+        const messages = document.querySelector(`gwbw-messages`);
+        if (messages && typeof messages.closeNonPersistent === `function`) {
+            messages.closeNonPersistent();
+        }
         fetch(layoutUrl)
             .then(response => response.text(), error => { throw new Error(error); })
             .then(responseAsText => {
@@ -23,31 +37,26 @@ export class LoadView {
                 LoadView._fetch($view.querySelector(`.content-container`), viewUrl);
             }
             else {
+                // If only layout and not view within, undo loading sequence
                 setTimeout(_ => {
-                    document.querySelector(`gwbw-loader`).loading = false;
+                    requestAnimationFrame(_ => {
+                        document.querySelector(`gwbw-loader`).loading = false;
+                        $contentContainer.classList.add(`in`);
+                    });
                 }, 0);
             }
         })
             .catch(error => null);
-        document.querySelector(`gwbw-loader`).loading = true;
-        const $contentContainer = $view.querySelector(`.content-container`);
-        if ($contentContainer) {
-            $contentContainer.classList.remove(`in`);
-        }
-        const messages = document.querySelector(`gwbw-messages`);
-        if (messages && typeof messages.closeNonPersistent === `function`) {
-            messages.closeNonPersistent();
-        }
     }
     // Fetches HTML for view, parses and loads contained scripts,
     // and inserts into DOM with $view as parent
-    static _fetch($view, viewUrl) {
+    static _fetch($contentContainer, viewUrl) {
         fetch(viewUrl)
             .then(response => response.text())
             .then(responseAsText => {
-            $view.innerHTML = responseAsText;
-            const $$scripts = $view.querySelectorAll(`script[src]`);
-            const $$inlineScripts = $view.querySelectorAll(`script:not([src])`);
+            $contentContainer.innerHTML = responseAsText;
+            const $$scripts = $contentContainer.querySelectorAll(`script[src]`);
+            const $$inlineScripts = $contentContainer.querySelectorAll(`script:not([src])`);
             $$scripts.forEach($script => {
                 let $newScript = document.createElement(`script`);
                 $newScript.src = $script.getAttribute(`src`);
@@ -55,13 +64,10 @@ export class LoadView {
                     $newScript.type = `module`;
                 }
                 $script.parentNode.removeChild($script);
-                $view.appendChild($newScript);
+                $contentContainer.appendChild($newScript);
             });
             $$inlineScripts.forEach($script => {
                 eval($script.textContent);
-            });
-            requestAnimationFrame(_ => {
-                $view.classList.add(`in`);
             });
         });
     }

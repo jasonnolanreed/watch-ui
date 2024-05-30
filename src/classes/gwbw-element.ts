@@ -32,6 +32,10 @@ export class GWBWElement extends HTMLElement {
 	render() {
 		const $loader: Loader = document.querySelector(`gwbw-loader`)!;
 		$loader.loading = false;
+		const $contentContainer = document.getElementById(`view`).querySelector(`.content-container`);
+		requestAnimationFrame(_ => {
+			$contentContainer.classList.add(`in`);
+		});
 	}
 
 	bindForm() {
@@ -99,28 +103,36 @@ export class GWBWElement extends HTMLElement {
 
 	startWorking($givenForm?) {
 		if ($givenForm) {
-			$givenForm.classList.add(`working`);
+			requestAnimationFrame(_ => {
+				$givenForm.classList.add(`working`);
+			});
 		} else {
 			const $forms: NodeListOf<HTMLFormElement> = (this.shadowRoot) ?
 				this.shadowRoot.querySelectorAll(`form`) :
 				this.querySelectorAll(`form`);
 			if (!$forms.length) { return; }
 			$forms.forEach($form => {
-				$form.classList.add(`working`);
+				requestAnimationFrame(_ => {
+					$form.classList.add(`working`);
+				});
 			});
 		}
 	}
 
 	stopWorking($givenForm?) {
 		if ($givenForm) {
-			$givenForm.classList.remove(`working`);
+			requestAnimationFrame(_ => {
+				$givenForm.classList.remove(`working`);
+			});
 		} else {
 			const $forms = (this.shadowRoot) ?
 				this.shadowRoot.querySelectorAll(`form`) :
 				this.querySelectorAll(`form`);
 			if (!$forms.length) { return; }
 			$forms.forEach($form => {
-				$form.classList.remove(`working`);
+				requestAnimationFrame(_ => {
+					$form.classList.remove(`working`);
+				});
 			});
 		}
 	}

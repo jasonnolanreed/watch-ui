@@ -73,8 +73,10 @@ export class Sessions extends GWBWElement {
 		const index = target.getAttribute(`measure-index`);
 		if (!this.intervalStartIndex) {
 			this.intervalStartIndex = index;
-			this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
-			target.classList.add(`interval-start`);
+			requestAnimationFrame(_ => {
+				this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
+				target.classList.add(`interval-start`);
+			});
 		} else {
 			if (this.intervalStartIndex !== index) {
 				const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
@@ -82,8 +84,10 @@ export class Sessions extends GWBWElement {
 				router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
 			} else {
 				this.intervalStartIndex = null;
-				this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
-				target.classList.remove(`interval-start`);
+				requestAnimationFrame(_ => {
+					this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
+					target.classList.remove(`interval-start`);
+				});
 			}
 		}
 	}
