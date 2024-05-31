@@ -17,7 +17,7 @@
 	--sans-font: 'Montserrat';
 
 	--light-blue: #76a0bc;
-	--blue: #396B97;
+	--blue: #326088;
 	--dark-blue: #1E3760;
 	--bright-blue: #86D9ED;
 	--green: #44A748;
@@ -266,12 +266,12 @@ hr.minimal {
 }
 
 footer {
-	background-color: var(--dark-blue);
+	background-color: var(--blue);
 }
 
 footer .content {
 	max-width: var(--main-max-width);
 	margin: 0 auto;
 	padding: 1.75rem 1rem;
-	color: var(--silver);
+	color: #fff;
 }

@@ -11,7 +11,7 @@ const makeCss = (component) => (`
 
 nav {
 	color: #fff;
-	background-color: var(--dark-blue);
+	background-color: var(--blue);
 }
 
 .content {
@@ -27,9 +27,10 @@ a, a:visited {
 	display: flex;
 	align-items: center;
 	padding: 1em 0;
-	font-weight: 600;
+	font-weight: 500;
 	color: #fff;
 	text-decoration: none;
+	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.2);
 }
 
 @media (hover: hover) {
