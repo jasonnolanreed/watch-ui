@@ -24,19 +24,28 @@ const makeCss = (component) => (`
 	height: 100%;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 0.3s ease;
 }
 
-gwbw-icon {
-	animation: spin 1s ease infinite;
-	pointer-events: none;
+.panel {
+	max-width: 90vw;
+	padding: 2.5rem 3.5rem 1rem 3.5rem;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 6px;
+	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
 }
 
-svg {
-	width: 10em !important;
-	height: 10em !important;
+img {
+	aspect-ratio: 1 / 1;
+	width: 150px;
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 2rem;
+	animation: spin 1s ease infinite;
+	pointer-events: none;
 }
 
 @keyframes spin {
@@ -51,7 +60,10 @@ svg {
 `);
 const makeHtml = (component) => (`
 <div class="loader-container">
-	<gwbw-icon name="hourglass_empty"></gwbw-icon>
+	<div class="panel">
+		<img src="assets/images/jewel.svg" alt="loading">
+		<p>Loading...</p>
+	</div>
 </div>
 `);
 export const makeTemplate = (component) => {
