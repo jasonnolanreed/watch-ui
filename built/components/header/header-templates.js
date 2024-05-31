@@ -34,17 +34,17 @@ const makeHtml = (component) => (`
 <header>
 	<img
 		class="large-logo"
-		src="assets/images/logo.svg?v=2"
+		src="assets/images/logo.svg?v=2.1"
 		alt="Good Watch Bad Watch Logo"
 		loading="lazy"
 		style="aspect-ratio: 500 / 75;"
 	>
 	<img
 		class="small-logo"
-		src="assets/images/logo-small.svg?v=2"
+		src="assets/images/logo-small.svg?v=2.1"
 		alt="Good Watch Bad Watch Logo"
 		loading="lazy"
-		style="aspect-ratio: 275 / 84;"
+		style="aspect-ratio: 225 / 78;"
 	>
 </header>
 `);
