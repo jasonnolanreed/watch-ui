@@ -22,5 +22,12 @@
 </style>
 
 <script>
-document.querySelector(`gwbw-loader`).loading = false;
+(function() {
+	const $loader = document.querySelector(`gwbw-loader`);
+	const $contentContainer = document.getElementById(`view`).querySelector(`.content-container`);
+	requestAnimationFrame(_ => {
+		$loader.loading = false;
+		$contentContainer.classList.add(`in`);
+	});
+}());
 </script>
