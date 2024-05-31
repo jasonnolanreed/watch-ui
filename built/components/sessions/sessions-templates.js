@@ -189,6 +189,7 @@ const makeCss = (component) => (`
 .session-selection.session-selection { display: flex; align-items: center; margin: -0.5em 0 1em 0; }
 .session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
+button.next-session { margin-left: 0.35em !important; }
 .header-date-time { margin-left: 1.65em; }
 .header-deviation { margin-right: 7.35em; }
 .good-bad-message h4 { margin-bottom: 0; }
