@@ -19,6 +19,7 @@ img[class*="logo"] {
 		display: block;
 		width: 55%;
 		max-width: 225px;
+		aspect-ratio: 225 / 70;
 	}
 }
 
@@ -27,6 +28,7 @@ img[class*="logo"] {
 		display: block;
 		width: 80%;
 		max-width: 500px;
+		aspect-ratio: 500 / 75;
 	}
 }
 </style>
@@ -38,17 +40,15 @@ const makeHtml = (component) => (
 <header>
 	<img
 		class="large-logo"
-		src="assets/images/logo.svg?v=2.1"
+		src="assets/images/logo.svg?v=2.2"
 		alt="Good Watch Bad Watch Logo"
 		loading="lazy"
-		style="aspect-ratio: 500 / 75;"
 	>
 	<img
 		class="small-logo"
-		src="assets/images/logo-small.svg?v=2.1"
+		src="assets/images/logo-small.svg?v=2.2"
 		alt="Good Watch Bad Watch Logo"
 		loading="lazy"
-		style="aspect-ratio: 225 / 78;"
 	>
 </header>
 `

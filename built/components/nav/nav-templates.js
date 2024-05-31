@@ -26,8 +26,9 @@ nav {
 a, a:visited {
 	display: flex;
 	align-items: center;
-	padding: 1em 0;
+	padding: 0.9rem 0;
 	font-weight: 500;
+	font-size: 1.1rem;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.2);

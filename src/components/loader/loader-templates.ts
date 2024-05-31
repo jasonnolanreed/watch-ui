@@ -28,7 +28,6 @@ const makeCss = (component) => (
 	text-align: center;
 	pointer-events: none;
 	opacity: 0;
-	transition: opacity 0.3s ease;
 }
 
 .panel {
@@ -36,7 +35,7 @@ const makeCss = (component) => (
 	padding: 2.5rem 3.5rem 1rem 3.5rem;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 6px;
-	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.25);
 }
 
 img {
@@ -63,7 +62,7 @@ img {
 
 const makeHtml = (component) => (
 `
-<div class="loader-container">
+<div class="loader-container" inert>
 	<div class="panel">
 		<img src="assets/images/jewel.svg" alt="loading">
 		<p>Loading...</p>
