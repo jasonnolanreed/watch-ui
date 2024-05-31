@@ -23,6 +23,7 @@
 	--green: #44A748;
 	--red: #DA3848;
 	--almost-white: #F5F5F5;
+	--really-almost-white: #FAFAFA;
 	--silver: #F0F0F0;
 	--gray: #DDD;
 	--medium-gray: #CCC;
@@ -197,14 +198,8 @@ hr.minimal {
 .feature-box {
 	padding: 1.5rem 1rem;
 	border: 1px solid rgba(0, 0, 0, 0.035);
-	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.08);
+	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.055);
 	border-radius: 2px;
-}
-
-.feature-box-alt {
-	padding: 1em;
-	background-color: var(--silver);
-	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.03);
 }
 
 .back-link {

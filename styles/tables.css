@@ -1,7 +1,7 @@
 table {
 	width: 100%;
 	border-collapse: collapse;
-	box-shadow: 0 0 0 1px #efefef, 0 0 2em rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 0 1px #efefef, 0 0 2em rgba(0, 0, 0, 0.05);
 	border-radius: 3px;
 	overflow: hidden;
 }
@@ -11,7 +11,7 @@ table tr {
 }
 
 table tr:nth-of-type(odd) {
-	background-color: var(--almost-white);
+	background-color: var(--really-almost-white);
 }
 
 table tr:last-of-type {
