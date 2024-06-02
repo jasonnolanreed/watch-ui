@@ -21,7 +21,7 @@ const showPositions = component => {
         html += `
 		<li class="list-item spacious">
 			<div>${position.name}</div>
-			<div class="controls no-wrap">
+			<div class="controls nowrap">
 				<button position-name="${position.name}"
 					position-id="${position._id}"
 					class="edit-position button ultra-compact"

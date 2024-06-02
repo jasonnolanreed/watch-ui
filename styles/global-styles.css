@@ -157,6 +157,12 @@ hr.minimal {
 	white-space: normal;
 }
 
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .hidden {
 	display: none !important;
 }

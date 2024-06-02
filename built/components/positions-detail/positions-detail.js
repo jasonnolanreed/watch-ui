@@ -38,7 +38,10 @@ export class PositionsDetail extends GWBWElement {
     }
     render() {
         try {
-            if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this.sortedPositionNamesArray) {
+            if (this.positionsData &&
+                this.goodTolerancePlusNumber !== null &&
+                this.goodToleranceMinusNumber !== null &&
+                this.sortedPositionNamesArray) {
                 this.shadowRoot.innerHTML = makeTemplate(this);
             }
         }

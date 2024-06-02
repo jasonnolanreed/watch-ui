@@ -13,21 +13,27 @@ img[class*="logo"] {
 	margin: 0 auto;
 }
 
-@container cq-header (width < 700px) {
+img.small-logo {
+	width: 55%;
+	max-width: 175px;
+	aspect-ratio: 225 / 70;
+}
+
+img.large-logo {
+	width: 80%;
+	max-width: 400px;
+	aspect-ratio: 500 / 75;
+}
+
+@container cq-header (width < 500px) {
 	img.small-logo {
 		display: block;
-		width: 55%;
-		max-width: 225px;
-		aspect-ratio: 225 / 70;
 	}
 }
 
-@container cq-header (width >= 700px) {
+@container cq-header (width >= 500px) {
 	img.large-logo {
 		display: block;
-		width: 80%;
-		max-width: 500px;
-		aspect-ratio: 500 / 75;
 	}
 }
 </style>

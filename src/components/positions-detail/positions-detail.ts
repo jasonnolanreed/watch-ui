@@ -1,9 +1,10 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
+import {PositionsData} from '../../types/positions.js';
 
 import {makeTemplate} from './positions-detail-templates.js';
 
 export class PositionsDetail extends GWBWElement {
-	positionsData: {};
+	positionsData: PositionsData;
 	goodTolerancePlusNumber: number;
 	goodToleranceMinusNumber: number;
 	sortedPositionNamesArray: string[];
@@ -44,7 +45,12 @@ export class PositionsDetail extends GWBWElement {
 
 	render() {
 		try {
-			if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this.sortedPositionNamesArray) {
+			if (
+				this.positionsData &&
+				this.goodTolerancePlusNumber !== null &&
+				this.goodToleranceMinusNumber !== null &&
+				this.sortedPositionNamesArray
+			) {
 				this.shadowRoot.innerHTML = makeTemplate(this);
 			}
 		} catch(error) {
