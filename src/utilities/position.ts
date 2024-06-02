@@ -1,3 +1,5 @@
+import {CustomPosition, Measure, TimegrapherResult} from "../types/api-data";
+
 export const positionsMap = {
 	unspecified: {label: `Unspecified`, icon: `panorama_fish_eye`},
 	worn: {label: `Worn`, icon: `accessibility_new`},
@@ -10,14 +12,14 @@ export const positionsMap = {
 	winder: {label: `Winder`, icon: `rotate_right`}
 };
 
-export const getIconNameForPosition = (position): string => {
+export const getIconNameForPosition = (position: string): string => {
 	return positionsMap[position]?.icon || `account_circle`;
 };
 
-export const getPositionNameForMeasure = (measure, customPositions): string => {
+export const getPositionNameForMeasure = (measure: Measure, customPositions: CustomPosition[]): string => {
 	if (measure.customPositionId && customPositions?.length) {
 		return customPositions.find(thisPosition => measure.customPositionId === thisPosition._id)?.name || ``;
 	} else {
 		return positionsMap[measure.position]?.label || ``;
 	}
-}
+};

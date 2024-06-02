@@ -1,4 +1,5 @@
-import { timegrapherPositions } from "../../utilities/timegrapher.js";
+import { getIconNameForPosition } from "../../utilities/position.js";
+import { timegrapherPositions, timegrapherToStandardPositionMap } from "../../utilities/timegrapher.js";
 const makeHtml = (component) => {
     if (!component.timegrapherResultsData) {
         return `<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
@@ -29,7 +30,7 @@ const makeHtml = (component) => {
 	`;
     }
 };
-const renderRows = component => {
+const renderRows = (component) => {
     let html = ``;
     const positions = timegrapherPositions;
     positions.forEach(position => {
@@ -37,8 +38,15 @@ const renderRows = component => {
             component.timegrapherResultsData[position.id + "BeatError"] ||
             component.timegrapherResultsData[position.id + "Amplitude"]) {
             const rate = component.timegrapherResultsData[position.id + "Rate"];
-            let row = `<tr>`;
-            row += `<td>${position.label}</td>`;
+            let row = `<tr class="position">`;
+            row += `
+			<td class="ellipsis" style="max-width: 200px;">
+				<span title="${position.label}">
+					<gwbw-icon name="${getIconNameForPosition(timegrapherToStandardPositionMap[position.id])}"></gwbw-icon>
+					<span>${position.label}</span>
+				</span>
+			</td>
+			`;
             row += `<td class="${getGoodBadClass(component, rate)}">${rate > 0 ? '+' : ''}${typeof rate === "number" ? rate + 's/d' : '&mdash;'}</td>`;
             row += `<td>${typeof component.timegrapherResultsData[position.id + "Amplitude"] === "number" ? component.timegrapherResultsData[position.id + "Amplitude"] + '&deg;' : '&mdash;'}</td>`;
             row += `<td>${typeof component.timegrapherResultsData[position.id + "BeatError"] === "number" ? component.timegrapherResultsData[position.id + "BeatError"] + 'ms' : '&mdash;'}</td>`;
@@ -66,6 +74,12 @@ const makeCss = (component) => (`
 
 table {
 	margin: 2rem 0;
+}
+
+.position gwbw-icon {
+	margin-right: 0.2em;
+	transform: scale(1.5);
+	color: var(--blue);
 }
 
 tr.averages td {

@@ -46,7 +46,7 @@ const renderPositionsRows = (component: PositionsDetail) => {
 		positionsHtml += `
 		<tr class="position">
 			<td class="ellipsis" style="max-width: 200px;">
-				<span class="ellipsis" title="${positionLabel}">
+				<span title="${positionLabel}">
 					<gwbw-icon name="${getIconNameForPosition(positionName)}"></gwbw-icon>
 					<span>${positionLabel}</span>
 				</span>
