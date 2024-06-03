@@ -34,7 +34,7 @@ export class Register extends GWBWElement {
 		}
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const registrationSuccessful = await AuthApi.register(target);
 		this.stopWorking();

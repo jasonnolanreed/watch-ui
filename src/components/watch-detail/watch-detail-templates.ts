@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {WatchDetail} from "./watch-detail";
+
+const makeHtml = (component: WatchDetail) => (
 `
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
@@ -97,7 +99,7 @@ const makeHtml = (component) => (
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: WatchDetail) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -118,6 +120,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: WatchDetail) => {
 	return makeCss(component) + makeHtml(component);
 };

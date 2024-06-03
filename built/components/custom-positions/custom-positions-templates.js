@@ -15,7 +15,7 @@ const makeHtml = (component) => (`
 	Add Custom Position
 </button>
 `);
-const showPositions = component => {
+const showPositions = (component) => {
     let html = ``;
     for (const position of component.customPositions) {
         html += `

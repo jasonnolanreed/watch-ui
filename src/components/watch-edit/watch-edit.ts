@@ -4,9 +4,9 @@ import {router} from '../../router.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {getFormData} from '../../utilities/form.js';
+import {Messages} from '../messages/messages.js';
 
 import {makeTemplate} from './watch-edit-templates.js';
-import { Messages } from '../messages/messages.js';
 
 export class WatchEdit extends GWBWElement {
 	watch: Watch;
@@ -40,7 +40,7 @@ export class WatchEdit extends GWBWElement {
 		this.render();
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const updateSuccessful = await WatchApi.update(getFormData(target));
 		this.stopWorking();

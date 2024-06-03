@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {Watches} from "./watches";
+
+const makeHtml = (component: Watches) => (
 `
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
@@ -15,7 +17,7 @@ ${showSortControls(component)}
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: Watches) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -28,7 +30,7 @@ const makeCss = (component) => (
 `
 );
 
-const listWatches = component => {
+const listWatches = (component: Watches) => {
 	if (!component.watches || !component.watches.length) {
 		return `<p>You don't have any watches yet.</p>`;
 	}
@@ -57,7 +59,7 @@ const listWatches = component => {
 	return htmlString;
 };
 
-const showSortControls = component => {
+const showSortControls = (component: Watches) => {
 	if (!component.watches || component.watches.length < 2) {
 		return ``;
 	}
@@ -92,6 +94,6 @@ const showSortControls = component => {
 	`;
 };
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Watches) => {
 	return makeCss(component) + makeHtml(component);
 };

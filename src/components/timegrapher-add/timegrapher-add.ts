@@ -42,7 +42,7 @@ export class TimegrapherAdd extends GWBWElement {
 		}
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const addSuccessful = await TimegrapherApi.add(getFormData(target));
 		this.stopWorking();

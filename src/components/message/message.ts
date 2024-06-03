@@ -2,7 +2,7 @@ import {GWBWElement} from '../../classes/gwbw-element.js';
 import {makeTemplate} from './message-templates.js';
 
 export class Message extends GWBWElement {
-	close;
+	close: Function;
 
 	constructor() {
 		super();
@@ -36,7 +36,7 @@ export class Message extends GWBWElement {
 		}
 	}
 
-	onClose(event?, target?) {
+	onClose(event?: MouseEvent, target?: HTMLElement) {
 		this.parentNode.removeChild(this);
 	}
 }

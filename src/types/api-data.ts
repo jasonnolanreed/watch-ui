@@ -74,16 +74,13 @@ export interface Stats {
 	timegrapherResultsCount: number;
 	usersCount: number;
 	preusersCount: number;
-	latestMeasures: Array<{
-		date: string;
-		watch: string;
-		watchId: string;
-		user: string;
-	}>;
-	latestTimegrapherResults: Array<{
-		date: string;
-		watch: string;
-		watchId: string;
-		user: string;
-	}>;
+	latestMeasures: StatsLineItem[];
+	latestTimegrapherResults: StatsLineItem[];
+}
+
+export interface StatsLineItem {
+	date: string;
+	watch: string;
+	watchId: string;
+	user: string;
 }

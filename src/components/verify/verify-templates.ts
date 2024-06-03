@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {Verify} from "./verify";
+
+const makeCss = (component: Verify) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -6,7 +8,7 @@ const makeCss = (component) => (
 `
 );
 
-const makeHtml = (component) => (
+const makeHtml = (component: Verify) => (
 `
 <div class="page-title">
 	<gwbw-icon name="email"></gwbw-icon>
@@ -21,6 +23,6 @@ const makeHtml = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Verify) => {
 	return makeCss(component) + makeHtml(component);
 };

@@ -40,7 +40,7 @@ const makeHtml = (component) => (`
 	<br/>
 </form>
 `);
-const showPositionsRadios = component => {
+const showPositionsRadios = (component) => {
     let html = ``;
     for (const customPosition of component.customPositions) {
         html +=
@@ -69,7 +69,7 @@ const showPositionsRadios = component => {
 	`;
     return html;
 };
-const makeHiddenFields = component => {
+const makeHiddenFields = (component) => {
     if (component.mode !== `add`) {
         return ``;
     }

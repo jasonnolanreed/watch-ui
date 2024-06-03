@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {Preferences} from "./preferences";
+
+const makeHtml = (component: Preferences) => (
 `
 <div class="page-title">
 	<gwbw-icon name="settings"></gwbw-icon>
@@ -101,7 +103,7 @@ const makeHtml = (component) => (
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: Preferences) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -122,6 +124,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Preferences) => {
 	return makeCss(component) + makeHtml(component);
 };

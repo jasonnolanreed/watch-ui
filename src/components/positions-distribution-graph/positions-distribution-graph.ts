@@ -1,13 +1,14 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {positionsMap} from '../../utilities/position.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
+import {PositionsData} from '../../types/positions.js';
 import {makeTemplate} from './positions-distribution-graph-templates.js';
 
 declare const Chart: any;
 
 export class PositionsDistributionGraph extends GWBWElement {
 	_hasChartJS = false;
-	positionsData = null;
+	positionsData: PositionsData | null = null;
 	graph = null;
 
 	constructor() {

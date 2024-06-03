@@ -1,6 +1,7 @@
 import '../message/message.js';
+import {MessageOptions, Messages} from './messages.js';
 
-export const makeCss = (component) => (
+export const makeCss = (component: Messages) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -15,13 +16,13 @@ export const makeCss = (component) => (
 `
 );
 
-export const getMessageElement = (options) => {
+export const getMessageElement = (options: MessageOptions) => {
 	let message = document.createElement(`gwbw-message`);
 	message.setAttribute(`type`, options.type || `info`);
 	message.setAttribute(`message`, options.message || `[missing message]`);
 	message.setAttribute(`dismissable`, typeof options.dismissable === `boolean` ? ``+options.dismissable : `true`);
 	if (typeof options.ttl === `number`) {
-		message.setAttribute(`ttl`, options.ttl);
+		message.setAttribute(`ttl`, String(options.ttl));
 	}
 	if (options.persistent === true) {
 		message.setAttribute(`persistent`, `true`);

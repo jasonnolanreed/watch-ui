@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {WatchMeasure} from "./watch-measure";
+
+const makeHtml = (component: WatchMeasure) => (
 `
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
@@ -45,7 +47,7 @@ const makeHtml = (component) => (
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: WatchMeasure) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -101,6 +103,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: WatchMeasure) => {
 	return makeCss(component) + makeHtml(component);
 };

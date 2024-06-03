@@ -22,7 +22,7 @@ const makeCss = (component) => (`
 .controls { display: flex; align-items: center; }
 </style>
 `);
-const listWatches = component => {
+const listWatches = (component) => {
     if (!component.watches || !component.watches.length) {
         return `<p>You don't have any watches yet.</p>`;
     }
@@ -50,7 +50,7 @@ const listWatches = component => {
     htmlString += `</ul>`;
     return htmlString;
 };
-const showSortControls = component => {
+const showSortControls = (component) => {
     if (!component.watches || component.watches.length < 2) {
         return ``;
     }

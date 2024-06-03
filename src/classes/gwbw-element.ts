@@ -145,7 +145,7 @@ export class GWBWElement extends HTMLElement {
 			for (let clickEvent of this._clickEvents) {
 				if ((target as HTMLElement).matches(clickEvent.target)) {
 					event.preventDefault();
-					clickEvent.handler.call(this, event, target);
+					clickEvent.handler.call(this, event, (target as HTMLElement));
 					targetMatched = true;
 					break;
 				}
@@ -154,7 +154,7 @@ export class GWBWElement extends HTMLElement {
 		}
 	}
 
-	_onSubmit(event: Event) {
+	_onSubmit(event: SubmitEvent) {
 		for (let target of event.composedPath()) {
 			if (typeof (target as HTMLElement).matches !== `function`) { continue; }
 			if ((target as HTMLElement).matches(`form`)) {
@@ -166,7 +166,7 @@ export class GWBWElement extends HTMLElement {
 		event.preventDefault();
 	}
 
-	onSubmit(event, target) {}
+	onSubmit(event: SubmitEvent, target: HTMLFormElement) {}
 }
 
 interface ClickEvent {

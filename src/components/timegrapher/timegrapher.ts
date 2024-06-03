@@ -65,15 +65,15 @@ export class Timegrapher extends GWBWElement {
 		}
 	}
 
-	viewPreviousResults(event, target) {
+	viewPreviousResults(event: MouseEvent, target: HTMLElement) {
 		router.navigate(`/timegrapher/${router['params']['watchId']}/?resultsIndex=${this.currentResultsIndex - 1}`);
 	}
 
-	viewNextResults(event, target) {
+	viewNextResults(event: MouseEvent, target: HTMLElement) {
 		router.navigate(`/timegrapher/${router['params']['watchId']}/?resultsIndex=${this.currentResultsIndex + 1}`);
 	}
 
-	async deleteResults(event, target) {
+	async deleteResults(event: MouseEvent, target: HTMLElement) {
 		const resultId = this.currentResults._id;
 		const confirmDelete = window.confirm(`Do you really want to delete this timegrapher result?`);
 		if (!confirmDelete) { return; }

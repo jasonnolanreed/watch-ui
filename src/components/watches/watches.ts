@@ -49,7 +49,7 @@ export class Watches extends GWBWElement {
 		this.render();
 	}
 
-	async onDelete(event, target) {
+	async onDelete(event: MouseEvent, target: HTMLElement) {
 		const watchId = target.getAttribute(`watch-id`);
 		const confirmDelete = window.confirm(`Do you really want to delete this watch and all its data?`);
 		if (!confirmDelete) { return; }
@@ -68,7 +68,7 @@ export class Watches extends GWBWElement {
 		}
 	}
 
-	onChangeSort(event, target) {
+	onChangeSort(event: MouseEvent, target: HTMLElement) {
 		let newSortValue =
 			target.classList.contains(`name`) ? `name` :
 			target.classList.contains(`measured`) ? `measured` :

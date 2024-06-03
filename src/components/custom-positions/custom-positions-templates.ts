@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {CustomPositions} from "./custom-positions";
+
+const makeHtml = (component: CustomPositions) => (
 `
 <div class="page-title">
 	<gwbw-icon name="account_circle"></gwbw-icon>
@@ -18,7 +20,7 @@ const makeHtml = (component) => (
 `
 );
 
-const showPositions = component => {
+const showPositions = (component: CustomPositions) => {
 	let html = ``;
 	for (const position of component.customPositions) {
 		html += `
@@ -45,7 +47,7 @@ const showPositions = component => {
 	return html;
 };
 
-const makeCss = (component) => (
+const makeCss = (component: CustomPositions) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -53,7 +55,7 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: CustomPositions) => {
 	return makeCss(component) + makeHtml(component);
 };
 	

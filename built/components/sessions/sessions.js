@@ -10,7 +10,7 @@ import { makeTemplate } from './sessions-templates.js';
 export class Sessions extends GWBWElement {
     stickyObserver;
     currentSessionIndex;
-    intervalStartIndex;
+    intervalStartIndex = null;
     currentSession;
     currentSessionSorted;
     watch;
@@ -63,8 +63,8 @@ export class Sessions extends GWBWElement {
         }
     }
     selectInterval(event, target) {
-        const index = target.getAttribute(`measure-index`);
-        if (!this.intervalStartIndex) {
+        const index = Number(target.getAttribute(`measure-index`));
+        if (this.intervalStartIndex === null) {
             this.intervalStartIndex = index;
             requestAnimationFrame(_ => {
                 this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
@@ -72,17 +72,17 @@ export class Sessions extends GWBWElement {
             });
         }
         else {
-            if (this.intervalStartIndex !== index) {
-                const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
-                const measureTwo = this.currentSessionSorted[index]._id;
-                router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
-            }
-            else {
+            if (this.intervalStartIndex === index) {
                 this.intervalStartIndex = null;
                 requestAnimationFrame(_ => {
                     this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
                     target.classList.remove(`interval-start`);
                 });
+            }
+            else {
+                const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
+                const measureTwo = this.currentSessionSorted[index]._id;
+                router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
             }
         }
     }
@@ -129,7 +129,7 @@ export class Sessions extends GWBWElement {
         this.render();
     }
     onChangeSort(event, target) {
-        const newSortValue = target.classList.contains('Asc') ? 'targetAsc' : 'targetDesc';
+        const newSortValue = target.classList.contains(`Asc`) ? `targetAsc` : `targetDesc`;
         this.preferences.measuresSort = newSortValue;
         this.render();
         PreferenceApi.updatePreferences({ measuresSort: newSortValue });

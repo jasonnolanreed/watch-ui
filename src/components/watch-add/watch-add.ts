@@ -33,7 +33,7 @@ export class WatchAdd extends GWBWElement {
 		}
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const addSuccessful = await WatchApi.add(getFormData(target));
 		this.stopWorking();

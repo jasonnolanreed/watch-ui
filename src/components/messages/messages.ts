@@ -22,16 +22,7 @@ export class Messages extends GWBWElement {
 		this.shadowRoot.innerHTML = makeCss(this);
 	}
 
-	/*
-	options {
-		message: string,
-		type: 'info'|'success'|'error',
-		ttl?: number,
-		dismissable?: boolean,
-		persistent?:boolean // whether or not to auto close on view change
-	}
-	*/
-	add(options = {}) {
+	add(options: MessageOptions = {}) {
 		const template = document.createElement(`template`);
 		const message = getMessageElement(options);
 		template.style.display = `block`;
@@ -51,6 +42,14 @@ export class Messages extends GWBWElement {
 			}
 		});
 	}
+}
+
+export interface MessageOptions {
+	message?: string,
+	type?: 'info'|'success'|'error',
+	ttl?: number,
+	dismissable?: boolean,
+	persistent?:boolean,
 }
 
 customElements.define(`gwbw-messages`, Messages);

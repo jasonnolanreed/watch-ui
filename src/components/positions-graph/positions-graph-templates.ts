@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {PositionsGraph} from "./positions-graph";
+
+const makeCss = (component: PositionsGraph) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -15,12 +17,12 @@ gwbw-positions-graph[loading] canvas {
 `
 );
 
-const makeHtml = (component) => (
+const makeHtml = (component: PositionsGraph) => (
 `
 <canvas></canvas>
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: PositionsGraph) => {
 	return makeCss(component) + makeHtml(component);
 };

@@ -54,7 +54,10 @@ export class PositionsGraph extends GWBWElement {
     render() {
         try {
             this.innerHTML = makeTemplate(this);
-            if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) {
+            if (this.positionsData &&
+                this.goodTolerancePlusNumber !== null &&
+                this.goodToleranceMinusNumber !== null &&
+                this._hasChartJS) {
                 this.initChart();
             }
         }

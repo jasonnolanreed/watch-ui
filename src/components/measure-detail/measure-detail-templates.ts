@@ -1,7 +1,8 @@
 import {Format} from '../../utilities/date-time.js';
 import {positionsMap} from '../../utilities/position.js';
+import {MeasureDetail} from './measure-detail.js';
 
-const makeHtml = (component) => (
+const makeHtml = (component: MeasureDetail) => (
 `
 <div class="page-title">
 	<gwbw-icon name="straighten"></gwbw-icon>
@@ -44,7 +45,7 @@ const makeHtml = (component) => (
 `
 );
 
-const showPositionsRadios = component => {
+const showPositionsRadios = (component: MeasureDetail) => {
 	let html = ``;
 	for (const customPosition of component.customPositions) {
 		html +=
@@ -74,7 +75,7 @@ const showPositionsRadios = component => {
 	return html;
 };
 
-const makeHiddenFields = component => {
+const makeHiddenFields = (component: MeasureDetail) => {
 	if (component.mode !== `add`) { return ``; }
 	return `
 	<input type="hidden" name="watchId" value="${component.measure.watchId}">
@@ -83,7 +84,7 @@ const makeHiddenFields = component => {
 	`;
 }
 
-const makeCss = (component) => (
+const makeCss = (component: MeasureDetail) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -101,6 +102,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: MeasureDetail) => {
 	return makeCss(component) + makeHtml(component);
 };

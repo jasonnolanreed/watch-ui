@@ -47,7 +47,7 @@ export class Preferences extends GWBWElement {
 		this.render();
 	}
 
-	async onLogout(event, target) {
+	async onLogout(event: MouseEvent, target: HTMLElement) {
 		const didLogOut = await AuthApi.logout();
 		if (didLogOut) {
 			GA.event(`logout`, `logout success`);
@@ -57,7 +57,7 @@ export class Preferences extends GWBWElement {
 		router.navigate(`/`);
 	}
 
-	async onSaveAtomicTime(event, target) {
+	async onSaveAtomicTime(event: MouseEvent, target: HTMLButtonElement) {
 		event.preventDefault();
 		const form = target.form;
 		const {atomicOffset} = getFormData(form);
@@ -78,7 +78,7 @@ export class Preferences extends GWBWElement {
 		this.stopWorking(form);
 	}
 
-	async onSaveTimegrapher(event, target) {
+	async onSaveTimegrapher(event: MouseEvent, target: HTMLButtonElement) {
 		event.preventDefault();
 		const form = target.form;
 		const {showTimegrapherFeatures} = getFormData(form);
@@ -99,7 +99,7 @@ export class Preferences extends GWBWElement {
 		this.stopWorking(form);
 	}
 
-	async onChangePassword(event, target) {
+	async onChangePassword(event: MouseEvent, target: HTMLButtonElement) {
 		event.preventDefault();
 		const messages: Messages = document.querySelector(`gwbw-messages`);
 		const form = target.form;

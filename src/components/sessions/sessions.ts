@@ -14,7 +14,7 @@ import {makeTemplate} from './sessions-templates.js';
 export class Sessions extends GWBWElement {
 	stickyObserver: IntersectionObserver;
 	currentSessionIndex: number;
-	intervalStartIndex: number;
+	intervalStartIndex: number | null = null;
 	currentSession: Measure[];
 	currentSessionSorted: Measure[];
 	watch: Watch;
@@ -56,11 +56,11 @@ export class Sessions extends GWBWElement {
 		}
 	}
 
-	viewPreviousSession(event, target) {
+	viewPreviousSession(event: MouseEvent, target: HTMLElement) {
 		router.navigate(`/sessions/${router[`params`]['watchId']}/?sessionIndex=${this.currentSessionIndex - 1}`);
 	}
 
-	viewNextSession(event, target) {
+	viewNextSession(event: MouseEvent, target: HTMLElement) {
 		const newSessionIndex = this.currentSessionIndex + 1;
 		if (newSessionIndex + 1 === this.sessions.length) {
 			router.navigate(`/sessions/${router[`params`]['watchId']}`);
@@ -69,30 +69,30 @@ export class Sessions extends GWBWElement {
 		}
 	}
 
-	selectInterval(event, target) {
-		const index = target.getAttribute(`measure-index`);
-		if (!this.intervalStartIndex) {
+	selectInterval(event: MouseEvent, target: HTMLElement) {
+		const index = Number(target.getAttribute(`measure-index`));
+		if (this.intervalStartIndex === null) {
 			this.intervalStartIndex = index;
 			requestAnimationFrame(_ => {
 				this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
 				target.classList.add(`interval-start`);
 			});
 		} else {
-			if (this.intervalStartIndex !== index) {
-				const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
-				const measureTwo = this.currentSessionSorted[index]._id;
-				router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
-			} else {
+			if (this.intervalStartIndex === index) {
 				this.intervalStartIndex = null;
 				requestAnimationFrame(_ => {
 					this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
 					target.classList.remove(`interval-start`);
 				});
+			} else {
+				const measureOne = this.currentSessionSorted[this.intervalStartIndex]._id;
+				const measureTwo = this.currentSessionSorted[index]._id;
+				router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
 			}
 		}
 	}
 
-	async removeMeasure(event, target) {
+	async removeMeasure(event: MouseEvent, target: HTMLElement) {
 		const measureId = target.getAttribute(`measure-id`);
 		const confirmDelete = window.confirm(`Do you really want to delete this measure?`);
 		if (!confirmDelete) { return; }
@@ -135,8 +135,8 @@ export class Sessions extends GWBWElement {
 		this.render();
 	}
 
-	onChangeSort(event, target) {
-		const newSortValue = target.classList.contains('Asc') ? 'targetAsc' : 'targetDesc';
+	onChangeSort(event: MouseEvent, target: HTMLElement) {
+		const newSortValue = target.classList.contains(`Asc`) ? `targetAsc` : `targetDesc`;
 		this.preferences.measuresSort = newSortValue;
 		this.render();
 		PreferenceApi.updatePreferences({measuresSort: newSortValue});

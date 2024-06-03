@@ -1,6 +1,8 @@
+import {StatsLineItem} from '../../types/api-data.js';
 import {Format} from '../../utilities/date-time.js';
+import {Stats} from './stats.js';
 
-export const makeTemplate = (component) => (
+export const makeTemplate = (component: Stats) => (
 `
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
@@ -43,7 +45,7 @@ export const makeTemplate = (component) => (
 `
 );
 
-const outputLineItem = dataList => {
+const outputLineItem = (dataList: StatsLineItem[]) => {
 	let html = ``;
 	dataList.map(item => {
 		html += `

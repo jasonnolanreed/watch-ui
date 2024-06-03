@@ -1,4 +1,6 @@
-export const makeTemplate = (component) => (
+import {Register} from "./register";
+
+export const makeTemplate = (component: Register) => (
 `
 <div class="page-title">
 	<gwbw-icon name="account_box"></gwbw-icon>

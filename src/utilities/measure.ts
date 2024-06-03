@@ -22,18 +22,23 @@ export const parseSessionsFromMeasures = (allMeasures: Measure[]): Measure[][] =
 	return sessions;
 };
 
-export const getMomentDiffFromMeasure = measure => {
+export const getMomentDiffFromMeasure = (measure: Measure): number => {
 	return Difference.seconds(measure.moment, measure.targetMoment);
 };
 
-export const getSessionTotalData = (session: Measure[]) => {
+export const getSessionTotalData = (session: Measure[]): SessionTotalData => {
 	if (!session || session.length < 2) { return null; }
-		const sessionDistance =
-			Difference.days(session[0].targetMoment, session[session.length - 1].targetMoment);
-		const sessionDrift =
-			getMomentDiffFromMeasure(session[session.length - 1]) - getMomentDiffFromMeasure(session[0]);
-		return {
-			averageRate: roundToOneDecimal(sessionDrift / sessionDistance),
-			sessionDistance
-		};
+	const sessionDistance =
+		Difference.days(session[0].targetMoment, session[session.length - 1].targetMoment);
+	const sessionDrift =
+		getMomentDiffFromMeasure(session[session.length - 1]) - getMomentDiffFromMeasure(session[0]);
+	return {
+		averageRate: roundToOneDecimal(sessionDrift / sessionDistance),
+		sessionDistance
+	};
 };
+
+export interface SessionTotalData {
+	averageRate: number;
+	sessionDistance: number;
+}

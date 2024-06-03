@@ -43,7 +43,7 @@ ${showSortControls(component)}
 	</form>
 </div>
 `);
-const showSessionsInfo = component => {
+const showSessionsInfo = (component) => {
     if (!component.measures || !component.measures.length) {
         return ``;
     }
@@ -57,7 +57,7 @@ const showSessionsInfo = component => {
     html += `</h3>`;
     return html;
 };
-const showSessionsSelection = component => {
+const showSessionsSelection = (component) => {
     if (component.sessions.length < 2) {
         return ``;
     }
@@ -69,13 +69,13 @@ const showSessionsSelection = component => {
 	</p>
 	`;
 };
-const showDeviationGraph = component => (`
+const showDeviationGraph = (component) => (`
 <gwbw-deviation-graph
 	measures="${encodeURI(JSON.stringify(component.currentSession))}"
 	watch="${encodeURI(JSON.stringify(component.watch))}"
 ></gwbw-deviation-graph>
 `);
-const showSessionIntervalLink = component => {
+const showSessionIntervalLink = (component) => {
     if (!component.currentSession || component.currentSession.length < 2) {
         return ``;
     }
@@ -97,9 +97,9 @@ const showSessionIntervalLink = component => {
 	<br/>
 	`;
 };
-const getPreviousDisabled = component => component.currentSessionIndex === 0 ? `disabled` : ``;
-const getNextDisabled = component => component.currentSessionIndex === (component.sessions.length - 1) ? `disabled` : ``;
-const showMeasures = component => {
+const getPreviousDisabled = (component) => component.currentSessionIndex === 0 ? `disabled` : ``;
+const getNextDisabled = (component) => component.currentSessionIndex === (component.sessions.length - 1) ? `disabled` : ``;
+const showMeasures = (component) => {
     if (!component.measures || !component.measures.length) {
         return ``;
     }
@@ -148,7 +148,7 @@ const showMeasures = component => {
     html += `</ul>`;
     return html;
 };
-const showPositionIcon = measure => {
+const showPositionIcon = (measure) => {
     if (measure.customPositionId) {
         return `<gwbw-icon name="account_circle"></gwbw-icon>`;
     }
@@ -156,7 +156,7 @@ const showPositionIcon = measure => {
         return `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
     }
 };
-const showSortControls = component => {
+const showSortControls = (component) => {
     if (!component.currentSessionSorted || component.currentSessionSorted.length < 2) {
         return ``;
     }

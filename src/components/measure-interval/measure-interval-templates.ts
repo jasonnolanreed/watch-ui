@@ -1,7 +1,8 @@
 import {Format, Difference} from '../../utilities/date-time.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
+import {MeasureInterval} from './measure-interval.js';
 
-const makeHtml = (component) => (
+const makeHtml = (component: MeasureInterval) => (
 `
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
@@ -86,7 +87,7 @@ ${component.expandSessionLink ? `
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: MeasureInterval) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -104,6 +105,6 @@ p { margin-top: -1.2em; }
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: MeasureInterval) => {
 	return makeCss(component) + makeHtml(component);
 };

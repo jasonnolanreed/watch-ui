@@ -31,7 +31,7 @@ export class Login extends GWBWElement {
 		}
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const loginSuccessful = await AuthApi.login(target);
 		this.stopWorking();

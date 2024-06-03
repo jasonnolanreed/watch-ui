@@ -1,6 +1,7 @@
 import {timegrapherPositions} from "../../utilities/timegrapher.js";
+import {TimegrapherAdd} from "./timegrapher-add.js";
 
-const makeHtml = (component) => (
+const makeHtml = (component: TimegrapherAdd) => (
 `
 <div class="page-title">
 	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
@@ -35,7 +36,7 @@ const makeHtml = (component) => (
 `
 );
 
-const renderFields = component => {
+const renderFields = (component: TimegrapherAdd) => {
 	let html = ``;
 	const positions = timegrapherPositions;
 	positions.forEach(position => {
@@ -62,7 +63,7 @@ const renderFields = component => {
 	return html;
 };
 
-const makeCss = (component) => (
+const makeCss = (component: TimegrapherAdd) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -74,6 +75,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: TimegrapherAdd) => {
 	return makeCss(component) + makeHtml(component);
 };

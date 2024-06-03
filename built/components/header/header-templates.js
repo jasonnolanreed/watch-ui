@@ -11,6 +11,7 @@ header {
 img[class*="logo"] {
 	display: none;
 	margin: 0 auto;
+	object-fit: contain;
 }
 
 img.small-logo {

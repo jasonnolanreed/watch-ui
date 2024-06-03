@@ -1,6 +1,7 @@
 import {Format} from "../../utilities/date-time.js";
+import {Timegrapher} from "./timegrapher.js";
 
-const makeHtml = (component) => (
+const makeHtml = (component: Timegrapher) => (
 `
 <a class="back-link" href="#/watches/${component.watch._id}">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
@@ -69,7 +70,7 @@ ${component?.currentResults?.note &&
 `
 );
 
-const showResultsSelection = component => {
+const showResultsSelection = (component: Timegrapher) => {
 	if (component.timegrapherResults.length < 2) { return ``; }
 	return `
 	<p class="results-selection form-controls">
@@ -80,10 +81,10 @@ const showResultsSelection = component => {
 	`;
 };
 
-const getPreviousDisabled = component => component.currentResultsIndex === 0 ? `disabled` : ``;
-const getNextDisabled = component => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
+const getPreviousDisabled = (component: Timegrapher) => component.currentResultsIndex === 0 ? `disabled` : ``;
+const getNextDisabled = (component: Timegrapher) => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
 
-const makeCss = (component) => (
+const makeCss = (component: Timegrapher) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -96,6 +97,6 @@ button.next-results { margin-left: 0.35em !important; }
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Timegrapher) => {
 	return makeCss(component) + makeHtml(component);
 };

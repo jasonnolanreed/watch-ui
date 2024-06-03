@@ -17,7 +17,7 @@ export const getMessageElement = (options) => {
     message.setAttribute(`message`, options.message || `[missing message]`);
     message.setAttribute(`dismissable`, typeof options.dismissable === `boolean` ? `` + options.dismissable : `true`);
     if (typeof options.ttl === `number`) {
-        message.setAttribute(`ttl`, options.ttl);
+        message.setAttribute(`ttl`, String(options.ttl));
     }
     if (options.persistent === true) {
         message.setAttribute(`persistent`, `true`);

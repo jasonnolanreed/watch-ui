@@ -26,7 +26,7 @@ export const parseSessionsFromMeasures = (allMeasures) => {
     }
     return sessions;
 };
-export const getMomentDiffFromMeasure = measure => {
+export const getMomentDiffFromMeasure = (measure) => {
     return Difference.seconds(measure.moment, measure.targetMoment);
 };
 export const getSessionTotalData = (session) => {

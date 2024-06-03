@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {Header} from "./header";
+
+const makeCss = (component: Header) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -12,6 +14,7 @@ header {
 img[class*="logo"] {
 	display: none;
 	margin: 0 auto;
+	object-fit: contain;
 }
 
 img.small-logo {
@@ -41,7 +44,7 @@ img.large-logo {
 `
 );
 
-const makeHtml = (component) => (
+const makeHtml = (component: Header) => (
 `
 <header>
 	<img
@@ -60,6 +63,6 @@ const makeHtml = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Header) => {
 	return makeCss(component) + makeHtml(component);
 };

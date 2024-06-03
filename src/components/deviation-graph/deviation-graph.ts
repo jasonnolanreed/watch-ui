@@ -1,4 +1,4 @@
-import {CustomPosition} from '../../types/api-data.js';
+import {CustomPosition, Measure, Watch} from '../../types/api-data.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {CustomPositionsApi} from '../../api-helpers/custom-positions.js';
 import {Difference, Format} from '../../utilities/date-time.js';
@@ -12,8 +12,8 @@ declare const Chart: any;
 
 export class DeviationGraph extends GWBWElement {
 	private _hasChartJS = false;
-	measuresData = null;
-	watchData = null;
+	measuresData: Measure[] | null = null;
+	watchData: Watch | null = null;
 	graph = null;
 	customPositions: CustomPosition[] = null;
 

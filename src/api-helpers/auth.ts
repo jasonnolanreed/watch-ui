@@ -35,7 +35,7 @@ export class AuthApi {
 		}
 	}
 
-	static login($form): Promise<boolean> {
+	static login($form: HTMLFormElement): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}login`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -67,7 +67,7 @@ export class AuthApi {
 		});
 	}
 
-	static register($form): Promise<boolean> {
+	static register($form: HTMLFormElement): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}user`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -76,7 +76,7 @@ export class AuthApi {
 		});
 	}
 
-	static verify($form): Promise<boolean> {
+	static verify($form: HTMLFormElement): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}verify`, getOptionsForPost(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })
@@ -85,7 +85,7 @@ export class AuthApi {
 		});
 	}
 
-	static changePassword($form): Promise<boolean> {
+	static changePassword($form: HTMLFormElement): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			fetch(`${apiHost}change-password`, getOptionsForPut(getFormData($form)))
 			.then(response => { if (response.ok) { return response.json(); } throw new Error(); }, error => { throw new Error(); })

@@ -55,7 +55,7 @@ gwbw-icon + span {
 }
 </style>
 `);
-const getLinks = component => {
+const getLinks = (component) => {
     if (!component.loggedIn) {
         if (component.isLoginView) {
             return `<a class="register" href="#/register"><span>Register</span><gwbw-icon name="account_box"></gwbw-icon></a>`;

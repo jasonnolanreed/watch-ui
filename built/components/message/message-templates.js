@@ -46,7 +46,7 @@ const makeHtml = (component) => (`
 	${getCloseIcon(component)}
 </div>
 `);
-const getTypeIcon = component => {
+const getTypeIcon = (component) => {
     let iconName = ``;
     if (component.getAttribute(`type`) === `info`) {
         iconName = `info`;
@@ -59,7 +59,7 @@ const getTypeIcon = component => {
     }
     return `<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
 };
-const getCloseIcon = component => {
+const getCloseIcon = (component) => {
     if (component.getAttribute(`dismissable`) !== `true`) {
         return ``;
     }

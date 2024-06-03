@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {Loader} from "./loader";
+
+const makeCss = (component: Loader) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -60,7 +62,7 @@ img {
 `
 );
 
-const makeHtml = (component) => (
+const makeHtml = (component: Loader) => (
 `
 <div class="loader-container" inert>
 	<div class="panel">
@@ -71,6 +73,6 @@ const makeHtml = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Loader) => {
 	return makeCss(component) + makeHtml(component);
 };

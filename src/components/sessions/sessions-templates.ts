@@ -1,9 +1,11 @@
+import {Measure} from '../../types/api-data.js';
 import {Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
 import {getIconNameForPosition, getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
+import {Sessions} from './sessions.js';
 
-const makeHtml = (component) => (
+const makeHtml = (component: Sessions) => (
 `
 ${component.preferences.showTimegrapherFeatures ? `
 <a class="back-link" href="#/watches/${component.watch._id}">
@@ -47,12 +49,12 @@ ${showSortControls(component)}
 `
 );
 
-const showSessionsInfo = component => {
+const showSessionsInfo = (component: Sessions) => {
 	if (!component.measures || !component.measures.length) { return ``; }
 	let html = `<h3>Session: `;
 	const startDate = Format.date(component.currentSession[0].targetMoment);
 	const endDate = Format.date(component.currentSession[component.currentSession.length - 1].targetMoment);
-html += `<span class="nowrap">${startDate}</span>`;
+	html += `<span class="nowrap">${startDate}</span>`;
 	if (startDate !== endDate) {
 		html += ` - <span class="nowrap">${endDate}</span>`;
 	}
@@ -60,7 +62,7 @@ html += `<span class="nowrap">${startDate}</span>`;
 	return html;
 };
 
-const showSessionsSelection = component => {
+const showSessionsSelection = (component: Sessions) => {
 	if (component.sessions.length < 2) { return ``; }
 	return `
 	<p class="session-selection form-controls">
@@ -71,7 +73,7 @@ const showSessionsSelection = component => {
 	`;
 };
 
-const showDeviationGraph = component => (
+const showDeviationGraph = (component: Sessions) => (
 `
 <gwbw-deviation-graph
 	measures="${encodeURI(JSON.stringify(component.currentSession))}"
@@ -80,7 +82,7 @@ const showDeviationGraph = component => (
 `
 );
 
-const showSessionIntervalLink = component => {
+const showSessionIntervalLink = (component: Sessions) => {
 	if (!component.currentSession || component.currentSession.length < 2) { return ``; }
 	const session = component.currentSession;
 	const intervalHref =
@@ -102,10 +104,10 @@ const showSessionIntervalLink = component => {
 	`;
 }
 
-const getPreviousDisabled = component => component.currentSessionIndex === 0 ? `disabled` : ``;
-const getNextDisabled = component => component.currentSessionIndex === (component.sessions.length - 1) ? `disabled` : ``;
+const getPreviousDisabled = (component: Sessions) => component.currentSessionIndex === 0 ? `disabled` : ``;
+const getNextDisabled = (component: Sessions) => component.currentSessionIndex === (component.sessions.length - 1) ? `disabled` : ``;
 
-const showMeasures = component => {
+const showMeasures = (component: Sessions) => {
 	if (!component.measures || !component.measures.length) {
 		return ``;
 	}
@@ -156,7 +158,7 @@ const showMeasures = component => {
 	return html;
 };
 
-const showPositionIcon = measure => {
+const showPositionIcon = (measure: Measure) => {
 	if (measure.customPositionId) {
 		return `<gwbw-icon name="account_circle"></gwbw-icon>`;
 	} else {
@@ -164,7 +166,7 @@ const showPositionIcon = measure => {
 	}
 };
 
-const showSortControls = component => {
+const showSortControls = (component: Sessions) => {
 	if (!component.currentSessionSorted || component.currentSessionSorted.length < 2) {
 		return ``;
 	}
@@ -192,7 +194,7 @@ const showSortControls = component => {
 	`;
 };
 
-const makeCss = (component) => (
+const makeCss = (component: Sessions) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -271,6 +273,6 @@ button.next-session { margin-left: 0.35em !important; }
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Sessions) => {
 	return makeCss(component) + makeHtml(component);
 };

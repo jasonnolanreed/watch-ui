@@ -39,7 +39,7 @@ export const makeTemplate = (component) => (`
 }
 </style>
 `);
-const outputLineItem = dataList => {
+const outputLineItem = (dataList) => {
     let html = ``;
     dataList.map(item => {
         html += `

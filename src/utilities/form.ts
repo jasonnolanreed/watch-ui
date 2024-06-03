@@ -1,4 +1,4 @@
-export const getFormData = ($form: HTMLElement): any => {
+export const getFormData = ($form: HTMLFormElement): any => {
 	let data = {};
 	$form.querySelectorAll(`input[type=text], input[type=password], input[type=hidden], input[type=number]`)
 	.forEach(($input: HTMLInputElement) => {

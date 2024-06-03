@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {DeviationGraph} from "./deviation-graph";
+
+const makeCss = (component: DeviationGraph) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -15,7 +17,7 @@ gwbw-deviation-graph[loading] canvas {
 `
 );
 
-const makeHtml = (component) => {
+const makeHtml = (component: DeviationGraph) => {
 	if (!component.measuresData) {
 		return `<p style="margin: 0;">This watch hasn't been measured yet</p>`;
 	} else if (component.measuresData.length < 2) {
@@ -25,6 +27,6 @@ const makeHtml = (component) => {
 	}
 };
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: DeviationGraph) => {
 	return makeCss(component) + makeHtml(component);
 };

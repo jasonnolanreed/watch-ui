@@ -29,7 +29,7 @@ const makeHtml = (component) => (`
 	</div>
 </form>
 `);
-const renderFields = component => {
+const renderFields = (component) => {
     let html = ``;
     const positions = timegrapherPositions;
     positions.forEach(position => {

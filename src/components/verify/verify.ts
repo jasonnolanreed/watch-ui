@@ -39,7 +39,7 @@ export class Verify extends GWBWElement {
 		}
 	}
 
-	async verify($form) {
+	async verify($form: HTMLFormElement) {
 		const didVerify = await AuthApi.verify($form);
 		if (didVerify) {
 			try {

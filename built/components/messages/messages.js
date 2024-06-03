@@ -16,15 +16,6 @@ export class Messages extends GWBWElement {
     initialRender() {
         this.shadowRoot.innerHTML = makeCss(this);
     }
-    /*
-    options {
-        message: string,
-        type: 'info'|'success'|'error',
-        ttl?: number,
-        dismissable?: boolean,
-        persistent?:boolean // whether or not to auto close on view change
-    }
-    */
     add(options = {}) {
         const template = document.createElement(`template`);
         const message = getMessageElement(options);

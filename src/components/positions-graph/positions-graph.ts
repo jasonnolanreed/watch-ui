@@ -1,14 +1,16 @@
 import {GWBWElement} from '../../classes/gwbw-element.js';
 import {positionsMap} from '../../utilities/position.js';
+import {PositionsData} from '../../types/positions.js';
+
 import {makeTemplate} from './positions-graph-templates.js';
 
 declare const Chart: any;
 
 export class PositionsGraph extends GWBWElement {
 	_hasChartJS = false;
-	positionsData = null;
-	goodTolerancePlusNumber = null;
-	goodToleranceMinusNumber = null;
+	positionsData: PositionsData | null = null;
+	goodTolerancePlusNumber: number | null = null;
+	goodToleranceMinusNumber: number | null = null;
 	graph = null;
 	sortedPositionNamesArray: string[];
 
@@ -63,7 +65,12 @@ export class PositionsGraph extends GWBWElement {
 	render() {
 		try {
 			this.innerHTML = makeTemplate(this);
-			if (this.positionsData && this.goodTolerancePlusNumber !== null && this.goodToleranceMinusNumber !== null && this._hasChartJS) {
+			if (
+				this.positionsData &&
+				this.goodTolerancePlusNumber !== null &&
+				this.goodToleranceMinusNumber !== null &&
+				this._hasChartJS
+			) {
 				this.initChart();
 			}
 		} catch(error) {

@@ -57,7 +57,7 @@ export class MeasureDetail extends GWBWElement {
 		}
 	}
 
-	onCancel(event, target) {
+	onCancel(event: MouseEvent, target: HTMLElement) {
 		if (this.mode === `add`) {
 			GA.event(`measure`, `measure add cancel`);
 			this.goBackToSession();
@@ -66,7 +66,7 @@ export class MeasureDetail extends GWBWElement {
 		}
 	}
 
-	async onSubmit(event, target) {
+	async onSubmit(event: SubmitEvent, target: HTMLFormElement) {
 		this.startWorking();
 		const formData = getFormData(target);
 		if (formData.position.startsWith(`customid:`)) {

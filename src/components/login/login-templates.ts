@@ -1,4 +1,6 @@
-export const makeTemplate = (component) => (
+import {Login} from "./login";
+
+export const makeTemplate = (component: Login) => (
 `
 <div class="page-title">
 	<gwbw-icon name="exit_to_app"></gwbw-icon>

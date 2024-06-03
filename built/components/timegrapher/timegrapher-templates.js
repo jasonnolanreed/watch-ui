@@ -62,7 +62,7 @@ ${component?.currentResults?.note &&
 </div>
 
 `);
-const showResultsSelection = component => {
+const showResultsSelection = (component) => {
     if (component.timegrapherResults.length < 2) {
         return ``;
     }
@@ -74,8 +74,8 @@ const showResultsSelection = component => {
 	</p>
 	`;
 };
-const getPreviousDisabled = component => component.currentResultsIndex === 0 ? `disabled` : ``;
-const getNextDisabled = component => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
+const getPreviousDisabled = (component) => component.currentResultsIndex === 0 ? `disabled` : ``;
+const getNextDisabled = (component) => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
 const makeCss = (component) => (`
 <style>
 @import "styles/global-styles.css";

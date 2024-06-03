@@ -1,8 +1,9 @@
-import {getSessionTotalData} from "../../utilities/measure.js";
+import {SessionTotalData, getSessionTotalData} from "../../utilities/measure.js";
+import {SessionTotal} from "./session-total.js";
 
-const makeHtml = (component) => {
+const makeHtml = (component: SessionTotal) => {
 	if (!component.sessionData) { return ``; }
-	const sessionTotalData = getSessionTotalData(component.sessionData);
+	const sessionTotalData: SessionTotalData = getSessionTotalData(component.sessionData);
 	if (!sessionTotalData) {
 		return `<p style="margin: 0;">Average rate will be shown here when multiple measures are taken within this session</p>`;
 	}
@@ -33,7 +34,7 @@ const makeHtml = (component) => {
 	return html;
 };
 
-const getTotalClasses = (component, sessionTotalData) => {
+const getTotalClasses = (component: SessionTotal, sessionTotalData: SessionTotalData) => {
 	if (!sessionTotalData) { return ``; }
 	let classes = [];
 	if (sessionTotalData.averageRate < 0) {
@@ -49,7 +50,7 @@ const getTotalClasses = (component, sessionTotalData) => {
 	return classes.length ? classes.join(` `) : ``;
 };
 
-const makeCss = (component) => (
+const makeCss = (component: SessionTotal) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -73,6 +74,6 @@ const makeCss = (component) => (
 `
 );
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: SessionTotal) => {
 	return makeCss(component) + makeHtml(component);
 };

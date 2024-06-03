@@ -1,4 +1,6 @@
-const makeCss = (component) => (
+import {Message} from "./message";
+
+const makeCss = (component: Message) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -42,7 +44,7 @@ const makeCss = (component) => (
 `
 );
 
-const makeHtml = (component) => (
+const makeHtml = (component: Message) => (
 `
 <div class="message" role="alert">
 	${getTypeIcon(component)}${` `}
@@ -52,7 +54,7 @@ const makeHtml = (component) => (
 `
 );
 
-const getTypeIcon = component => {
+const getTypeIcon = (component: Message) => {
 	let iconName = ``;
 	if (component.getAttribute(`type`) === `info`) { iconName = `info`; }
 	if (component.getAttribute(`type`) === `success`) { iconName = `check_circle`; }
@@ -60,7 +62,7 @@ const getTypeIcon = component => {
 	return `<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
 };
 
-const getCloseIcon = component => {
+const getCloseIcon = (component: Message) => {
 	if (component.getAttribute(`dismissable`) !== `true`) {
 		return ``;
 	} else {
@@ -72,6 +74,6 @@ const getCloseIcon = component => {
 	}
 };
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Message) => {
 	return makeCss(component) + makeHtml(component);
 };

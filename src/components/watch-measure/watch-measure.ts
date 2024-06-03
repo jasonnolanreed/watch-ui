@@ -52,7 +52,7 @@ export class WatchMeasure extends GWBWElement {
 		}
 	}
 
-	increaseQuarter(event, target) {
+	increaseQuarter(event: MouseEvent, target: HTMLElement) {
 		this.moment = Shift.seconds(this.moment, 15);
 		this.render();
 		try {
@@ -60,7 +60,7 @@ export class WatchMeasure extends GWBWElement {
 		} catch(error) {}
 	}
 
-	decreaseQuarter(event, target) {
+	decreaseQuarter(event: MouseEvent, target: HTMLElement) {
 		this.moment = Shift.seconds(this.moment, -15);
 		this.render();
 		try {
@@ -68,7 +68,7 @@ export class WatchMeasure extends GWBWElement {
 		} catch(error) {}
 	}
 
-	addMeasure() {
+	addMeasure(event: MouseEvent, target: HTMLElement) {
 		GA.event(`measure`, `measure add start`);
 		const targetMoment = this.moment;
 		const measuredMoment = Date.now();

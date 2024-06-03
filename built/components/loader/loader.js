@@ -30,7 +30,7 @@ export class Loader extends GWBWElement {
         }
     }
     attributeChangedCallback(name, oldValue, newValue) {
-        // Only called for attributes return from observedAttributes
+        // Only called for attributes returned from observedAttributes
     }
     connectedCallback() {
         super.connectedCallback();

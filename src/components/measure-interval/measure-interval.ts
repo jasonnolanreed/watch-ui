@@ -82,7 +82,7 @@ export class MeasureInterval extends GWBWElement {
 		this.render();
 	}
 
-	setExpandSessionLink(sessions) {
+	setExpandSessionLink(sessions: Measure[][]) {
 		let matchingSession = null;
 		for (const thisSession of sessions) {
 			if (matchingSession) { break; }
@@ -103,7 +103,7 @@ export class MeasureInterval extends GWBWElement {
 
 	setPositions() {
 		this.positions = {};
-		let previousMeasure;
+		let previousMeasure: Measure;
 		// Find all positions and add up distances and diffs
 		for (const measure of this.measures) {
 			if (!previousMeasure) {
@@ -154,7 +154,7 @@ export class MeasureInterval extends GWBWElement {
 		});
 	}
 
-	onChangeSort(event, target) {
+	onChangeSort(event: MouseEvent, target: HTMLElement) {
 		const newSortValue = target.classList.contains('rate') ? 'rate' : 'default';
 		this.preferences.positionsSort = newSortValue;
 		PreferenceApi.updatePreferences({positionsSort: newSortValue});

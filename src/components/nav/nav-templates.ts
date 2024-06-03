@@ -1,4 +1,6 @@
-const makeHtml = (component) => (
+import {Nav} from "./nav";
+
+const makeHtml = (component: Nav) => (
 `
 <nav>
 	<div class="content">
@@ -8,7 +10,7 @@ const makeHtml = (component) => (
 `
 );
 
-const makeCss = (component) => (
+const makeCss = (component: Nav) => (
 `
 <style>
 @import "styles/global-styles.css";
@@ -61,7 +63,7 @@ gwbw-icon + span {
 `
 );
 
-const getLinks = component => {
+const getLinks = (component: Nav) => {
 	if (!component.loggedIn) {
 		if (component.isLoginView) {
 			return `<a class="register" href="#/register"><span>Register</span><gwbw-icon name="account_box"></gwbw-icon></a>`;
@@ -75,6 +77,6 @@ const getLinks = component => {
 	`;
 };
 
-export const makeTemplate = (component) => {
+export const makeTemplate = (component: Nav) => {
 	return makeCss(component) + makeHtml(component);
 };
