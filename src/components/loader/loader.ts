@@ -2,7 +2,11 @@ import {GWBWElement} from '../../classes/gwbw-element.js';
 import {makeTemplate} from './loader-templates.js';
 
 export class Loader extends GWBWElement {
-	loadingTimeout = null;
+	loadingGracePeriodTimeout = null;
+	loadingOffTimeout = null;
+	container: HTMLElement;
+	gracePeriodDuration = 1000;
+	transitionDuration = 400;
 
 	constructor() {
 		super();
@@ -18,17 +22,33 @@ export class Loader extends GWBWElement {
 	}
 
 	set loading(newValue: boolean) {
+		if (!this.container) { return; }
 		if (typeof newValue !== `boolean`) { return; }
+
+		clearTimeout(this.loadingGracePeriodTimeout);
+		clearTimeout(this.loadingOffTimeout);
+
 		if (newValue === true) {
-			this.loadingTimeout = setTimeout(_ => {
-				this.setAttribute(`loading`, String(newValue));
-			}, 1000);
+			this.loadingGracePeriodTimeout = setTimeout(_ => {
+				requestAnimationFrame(_ => {
+					this.container.classList.remove(`hidden`);
+					setTimeout(_ => {
+						requestAnimationFrame(_ => {
+							this.setAttribute(`loading`, `true`);
+						});
+					}, 0);
+				});
+			}, this.gracePeriodDuration);
 		} else {
-			if (this.loadingTimeout) {
-				clearTimeout(this.loadingTimeout);
-				this.loadingTimeout = null;
-			}
-			this.removeAttribute(`loading`);
+			requestAnimationFrame(_ => {
+				this.removeAttribute(`loading`);
+
+				this.loadingOffTimeout = setTimeout(_ => {
+					requestAnimationFrame(_ => {
+						this.container.classList.add(`hidden`);
+					});
+				}, this.transitionDuration);
+			});
 		}
 	}
 
@@ -48,6 +68,7 @@ export class Loader extends GWBWElement {
 	render() {
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.container = this.shadowRoot.querySelector(`.loader-container`);
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}

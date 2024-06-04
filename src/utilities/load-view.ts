@@ -10,7 +10,7 @@ export class LoadView {
 		window.scrollTo(0, 0);
 		
 		// Turn <gwbw-loader> on
-		(document.querySelector(`gwbw-loader`) as Loader).loading = true;
+		(window[`gwbw-loader`] as Loader).loading = true;
 
 		// Fade out content container
 		const $contentContainer = $view.querySelector(`.content-container`);
@@ -46,7 +46,7 @@ export class LoadView {
 				// If only layout and not view within, undo loading sequence
 				setTimeout(_ => {
 					requestAnimationFrame(_ => {
-						(document.querySelector(`gwbw-loader`) as Loader).loading = false;
+						(window[`gwbw-loader`] as Loader).loading = false;
 						$contentContainer.classList.add(`in`);
 					});
 				}, 0);

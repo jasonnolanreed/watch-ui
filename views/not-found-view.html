@@ -1,8 +1,8 @@
 <h1>Page Not Found</h1>
 <script>
 (function() {
-	const $loader = document.querySelector(`gwbw-loader`);
-	const $contentContainer = document.getElementById(`view`).querySelector(`.content-container`);
+	const $loader = window[`gwbw-loader`];
+	const $contentContainer = window[`view`].querySelector(`.content-container`);
 	requestAnimationFrame(_ => {
 		$loader.loading = false;
 		$contentContainer.classList.add(`in`);

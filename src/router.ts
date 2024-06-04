@@ -5,7 +5,7 @@ import {AuthApi} from './api-helpers/auth.js';
 import {PreferenceApi} from './api-helpers/preference.js';
 
 export const router = new Navigo(null, true, `#`);
-const $view = document.getElementById(`view`);
+const $view = window[`view`];
 const layouts = {
 	main: `layouts/layout-main.html`,
 	test: `layouts/layout-test.html`

@@ -6,19 +6,10 @@ const makeCss = (component: Loader) => (
 @import "styles/global-styles.css";
 
 :host {
-	display: none !important;
 	position: fixed;
 	top: 0; right: 0; bottom: 0; left: 0;
 	z-index: 10;
 	pointer-events: none;
-}
-
-:host([loading]) {
-	display: block !important;
-}
-
-:host([loading]) .loader-container {
-	opacity: 1;
 }
 
 .loader-container {
@@ -30,6 +21,11 @@ const makeCss = (component: Loader) => (
 	text-align: center;
 	pointer-events: none;
 	opacity: 0;
+	transition: opacity ${component.transitionDuration / 1000}s ease;
+}
+
+:host([loading]) .loader-container {
+	opacity: 1;
 }
 
 .panel {
@@ -64,7 +60,7 @@ img {
 
 const makeHtml = (component: Loader) => (
 `
-<div class="loader-container" inert>
+<div class="loader-container hidden" inert>
 	<div class="panel">
 		<img src="assets/images/jewel.svg" alt="loading">
 		<p>Loading...</p>

@@ -30,9 +30,9 @@ export class GWBWElement extends HTMLElement {
         }
     }
     render() {
-        const $loader = document.querySelector(`gwbw-loader`);
+        const $loader = window[`gwbw-loader`];
         $loader.loading = false;
-        const $contentContainer = document.getElementById(`view`).querySelector(`.content-container`);
+        const $contentContainer = window[`view`].querySelector(`.content-container`);
         requestAnimationFrame(_ => {
             $contentContainer.classList.add(`in`);
         });
