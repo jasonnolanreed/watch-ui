@@ -10,7 +10,6 @@ import {makeTemplate} from './timegrapher-templates.js';
 
 export class Timegrapher extends GWBWElement {
 	currentResultsIndex: number;
-	stickyObserver: IntersectionObserver;
 	watch: Watch;
 	timegrapherResults: TimegrapherResult[];
 	currentResults: TimegrapherResult;
@@ -31,7 +30,6 @@ export class Timegrapher extends GWBWElement {
 	}
 
 	disconnectedCallback() {
-		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
 		super.disconnectedCallback();
 	}
 
@@ -59,7 +57,6 @@ export class Timegrapher extends GWBWElement {
 		super.render();
 		try {
 			this.shadowRoot.innerHTML = makeTemplate(this);
-			this.detectSticky();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -91,17 +88,6 @@ export class Timegrapher extends GWBWElement {
 				messages.add({message: `Failed to delete timegrapher result. Try again?`, type: `error`});
 			}
 		}
-	}
-
-	detectSticky() {
-		if (this.stickyObserver) { this.stickyObserver.disconnect(); }
-
-		this.stickyObserver = new IntersectionObserver(
-			([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
-			{threshold: [0]}
-		);
-		
-		this.stickyObserver.observe(this.shadowRoot.querySelector(`.sticky-controls-outer`));
 	}
 }
 

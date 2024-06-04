@@ -66,7 +66,7 @@ const showSortControls = (component: Watches) => {
 
 	return `
 	<div class="sort-controls">
-		<label>Sort:</label>
+		<label><b>Sort:</b></label>
 		<nav class="toggle-buttons" aria-label="Sort watches">
 			<button type="button" class="created ${component.preferences.watchesSort.includes('created') ? 'selected' : ''}">
 				Added

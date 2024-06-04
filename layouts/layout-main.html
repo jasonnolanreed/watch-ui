@@ -1,10 +1,21 @@
-<div class="all-but-footer">
-	<gwbw-header></gwbw-header>
-	<gwbw-nav></gwbw-nav>
-	<div class="content-container"></div>
-</div>
-<footer>
-	<div class="content">Questions? <span class="nowrap">goodwatchbadwatch@gmail.com <gwbw-icon name="email"></gwbw-icon></span></div>
-</footer>
+<style>
+:root {
+	--layout-max-width: 750px;
+	--layout-padding-large: 2em;
+	--layout-padding-small: 1.5rem;
+	--layout-padding-xsmall: 1rem;
+}
+</style>
+
+<layout class="main block">
+	<div class="panel">
+		<gwbw-header></gwbw-header>
+		<div class="content-container"></div>
+		<footer>
+			<hr>
+			Questions? <span class="nowrap">goodwatchbadwatch@gmail.com <gwbw-icon name="email"></gwbw-icon></span>
+		</footer>
+	</div>
+</layout>
+
 <script src="built/components/header/header.js" type="module"></script>
-<script src="built/components/nav/nav.js" type="module"></script>

@@ -39,7 +39,7 @@ const makeHtml = (component) => (`
 </div>
 
 <div class="sort-controls">
-	<label>Sort:</label>
+	<label><b>Sort:</b></label>
 	<nav class="toggle-buttons" aria-label="Sort positions">
 		<button type="button"
 			class="default ${component.preferences.positionsSort.includes('default') ? 'selected' : ''}"

@@ -10,10 +10,12 @@ const makeHtml = (component) => (`
 
 <br/>
 
-<button class="add-position button positive">
-	<gwbw-icon name="add_circle"></gwbw-icon>
-	Add Custom Position
-</button>
+<div class="form-controls">
+	<button class="add-position button positive">
+		<gwbw-icon name="add_circle"></gwbw-icon>
+		Add Custom Position
+	</button>
+</div>
 `);
 const showPositions = (component) => {
     let html = ``;

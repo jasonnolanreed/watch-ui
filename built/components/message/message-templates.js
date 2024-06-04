@@ -3,8 +3,8 @@ const makeCss = (component) => (`
 @import "styles/global-styles.css";
 
 :host {
-	max-width: 750px;
-	margin: 0.5em auto;
+	width: 100%;
+	margin-bottom: 0.5em;
 	padding: 1em;
 	color: #fff;
 	background-color: var(--light-blue);

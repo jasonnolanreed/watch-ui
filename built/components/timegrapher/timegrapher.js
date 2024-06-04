@@ -6,7 +6,6 @@ import { TimegrapherApi } from '../../api-helpers/timegrapher.js';
 import { makeTemplate } from './timegrapher-templates.js';
 export class Timegrapher extends GWBWElement {
     currentResultsIndex;
-    stickyObserver;
     watch;
     timegrapherResults;
     currentResults;
@@ -24,9 +23,6 @@ export class Timegrapher extends GWBWElement {
         this.getData();
     }
     disconnectedCallback() {
-        if (this.stickyObserver) {
-            this.stickyObserver.disconnect();
-        }
         super.disconnectedCallback();
     }
     async getData() {
@@ -50,7 +46,6 @@ export class Timegrapher extends GWBWElement {
         super.render();
         try {
             this.shadowRoot.innerHTML = makeTemplate(this);
-            this.detectSticky();
         }
         catch (error) {
             console.error(`Error rendering`, error);
@@ -83,13 +78,6 @@ export class Timegrapher extends GWBWElement {
                 messages.add({ message: `Failed to delete timegrapher result. Try again?`, type: `error` });
             }
         }
-    }
-    detectSticky() {
-        if (this.stickyObserver) {
-            this.stickyObserver.disconnect();
-        }
-        this.stickyObserver = new IntersectionObserver(([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1), { threshold: [0] });
-        this.stickyObserver.observe(this.shadowRoot.querySelector(`.sticky-controls-outer`));
     }
 }
 customElements.define(`gwbw-timegrapher`, Timegrapher);

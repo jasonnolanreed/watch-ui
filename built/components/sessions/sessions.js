@@ -8,7 +8,6 @@ import { CustomPositionsApi } from '../../api-helpers/custom-positions.js';
 import { parseSessionsFromMeasures } from '../../utilities/measure.js';
 import { makeTemplate } from './sessions-templates.js';
 export class Sessions extends GWBWElement {
-    stickyObserver;
     currentSessionIndex;
     intervalStartIndex = null;
     currentSession;
@@ -34,9 +33,6 @@ export class Sessions extends GWBWElement {
         this.getData();
     }
     disconnectedCallback() {
-        if (this.stickyObserver) {
-            this.stickyObserver.disconnect();
-        }
         super.disconnectedCallback();
     }
     render() {
@@ -44,7 +40,6 @@ export class Sessions extends GWBWElement {
         try {
             this.sortSessionMeasures();
             this.shadowRoot.innerHTML = makeTemplate(this);
-            this.detectSticky();
         }
         catch (error) {
             console.error(`Error rendering`, error);
@@ -142,13 +137,6 @@ export class Sessions extends GWBWElement {
         if (this.preferences.measuresSort.includes(`Desc`)) {
             this.currentSessionSorted = this.currentSessionSorted.reverse();
         }
-    }
-    detectSticky() {
-        if (this.stickyObserver) {
-            this.stickyObserver.disconnect();
-        }
-        this.stickyObserver = new IntersectionObserver(([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1), { threshold: [0] });
-        this.stickyObserver.observe(this.shadowRoot.querySelector(`.sticky-controls-outer`));
     }
 }
 customElements.define(`gwbw-sessions`, Sessions);
