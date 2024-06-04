@@ -36,7 +36,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	min-width: 350px;
-	height: 100%;
+	min-height: 100vh;
 	font-size: 15px;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: 400;
@@ -191,7 +191,7 @@ hr.minimal {
 
 #view {
 	position: relative;
-	height: 100%;
+	min-height: 100%;
 }
 
 .feature-box {
