@@ -54,6 +54,10 @@ layout.main footer {
 }
 
 @media (max-width: 450px) {
+	:is(html, body):has(layout.main) {
+		background-color: #fff;
+	}
+
 	layout.main {
 		padding: 0 !important;
 		--padding: var(--layout-padding-small) var(--layout-padding-xsmall);
