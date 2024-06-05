@@ -45,7 +45,7 @@ nav {
 }
 
 hr {
-	margin: 1rem 0 2rem 0;
+	margin: 1.5rem 0 2rem 0 !important;
 }
 
 @container cq-header-container (width < 525px) {
