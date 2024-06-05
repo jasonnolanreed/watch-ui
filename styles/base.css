@@ -57,18 +57,16 @@ a, a:visited {
 	color: var(--blue);
 	text-decoration: underline;
 	text-underline-offset: 0.23em;
+
+	&:hover:not(.button) {
+		color: var(--light-blue);
+		text-decoration: underline;
+	}
 }
 
 a.big-link {
 	font-size: 1.2rem;
 	font-weight: 600;
-}
-
-@media (hover: hover) {
-	a:hover {
-		color: var(--light-blue);
-		text-decoration: underline;
-	}
 }
 
 h1, h2, h3, h4, h5 {

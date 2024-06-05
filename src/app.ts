@@ -5,6 +5,9 @@ import './components/icon/icon.js';
 
 declare const Sentry: any;
 
+// Convert all "global" styles into a constructed
+// style sheet to adopt into custom components
+// to avoid style flashing as they render
 const globalSheets: CSSStyleSheet[] = [];
 for (const sheet of document.styleSheets) {
 	if (sheet.title === `gwbwglobal`) {

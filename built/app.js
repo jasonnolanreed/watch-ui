@@ -2,6 +2,9 @@
 import { environment } from './utilities/network.js';
 import './router.js';
 import './components/icon/icon.js';
+// Convert all "global" styles into a constructed
+// style sheet to adopt into custom components
+// to avoid style flashing as they render
 const globalSheets = [];
 for (const sheet of document.styleSheets) {
     if (sheet.title === `gwbwglobal`) {

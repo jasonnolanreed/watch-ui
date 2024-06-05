@@ -33,6 +33,7 @@ const makeCss = (component: Message) => (
 	padding: .55em;
 	margin: -.55em;
 	margin-left: auto;
+	margin-right: 0;
 	font-size: 0.9em;
 	color: #fff;
 }
