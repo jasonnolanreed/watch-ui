@@ -44,7 +44,7 @@
 }
 
 @media (hover: hover) {
-	.button:hover {
+	.button.button:hover {
 		box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 0 0 5em rgba(0, 0, 0, 0.1), 0 1em 1.5em 0 rgba(0, 0, 0, 0.08);
 	}
 	
@@ -53,42 +53,42 @@
 	}
 }
 
-.button:active {
+.button.button:active {
 	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 0 0 5em rgba(255, 255, 255, 0.2);
 }
 
-.button.positive {
+.button.button.positive {
 	background-color: var(--green);
 }
 
-.button.negative {
+.button.button.negative {
 	background-color: var(--red);
 }
 
-.button.strong {
+.button.button.strong {
 	background-color: var(--dark-blue);
 }
 
-.button.low-priority {
+.button.button.low-priority {
 	background-color: var(--light-blue);
 }
 
-.button.marked {
+.button.button.marked {
 	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--bright-blue), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
 }
 
-.button.marked:hover {
+.button.button.marked:hover {
 	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 0 0 5em rgba(0, 0, 0, 0.1),
 				0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--bright-blue), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
 }
 
-.button.disabled,
-button[disabled] {
+.button.button.disabled,
+button[disabled][disabled] {
 	opacity: 0.5;
 	pointer-events: none;
 }
 
-.sneaky-button {
+.sneaky-button.sneaky-button.sneaky-button {
 	background: none;
 	border: none;
 	padding: 0;
