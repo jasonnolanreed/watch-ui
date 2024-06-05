@@ -197,8 +197,6 @@ const showSortControls = (component: Sessions) => {
 const makeCss = (component: Sessions) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .session-selection.session-selection { display: flex; align-items: center; margin: -0.5em 0 1em 0; }
 .session-selection .pages { margin-left: 1em; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }

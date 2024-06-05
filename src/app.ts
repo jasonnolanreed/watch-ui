@@ -5,6 +5,20 @@ import './components/icon/icon.js';
 
 declare const Sentry: any;
 
+const globalSheets: CSSStyleSheet[] = [];
+for (const sheet of document.styleSheets) {
+	if (sheet.title === `gwbwglobal`) {
+		globalSheets.push(sheet);
+	}
+}
+const constructedSheet = new CSSStyleSheet();
+globalSheets.forEach(sheet => {
+	Array.from(sheet.cssRules).forEach(rule => {
+		constructedSheet.insertRule(rule.cssText);
+	});
+});
+export const globalStyleSheet = constructedSheet;
+
 try {
 	// gtag(`js`, new Date());
 	// gtag(`config`, measurementId);

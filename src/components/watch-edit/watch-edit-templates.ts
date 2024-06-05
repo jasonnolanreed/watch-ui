@@ -48,9 +48,6 @@ const makeHtml = (component: WatchEdit) => (
 
 const makeCss = (component: WatchEdit) => (
 `
-<style>
-@import "styles/global-styles.css";
-</style>
 `
 );
 

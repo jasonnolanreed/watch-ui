@@ -50,8 +50,6 @@ const makeHtml = (component: WatchMeasure) => (
 const makeCss = (component: WatchMeasure) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 :host {
 	container-type: inline-size;
 	container-name: cq-watch-measure;

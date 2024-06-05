@@ -1,3 +1,4 @@
+import { globalStyleSheet } from "../app.js";
 export class GWBWElement extends HTMLElement {
     _clickEvents = null;
     _hasSetupResizeListener = false;
@@ -16,6 +17,9 @@ export class GWBWElement extends HTMLElement {
         this._hasConnected = true;
         this.classList.add(`block`);
         this.addEventListener(`click`, this._onClick);
+        if (this.shadowRoot) {
+            this.shadowRoot.adoptedStyleSheets.push(globalStyleSheet);
+        }
     }
     disconnectedCallback() {
         this.removeEventListener(`click`, this._onClick);

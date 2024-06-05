@@ -78,8 +78,6 @@ const getPreviousDisabled = (component) => component.currentResultsIndex === 0 ?
 const getNextDisabled = (component) => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .results-selection.results-selection { display: flex; align-items: center; margin: -0.5em 0 2em 0; }
 .results-selection .pages { margin-left: 1em; }
 .previous-results gwbw-icon, .next-results gwbw-icon { font-size: 1.4em; }

@@ -70,8 +70,6 @@ const getGoodBadClass = (component, rate) => {
 };
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 table {
 	margin: 2rem 0;
 }

@@ -4,8 +4,6 @@ import {MessageOptions, Messages} from './messages.js';
 export const makeCss = (component: Messages) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 :host {
 	position: fixed;
 	top: calc(0.5 * var(--layout-padding-large));

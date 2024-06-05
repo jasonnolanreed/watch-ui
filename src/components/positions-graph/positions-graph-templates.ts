@@ -3,8 +3,6 @@ import {PositionsGraph} from "./positions-graph";
 const makeCss = (component: PositionsGraph) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 gwbw-positions-graph[loading] {
 	background-color: var(--silver);
 }

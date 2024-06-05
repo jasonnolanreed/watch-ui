@@ -76,8 +76,6 @@ const getGoodBadClass = (component: TimegrapherTable, rate) => {
 const makeCss = (component: TimegrapherTable) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 table {
 	margin: 2rem 0;
 }

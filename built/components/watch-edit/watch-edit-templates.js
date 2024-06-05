@@ -42,9 +42,6 @@ const makeHtml = (component) => (`
 </form>
 `);
 const makeCss = (component) => (`
-<style>
-@import "styles/global-styles.css";
-</style>
 `);
 export const makeTemplate = (component) => {
     return makeCss(component) + makeHtml(component);

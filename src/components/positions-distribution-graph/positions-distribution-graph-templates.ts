@@ -3,8 +3,6 @@ import {PositionsDistributionGraph} from "./positions-distribution-graph";
 const makeCss = (component: PositionsDistributionGraph) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 gwbw-positions-distribution-graph[loading] {
 	background-color: var(--silver);
 }

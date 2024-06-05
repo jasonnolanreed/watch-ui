@@ -2,9 +2,6 @@ import {Verify} from "./verify";
 
 const makeCss = (component: Verify) => (
 `
-<style>
-@import "styles/global-styles.css";
-</style>
 `
 );
 

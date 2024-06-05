@@ -81,8 +81,6 @@ const makeHiddenFields = (component) => {
 };
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .page-title gwbw-icon {
 	transform: rotate(90deg);
 }

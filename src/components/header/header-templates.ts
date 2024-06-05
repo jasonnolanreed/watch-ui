@@ -3,8 +3,6 @@ import {Header} from "./header";
 const makeCss = (component: Header) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 header {
 }
 

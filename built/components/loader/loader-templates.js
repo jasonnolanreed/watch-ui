@@ -1,7 +1,5 @@
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 :host {
 	position: fixed;
 	top: 0; right: 0; bottom: 0; left: 0;
@@ -26,6 +24,7 @@ const makeCss = (component) => (`
 }
 
 .panel {
+	width: 15rem;
 	max-width: 90vw;
 	padding: 2.5rem 3.5rem 1rem 3.5rem;
 	background-color: rgba(255, 255, 255, 0.9);

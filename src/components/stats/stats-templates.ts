@@ -29,8 +29,6 @@ export const makeTemplate = (component: Stats) => (
 </div>
 
 <style>
-@import "styles/global-styles.css";
-
 .results {
 	display: flex;
 	flex-wrap: wrap;

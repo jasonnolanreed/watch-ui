@@ -106,8 +106,6 @@ const makeHtml = (component: Preferences) => (
 const makeCss = (component: Preferences) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .logged-in-box {
 	display: flex;
 	flex-wrap: wrap;

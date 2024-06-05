@@ -22,12 +22,19 @@ layout.main .content-container.in {
 }
 
 layout.main .panel {
+	display: flex;
+	flex-direction: column;
 	background-color: #fff;
 	max-width: var(--max-width);
+	min-height: calc(100vh - (4 * var(--padding)));
 	margin: 2rem auto;
 	padding: var(--padding);
 	border-radius: 0.5rem;
 	box-shadow: 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
+	
+		footer {
+			margin-top: auto;
+		}
 }
 
 layout.main footer {
@@ -65,13 +72,7 @@ layout.main footer {
 	}
 
 	layout.main .panel {
-		display: flex;
-		flex-direction: column;
 		min-height: 100vh;
 		border-radius: 0;
-
-		footer {
-			margin-top: auto;
-		}
 	}
 }

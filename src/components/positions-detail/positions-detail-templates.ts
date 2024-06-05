@@ -23,8 +23,6 @@ const makeHtml = (component: PositionsDetail) => (
 const makeCss = (component: PositionsDetail) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .positions {}
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
 .rate.fast:before { content: "+"; }

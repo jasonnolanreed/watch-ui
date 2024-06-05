@@ -54,8 +54,6 @@ const getTotalClasses = (component, sessionTotalData) => {
 };
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .total.good-watch { color: var(--green); }
 .total.bad-watch { color: var(--red); }
 .total.fast .number:before { content: "+"; }

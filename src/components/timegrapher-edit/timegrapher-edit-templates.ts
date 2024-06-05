@@ -64,8 +64,6 @@ const renderFields = (component: TimegrapherEdit) => {
 const makeCss = (component: TimegrapherEdit) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .form-input {
 	margin-bottom: 0.75rem;
 }

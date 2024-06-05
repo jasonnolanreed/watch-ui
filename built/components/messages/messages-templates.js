@@ -1,8 +1,6 @@
 import '../message/message.js';
 export const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 :host {
 	position: fixed;
 	top: calc(0.5 * var(--layout-padding-large));

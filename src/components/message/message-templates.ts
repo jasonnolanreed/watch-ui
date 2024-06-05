@@ -3,8 +3,6 @@ import {Message} from "./message";
 const makeCss = (component: Message) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 :host {
 	width: 100%;
 	margin-bottom: 0.5em;

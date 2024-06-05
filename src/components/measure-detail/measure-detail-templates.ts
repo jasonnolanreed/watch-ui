@@ -87,8 +87,6 @@ const makeHiddenFields = (component: MeasureDetail) => {
 const makeCss = (component: MeasureDetail) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .page-title gwbw-icon {
 	transform: rotate(90deg);
 }

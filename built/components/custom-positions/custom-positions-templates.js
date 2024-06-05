@@ -44,9 +44,6 @@ const showPositions = (component) => {
     return html;
 };
 const makeCss = (component) => (`
-<style>
-@import "styles/global-styles.css";
-</style>
 `);
 export const makeTemplate = (component) => {
     return makeCss(component) + makeHtml(component);

@@ -49,11 +49,10 @@ export class TimegrapherTable extends GWBWElement {
                 amplitudes.push(Number(this.timegrapherResultsData[position.id + "Amplitude"]));
             }
         });
-        this.averages = {
-            rate: roundToOneDecimal(rates.reduce((accumulator, thisValue) => accumulator + thisValue) / rates.length),
-            amplitude: Math.round(amplitudes.reduce((accumulator, thisValue) => accumulator + thisValue) / amplitudes.length),
-            beatError: roundToOneDecimal(beatErrors.reduce((accumulator, thisValue) => accumulator + thisValue) / beatErrors.length),
-        };
+        const rate = rates.length > 0 ? roundToOneDecimal(rates.reduce((accumulator, thisValue) => accumulator + thisValue) / rates.length) : null;
+        const amplitude = amplitudes.length > 0 ? Math.round(amplitudes.reduce((accumulator, thisValue) => accumulator + thisValue) / amplitudes.length) : null;
+        const beatError = beatErrors.length > 0 ? roundToOneDecimal(beatErrors.reduce((accumulator, thisValue) => accumulator + thisValue) / beatErrors.length) : null;
+        this.averages = { rate, amplitude, beatError, };
     }
     connectedCallback() {
         super.connectedCallback();

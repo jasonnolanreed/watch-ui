@@ -3,8 +3,6 @@ import {DeviationGraph} from "./deviation-graph";
 const makeCss = (component: DeviationGraph) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 gwbw-deviation-graph[loading] {
 	// background-color: var(--silver);
 }

@@ -1,7 +1,5 @@
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 gwbw-positions-distribution-graph[loading] {
 	background-color: var(--silver);
 }

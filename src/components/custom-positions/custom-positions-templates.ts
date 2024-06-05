@@ -51,9 +51,6 @@ const showPositions = (component: CustomPositions) => {
 
 const makeCss = (component: CustomPositions) => (
 `
-<style>
-@import "styles/global-styles.css";
-</style>
 `
 );
 

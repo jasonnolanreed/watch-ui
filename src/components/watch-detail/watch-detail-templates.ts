@@ -102,8 +102,6 @@ const makeHtml = (component: WatchDetail) => (
 const makeCss = (component: WatchDetail) => (
 `
 <style>
-@import "styles/global-styles.css";
-
 .feature-controls {
 	display: flex;
 	gap: 0.5rem;

@@ -1,7 +1,4 @@
 const makeCss = (component) => (`
-<style>
-@import "styles/global-styles.css";
-</style>
 `);
 const makeHtml = (component) => (`
 <div class="page-title">

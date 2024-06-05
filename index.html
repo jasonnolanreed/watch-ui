@@ -18,14 +18,22 @@
 	<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=20240531">
 
 	<link href="https://fonts.googleapis.com/css?family=Merriweather:700|Montserrat:400,600" rel="stylesheet">
-	<link href="styles/global-styles.css" rel="stylesheet">
+
+	<link href="styles/a11y.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/base.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/buttons.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/dialogs.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/forms.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/layouts.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/lists.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/tables.css" rel="stylesheet" title="gwbwglobal">
 </head>
 <body>
 	<gwbw-messages></gwbw-messages>
 	<div id="view"></div>
 	<dialog></dialog>
 	<gwbw-loader id="gwbw-loader"></gwbw-loader>
-	<link rel="preload" href="assets/images/jewel.svg" as="image" type="image/svg">
+	<link rel="preload" href="assets/images/jewel.svg" as="image" type="image/svg+xml">
 	<script src="built/components/loader/loader.js" type="module"></script>
 	<script src="https://browser.sentry-cdn.com/4.6.5/bundle.min.js" crossorigin="anonymous"></script>
 	<script defer src="built/app.js" type="module"></script>

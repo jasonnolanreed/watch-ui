@@ -1,7 +1,5 @@
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 header {
 }
 

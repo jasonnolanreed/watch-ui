@@ -100,8 +100,6 @@ const makeHtml = (component) => (`
 `);
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .logged-in-box {
 	display: flex;
 	flex-wrap: wrap;

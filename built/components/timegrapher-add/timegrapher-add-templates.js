@@ -55,8 +55,6 @@ const renderFields = (component) => {
 };
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .form-input {
 	margin-bottom: 0.75rem;
 }

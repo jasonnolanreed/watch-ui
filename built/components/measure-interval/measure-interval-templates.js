@@ -84,8 +84,6 @@ ${component.expandSessionLink ? `
 `);
 const makeCss = (component) => (`
 <style>
-@import "styles/global-styles.css";
-
 .page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 2em 0; color: var(--blue); }
