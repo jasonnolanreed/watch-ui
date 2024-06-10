@@ -92,7 +92,7 @@ const makeCss = (component: MeasureInterval) => (
 <style>
 .page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 2em 0; color: var(--blue); }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 2em 0; }
 .sort-controls .toggle-buttons button.selected { pointer-events: none; }
 p { margin-top: -1.2em; }
 .session-interval-link { display: inline-flex; align-items: center; gap: 4px; }

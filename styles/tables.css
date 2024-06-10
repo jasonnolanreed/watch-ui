@@ -21,7 +21,7 @@ table tr:last-of-type {
 table th {
 	color: #fff;
 	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.2);
-	background: var(--blue);
+	background: var(--graphite);
 	text-align: center;
 	font-weight: normal;
 	padding: 0.8em 0.5em;

@@ -20,7 +20,7 @@ ${showSortControls(component)}
 const makeCss = (component: Watches) => (
 `
 <style>
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; color: var(--blue); }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
 .list-item { cursor: default; }
 .watch-link { min-width: 60px; margin-right: 25px; }
 .controls { display: flex; align-items: center; }

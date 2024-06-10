@@ -72,8 +72,8 @@ export class DeviationGraph extends GWBWElement {
 		this.removeAttribute(`loading`);
 		const {measuresData, watchData, customPositions} = this;
 		const cssStyles = window.getComputedStyle(document.body);
-		const blue = cssStyles.getPropertyValue(`--blue`);
-		const lightBlue = cssStyles.getPropertyValue(`--light-blue`);
+		const darkGray = cssStyles.getPropertyValue(`--dark-gray`);
+		const charcoal = cssStyles.getPropertyValue(`--charcoal`);
 		const green = cssStyles.getPropertyValue(`--green`);
 		const red = cssStyles.getPropertyValue(`--red`);
 
@@ -85,8 +85,8 @@ export class DeviationGraph extends GWBWElement {
 					{
 						label: `Deviation`,
 						showLine: true,
-						backgroundColor: blue,
-						borderColor: blue,
+						backgroundColor: darkGray,
+						borderColor: darkGray,
 						data: [], // deviation amounts,
 						segment: {
 							borderColor: point => getGoodBadColor(point)
@@ -96,8 +96,8 @@ export class DeviationGraph extends GWBWElement {
 					{
 						label: `Actual Time`,
 						showLine: true,
-						backgroundColor: lightBlue,
-						borderColor: lightBlue,
+						backgroundColor: charcoal,
+						borderColor: charcoal,
 						data: []
 					}
 				]
@@ -144,7 +144,7 @@ export class DeviationGraph extends GWBWElement {
 						}
 					},
 					chartAreaBorder: {
-						borderColor: `${lightBlue}55`,
+						borderColor: `${charcoal}55`,
 						borderWidth: 1
 					}
 				}

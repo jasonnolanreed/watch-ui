@@ -27,6 +27,7 @@ form.working:before {
 
 form label:not(.check),
 .form-input label:not(.check) {
+	color: var(--dark-gray);
 	display: block;
 	margin-bottom: 5px;
 	font-size: 1.1em;
@@ -92,7 +93,7 @@ textarea, .faux-input {
 	width: 100%;
 	margin: 0;
 	padding: 0.75em 0.5em;
-	color: var(--blue);
+	color: var(--charcoal);
 	font-size: 1em;
 	font-family: var(--sans-font);
 	border: none;
@@ -110,12 +111,12 @@ textarea, .faux-input {
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, textarea:focus {
-	box-shadow: 0 0 0 1px var(--blue);
+	box-shadow: 0 0 0 1px var(--charcoal);
 }
 
 input[disabled], textarea[disabled],
 .faux-input[disabled] {
-	color: var(--dark-blue);
+	color: var(--slate);
 }
 
 textarea {

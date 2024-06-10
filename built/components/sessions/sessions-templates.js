@@ -196,7 +196,7 @@ button.next-session { margin-left: 0.35em !important; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
 .session-interval-link gwbw-icon[name="arrow_right_alt"] { font-size: 2.4em; margin: 0 -0.45em; transform: scaleX(0.7); }
 .date-time { display: flex; align-items: center; font-size: 0.9em; margin-right: 1em; }
-.controls { display: flex; align-items: center; color: var(--light-blue); }
+.controls { display: flex; align-items: center; color: var(--charcoal); }
 .controls.fast:before { content: "+"; }
 .reverse-order {
 	display: flex;
@@ -218,7 +218,7 @@ button.next-session { margin-left: 0.35em !important; }
 }
 .interval.interval {
 	font-size: 1.65em;
-	color: var(--blue);
+	color: var(--charcoal);
 	margin-left: -0.6em;
 	padding: 0.125em 0.35em;
 	padding-right: 0.2em;
@@ -226,7 +226,7 @@ button.next-session { margin-left: 0.35em !important; }
 	cursor: pointer;
 	z-index: 1;
 }
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; color: var(--blue); }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; }
 .sort-controls .toggle-buttons button.selected { pointer-events: none; }
 @media (hover: hover) {
 	.interval:hover { opacity: 1; }

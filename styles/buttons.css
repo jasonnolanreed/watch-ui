@@ -13,7 +13,7 @@
 	text-decoration: none;
 	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1);
-	background-color: var(--blue);
+	background-color: var(--charcoal);
 	border: none;
 	border-radius: 2px;
 	outline: none;
@@ -67,20 +67,20 @@
 }
 
 .button.button.strong {
-	background-color: var(--dark-blue);
+	background-color: var(--graphite);
 }
 
 .button.button.low-priority {
-	background-color: var(--light-blue);
+	background-color: var(--slate);
 }
 
 .button.button.marked {
-	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--bright-blue), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--gray), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .button.button.marked:hover {
 	box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 0 0 5em rgba(0, 0, 0, 0.1),
-				0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--bright-blue), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
+				0 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0px 3px var(--gray), inset 0 0 4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .button.button.disabled,
@@ -112,14 +112,13 @@ button[disabled][disabled] {
 	align-items: center;
 	gap: 2px;
 	padding: 0.4rem 1.2rem;
-	color: var(--blue);
-	text-shadow: none;
+	color: #fff;
+	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.5);
 	font-size: 0.85rem;
 	font-family: var(--sans-font), sans-serif;
 	text-decoration: none;
-	background-color: var(--almost-white);
+	background-color: var(--slate);
 	border: none;
-	box-shadow: 0 0 0 1px #ddd;
 	outline: none;
 	cursor: pointer;
 	appearance: none;
@@ -135,14 +134,12 @@ button[disabled][disabled] {
 	content: "";
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
-	background-color: rgba(0, 0, 0, 0.03);
+	background-color: rgba(255, 255, 255, 0.06);
 }
 
 .toggle-buttons button.selected {
-	background-color: var(--blue);
-	color: #fff;
-	text-shadow: 0.5px 0.5px 1.5px #00000055;
-	box-shadow: 0 0 0 1px var(--blue), 0 1rem 2rem 0 rgba(0, 0, 0, 0.15);
+	background-color: var(--charcoal);
+	box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.15);
 	z-index: 2;
 }
 
@@ -154,6 +151,10 @@ button[disabled][disabled] {
 .toggle-buttons button:last-of-type {
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
+}
+
+.toggle-buttons button + button {
+	border-left: 1.5px solid var(--medium-gray);
 }
 
 .toggle-buttons gwbw-icon {

@@ -24,7 +24,7 @@ nav {
 		display: flex;
 		align-items: center;
 		gap: 0.2em;
-		color: var(--dark-blue) !important;
+		color: var(--dark-gray) !important;
 		text-decoration: none !important;
 
 		&[active] {
@@ -34,7 +34,7 @@ nav {
 	}
 
 	a:hover {
-		color: var(--blue) !important;
+		color: var(--charcoal) !important;
 	}
 }
 
@@ -78,13 +78,13 @@ const makeHtml = (component) => (`
 		<div class="logo-container">
 			<img
 				class="large-logo"
-				src="assets/images/logo.svg?v=2.2"
+				src="assets/images/logo.svg?v=2.3"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>
 			<img
 				class="small-logo"
-				src="assets/images/logo-small.svg?v=2.2"
+				src="assets/images/logo-small.svg?v=2.3"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>

@@ -1,6 +1,6 @@
 :is(html, body):has(layout.main) {
-	background-color: var(--blue);
-	background: linear-gradient(165deg, var(--blue), var(--dark-blue) 100vh, var(--dark-blue));
+	background-color: var(--slate);
+	background: linear-gradient(165deg, var(--slate), var(--graphite) 100vh, var(--graphite));
 	min-height: 100vh;
 }
 
@@ -32,9 +32,9 @@ layout.main .panel {
 	border-radius: 1rem;
 	box-shadow: 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
 	
-		footer {
-			margin-top: auto;
-		}
+	footer {
+		margin-top: auto;
+	}
 }
 
 layout.main footer {

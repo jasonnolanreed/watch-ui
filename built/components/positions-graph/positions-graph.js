@@ -71,7 +71,7 @@ export class PositionsGraph extends GWBWElement {
         const cssStyles = window.getComputedStyle(document.body);
         const green = cssStyles.getPropertyValue(`--green`);
         const red = cssStyles.getPropertyValue(`--red`);
-        const darkBlue = cssStyles.getPropertyValue(`--dark-blue`);
+        const charcoal = cssStyles.getPropertyValue(`--dark-gray`);
         let config = {
             type: `bar`,
             data: {
@@ -142,7 +142,7 @@ export class PositionsGraph extends GWBWElement {
                                 type: `line`,
                                 yMin: 0,
                                 yMax: 0,
-                                borderColor: `${darkBlue}55`,
+                                borderColor: `${charcoal}55`,
                                 borderWidth: 1
                             },
                             goodFastLine: {

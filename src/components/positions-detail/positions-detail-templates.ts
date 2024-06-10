@@ -24,7 +24,7 @@ const makeCss = (component: PositionsDetail) => (
 `
 <style>
 .positions {}
-.position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--blue); }
+.position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--charcoal); }
 .rate.fast:before { content: "+"; }
 .rate.good-watch { color: var(--green); }
 .rate.bad-watch { color: var(--red); }

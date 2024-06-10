@@ -5,13 +5,12 @@ const makeCss = (component) => (`
 	margin-bottom: 0.5em;
 	padding: 1em;
 	color: #fff;
-	background-color: var(--light-blue);
+	background-color: var(--charcoal);
 	border-radius: 2px;
 	box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 4em rgba(0, 0, 0, 0.15);
 }
 
-:host { background-color: var(--light-blue); }
-:host([type=info]) { background-color: var(--blue); }
+:host([type=info]) { background-color: var(--charcoal); }
 :host([type=success]) { background-color: var(--green); }
 :host([type=error]) { background-color: var(--red); }
 

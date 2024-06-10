@@ -83,7 +83,7 @@ table {
 .position gwbw-icon {
 	margin-right: 0.2em;
 	transform: scale(1.5);
-	color: var(--blue);
+	color: var(--charcoal);
 }
 
 tr.averages td {

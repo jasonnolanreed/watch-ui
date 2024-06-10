@@ -6,6 +6,7 @@ export class LoggedOutApi {
         if (response.status !== 401) {
             return response;
         }
+        debugger;
         GA.event(`logout`, `logout timed out`);
         await AuthApi.logout();
         router.navigate(`/login`);
