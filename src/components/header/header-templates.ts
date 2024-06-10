@@ -84,13 +84,13 @@ const makeHtml = (component: Header) => (
 		<div class="logo-container">
 			<img
 				class="large-logo"
-				src="assets/images/logo.svg?v=2.3"
+				src="assets/images/logo.svg?v=2.4"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>
 			<img
 				class="small-logo"
-				src="assets/images/logo-small.svg?v=2.3"
+				src="assets/images/logo-small.svg?v=2.4"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>

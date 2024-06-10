@@ -1,6 +1,6 @@
 :is(html, body):has(layout.main) {
-	background-color: var(--slate);
-	background: linear-gradient(165deg, var(--slate), var(--graphite) 100vh, var(--graphite));
+	background-color: var(--charcoal);
+	background: linear-gradient(165deg, var(--charcoal), var(--dark-gray) 100vh, var(--dark-gray));
 	min-height: 100vh;
 }
 

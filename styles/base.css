@@ -201,6 +201,11 @@ hr.minimal {
 	align-items: flex-start;
 	gap: 0.5rem;
 	margin-bottom: 1.75rem;
+	color: var(--slate) !important;
+
+	&:hover {
+		opacity: 0.8;
+	}
 }
 
 .back-link gwbw-icon {
@@ -208,7 +213,7 @@ hr.minimal {
 	height: 1.25rem;
 	text-align: center;
 	color: #fff;
-	background-color: var(--charcoal);
+	background-color: var(--slate);
 	border-radius: 2px;
 }
 
