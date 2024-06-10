@@ -29,6 +29,8 @@ html, body {
 	position: relative;
 	margin: 0;
 	padding: 0;
+	border: none;
+	outline: none;
 	min-width: 350px;
 	min-height: 100vh;
 	font-size: 15px;

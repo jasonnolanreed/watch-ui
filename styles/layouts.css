@@ -1,6 +1,12 @@
+html:has(layout.main) {
+	background-color: var(--graphite);
+}
+
 :is(html, body):has(layout.main) {
-	background-color: var(--charcoal);
-	background: linear-gradient(165deg, var(--charcoal), var(--dark-gray) 100vh, var(--dark-gray));
+	background-color: var(--graphite);
+	background: linear-gradient(165deg, var(--charcoal), var(--dark-gray) 101vh, var(--dark-gray));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 	min-height: 100vh;
 }
 
