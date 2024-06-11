@@ -93,7 +93,7 @@ export class FromDate {
 
 	// Example: `8:13 am`
 	static getTimeWithAmPm(date): string {
-		const parts = date.toLocaleString().split(` `);
+		const parts = date.toLocaleString(`en-US`).split(` `);
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
 		return `${time} ${amPm}`;
@@ -101,7 +101,7 @@ export class FromDate {
 
 	// Example: `8:13p`
 	static getTimeWithCompactAmPm(date): string {
-		const parts = date.toLocaleString().split(` `);
+		const parts = date.toLocaleString(`en-US`).split(` `);
 		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
 		const amPm = parts[2].toLowerCase();
 		return `${time}${amPm.charAt(0)}`;
@@ -109,7 +109,7 @@ export class FromDate {
 
 	// Example: `8:13:42 am`
 	static getTimeWithSecondsAndAmPm(date): string {
-		const parts = date.toLocaleString().split(` `);
+		const parts = date.toLocaleString(`en-US`).split(` `);
 		const amPm = parts[2].toLowerCase();
 		return `${parts[1]} ${amPm}`;
 	}
