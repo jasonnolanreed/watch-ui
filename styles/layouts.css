@@ -74,6 +74,7 @@ layout.main footer {
 
 	layout.main {
 		padding: 0 !important;
+		margin-bottom: 0 !important;
 		--padding: var(--layout-padding-small) var(--layout-padding-xsmall);
 	}
 
