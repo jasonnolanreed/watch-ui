@@ -6,13 +6,12 @@ export class LoggedOutApi {
         if (response.status !== 401) {
             return response;
         }
-        debugger;
         GA.event(`logout`, `logout timed out`);
         await AuthApi.logout();
         router.navigate(`/login`);
         const messages = document.querySelector(`gwbw-messages`);
         if (messages) {
-            messages.add({ message: `You have been logged out`, type: `info`, persistent: true });
+            messages.add({ message: `You have been logged out`, type: `info`, persistent: true, messageId: `loggedout` });
         }
         throw new Error();
     }

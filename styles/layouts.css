@@ -4,7 +4,7 @@ html:has(layout.main) {
 
 :is(html, body):has(layout.main) {
 	background-color: var(--graphite);
-	background: linear-gradient(165deg, var(--charcoal), var(--dark-gray) 101vh, var(--dark-gray));
+	background: linear-gradient(165deg, var(--charcoal), var(--midnight) 101vh, var(--midnight));
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	min-height: 100vh;

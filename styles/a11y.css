@@ -1,7 +1,7 @@
 a:focus,
 button:focus,
 .button:focus {
-	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--dark-blue) !important;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--graphite) !important;
 	border: none !important;
 	outline: none !important;
 	z-index: 5;

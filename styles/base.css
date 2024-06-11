@@ -8,10 +8,6 @@
 	--serif-font: 'Merriweather';
 	--sans-font: 'Montserrat';
 
-	--blue: #326088;
-	--dark-blue: #1E3760;
-	--light-blue: #76a0bc;
-	--bright-blue: #86D9ED;
 	--green: #44A748;
 	--red: #DA3848;
 	--almost-white: #F5F5F5;
@@ -22,7 +18,7 @@
 	--slate: #888;
 	--charcoal: #666;
 	--graphite: #444;
-	--dark-gray: #222;
+	--midnight: #222;
 }
 
 html, body {
@@ -74,7 +70,7 @@ a.big-link {
 }
 
 h1, h2, h3, h4, h5 {
-	color: var(--dark-gray);
+	color: var(--graphite);
 	margin: 0 0 1rem 0;
 	font-family: var(--serif-font), serif;
 	font-weight: 700;
@@ -225,7 +221,7 @@ hr.minimal {
 }
 
 .page-title {
-	color: var(--dark-gray);
+	color: var(--graphite);
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;

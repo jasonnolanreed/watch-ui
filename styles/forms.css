@@ -27,7 +27,7 @@ form.working:before {
 
 form label:not(.check),
 .form-input label:not(.check) {
-	color: var(--dark-gray);
+	color: var(--midnight);
 	display: block;
 	margin-bottom: 5px;
 	font-size: 1.1em;

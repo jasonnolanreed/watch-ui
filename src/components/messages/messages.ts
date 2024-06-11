@@ -23,14 +23,19 @@ export class Messages extends GWBWElement {
 	}
 
 	add(options: MessageOptions = {}) {
+		if (
+			options.messageId &&
+			this.shadowRoot.querySelector(`gwbw-message[message-id="${options.messageId}"]`)
+		) { return; }
+
 		const template = document.createElement(`template`);
 		const message = getMessageElement(options);
 		template.style.display = `block`;
 		template.appendChild(message);
 		this.shadowRoot.appendChild(template.cloneNode(true));
-		const currentMessages = this.shadowRoot.querySelectorAll(`gwbw-message`);
-		// Return refernce to newly added message
-		return currentMessages[currentMessages.length - 1];
+		const $messagesAfter = this.shadowRoot.querySelectorAll(`gwbw-message`);
+		// Return reference to newly added message
+		return $messagesAfter[$messagesAfter.length - 1];
 	}
 
 	closeNonPersistent() {
@@ -50,6 +55,7 @@ export interface MessageOptions {
 	ttl?: number,
 	dismissable?: boolean,
 	persistent?:boolean,
+	messageId?:string,
 }
 
 customElements.define(`gwbw-messages`, Messages);

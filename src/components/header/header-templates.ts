@@ -27,7 +27,7 @@ nav {
 		display: flex;
 		align-items: center;
 		gap: 0.2em;
-		color: var(--dark-gray) !important;
+		color: var(--graphite) !important;
 		text-decoration: none !important;
 
 		&[active] {
@@ -84,13 +84,13 @@ const makeHtml = (component: Header) => (
 		<div class="logo-container">
 			<img
 				class="large-logo"
-				src="assets/images/logo.svg?v=2.4"
+				src="assets/images/logo.svg?v=2.5"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>
 			<img
 				class="small-logo"
-				src="assets/images/logo-small.svg?v=2.4"
+				src="assets/images/logo-small.svg?v=2.5"
 				alt="Good Watch Bad Watch Logo"
 				loading="lazy"
 			>

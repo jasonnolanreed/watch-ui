@@ -248,9 +248,9 @@ button.next-session { margin-left: 0.35em !important; }
 .interval:not(.interval-start) .interval-start { display: none; }
 .interval.interval-start .interval-other { display: none; }
 .measures-list.interval-start .interval { opacity: 1; }
-.measures-list.interval-start .interval.interval-start gwbw-icon { color: var(--green); }
+.measures-list.interval-start .interval.interval-start gwbw-icon { color: var(--graphite); }
 .measures-list.interval-start .interval:not(.interval-start) gwbw-icon {
-	color: var(--blue);
+	color: var(--green);
 	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
 }
 @keyframes entice {

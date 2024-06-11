@@ -138,7 +138,7 @@ button[disabled][disabled] {
 }
 
 .toggle-buttons button.selected {
-	background-color: var(--charcoal);
+	background-color: var(--graphite);
 	box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.15);
 	z-index: 2;
 }

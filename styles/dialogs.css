@@ -19,7 +19,7 @@ dialog {
 	max-width: calc(100% - (var(--dialog-x-margin) * 2));
 	height: var(--dialog-height);
 	background-color: #fff;
-	color: var(--dark-blue);
+	color: var(--graphite);
 	border-radius: 3px;
 	box-shadow: 0 0 4rem rgba(0, 0, 0, 0.4);
 }

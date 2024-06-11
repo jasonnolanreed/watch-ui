@@ -37,6 +37,7 @@ export const getMessageElement = (options: MessageOptions) => {
 	message.setAttribute(`type`, options.type || `info`);
 	message.setAttribute(`message`, options.message || `[missing message]`);
 	message.setAttribute(`dismissable`, typeof options.dismissable === `boolean` ? ``+options.dismissable : `true`);
+	message.setAttribute(`message-id`, options.messageId || ``);
 	if (typeof options.ttl === `number`) {
 		message.setAttribute(`ttl`, String(options.ttl));
 	}
