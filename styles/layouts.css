@@ -1,17 +1,17 @@
 html:has(layout.main) {
-	background-color: var(--graphite);
-}
-
-:is(html, body):has(layout.main) {
+	min-width: 350px;
 	background-color: var(--graphite);
 	background: linear-gradient(165deg, var(--charcoal), var(--midnight) 101vh, var(--midnight));
 	background-repeat: no-repeat;
-	background-attachment: fixed;
-	min-height: 100vh;
+}
+
+:is(html, body):has(layout.main) {
+	min-height: calc(100vh + 1px);
 }
 
 layout.main {
-	padding-bottom: 4rem !important;
+	margin-bottom: 4rem !important;
+	overflow: hidden;
 
 	--max-width: var(--layout-max-width);
 	--padding: var(--layout-padding-large);

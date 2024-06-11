@@ -27,13 +27,10 @@ html, body {
 	padding: 0;
 	border: none;
 	outline: none;
-	min-width: 350px;
-	min-height: 100vh;
 	font-size: 15px;
 	font-family: var(--sans-font), sans-serif;
 	font-weight: 400;
 	color: var(--charcoal);
-	background-color: #fff;
 }
 
 @media (max-width: 500px) {
@@ -183,7 +180,6 @@ hr.minimal {
 
 #view {
 	position: relative;
-	min-height: 100%;
 }
 
 .feature-box {
