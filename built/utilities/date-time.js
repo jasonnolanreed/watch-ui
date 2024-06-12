@@ -90,23 +90,32 @@ export class FromDate {
     }
     // Example: `8:13 am`
     static getTimeWithAmPm(date) {
-        const parts = date.toLocaleString(`en-US`).split(` `);
-        const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
-        const amPm = parts[2].toLowerCase();
-        return `${time} ${amPm}`;
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const amPm = hours < 12 ? `am` : `pm`;
+        const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+        let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+        return `${normalizedHours}:${normalizedMinutes} ${amPm}`;
     }
     // Example: `8:13p`
     static getTimeWithCompactAmPm(date) {
-        const parts = date.toLocaleString(`en-US`).split(` `);
-        const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
-        const amPm = parts[2].toLowerCase();
-        return `${time}${amPm.charAt(0)}`;
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const amPm = hours < 12 ? `a` : `p`;
+        const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+        let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+        return `${normalizedHours}:${normalizedMinutes}${amPm}`;
     }
     // Example: `8:13:42 am`
     static getTimeWithSecondsAndAmPm(date) {
-        const parts = date.toLocaleString(`en-US`).split(` `);
-        const amPm = parts[2].toLowerCase();
-        return `${parts[1]} ${amPm}`;
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        const amPm = hours < 12 ? `am` : `pm`;
+        const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+        let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+        let normalizedSeconds = String(seconds).length === 2 ? String(seconds) : `0${seconds}`;
+        return `${normalizedHours}:${normalizedMinutes}:${normalizedSeconds} ${amPm}`;
     }
 }
 export class Difference {

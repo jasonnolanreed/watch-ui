@@ -72,17 +72,17 @@ export class Format {
 
 export class FromDate {
 	// Example: `Mon`
-	static getShortDay(date): string {
+	static getShortDay(date: Date): string {
 		return date.toDateString().split(` `)[0];
 	}
 
 	// Example: `Feb`
-	static getShortMonth(date): string {
+	static getShortMonth(date: Date): string {
 		return date.toDateString().split(` `)[1];
 	}
 
 	// Example: `3rd`
-	static getDayOfMonth(date): string {
+	static getDayOfMonth(date: Date): string {
 		const dateNumber = date.getDate();
 		let suffix = `th`;
 		if ([1, 21, 31].includes(dateNumber)) { suffix = `st`; }
@@ -92,26 +92,35 @@ export class FromDate {
 	}
 
 	// Example: `8:13 am`
-	static getTimeWithAmPm(date): string {
-		const parts = date.toLocaleString(`en-US`).split(` `);
-		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
-		const amPm = parts[2].toLowerCase();
-		return `${time} ${amPm}`;
+	static getTimeWithAmPm(date: Date): string {
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+		const amPm = hours < 12 ? `am` : `pm`;
+		const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+		let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+		return `${normalizedHours}:${normalizedMinutes} ${amPm}`;
 	}
 
 	// Example: `8:13p`
-	static getTimeWithCompactAmPm(date): string {
-		const parts = date.toLocaleString(`en-US`).split(` `);
-		const time = `${parts[1].split(':')[0]}:${parts[1].split(':')[1]}`;
-		const amPm = parts[2].toLowerCase();
-		return `${time}${amPm.charAt(0)}`;
+	static getTimeWithCompactAmPm(date: Date): string {
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+		const amPm = hours < 12 ? `a` : `p`;
+		const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+		let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+		return `${normalizedHours}:${normalizedMinutes}${amPm}`;
 	}
 
 	// Example: `8:13:42 am`
-	static getTimeWithSecondsAndAmPm(date): string {
-		const parts = date.toLocaleString(`en-US`).split(` `);
-		const amPm = parts[2].toLowerCase();
-		return `${parts[1]} ${amPm}`;
+	static getTimeWithSecondsAndAmPm(date: Date): string {
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+		const seconds = date.getSeconds();
+		const amPm = hours < 12 ? `am` : `pm`;
+		const normalizedHours = hours > 12 ? String(hours - 12) : String(hours);
+		let normalizedMinutes = String(minutes).length === 2 ? String(minutes) : `0${minutes}`;
+		let normalizedSeconds = String(seconds).length === 2 ? String(seconds) : `0${seconds}`;
+		return `${normalizedHours}:${normalizedMinutes}:${normalizedSeconds} ${amPm}`;
 	}
 }
 
