@@ -53,7 +53,8 @@ img {
 a, a:visited {
 	color: var(--charcoal);
 	text-decoration: underline;
-	text-underline-offset: 0.23em;
+	text-underline-offset: 0.24em;
+	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
 
 	&:hover:not(.button) {
 		color: var(--slate);

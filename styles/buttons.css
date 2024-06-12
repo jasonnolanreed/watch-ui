@@ -134,7 +134,8 @@ button[disabled][disabled] {
 .toggle-buttons button.selected {
 	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 	text-decoration: underline;
-	text-underline-offset: 0.23em;
+	text-underline-offset: 0.24em;
+	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
 	z-index: 2;
 }
 
