@@ -154,7 +154,7 @@ button[disabled][disabled] {
 }
 
 .toggle-buttons button + button {
-	border-left: 1.5px solid var(--medium-gray);
+	margin-left: 2.5px;
 }
 
 .toggle-buttons gwbw-icon {
