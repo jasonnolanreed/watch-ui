@@ -15,16 +15,9 @@ export const makeCss = (component) => (`
 @media (max-width: 760px) {
 	:host {
 		top: calc(0.5 * var(--layout-padding-small));
-		max-width: calc(100% - (2 * var(--layout-padding-large)));
-	}
-}
-
-@media (max-width: 450px) {
-	:host {
 		max-width: calc(100% - (2 * var(--layout-padding-xsmall)));
 	}
 }
-
 </style>
 `);
 export const getMessageElement = (options) => {

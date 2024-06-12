@@ -13,7 +13,8 @@ body:has(layout.main) {
 }
 
 layout.main {
-	margin-bottom: 4rem !important;
+	padding: 0 3rem;
+	margin-bottom: 6rem !important;
 
 	--max-width: var(--layout-max-width);
 	--padding: var(--layout-padding-large);
@@ -35,10 +36,10 @@ layout.main .panel {
 	background-color: #fff;
 	max-width: var(--max-width);
 	min-height: calc(100vh - (4 * var(--padding)));
-	margin: 2rem auto;
+	margin: 2.5rem auto;
 	padding: var(--padding);
 	border-radius: 1rem;
-	box-shadow: 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 0 0.5rem rgba(255, 255, 255, 0.2), 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
 	
 	footer {
 		margin-top: auto;
@@ -57,30 +58,21 @@ layout.main footer {
 
 /* DEV NOTE: These media queries should stay in sync with messages-templates.ts */
 @media (max-width: 760px) {
-	layout.main {
-		padding: 1rem;
-		--max-width: 100%;
-		--padding: var(--layout-padding-small);
-	}
-
-	layout.main .panel {
-		width: 100%;
-		margin: 0;
-	}
-}
-
-@media (max-width: 450px) {
-	:is(html, body):has(layout.main) {
+	html:has(layout.main) {
 		background-color: #fff;
 	}
 
 	layout.main {
 		padding: 0 !important;
 		margin-bottom: 0 !important;
+
+		--max-width: 100%;
 		--padding: var(--layout-padding-small) var(--layout-padding-xsmall);
 	}
 
 	layout.main .panel {
+		width: 100%;
+		margin: 0;
 		min-height: 100vh;
 		border-radius: 0;
 	}
