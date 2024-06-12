@@ -103,7 +103,10 @@ button[disabled][disabled] {
 
 .toggle-buttons {
 	display: flex;
-	min-height: 34px;
+	padding: 0 0.4rem;
+	background-color: var(--really-almost-white);
+	box-shadow: 0 0 0 1px var(--silver);
+	border-radius: 3px;
 }
 
 .toggle-buttons button {
@@ -111,13 +114,12 @@ button[disabled][disabled] {
 	display: flex;
 	align-items: center;
 	gap: 2px;
-	padding: 0.4rem 1.2rem;
-	color: #fff;
-	text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.5);
+	padding: 0.7rem 0.6rem;
+	color: var(--graphite);
 	font-size: 0.85rem;
 	font-family: var(--sans-font), sans-serif;
 	text-decoration: none;
-	background-color: var(--slate);
+	background-color: transparent;
 	border: none;
 	outline: none;
 	cursor: pointer;
@@ -125,38 +127,22 @@ button[disabled][disabled] {
 	-webkit-appearance: none;
 }
 
-.toggle-buttons gwbw-icon[name^="expand"] {
-	font-size: 1.8em;
-	margin: -0.2em 0;
-}
-
-.toggle-buttons button:hover:after {
-	content: "";
-	position: absolute;
-	top: 0; right: 0; bottom: 0; left: 0;
-	background-color: rgba(255, 255, 255, 0.06);
+.toggle-buttons button:hover {
+	opacity: 0.8;
 }
 
 .toggle-buttons button.selected {
-	background-color: var(--graphite);
-	box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.15);
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+	text-decoration: underline;
+	text-underline-offset: 0.23em;
 	z-index: 2;
-}
-
-.toggle-buttons button:first-of-type {
-	border-top-left-radius: 2px;
-	border-bottom-left-radius: 2px;
-}
-
-.toggle-buttons button:last-of-type {
-	border-top-right-radius: 2px;
-	border-bottom-right-radius: 2px;
-}
-
-.toggle-buttons button + button {
-	margin-left: 2.5px;
 }
 
 .toggle-buttons gwbw-icon {
 	font-size: 1.1rem;
+}
+
+.toggle-buttons gwbw-icon[name^="expand"] {
+	font-size: 1.8em;
+	margin: -0.2em 0;
 }

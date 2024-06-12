@@ -39,7 +39,7 @@ layout.main .panel {
 	margin: 2.5rem auto;
 	padding: var(--padding);
 	border-radius: 1rem;
-	box-shadow: 0 0 0 0.5rem rgba(255, 255, 255, 0.2), 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 0 0.6rem rgba(255, 255, 255, 0.2), 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
 	
 	footer {
 		margin-top: auto;
@@ -75,5 +75,6 @@ layout.main footer {
 		margin: 0;
 		min-height: 100vh;
 		border-radius: 0;
+		box-shadow: none;
 	}
 }
