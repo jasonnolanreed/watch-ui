@@ -30,6 +30,11 @@ router
     LoadView.layout($view, layouts.main, `views/home-view.html`);
     GA.view(`/`, `Home`);
 })
+    .on(`/guide`, (params, query) => {
+    router[`view`] = `guide`;
+    LoadView.layout($view, layouts.main, `views/guide-view.html`);
+    GA.view(`/guide`, `Guide`);
+})
     .on(`/register`, (params, query) => {
     router[`view`] = `register`;
     LoadView.layout($view, layouts.main, `views/register-view.html`);

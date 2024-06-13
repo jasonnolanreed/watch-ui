@@ -19,7 +19,8 @@ export const makeTemplate = (component: Home) => (
 	animation: jewelspin 2.5s linear infinite;
 }
 
-img.feature {
+img.feature,
+.feature-photo {
 	margin-left: 6px;
 	margin-right: 6px;
 	width: calc(100% - 12px);
@@ -27,8 +28,28 @@ img.feature {
 	border-radius: 1rem;
 }
 
-img.feature.photo {
-	filter: saturate(25%);
+.feature-photo {
+	position: relative;
+
+	img {
+		border-radius: 1rem;
+	}
+}
+
+@supports (mix-blend-mode: overlay) {
+	.feature-photo::after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+		mix-blend-mode: overlay;
+		opacity: 0.25;
+		background: linear-gradient(135deg, var(--red), var(--green) 100%, var(--green));
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 1rem;
+		pointer-events: none;
+	}
 }
 
 .form-controls {
@@ -84,7 +105,7 @@ gwbw-icon.between-screenshots {
 			<span class="nowrap"">Bad Watch</span>
 		</h1>
 		<h4>
-			<span class="nowrap">Your Premium</span>
+			<span class="nowrap">The Premium</span>
 			<span class="nowrap">Watch Timing App</span>
 		</h4>
 	</div>
@@ -100,7 +121,9 @@ gwbw-icon.between-screenshots {
 
 <div>
 	<br><br>
-	<img class="feature photo" src="assets/images/photos/3879-wrist.jpg?v=2" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
+	<div class="feature-photo">
+		<img src="assets/images/photos/3879-wrist.jpg?v=2" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
+	</div>
 	<br><br><br><br>
 </div>
 

@@ -21,7 +21,7 @@ header {
 nav {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem 1rem;
+	gap: 0.75rem 1rem;
 
 	a {
 		display: flex;
@@ -33,7 +33,6 @@ nav {
 		&[active] {
 			text-decoration: underline !important;
 		}
-		gwbw-icon {}
 	}
 
 	a:hover {
@@ -80,7 +79,7 @@ const makeHtml = (component: Header) => (
 	<div class="header-container">
 		<nav>
 			${getLinks(component)}
-			<a class="hidden guide click-zone-05" href="/#/guide">
+			<a class="hidden guide click-zone-05" href="/#/guide" ${component.viewName === 'guide' ? 'active' : ''}>
 				<gwbw-icon name="info"></gwbw-icon>
 				<span>Guide</span>
 			</a>
