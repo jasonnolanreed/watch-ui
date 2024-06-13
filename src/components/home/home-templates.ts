@@ -58,12 +58,26 @@ export const makeTemplate = (component: Home) => (
 		</h3>
 	</div>
 </div>
+
 <p>
 	Welcome to the premier mechanical watch companion app.
 	<b class="nowrap">Good Watch Bad Watch</b> is a premium tool for tracking the performance of your watches.
 	Visualize the behavior of your watches in a way that is easy to understand, and learn how to get the best out of them.
 </p>
+
+<div>
+	<img class="hidden screenshot" src="assets/images/screenshots/example-deviation-graph.png" alt="screenshot of deviation graph">
+</div>
+
 <div class="form-controls">
+	${component.isLoggedIn ?
+	`
+	<a class="button positive" href="/#/watches">
+		<gwbw-icon name="thumb_up"></gwbw-icon>
+		<span>Let's go!</span>
+	</a>
+	` :
+	`
 	<a class="button positive" href="/#/register">
 		<gwbw-icon name="thumb_up"></gwbw-icon>
 		<span>Let's go!</span>
@@ -72,6 +86,7 @@ export const makeTemplate = (component: Home) => (
 		<gwbw-icon name="exit_to_app"></gwbw-icon>
 		<span>Login</span>
 	</a>
+	`}
 </div>
 `
 );
