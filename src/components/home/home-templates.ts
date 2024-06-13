@@ -96,7 +96,7 @@ gwbw-icon.between-screenshots {
 
 <div class="page-title">
 	<div>
-		<img class="jewel-logo" src="assets/images/jewel.svg?v=1" alt="jewel logo" style="aspect-ratio: 1 / 1;">
+		<img class="jewel-logo" src="assets/images/jewel.svg?v=2" alt="jewel logo" style="aspect-ratio: 1 / 1;">
 	</div>
 	<div>
 		<h1>
@@ -121,7 +121,7 @@ gwbw-icon.between-screenshots {
 <div>
 	<br><br>
 	<div class="feature-photo">
-		<img src="assets/images/photos/3879-wrist.jpg?v=2" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
+		<img src="assets/images/photos/3879-wrist.jpg?v=3" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
 	</div>
 	<br><br><br><br>
 </div>
@@ -132,7 +132,7 @@ gwbw-icon.between-screenshots {
 		Quickly understand how the timing of your watch drifts against perfect time and whether it falls within expected accuracy specs.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png" alt="screenshot of line graph" style="1378 / 794;">
+	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png?v=2" alt="screenshot of line graph" style="1378 / 794;">
 	<br><br><br><br>
 </div>
 
@@ -142,7 +142,7 @@ gwbw-icon.between-screenshots {
 		Gain insight into how different positions affect the time keeping of your watch so you can use them to your advantage.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-positions-graph.png" alt="screenshot of bar graph" style="aspect-ratio: 1480 / 1410;">
+	<img class="feature" src="assets/images/screenshots/example-positions-graph.png?v=2" alt="screenshot of bar graph" style="aspect-ratio: 1480 / 1410;">
 	<br><br><br><br>
 </div>
 
@@ -152,9 +152,9 @@ gwbw-icon.between-screenshots {
 		Slice and dice the data any way you want; zoom in on a particular section of a timing session to get a closer look.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-measures.jpg" alt="screenshot of list of measures" style="aspect-ratio: 1495 / 1142;">
+	<img class="feature" src="assets/images/screenshots/example-measures.jpg?v=2" alt="screenshot of list of measures" style="aspect-ratio: 1454 / 1154;">
 	<gwbw-icon class="between-screenshots" name="arrow_downward"></gwbw-icon>
-	<img class="feature" src="assets/images/screenshots/example-interval.png" alt="screenshot of positions graph" style="aspect-ratio: 1376 / 772;">
+	<img class="feature" src="assets/images/screenshots/example-interval.png?v=2" alt="screenshot of positions graph" style="aspect-ratio: 1376 / 772;">
 	<br><br><br><br>
 </div>
 
