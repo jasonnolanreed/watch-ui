@@ -39,7 +39,7 @@ img.feature {
 }
 
 img.feature.photo {
-	filter: saturate(50%);
+	filter: saturate(25%);
 }
 
 .form-controls .button {
