@@ -65,7 +65,7 @@ export const makeTemplate = (component) => (`
 		<gwbw-icon name="thumb_up"></gwbw-icon>
 		<span>Let's go!</span>
 	</a>
-	<a class="button" href="/#/register">
+	<a class="button" href="/#/login">
 		<gwbw-icon name="exit_to_app"></gwbw-icon>
 		<span>Login</span>
 	</a>
