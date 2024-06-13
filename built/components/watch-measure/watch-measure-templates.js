@@ -8,14 +8,14 @@ const makeHtml = (component) => (`
 </div>
 
 <form>
-	<p><em>Step 1)</em> Check the "start new session" box if this is the first measure after having set the time on your watch</p>
+	<p><em>Step 1)</em> Check the "start new session" box only if this is the first measure after having set the time on your watch</p>
 	<div class="form-input">
 		<label class="check new-session pointer">
 			<input type="checkbox" name="firstOfSession" ${component.isNewSession ? `checked` : ``}>
 			${` `}Start new session
 		</label>
 	</div>
-	<p><em>Step 2)</em> Set the time below to the time your watch is ABOUT to be</p>
+	<p><em>Step 2)</em> Set the time below to the time your watch is <b>about</b> to be</p>
 	<div class="form-input target-time">
 		<button type="button" class="decrease-quarter button compact low-priority" title="Back 15 seconds">
 			<gwbw-icon name="arrow_back"></gwbw-icon>

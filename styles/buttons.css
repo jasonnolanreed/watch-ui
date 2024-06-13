@@ -104,8 +104,9 @@ button[disabled][disabled] {
 .toggle-buttons {
 	display: flex;
 	padding: 0 0.4rem;
-	background-color: var(--really-almost-white);
-	box-shadow: 0 0 0 1px var(--silver);
+	/* background-color: var(--really-almost-white); */
+	background-color: #fff;
+	box-shadow: 0 0 0 1px var(--silver), 0 0 0.5rem rgba(0, 0, 0, 0.05);
 	border-radius: 3px;
 }
 
@@ -115,7 +116,7 @@ button[disabled][disabled] {
 	align-items: center;
 	gap: 2px;
 	padding: 0.7rem 0.6rem;
-	color: var(--graphite);
+	color: var(--charcoal);
 	font-size: 0.85rem;
 	font-family: var(--sans-font), sans-serif;
 	text-decoration: none;
@@ -132,10 +133,11 @@ button[disabled][disabled] {
 }
 
 .toggle-buttons button.selected {
-	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+	color: var(--graphite);
+	/* text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); */
 	text-decoration: underline;
 	text-underline-offset: 0.24em;
-	text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+	text-decoration-color: color-mix(in srgb, currentColor 27%, transparent);
 	z-index: 2;
 }
 
