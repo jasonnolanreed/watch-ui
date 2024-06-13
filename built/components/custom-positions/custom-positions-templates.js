@@ -29,7 +29,7 @@ const showPositions = (component) => {
 					class="edit-position button ultra-compact"
 					title="Edit position"
 				>
-					<gwbw-icon name="settings"></gwbw-icon>
+					<gwbw-icon name="tune"></gwbw-icon>
 				</button>
 				<button position-id="${position._id}"
 					class="delete-position button negative ultra-compact"

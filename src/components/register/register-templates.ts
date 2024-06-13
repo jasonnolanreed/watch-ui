@@ -23,7 +23,7 @@ export const makeTemplate = (component: Register) => (
 		</button>
 	</div>
 </form>
-<hr/>
+<br/>
 <a href="#/login">Already have an account? Login here.</a>
 `
 );

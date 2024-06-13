@@ -74,8 +74,12 @@ const makeHtml = (component) => (`
 	<div class="header-container">
 		<nav>
 			${getLinks(component)}
+			<a class="hidden guide click-zone-05" href="/#/guide">
+				<gwbw-icon name="info"></gwbw-icon>
+				<span>Guide</span>
+			</a>
 		</nav>
-		<div class="logo-container">
+		<a class="logo-container" href="/#/">
 			<img
 				class="large-logo"
 				src="assets/images/logo.svg?v=2.5"
@@ -88,7 +92,7 @@ const makeHtml = (component) => (`
 				alt="Good Watch Bad Watch"
 				loading="lazy"
 			>
-		</div>
+		</a>
 	</div>
 </header>
 <hr>
@@ -112,7 +116,7 @@ const getLinks = (component) => {
 		<span>Watches</span>
 	</a>
 	<a class="preferences click-zone-05" href="#/preferences" ${component.viewName === 'preferences' ? 'active' : ''}>
-		<gwbw-icon name="settings"></gwbw-icon>
+		<gwbw-icon name="tune"></gwbw-icon>
 		<span>Preferences</span>
 	</a>
 	`;

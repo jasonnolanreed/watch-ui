@@ -90,7 +90,7 @@ const makeHtml = (component: WatchDetail) => (
 
 		<div class="form-controls">
 			<a class="button" href="#/watches/edit/${component.watch._id}">
-				<gwbw-icon name="settings"></gwbw-icon>
+				<gwbw-icon name="tune"></gwbw-icon>
 				Edit Watch
 			</a>
 		</div>

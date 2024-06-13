@@ -42,7 +42,7 @@ const listWatches = (component: Watches) => {
 					class="edit-watch button ultra-compact"
 					title="Edit watch"
 				>
-					<gwbw-icon name="settings"></gwbw-icon>
+					<gwbw-icon name="tune"></gwbw-icon>
 				</a>
 				<button class="delete-watch button negative ultra-compact"
 					watch-id="${watch._id}" title="Delete watch"

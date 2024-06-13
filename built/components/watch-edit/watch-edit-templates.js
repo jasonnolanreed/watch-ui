@@ -1,6 +1,6 @@
 const makeHtml = (component) => (`
 <div class="page-title">
-	<gwbw-icon name="settings"></gwbw-icon>
+	<gwbw-icon name="watch"></gwbw-icon>
 	<div>
 		<h1>Edit Watch</h1>
 		<h3>${component.watch.name}</h3>

@@ -33,7 +33,7 @@ ${component?.currentResults &&
 		Delete
 	</button>
 	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button" type="button">
-		<gwbw-icon name="settings"></gwbw-icon>
+		<gwbw-icon name="tune"></gwbw-icon>
 		Edit
 	</a>
 </div>

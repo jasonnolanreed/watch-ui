@@ -95,7 +95,9 @@ h5 {
 }
 
 p {
+	max-width: 40rem;
 	margin: 0 0 1.5rem 0;
+	line-height: 1.6;
 }
 
 em {
@@ -243,7 +245,7 @@ hr.minimal {
 }
 
 .page-title h1 + h3 {
-	color: var(--charcoal);
+	color: var(--slate);
 	margin-top: 0.2rem;
 }
 

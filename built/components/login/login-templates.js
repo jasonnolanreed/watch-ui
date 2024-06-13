@@ -20,8 +20,6 @@ export const makeTemplate = (component) => (`
 		</button>
 	</div>
 </form>
-
-<hr/>
-
+<br/>
 <a href="#/register">Don't have an account yet? Register here.</a>
 `);

@@ -3,7 +3,7 @@ import {Preferences} from "./preferences";
 const makeHtml = (component: Preferences) => (
 `
 <div class="page-title">
-	<gwbw-icon name="settings"></gwbw-icon>
+	<gwbw-icon name="tune"></gwbw-icon>
 	<h1>Preferences</h1>
 </div>
 
