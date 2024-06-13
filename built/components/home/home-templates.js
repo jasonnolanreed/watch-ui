@@ -13,7 +13,7 @@ export const makeTemplate = (component) => (`
 	width: 5rem;
 	height: auto;
 	margin-right: 0.75rem;
-	animation: jewelspin 2.5s linear infinite;
+	animation: jewelspin 4s linear infinite;
 }
 
 img.feature,
@@ -40,8 +40,7 @@ img.feature,
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0;
 		mix-blend-mode: overlay;
-		opacity: 0.25;
-		background: linear-gradient(135deg, var(--red), var(--green) 100%, var(--green));
+		background: linear-gradient(135deg, var(--muted-red), var(--muted-green) 100%, var(--muted-green));
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-radius: 1rem;
