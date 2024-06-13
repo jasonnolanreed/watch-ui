@@ -8,7 +8,7 @@ const makeHtml = (component: MeasureDetail) => (
 	<gwbw-icon name="straighten"></gwbw-icon>
 	<div>
 		<h1>Measure Details</h1>
-		<h3>${Format.dateAndTime(component.measure.targetMoment)}</h3>
+		<h4>${Format.dateAndTime(component.measure.targetMoment)}</h4>
 	</div>
 </div>
 

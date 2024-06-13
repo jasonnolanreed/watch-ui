@@ -36,7 +36,7 @@ const makeHtml = (component) => (`
 		<small>
 			Amount of time, in seconds, your device differs from atomic time.
 			For example, if <a href="https://time.is" target="time.is" rel="noreferrer">time.is</a> reports your device is 2.4 seconds behind (slow), you will enter -2.4 here.
-			For best results, you should update this value at least daily.
+			If your device tends to drift, you should update this value often.
 		</small>
 	</div>
 	<div class="form-controls">

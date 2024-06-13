@@ -3,7 +3,7 @@ const makeHtml = (component) => (`
 	<gwbw-icon name="watch"></gwbw-icon>
 	<div>
 		<h1>Edit Watch</h1>
-		<h3>${component.watch.name}</h3>
+		<h4>${component.watch.name}</h4>
 	</div>
 </div>
 

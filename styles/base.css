@@ -244,9 +244,11 @@ hr.minimal {
 	line-height: 1;
 }
 
-.page-title h1 + h3 {
+.page-title h1 + h4 {
+	font-family: var(--sans-font);
+	font-weight: 600;
 	color: var(--slate);
-	margin-top: 0.2rem;
+	margin: 0;
 }
 
 .page-subtitle {

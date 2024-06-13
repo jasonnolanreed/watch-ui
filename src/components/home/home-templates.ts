@@ -8,8 +8,12 @@ export const makeTemplate = (component: Home) => (
 	container-type: inline-size;
 }
 
+.page-title.page-title {
+	justify-content: center;
+}
+
 .jewel-logo {
-	width: 4rem;
+	width: 5rem;
 	height: auto;
 	margin-right: 0.75rem;
 	animation: jewelspin 2.5s linear infinite;
@@ -18,7 +22,6 @@ export const makeTemplate = (component: Home) => (
 @container cq-home (width < 500px) {
 	.page-title {
 		flex-wrap: wrap;
-		justify-content: center;
 		text-align: center;
 		margin-bottom: 3rem !important;
 
@@ -70,14 +73,16 @@ gwbw-icon.between-screenshots {
 	<div>
 		<h1>
 			<span class="nowrap">Good Watch</span>
-			<span class="nowrap">Bad Watch</span>
+			<span class="nowrap"">Bad Watch</span>
 		</h1>
-		<h3>
+		<h4>
 			<span class="nowrap">Your Premium</span>
 			<span class="nowrap">Watch Performance App</span>
-		</h3>
+		</h4>
 	</div>
 </div>
+
+<br>
 
 <p>
 	Welcome to the ultimate mechanical watch enthusiast app.

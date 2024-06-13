@@ -5,8 +5,12 @@ export const makeTemplate = (component) => (`
 	container-type: inline-size;
 }
 
+.page-title.page-title {
+	justify-content: center;
+}
+
 .jewel-logo {
-	width: 4rem;
+	width: 5rem;
 	height: auto;
 	margin-right: 0.75rem;
 	animation: jewelspin 2.5s linear infinite;
@@ -15,7 +19,6 @@ export const makeTemplate = (component) => (`
 @container cq-home (width < 500px) {
 	.page-title {
 		flex-wrap: wrap;
-		justify-content: center;
 		text-align: center;
 		margin-bottom: 3rem !important;
 
@@ -36,7 +39,7 @@ img.feature {
 }
 
 img.feature.photo {
-	filter: saturate(50%);
+	filter: saturate(25%);
 }
 
 .form-controls .button {
@@ -67,17 +70,19 @@ gwbw-icon.between-screenshots {
 	<div>
 		<h1>
 			<span class="nowrap">Good Watch</span>
-			<span class="nowrap">Bad Watch</span>
+			<span class="nowrap"">Bad Watch</span>
 		</h1>
-		<h3>
+		<h4>
 			<span class="nowrap">Your Premium</span>
 			<span class="nowrap">Watch Performance App</span>
-		</h3>
+		</h4>
 	</div>
 </div>
 
+<br>
+
 <p>
-	Welcome to the premier mechanical watch companion app.
+	Welcome to the ultimate mechanical watch enthusiast app.
 	<b class="nowrap">Good Watch Bad Watch</b> is a premium tool for tracking the performance of your watches.
 	Visualize the behavior of your watches in a way that is easy to understand, and learn how to get the best out of them.
 </p>

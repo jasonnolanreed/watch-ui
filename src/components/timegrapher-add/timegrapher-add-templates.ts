@@ -7,7 +7,7 @@ const makeHtml = (component: TimegrapherAdd) => (
 	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 	<div>
 		<h1>Add Timegrapher Results</h1>
-		<h3>${component.watch.name}</h3>
+		<h4>${component.watch.name}</h4>
 	</div>
 </div>
 
