@@ -17,7 +17,10 @@ export const makeTemplate = (component) => (`
 }
 
 img.feature {
-	box-shadow: 0 0 1px var(--slate), 0 0 0 6px var(--silver), 0 0 1.5rem 4px rgba(0, 0, 0, 0.5);
+	margin-left: 6px;
+	margin-right: 6px;
+	width: calc(100% - 12px);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 0 0 0 6px var(--silver), 0 0 1.5rem 4px rgba(0, 0, 0, 0.5);
 	border-radius: 1rem;
 }
 
@@ -36,7 +39,7 @@ img.feature.photo {
 
 gwbw-icon.between-screenshots {
 	display: block;
-	margin: 1rem auto;
+	margin: 0.5rem auto;
 	font-size: 3rem;
 	text-align: center;
 }
@@ -70,7 +73,7 @@ gwbw-icon.between-screenshots {
 
 <div class="page-title">
 	<div>
-		<img class="jewel-logo" src="assets/images/jewel.svg" alt="jewel logo">
+		<img class="jewel-logo" src="assets/images/jewel.svg?v=1" alt="jewel logo" style="aspect-ratio: 1 / 1;">
 	</div>
 	<div>
 		<h1>
@@ -94,7 +97,7 @@ gwbw-icon.between-screenshots {
 
 <div>
 	<br><br>
-	<img class="feature photo" src="assets/images/photos/3879-wrist.jpg" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 571;">
+	<img class="feature photo" src="assets/images/photos/3879-wrist.jpg?v=2" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
 	<br><br><br><br>
 </div>
 

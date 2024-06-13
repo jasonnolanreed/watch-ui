@@ -127,7 +127,7 @@ textarea {
 }
 
 textarea.large {
-	height: 18rem;
+	height: 14rem;
 }
 
 @keyframes working {
