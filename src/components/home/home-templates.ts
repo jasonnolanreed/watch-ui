@@ -42,6 +42,7 @@ img.feature,
 		display: block;
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0;
+		opacity: 0.5;
 		mix-blend-mode: overlay;
 		background: linear-gradient(135deg, var(--muted-red), var(--muted-green) 100%, var(--muted-green));
 		background-repeat: no-repeat;
