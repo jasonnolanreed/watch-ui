@@ -56,7 +56,10 @@ ${component?.currentResults?.note &&
 <div class="sticky-controls-outer">
 	<div class="sticky-controls">
 		<div class="sticky-controls-inner">
-			<a href="#/timegrapher/add/${component.watch._id}" class="big-link">Add New Results</a>
+			<a href="#/timegrapher/add/${component.watch._id}" class="big-link">
+				<gwbw-icon name="add_circle"></gwbw-icon>
+				<span>Add New Results</span>
+			</a>
 		</div>
 	</div>
 </div>

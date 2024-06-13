@@ -34,7 +34,10 @@ ${showSortControls(component)}
 	<div class="sticky-controls-outer">
 		<div class="sticky-controls">
 			<div class="sticky-controls-inner">
-				<a href="#/watches/measure/${component.watch._id}" class="big-link">Add New Measure</a>
+				<a href="#/watches/measure/${component.watch._id}" class="big-link">
+					<gwbw-icon name="add_circle"></gwbw-icon>
+					<span>Add New Measure</span>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -216,7 +219,7 @@ button.next-session { margin-left: 0.35em !important; }
 .measures-list .list-item .controls {
 	margin-left: auto;
 }
-.interval.interval {
+.interval.interval.interval.interval {
 	font-size: 1.65em;
 	color: var(--charcoal);
 	margin-left: -0.6em;

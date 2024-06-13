@@ -19,6 +19,31 @@ export const makeTemplate = (component: Home) => (
 	animation: jewelspin 2.5s linear infinite;
 }
 
+img.feature {
+	box-shadow: 0 0 1px var(--slate), 0 0 0 6px var(--silver), 0 0 1.5rem 4px rgba(0, 0, 0, 0.5);
+	border-radius: 1rem;
+}
+
+img.feature.photo {
+	filter: saturate(25%);
+}
+
+.form-controls {
+	align-items: center !important;
+}
+
+.form-controls > * {
+	width: 50%;
+	text-align: center;
+}
+
+gwbw-icon.between-screenshots {
+	display: block;
+	margin: 1rem auto;
+	font-size: 3rem;
+	text-align: center;
+}
+
 @container cq-home (width < 500px) {
 	.page-title {
 		flex-wrap: wrap;
@@ -34,26 +59,6 @@ export const makeTemplate = (component: Home) => (
 		width: 5rem;
 		margin: 0 auto;
 	}
-}
-
-img.feature {
-	box-shadow: 0 0 1px var(--slate), 0 0 0 6px var(--silver), 0 0 1.5rem 4px rgba(0, 0, 0, 0.5);
-	border-radius: 1rem;
-}
-
-img.feature.photo {
-	filter: saturate(25%);
-}
-
-.form-controls .button {
-	width: 50%;
-}
-
-gwbw-icon.between-screenshots {
-	display: block;
-	margin: 1rem auto;
-	font-size: 3rem;
-	text-align: center;
 }
 
 @keyframes jewelspin {
@@ -77,7 +82,7 @@ gwbw-icon.between-screenshots {
 		</h1>
 		<h4>
 			<span class="nowrap">Your Premium</span>
-			<span class="nowrap">Watch Performance App</span>
+			<span class="nowrap">Watch Timing App</span>
 		</h4>
 	</div>
 </div>
@@ -99,7 +104,7 @@ gwbw-icon.between-screenshots {
 <div>
 	<h2>Visualize your watch's performance</h2>
 	<p>
-		Quickly understand how the timing of your watch drifts against perfect time and whether it falls within stated accuracy specs.
+		Quickly understand how the timing of your watch drifts against perfect time and whether it falls within expected accuracy specs.
 	</p>
 	<br>
 	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png" alt="screenshot of line graph" style="1378 / 794;">
@@ -129,7 +134,7 @@ gwbw-icon.between-screenshots {
 </div>
 
 <p>
-	Register your <b>Good Watch Bad Watch</b> account, add your watches, and start getting the most from your collection today.
+	Create your <b>Good Watch Bad Watch</b> account, add your watches, and start getting the most from your collection today.
 </p>
 
 <div class="form-controls">
@@ -145,7 +150,7 @@ gwbw-icon.between-screenshots {
 		<gwbw-icon name="thumb_up"></gwbw-icon>
 		<span>Let's go!</span>
 	</a>
-	<a class="button" href="/#/login">
+	<a class="big-link" href="/#/login">
 		<gwbw-icon name="exit_to_app"></gwbw-icon>
 		<span>Already a User</span>
 	</a>

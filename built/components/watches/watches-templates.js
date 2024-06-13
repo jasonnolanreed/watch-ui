@@ -8,7 +8,10 @@ ${showSortControls(component)}
 <form>
 	${listWatches(component)}
 	<div class="form-controls">
-		<a href="#/watches/add" class="big-link">Add New Watch</a>
+		<a href="#/watches/add" class="big-link">
+			<gwbw-icon name="add_circle"></gwbw-icon>
+			<span>Add New Watch</span>
+		</a>
 	</div>
 </form>
 `);

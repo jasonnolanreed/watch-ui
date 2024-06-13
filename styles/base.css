@@ -63,8 +63,18 @@ a, a:visited {
 }
 
 a.big-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+	position: relative;
 	font-size: 1.2rem;
 	font-weight: 600;
+}
+
+a.big-link gwbw-icon {
+	font-size: 1.2em;
+	margin: -0.2em 0; /* offset height increase */
 }
 
 h1, h2, h3, h4, h5 {
