@@ -104,7 +104,7 @@ gwbw-icon.between-screenshots {
 <div>
 	<h2>Learn how your watch behaves</h2>
 	<p>
-		Gain insight into how different positions affect the time keeping of your watch so you can use it to your advantage.
+		Gain insight into how different positions affect the time keeping of your watch so you can use them to your advantage.
 	</p>
 	<br>
 	<img class="feature" src="assets/images/screenshots/example-positions-graph.png" alt="screenshot of bar graph" style="aspect-ratio: 1480 / 1410;">
@@ -124,7 +124,7 @@ gwbw-icon.between-screenshots {
 </div>
 
 <p>
-	Register your <b>Good Watch Bad Watch</b> account today, add your watches, and start getting the most from your collection.
+	Register your <b>Good Watch Bad Watch</b> account, add your watches, and start getting the most from your collection today.
 </p>
 
 <div class="form-controls">
