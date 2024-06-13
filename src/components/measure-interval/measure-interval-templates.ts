@@ -71,11 +71,10 @@ const makeHtml = (component: MeasureInterval) => (
 </div>
 
 ${component.expandSessionLink ? `
-<hr class="semi-compact"/>
-
+<br><br>
 <a class="session-interval-link nowrap" href="javascript:window.location.replace('${component.expandSessionLink}');">
 	<span>
-		<gwbw-icon name="straighten"></gwbw-icon>
+			<gwbw-icon name="straighten"></gwbw-icon>
 		<gwbw-icon name="open_in_full"></gwbw-icon>
 		<gwbw-icon name="straighten"></gwbw-icon>
 	</span>
@@ -95,7 +94,7 @@ const makeCss = (component: MeasureInterval) => (
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 2em 0; }
 .sort-controls .toggle-buttons button.selected { pointer-events: none; }
 p { margin-top: -1.2em; }
-.session-interval-link { display: inline-flex; align-items: center; gap: 4px; }
+.session-interval-link, .session-interval-link > * { display: inline-flex; align-items: center; gap: 4px; }
 .session-interval-link, .session-interval-link:hover { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
 .session-interval-link gwbw-icon[name="open_in_full"] { font-size: 1.5em; transform: rotate(45deg); position: relative; top: 1px; margin: 0 -0.2em; }

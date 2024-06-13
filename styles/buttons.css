@@ -82,7 +82,7 @@ button[disabled][disabled] {
 	pointer-events: none;
 }
 
-.sneaky-button.sneaky-button.sneaky-button {
+.sneaky-button {
 	background: none;
 	border: none;
 	padding: 0;

@@ -219,7 +219,7 @@ button.next-session { margin-left: 0.35em !important; }
 .measures-list .list-item .controls {
 	margin-left: auto;
 }
-.interval.interval.interval.interval {
+.interval.interval {
 	font-size: 1.65em;
 	color: var(--charcoal);
 	margin-left: -0.6em;
