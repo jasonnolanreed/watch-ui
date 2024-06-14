@@ -58,7 +58,7 @@ export class PositionsDistributionGraph extends GWBWElement {
 		const lightBlue = cssStyles.getPropertyValue(`--light-blue`);
 		const darkBlue = cssStyles.getPropertyValue(`--dark-blue`);
 		const silver = cssStyles.getPropertyValue(`--silver`);
-		const green = cssStyles.getPropertyValue(`--green`);
+		const green = cssStyles.getPropertyValue(`--good`);
 		let colorsArray = [darkBlue, blue, silver, lightBlue, green];
 		colorsArray = [...colorsArray, ...colorsArray, ...colorsArray];
 

@@ -39,8 +39,9 @@ img.feature,
 		display: block;
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0;
+		opacity: 0.5;
 		mix-blend-mode: overlay;
-		background: linear-gradient(135deg, var(--muted-red), var(--muted-green) 100%, var(--muted-green));
+		background: linear-gradient(135deg, var(--muted-bad), var(--muted-good) 100%, var(--muted-good));
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-radius: 1rem;
@@ -93,7 +94,7 @@ gwbw-icon.between-screenshots {
 
 <div class="page-title">
 	<div>
-		<img class="jewel-logo" src="assets/images/jewel.svg?v=2" alt="jewel logo" style="aspect-ratio: 1 / 1;">
+		<img class="jewel-logo" src="assets/images/jewel.svg?v=3" alt="jewel logo" style="aspect-ratio: 1 / 1;">
 	</div>
 	<div>
 		<h1>

@@ -87,11 +87,11 @@ tr.averages td {
 }
 
 td.good {
-	color: var(--green);
+	color: var(--good);
 }
 
 td.bad {
-	color: var(--red);
+	color: var(--bad);
 }
 </style>
 `);

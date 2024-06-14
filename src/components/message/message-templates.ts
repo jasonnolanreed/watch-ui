@@ -14,8 +14,8 @@ const makeCss = (component: Message) => (
 }
 
 :host([type=info]) { background-color: var(--charcoal); }
-:host([type=success]) { background-color: var(--green); }
-:host([type=error]) { background-color: var(--red); }
+:host([type=success]) { background-color: var(--good); }
+:host([type=error]) { background-color: var(--bad); }
 
 .message {
 	display: flex;

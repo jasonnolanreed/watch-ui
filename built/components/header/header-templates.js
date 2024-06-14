@@ -53,7 +53,6 @@ hr {
 		width: 110px;
 		max-width: 100%;
 		height: auto;
-		aspect-ratio: 385 / 120;
 	}
 }
 
@@ -63,7 +62,6 @@ hr {
 		width: 300px;
 		max-width: 100%;
 		height: auto;
-		aspect-ratio: 2084 / 314;
 	}
 }
 </style>
@@ -81,13 +79,15 @@ const makeHtml = (component) => (`
 		<a class="logo-container" href="/#/">
 			<img
 				class="large-logo"
-				src="assets/images/logo.svg?v=2.6"
+				src="assets/images/logo.svg?v=2.7"
+				style="aspect-ratio: 300 / 45;"
 				alt="Good Watch Bad Watch"
 				loading="lazy"
 			>
 			<img
 				class="small-logo"
-				src="assets/images/logo-small.svg?v=2.6"
+				src="assets/images/logo-small.svg?v=2.7"
+				style="aspect-ratio: 110 / 35;"
 				alt="Good Watch Bad Watch"
 				loading="lazy"
 			>

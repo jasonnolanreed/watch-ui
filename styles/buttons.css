@@ -56,11 +56,11 @@
 }
 
 .button.button.positive {
-	background-color: var(--green);
+	background-color: var(--good);
 }
 
 .button.button.negative {
-	background-color: var(--red);
+	background-color: var(--bad);
 }
 
 .button.button.low-priority {

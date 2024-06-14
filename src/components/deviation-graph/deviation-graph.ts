@@ -74,8 +74,8 @@ export class DeviationGraph extends GWBWElement {
 		const cssStyles = window.getComputedStyle(document.body);
 		const graphite = cssStyles.getPropertyValue(`--graphite`);
 		const slate = cssStyles.getPropertyValue(`--slate`);
-		const green = cssStyles.getPropertyValue(`--green`);
-		const red = cssStyles.getPropertyValue(`--red`);
+		const green = cssStyles.getPropertyValue(`--good`);
+		const red = cssStyles.getPropertyValue(`--bad`);
 
 		let config = {
 			type: `scatter`,

@@ -69,8 +69,8 @@ export class PositionsGraph extends GWBWElement {
         this.removeAttribute(`loading`);
         const positionsData = this.positionsData;
         const cssStyles = window.getComputedStyle(document.body);
-        const green = cssStyles.getPropertyValue(`--green`);
-        const red = cssStyles.getPropertyValue(`--red`);
+        const green = cssStyles.getPropertyValue(`--good`);
+        const red = cssStyles.getPropertyValue(`--bad`);
         const slate = cssStyles.getPropertyValue(`--slate`);
         let config = {
             type: `bar`,

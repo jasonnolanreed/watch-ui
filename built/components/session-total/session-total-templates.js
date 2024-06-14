@@ -54,19 +54,19 @@ const getTotalClasses = (component, sessionTotalData) => {
 };
 const makeCss = (component) => (`
 <style>
-.total.good-watch { color: var(--green); }
-.total.bad-watch { color: var(--red); }
+.total.good-watch { color: var(--good); }
+.total.bad-watch { color: var(--bad); }
 .total.fast .number:before { content: "+"; }
 .good-bad-message > * { display: none; margin-top: -1rem; }
 .good-bad-message h4 { margin-bottom: 0; }
-.good-bad-message.good-watch .good { display: block; color: var(--green); }
-.good-bad-message.bad-watch .bad { display: block; color: var(--red); }
+.good-bad-message.good-watch .good { display: block; color: var(--good); }
+.good-bad-message.bad-watch .bad { display: block; color: var(--bad); }
 .short-session-alert {
 	display: flex;
 	justify-items: flex-start;
 	align-items: center;
 	margin: 2em 0 0 0;
-	color: var(--red);
+	color: var(--bad);
 }
 .short-session-alert gwbw-icon { font-size: 1.5em; margin-right: 0.5em; }
 </style>

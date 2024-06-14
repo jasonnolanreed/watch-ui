@@ -67,7 +67,7 @@ const makeCss = (component: WatchMeasure) => (
 
 .target-time h1 {
 	margin: 0 0 0 .3em;
-	color: var(--green);
+	color: var(--good);
 }
 
 .decrease-quarter, .increase-quarter {
