@@ -42,7 +42,7 @@ img.feature,
 		display: block;
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0;
-		opacity: 0.5;
+		opacity: 0.75;
 		mix-blend-mode: overlay;
 		background: linear-gradient(135deg, var(--muted-bad), var(--muted-good) 100%, var(--muted-good));
 		background-repeat: no-repeat;
@@ -133,7 +133,7 @@ gwbw-icon.between-screenshots {
 		Quickly understand how the timing of your watch drifts against perfect time and whether it falls within expected accuracy specs.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png?v=2" alt="screenshot of line graph" style="1378 / 794;">
+	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png?v=3" alt="screenshot of line graph" style="aspect-ratio: 1368 / 802;">
 	<br><br><br><br>
 </div>
 
@@ -143,7 +143,7 @@ gwbw-icon.between-screenshots {
 		Gain insight into how different positions affect the time keeping of your watch so you can use them to your advantage.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-positions-graph.png?v=2" alt="screenshot of bar graph" style="aspect-ratio: 1480 / 1410;">
+	<img class="feature" src="assets/images/screenshots/example-positions-graph.png?v=3" alt="screenshot of bar graph" style="aspect-ratio: 1446 / 1410;">
 	<br><br><br><br>
 </div>
 
@@ -153,9 +153,9 @@ gwbw-icon.between-screenshots {
 		Slice and dice the data any way you want; zoom in on a particular section of a timing session to get a closer look.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-measures.jpg?v=2" alt="screenshot of list of measures" style="aspect-ratio: 1454 / 1154;">
+	<img class="feature" src="assets/images/screenshots/example-measures.jpg?v=3" alt="screenshot of list of measures" style="aspect-ratio: 1448 / 1148;">
 	<gwbw-icon class="between-screenshots" name="arrow_downward"></gwbw-icon>
-	<img class="feature" src="assets/images/screenshots/example-interval.png?v=2" alt="screenshot of positions graph" style="aspect-ratio: 1376 / 772;">
+	<img class="feature" src="assets/images/screenshots/example-interval.png?v=3" alt="screenshot of positions graph" style="aspect-ratio: 1362 / 778;">
 	<br><br><br><br>
 </div>
 
