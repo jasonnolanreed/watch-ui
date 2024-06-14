@@ -1,4 +1,5 @@
 import { GWBWElement } from '../../classes/gwbw-element.js';
+import { AuthApi } from '../../api-helpers/auth.js';
 import { CustomPositionsApi } from '../../api-helpers/custom-positions.js';
 import { Difference, Format } from '../../utilities/date-time.js';
 import { getMomentDiffFromMeasure } from '../../utilities/measure.js';
@@ -40,7 +41,13 @@ export class DeviationGraph extends GWBWElement {
         super.connectedCallback();
         await this.fetchRequiredScriptsInSequence([`../built/vendor/chart.js`]);
         this._hasChartJS = true;
-        this.customPositions = await CustomPositionsApi.getCustomPositions();
+        const isLoggedIn = await AuthApi.isLoggedIn();
+        if (isLoggedIn) {
+            this.customPositions = await CustomPositionsApi.getCustomPositions();
+        }
+        else {
+            this.customPositions = [];
+        }
         this.render();
     }
     disconnectedCallback() {
