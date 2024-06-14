@@ -1,4 +1,5 @@
 import {Home} from "./home";
+import {mockGoodToleranceMinus, mockGoodTolerancePlus, mockInterval, mockMeasures, mockPositions, mockPositionsInterval, mockSortedPositionNames, mockWatch} from "../../data/mock-watch.data.js";
 
 export const makeTemplate = (component: Home) => (
 `
@@ -19,6 +20,12 @@ export const makeTemplate = (component: Home) => (
 	animation: jewelspin 4s linear infinite;
 }
 
+.feature-container {
+	padding: 2rem 1rem;
+	zoom: 0.9;
+	pointer-events: none;
+}
+.feature-container,
 img.feature,
 .feature-photo {
 	margin-left: 6px;
@@ -33,22 +40,6 @@ img.feature,
 
 	img {
 		border-radius: 1rem;
-	}
-}
-
-@supports (mix-blend-mode: overlay) {
-	.feature-photo::after {
-		content: "";
-		display: block;
-		position: absolute;
-		top: 0; right: 0; bottom: 0; left: 0;
-		opacity: 0.75;
-		mix-blend-mode: overlay;
-		background: linear-gradient(135deg, var(--muted-bad), var(--muted-good) 100%, var(--muted-good));
-		background-repeat: no-repeat;
-		background-size: cover;
-		border-radius: 1rem;
-		pointer-events: none;
 	}
 }
 
@@ -122,7 +113,7 @@ gwbw-icon.between-screenshots {
 <div>
 	<br><br>
 	<div class="feature-photo">
-		<img src="assets/images/photos/3879-wrist.jpg?v=3" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
+		<img src="assets/images/photos/3879-wrist.jpg?v=4" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
 	</div>
 	<br><br><br><br>
 </div>
@@ -133,7 +124,17 @@ gwbw-icon.between-screenshots {
 		Quickly understand how the timing of your watch drifts against perfect time and whether it falls within expected accuracy specs.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-deviation-graph.png?v=3" alt="screenshot of line graph" style="aspect-ratio: 1368 / 802;">
+	<div class="feature-container">
+		<gwbw-deviation-graph
+			watch="${encodeURI(JSON.stringify(mockWatch))}"
+			measures="${encodeURI(JSON.stringify(mockMeasures))}"
+		></gwbw-deviation-graph>
+		<gwbw-session-total
+			goodtoleranceminus="${mockGoodToleranceMinus}"
+			goodtoleranceplus="${mockGoodTolerancePlus}"
+			session="${encodeURI(JSON.stringify(mockMeasures))}"
+		></gwbw-session-total>
+	</div>
 	<br><br><br><br>
 </div>
 
@@ -143,7 +144,21 @@ gwbw-icon.between-screenshots {
 		Gain insight into how different positions affect the time keeping of your watch so you can use them to your advantage.
 	</p>
 	<br>
-	<img class="feature" src="assets/images/screenshots/example-positions-graph.png?v=3" alt="screenshot of bar graph" style="aspect-ratio: 1446 / 1410;">
+	<div class="feature-container">
+		<gwbw-positions-graph
+			goodtoleranceminus="${mockGoodToleranceMinus}"
+			goodtoleranceplus="${mockGoodTolerancePlus}"
+			positions="${encodeURI(JSON.stringify(mockPositions))}"
+			sortedpositionnames="${mockSortedPositionNames}"
+		></gwbw-positions-graph>
+		<br><br>
+		<gwbw-positions-detail
+			goodtoleranceminus="${mockGoodToleranceMinus}"
+			goodtoleranceplus="${mockGoodTolerancePlus}"
+			positions="${encodeURI(JSON.stringify(mockPositions))}"
+			sortedpositionnames="${mockSortedPositionNames}"
+		></gwbw-positions-detail>
+	</div>
 	<br><br><br><br>
 </div>
 
@@ -155,7 +170,19 @@ gwbw-icon.between-screenshots {
 	<br>
 	<img class="feature" src="assets/images/screenshots/example-measures.jpg?v=3" alt="screenshot of list of measures" style="aspect-ratio: 1448 / 1148;">
 	<gwbw-icon class="between-screenshots" name="arrow_downward"></gwbw-icon>
-	<img class="feature" src="assets/images/screenshots/example-interval.png?v=3" alt="screenshot of positions graph" style="aspect-ratio: 1362 / 778;">
+	<div class="feature-container">
+		<gwbw-session-total
+			goodtoleranceminus="${mockGoodToleranceMinus}"
+			goodtoleranceplus="${mockGoodTolerancePlus}"
+			session="${encodeURI(JSON.stringify(mockInterval))}"
+		></gwbw-session-total>
+		<gwbw-positions-graph
+			goodtoleranceminus="${mockGoodToleranceMinus}"
+			goodtoleranceplus="${mockGoodTolerancePlus}"
+			positions="${encodeURI(JSON.stringify(mockPositionsInterval))}"
+			sortedpositionnames="${mockSortedPositionNames}"
+		></gwbw-positions-graph>
+	</div>
 	<br><br><br><br>
 </div>
 
