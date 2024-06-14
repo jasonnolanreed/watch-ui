@@ -6,6 +6,10 @@ export class Guide extends GWBWElement {
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
+        this.setClickEvents([
+            { target: `[scroll-target]`, handler: this.onClickTopic }
+        ]);
+        this.onClickTopic = this.onClickTopic.bind(this);
     }
     async connectedCallback() {
         super.connectedCallback();
@@ -25,6 +29,16 @@ export class Guide extends GWBWElement {
         catch (error) {
             console.error(`Error rendering`, error);
         }
+    }
+    onClickTopic(event, target) {
+        try {
+            const targetId = target.getAttribute(`scroll-target`);
+            const $target = this.shadowRoot.querySelector(`[scroll-id=${targetId}]`);
+            requestAnimationFrame(_ => {
+                $target.scrollIntoView();
+            });
+        }
+        catch (error) { }
     }
 }
 customElements.define(`gwbw-guide`, Guide);

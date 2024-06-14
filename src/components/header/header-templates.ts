@@ -4,23 +4,21 @@ const makeCss = (component: Header) => (
 `
 <style>
 header {
+	container-type: inline-size;
+	container-name: cq-header;
 }
 
 .header-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 3rem;
+	gap: 2rem;
 	width: 100%;
 	margin: 0 auto;
-
-	container-type: inline-size;
-	container-name: cq-header-container;
 }
 
 nav {
 	display: flex;
-	flex-wrap: wrap;
 	gap: 0.75rem 1rem;
 
 	a {
@@ -50,16 +48,16 @@ hr {
 	margin: 1.5rem 0 2rem 0 !important;
 }
 
-@container cq-header-container (width < 525px) {
+@container cq-header (width < 650px) {
 	img.small-logo {
 		display: block;
-		width: 110px;
+		width: 40px;
 		max-width: 100%;
 		height: auto;
 	}
 }
 
-@container cq-header-container (width >= 525px) {
+@container cq-header (width >= 650px) {
 	img.large-logo {
 		display: block;
 		width: 300px;
@@ -77,7 +75,7 @@ const makeHtml = (component: Header) => (
 	<div class="header-container">
 		<nav>
 			${getLinks(component)}
-			<a class="hidden guide click-zone-05" href="/#/guide" ${component.viewName === 'guide' ? 'active' : ''}>
+			<a class="guide click-zone-05" href="/#/guide" ${component.viewName === 'guide' ? 'active' : ''}>
 				<gwbw-icon name="info"></gwbw-icon>
 				<span>Guide</span>
 			</a>
@@ -92,8 +90,8 @@ const makeHtml = (component: Header) => (
 			>
 			<img
 				class="small-logo"
-				src="assets/images/logo-small.svg?v=2.7"
-				style="aspect-ratio: 110 / 35;"
+				src="assets/images/jewel.svg?v=2.7"
+				style="aspect-ratio: 1 / 1;"
 				alt="Good Watch Bad Watch"
 				loading="lazy"
 			>

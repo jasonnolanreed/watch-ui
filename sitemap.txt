@@ -2,3 +2,5 @@ https://goodwatchbadwatch.com
 https://goodwatchbadwatch.com/#/login
 https://goodwatchbadwatch.com/#/register
 https://goodwatchbadwatch.com/#/guide
+https://goodwatchbadwatch.com/#/watches
+https://goodwatchbadwatch.com/#/preferences
