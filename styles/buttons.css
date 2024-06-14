@@ -94,6 +94,23 @@ button[disabled][disabled] {
 	-webkit-appearance: none;
 }
 
+.link-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	position: relative;
+	font-size: 1rem;
+	color: var(--charcoal);
+	text-decoration: underline;
+	text-underline-offset: 0.24em;
+	text-decoration-color: color-mix(in srgb, currentColor 27%, transparent);
+
+	&:hover {
+		text-decoration: underline;
+		color: var(--slate);
+	}
+}
+
 .toggle-buttons {
 	display: flex;
 	padding: 0 0.4rem;

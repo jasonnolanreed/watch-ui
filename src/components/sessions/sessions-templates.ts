@@ -35,15 +35,11 @@ ${component.preferences.showTimegrapherFeatures ? `
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
-	<div class="sticky-controls-outer">
-		<div class="sticky-controls">
-			<div class="sticky-controls-inner">
-				<a href="#/watches/measure/${component.watch._id}" class="big-link">
-					<gwbw-icon name="add_circle"></gwbw-icon>
-					<span>Add New Measure</span>
-				</a>
-			</div>
-		</div>
+	<div class="controls">
+		<a href="#/watches/measure/${component.watch._id}" class="big-link">
+			<gwbw-icon name="add_circle"></gwbw-icon>
+			<span>Add New Measure</span>
+		</a>
 	</div>
 	<form class="measures-form">
 	${showMeasures(component)}
@@ -216,15 +212,12 @@ button.next-session { margin-left: 0.35em !important; }
 .controls.fast:before { content: "+"; }
 .reverse-order {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column-reverse;
+
 }
 .measures-form {
-	order: 1;
 	width: 100%;
 	margin-bottom: 1em;
-}
-.sticky-controls-outer {
-	order: 2;
 }
 .measures-list .list-item {
 	justify-content: flex-start;

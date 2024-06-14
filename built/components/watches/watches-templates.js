@@ -18,9 +18,9 @@ ${showSortControls(component)}
 const makeCss = (component) => (`
 <style>
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
-.list-item { cursor: default; }
-.watch-link { min-width: 60px; margin-right: 25px; }
-.controls { display: flex; align-items: center; }
+.list-item { gap: 25px; cursor: default; }
+.watch-link { justify-content: flex-start !important; min-width: 60px; }
+.controls { display: flex; align-items: center; gap: 0.4rem; }
 </style>
 `);
 const listWatches = (component) => {
@@ -31,13 +31,19 @@ const listWatches = (component) => {
     for (const watch of component.watches) {
         htmlString += `
 		<li class="list-item spacious" watch-id="${watch._id}">
-			<a class="watch-link" href="#/watches/${watch._id}">${watch.name}</a>
+			<div class="watch-name expand">
+				<a class="watch-link link-button expand" href="#/watches/${watch._id}">
+					<gwbw-icon name="watch"></gwbw-icon>
+					<span>${watch.name}</span>
+				</a>
+			</div>
 			<div class="controls nowrap">
-				<a href="#/watches/edit/${watch._id}"
-					class="edit-watch button ultra-compact"
-					title="Edit watch"
+				<a
+					href="#/watches/edit/${watch._id}"
+					class="link-button"
 				>
 					<gwbw-icon name="tune"></gwbw-icon>
+					<span>Edit</span>
 				</a>
 				<button class="delete-watch button negative ultra-compact"
 					watch-id="${watch._id}" title="Delete watch"

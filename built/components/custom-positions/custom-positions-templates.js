@@ -26,10 +26,11 @@ const showPositions = (component) => {
 			<div class="controls nowrap">
 				<button position-name="${position.name}"
 					position-id="${position._id}"
-					class="edit-position button ultra-compact"
+					class="edit-position sneaky-button link-button"
 					title="Edit position"
 				>
 					<gwbw-icon name="tune"></gwbw-icon>
+					<span>Edit</span>
 				</button>
 				<button position-id="${position._id}"
 					class="delete-position button negative ultra-compact"
