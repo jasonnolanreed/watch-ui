@@ -110,7 +110,7 @@ gwbw-icon.between-screenshots {
 <div>
 	<br><br>
 	<div class="feature-photo">
-		<img src="assets/images/photos/3879-wrist.jpg?v=4" alt="photo of chronograph watch on wrist" style="aspect-ratio: 1000 / 450;">
+		<img src="assets/images/photos/3879-table.jpg?v=1" alt="photo of chronograph watch" style="aspect-ratio: 2 / 1;">
 	</div>
 	<br><br><br><br>
 </div>

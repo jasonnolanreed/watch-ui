@@ -25,7 +25,7 @@ export const makeTemplate = (component: Guide) => (
 </div>
 
 <div class="feature-box">
-	<h3>Topics:</h3>
+	<h4>Topics:</h4>
 	<ul class="topics-list">
 		<li>
 			<button class="sneaky-button link-button" scroll-target="devices">
