@@ -6,10 +6,6 @@ export const makeTemplate = (component) => (`
 	container-type: inline-size;
 }
 
-.page-title.page-title {
-	justify-content: center;
-}
-
 .jewel-logo {
 	width: 5rem;
 	height: auto;
@@ -59,6 +55,7 @@ gwbw-icon.between-screenshots {
 @container cq-home (width < 500px) {
 	.page-title {
 		flex-wrap: wrap;
+		justify-content: center;
 		text-align: center;
 		margin-bottom: 3rem !important;
 

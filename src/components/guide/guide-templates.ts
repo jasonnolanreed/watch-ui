@@ -17,6 +17,14 @@ export const makeTemplate = (component: Guide) => (
 		margin-bottom: 0.5rem;
 	}
 }
+
+[scroll-id] {
+	transition: 0.5s color ease;
+
+	&.highlighted {
+		color: var(--good);
+	}
+}
 </style>
 
 <div class="page-title">

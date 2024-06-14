@@ -34,9 +34,10 @@ export class Guide extends GWBWElement {
         try {
             const targetId = target.getAttribute(`scroll-target`);
             const $target = this.shadowRoot.querySelector(`[scroll-id=${targetId}]`);
-            requestAnimationFrame(_ => {
-                $target.scrollIntoView();
-            });
+            const $$allTargets = this.shadowRoot.querySelectorAll(`[scroll-id]`);
+            Array.from($$allTargets).forEach($thisTarget => $thisTarget.classList.remove(`highlighted`));
+            $target.scrollIntoView();
+            $target.classList.add(`highlighted`);
         }
         catch (error) { }
     }
