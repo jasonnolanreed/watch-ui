@@ -59,7 +59,7 @@ ${component?.currentResults?.note &&
 ``
 }
 <div class="controls">
-	<a href="#/timegrapher/add/${component.watch._id}" class="big-link">
+	<a href="#/timegrapher/add/${component.watch._id}" class="big-link positive">
 		<gwbw-icon name="add_circle"></gwbw-icon>
 		<span>Add New Results</span>
 	</a>

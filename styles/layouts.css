@@ -46,6 +46,22 @@ layout.main .panel {
 	}
 }
 
+/* Keep in sync with .panel width */
+.sticky-inner.sticky {
+	width: 100%;
+	max-width: var(--max-width);
+	transform: translate(calc(-50%), 0);
+
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	padding: var(--padding);
+	background: #fff;
+	box-shadow: 0 -2rem 2rem rgba(0, 0, 0, 0.3);
+	z-index: 10;
+}
+
+
 layout.main footer {
 	font-size: 0.9rem;
 	color: var(--slate);
@@ -57,7 +73,7 @@ layout.main footer {
 }
 
 /* DEV NOTE: These media queries should stay in sync with messages-templates.ts */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
 	html:has(layout.main) {
 		background-color: #fff;
 	}
@@ -76,5 +92,10 @@ layout.main footer {
 		min-height: 100vh;
 		border-radius: 0;
 		box-shadow: none;
+	}
+
+	.sticky-inner.sticky {
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 }

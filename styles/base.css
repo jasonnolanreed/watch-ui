@@ -72,6 +72,21 @@ a.big-link {
 	position: relative;
 	font-size: 1.2rem;
 	font-weight: 600;
+
+	&.positive {
+		color: var(--good);
+		&:hover {
+			color: var(--good) !important;
+			opacity: 0.8;
+		}
+	}
+	&.negative {
+		color: var(--bad);
+		&:hover {
+			color: var(--bad) !important;
+			opacity: 0.8;
+		}
+	}
 }
 
 a.big-link gwbw-icon {

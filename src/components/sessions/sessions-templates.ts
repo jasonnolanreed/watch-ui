@@ -35,11 +35,13 @@ ${component.preferences.showTimegrapherFeatures ? `
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
-	<div class="form-controls">
-		<a href="#/watches/measure/${component.watch._id}" class="big-link">
-			<gwbw-icon name="add_circle"></gwbw-icon>
-			<span>Add New Measure</span>
-		</a>
+	<div class="sticky-outer">
+		<div class="sticky-inner">
+			<a href="#/watches/measure/${component.watch._id}" class="big-link positive">
+				<gwbw-icon name="add_circle"></gwbw-icon>
+				<span>Add New Measure</span>
+			</a>
+		</div>
 	</div>
 	<form class="measures-form">
 	${showMeasures(component)}

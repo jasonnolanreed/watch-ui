@@ -19,6 +19,7 @@ export class Sessions extends GWBWElement {
 	preferences: Preferences;
 	customPositions: CustomPosition[];
 	sessions: Measure[][];
+	stickyIntersectionObserver: IntersectionObserver;
 
 	constructor() {
 		super();
@@ -37,6 +38,9 @@ export class Sessions extends GWBWElement {
 	}
 
 	disconnectedCallback() {
+		if (this.stickyIntersectionObserver) {
+			this.stickyIntersectionObserver.disconnect();
+		}
 		super.disconnectedCallback();
 	}
 
@@ -45,6 +49,7 @@ export class Sessions extends GWBWElement {
 		try {
 			this.sortSessionMeasures();
 			this.shadowRoot.innerHTML = makeTemplate(this);
+			this.initStickyControls();
 		} catch(error) {
 			console.error(`Error rendering`, error);
 		}
@@ -124,6 +129,23 @@ export class Sessions extends GWBWElement {
 
 		if (this.preferences.measuresSort.includes(`Desc`)) {
 			this.currentSessionSorted = this.currentSessionSorted.reverse();
+		}
+	}
+
+	initStickyControls() {
+		const $outer: HTMLElement = this.shadowRoot.querySelector(`.sticky-outer`);
+		const $inner: HTMLElement = this.shadowRoot.querySelector(`.sticky-inner`);
+		this.stickyIntersectionObserver = new IntersectionObserver(_onIntersect, {});
+		this.stickyIntersectionObserver.observe($outer);
+
+		function _onIntersect(entries: IntersectionObserverEntry[]) {
+			if (entries[0].isIntersecting) {
+				$inner.classList.remove(`sticky`);
+				$outer.style.height = `auto`;
+			} else {
+				$outer.style.height = `${$outer.offsetHeight}px`;
+				$inner.classList.add(`sticky`);
+			}
 		}
 	}
 }

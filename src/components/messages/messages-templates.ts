@@ -15,7 +15,7 @@ export const makeCss = (component: Messages) => (
 }
 
 /* DEV NOTE: These media queries should stay in sync with layouts.css */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
 	:host {
 		top: calc(0.5 * var(--layout-padding-small));
 		max-width: calc(100% - (2 * var(--layout-padding-xsmall)));
