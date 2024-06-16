@@ -4,7 +4,7 @@ html:has(layout.main) {
 	min-width: 350px;
 	min-height: calc(100vh + 1px);
 	background-color: var(--charcoal);
-	background: linear-gradient(165deg, var(--muted-good), var(--muted-bad) 101vh, var(--muted-bad));
+	background: linear-gradient(165deg, var(--muted-good), var(--muted-bad) 50rem, var(--muted-bad));
 }
 
 body:has(layout.main) {

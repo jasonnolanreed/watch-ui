@@ -61,6 +61,11 @@ export const makeTemplate = (component: Guide) => (
 			</button>
 		</li>
 		<li>
+			<button class="sneaky-button link-button" scroll-target="analyzingintervals">
+				Analyzing intervals
+			</button>
+		</li>
+		<li>
 			<button class="sneaky-button link-button" scroll-target="usingtimegrapher">
 				Using a timegrapher
 			</button>
@@ -96,6 +101,11 @@ export const makeTemplate = (component: Guide) => (
 <hr>
 
 <h2 scroll-id="startingsession">Starting a session</h2>
+<p>Details coming soon</p>
+
+<hr>
+
+<h2 scroll-id="analyzingintervals">Analyzing intervals</h2>
 <p>Details coming soon</p>
 
 <hr>

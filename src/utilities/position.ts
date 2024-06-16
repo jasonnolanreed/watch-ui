@@ -1,4 +1,4 @@
-import {CustomPosition, Measure, TimegrapherResult} from "../types/api-data";
+import {CustomPosition, Measure} from "../types/api-data";
 
 export const positionsMap = {
 	unspecified: {label: `Unspecified`, icon: `panorama_fish_eye`},

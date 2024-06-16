@@ -5,5 +5,4 @@ button:focus,
 	border: none !important;
 	outline: none !important;
 	z-index: 5;
-	transition: box-shadow 0.15s ease;
 }

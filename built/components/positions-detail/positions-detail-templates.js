@@ -17,7 +17,7 @@ const makeHtml = (component) => (`
 const makeCss = (component) => (`
 <style>
 .positions {}
-.position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--charcoal); }
+.position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--graphite); }
 .rate.fast:before { content: "+"; }
 .rate.good-watch { color: var(--good); }
 .rate.bad-watch { color: var(--bad); }

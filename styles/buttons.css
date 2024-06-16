@@ -20,7 +20,6 @@
 	cursor: pointer;
 	appearance: none;
 	-webkit-appearance: none;
-	transition: box-shadow 0.15s ease;
 }
 
 .button gwbw-icon {

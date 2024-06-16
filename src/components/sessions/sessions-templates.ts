@@ -95,7 +95,7 @@ const showSessionIntervalLink = (component: Sessions) => {
 			<gwbw-icon name="straighten"></gwbw-icon>
 		</span>
 		<span>
-			View Position Data for Session
+			View position data for session
 		</span>
 	</a>
 	<br/>
@@ -113,7 +113,7 @@ const showMeasures = (component: Sessions) => {
 	let html = ``;
 	html += `
 	<div class="list-headers">
-		<div class="header-date-time">Date, Time</div>
+		<div class="header-date-time">Pos/Date/Time</div>
 		<div class="header-deviation">Deviation</div>
 	</div>
 	`;
@@ -128,21 +128,20 @@ const showMeasures = (component: Sessions) => {
 				<gwbw-icon class="interval-other" name="straighten" title="Select interval"></gwbw-icon>
 				<gwbw-icon class="interval-start" name="straighten" title="Deselect interval"></gwbw-icon>
 			</button>
-			<a class="date-time" href="#/measure/${measure._id}">
+			<a
+				class="date-time"
+				href="#/measure/${measure._id}"
+				title="Position: ${getPositionNameForMeasure(measure, component?.customPositions)}"
+			>
+				<span class="measure-position">${showPositionIcon(measure)}</span>
 				${Format.dateAndTimeCompact(measure.targetMoment)}
+				${measure.note.length ?
+				`<gwbw-icon class="has-note" name="email" title="Note: ${measure.note}"></gwbw-icon>` :
+				``
+				}
 			</a>
 			<div class="controls nowrap ${getMomentDiffFromMeasure(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
-				<a href="#/measure/${measure._id}"
-					class="button ultra-compact view-measure ${measure.note.length ? `marked` : ``}"
-					aria-label="Edit measure"
-					${measure.note.length ?
-					`title="Note: ${measure.note}"` :
-					`title="${getPositionNameForMeasure(measure, component?.customPositions)}"`
-					}
-				>
-					${showPositionIcon(measure)}
-				</a>
 				<button class="button negative ultra-compact delete-measure"
 					measure-id="${measure._id}"
 					title="Delete measure"
@@ -201,8 +200,10 @@ const makeCss = (component: Sessions) => (
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
 button.next-session { margin-left: 0.35em !important; }
 .header-date-time { margin-left: 1.65em; }
-.header-deviation { margin-right: 7.35em; }
+.header-deviation { margin-right: 3.35em; }
 .good-bad-message h4 { margin-bottom: 0; }
+.measure-position { font-size: 1.5rem; color: var(--graphite); margin-right: 0.2rem; }
+.has-note { font-size: 1rem; color: var(--good); margin-left: 0.4rem; }
 .session-interval-link, .session-interval-link > * { display: inline-flex; align-items: center; gap: 4px; }
 .session-interval-link, .session-interval-link:hover { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }

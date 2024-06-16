@@ -76,7 +76,7 @@ ${component.expandSessionLink ? `
 		<gwbw-icon name="straighten"></gwbw-icon>
 	</span>
 	<span>
-		Expand to Full Session
+		Expand to full session
 	</span>
 </a>
 ` : ``}
