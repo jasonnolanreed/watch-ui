@@ -39,10 +39,6 @@ img.feature,
 	}
 }
 
-.form-controls {
-	align-items: center !important;
-}
-
 .form-controls > * {
 	width: 50%;
 	text-align: center;

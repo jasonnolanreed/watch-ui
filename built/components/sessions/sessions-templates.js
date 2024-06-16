@@ -31,7 +31,7 @@ ${component.preferences.showTimegrapherFeatures ? `
 ${showSessionIntervalLink(component)}
 ${showSortControls(component)}
 <div class="reverse-order">
-	<div class="controls">
+	<div class="form-controls">
 		<a href="#/watches/measure/${component.watch._id}" class="big-link">
 			<gwbw-icon name="add_circle"></gwbw-icon>
 			<span>Add New Measure</span>
@@ -133,12 +133,13 @@ const showMeasures = (component) => {
 			</a>
 			<div class="controls nowrap ${getMomentDiffFromMeasure(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
-				<button class="button negative ultra-compact delete-measure"
-					measure-id="${measure._id}"
-					title="Delete measure"
+				<a
+					class="edit-button button neutral ultra-compact"
+					href="#/measure/${measure._id}"
 				>
-					<gwbw-icon name="delete"></gwbw-icon>
-				</button>
+					<gwbw-icon name="tune"></gwbw-icon>
+					<span>Edit</span>
+				</a>
 			</div>
 		</li>
 		`;
@@ -182,12 +183,12 @@ const showSortControls = (component) => {
 };
 const makeCss = (component) => (`
 <style>
-.session-selection.session-selection { display: flex; align-items: center; margin: -0.5em 0 1em 0; }
-.session-selection .pages { margin-left: 1em; }
+.session-selection.session-selection { display: flex; align-items: center; gap: 0.1rem; margin: -0.5em 0 1em 0; }
+.session-selection .pages { margin-left: 1rem; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }
-button.next-session { margin-left: 0.35em !important; }
-.header-date-time { margin-left: 1.65em; }
-.header-deviation { margin-right: 3.35em; }
+button.next-session { margin-left: 0.35rem !important; }
+.header-date-time { margin-left: 1.65rem; }
+.header-deviation { margin-right: 4.2rem; }
 .good-bad-message h4 { margin-bottom: 0; }
 .measure-position { font-size: 1.5rem; color: var(--graphite); margin-right: 0.2rem; }
 .has-note { font-size: 1rem; color: var(--good); margin-left: 0.4rem; }
@@ -198,6 +199,7 @@ button.next-session { margin-left: 0.35em !important; }
 .date-time { display: flex; align-items: center; font-size: 0.9em; margin-right: 1em; }
 .controls { display: flex; align-items: center; color: var(--charcoal); }
 .controls.fast:before { content: "+"; }
+.edit-button > * { font-size: 0.9rem !important; }
 .reverse-order {
 	display: flex;
 	flex-direction: column-reverse;

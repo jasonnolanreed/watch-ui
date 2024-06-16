@@ -13,7 +13,8 @@ export class MeasureDetail extends GWBWElement {
         super();
         this.attachShadow({ mode: `open` });
         this.setClickEvents([
-            { target: `.cancel-button`, handler: this.onCancel }
+            { target: `.cancel-button`, handler: this.onCancel },
+            { target: `.delete-button`, handler: this.deleteMeasure },
         ]);
     }
     async connectedCallback() {
@@ -99,6 +100,27 @@ export class MeasureDetail extends GWBWElement {
                 }
             }
             this.stopWorking();
+        }
+    }
+    async deleteMeasure(event, target) {
+        const measureId = target.getAttribute(`measure-id`);
+        const confirmDelete = window.confirm(`Do you really want to delete this measure?`);
+        if (!confirmDelete) {
+            return;
+        }
+        this.startWorking();
+        const didRemove = await MeasureApi.removeMeasure({ measureId });
+        this.stopWorking();
+        if (!didRemove) {
+            GA.event(`measure`, `measure delete fail`);
+            const messages = document.querySelector(`gwbw-messages`);
+            if (messages) {
+                messages.add({ message: `Failed to remove measure. Try again?`, type: `error` });
+            }
+        }
+        else {
+            GA.event(`measure`, `measure delete success`);
+            this.onCancel(null, null);
         }
     }
     goBackToSession() {

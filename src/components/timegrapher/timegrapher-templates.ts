@@ -32,14 +32,14 @@ ${showResultsSelection(component)}
 ${component?.currentResults &&
 `
 <div class="form-controls">
+	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button neutral" type="button">
+		<gwbw-icon name="tune"></gwbw-icon>
+		Edit
+	</a>
 	<button class="delete-button button negative" type="button">
 		<gwbw-icon name="delete"></gwbw-icon>
 		Delete
 	</button>
-	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button" type="button">
-		<gwbw-icon name="tune"></gwbw-icon>
-		Edit
-	</a>
 </div>
 `
 ||
@@ -84,7 +84,7 @@ const getNextDisabled = (component: Timegrapher) => component.currentResultsInde
 const makeCss = (component: Timegrapher) => (
 `
 <style>
-.results-selection.results-selection { display: flex; align-items: center; margin: -0.5em 0 2em 0; }
+.results-selection.results-selection { display: flex; align-items: center; gap: 0.1rem; margin: -0.5em 0 2em 0; }
 .results-selection .pages { margin-left: 1em; }
 .previous-results gwbw-icon, .next-results gwbw-icon { font-size: 1.4em; }
 button.next-results { margin-left: 0.35em !important; }

@@ -21,7 +21,7 @@ const makeHtml = (component: TimegrapherEdit) => (
 		<textarea name="note">${component.timegrapherResults.note}</textarea>
 	</div>
 	<div class="form-controls">
-		<a href="javascript:history.back();" class="button negative">
+		<a href="javascript:history.back();" class="button negative-inverse">
 			<gwbw-icon name="do_not_disturb"></gwbw-icon>
 			Cancel
 		</a>

@@ -28,7 +28,7 @@ const makeHtml = (component) => (`
 	</div>
 	${makeHiddenFields(component)}
 	<div class="form-controls">
-		<button type="button" class="button negative cancel-button">
+		<button type="button" class="button negative-inverse cancel-button">
 			<gwbw-icon name="do_not_disturb"></gwbw-icon>
 			Cancel
 		</button>
@@ -37,7 +37,11 @@ const makeHtml = (component) => (`
 			Save Measure
 		</button>
 	</div>
-	<br/>
+	<hr>
+	<button type="button" class="button negative delete-button" measure-id="${component.measure._id}">
+		<gwbw-icon name="delete"></gwbw-icon>
+		Delete Measure
+	</button>
 </form>
 `);
 const showPositionsRadios = (component) => {

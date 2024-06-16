@@ -1,8 +1,15 @@
 a:focus,
 button:focus,
 .button:focus {
-	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--slate) !important;
+	position: relative;
 	border: none !important;
 	outline: none !important;
 	z-index: 5;
+	
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+		box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--slate) !important;
+	}
 }

@@ -14,7 +14,7 @@ export const makeTemplate = (component) => (`
 		<input type="password" id="password" name="password" autocomplete="current-password" maxlength="250">
 	</div>
 	<div class="form-controls">
-		<button type="submit" class="button">
+		<button type="submit" class="button positive-inverse">
 			<gwbw-icon name="exit_to_app"></gwbw-icon>
 			Login
 		</button>

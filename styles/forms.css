@@ -61,12 +61,9 @@ label:has(input[type=radio]) {
 
 .form-controls {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	gap: 0.75rem;
 	margin: 2em 0;
-}
-
-.form-controls > .button + .button {
-	margin-left: 0.75em;
 }
 
 .form-input--two-wide {
@@ -100,7 +97,7 @@ textarea, .faux-input {
 	border-radius: 2px;
 	outline: none;
 	background-color: var(--really-almost-white);
-	box-shadow: 0 0 0 1px var(--medium-gray);
+	box-shadow: 0 0 0 1px var(--smoke);
 	appearance: none;
 	-webkit-appearance: none;
 	transition: box-shadow 0.15s ease;

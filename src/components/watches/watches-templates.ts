@@ -10,6 +10,7 @@ const makeHtml = (component: Watches) => (
 ${showSortControls(component)}
 <form>
 	${listWatches(component)}
+	<br>
 	<div class="form-controls">
 		<a href="#/watches/add" class="big-link">
 			<gwbw-icon name="add_circle"></gwbw-icon>
@@ -48,16 +49,11 @@ const listWatches = (component: Watches) => {
 			<div class="controls nowrap">
 				<a
 					href="#/watches/edit/${watch._id}"
-					class="link-button"
+					class="button neutral compact"
 				>
 					<gwbw-icon name="tune"></gwbw-icon>
 					<span>Edit</span>
 				</a>
-				<button class="delete-watch button negative ultra-compact"
-					watch-id="${watch._id}" title="Delete watch"
-				>
-					<gwbw-icon name="delete"></gwbw-icon>
-				</button>
 			</div>
 		</li>
 		`;

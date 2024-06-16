@@ -9,6 +9,9 @@ export class WatchEdit extends GWBWElement {
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
+        this.setClickEvents([
+            { target: `.delete-watch`, handler: this.onDelete }
+        ]);
     }
     connectedCallback() {
         super.connectedCallback();
@@ -44,6 +47,27 @@ export class WatchEdit extends GWBWElement {
             const messages = document.querySelector(`gwbw-messages`);
             if (messages) {
                 messages.add({ message: `Failed to edit watch. Try again?`, type: `error` });
+            }
+        }
+    }
+    async onDelete(event, target) {
+        const watchId = target.getAttribute(`watch-id`);
+        const confirmDelete = window.confirm(`Do you really want to delete this watch and all its data?`);
+        if (!confirmDelete) {
+            return;
+        }
+        this.startWorking();
+        const deleteSuccessful = await WatchApi.delete({ watchId });
+        this.stopWorking();
+        if (deleteSuccessful) {
+            GA.event(`watch`, `watch delete success`);
+            router.navigate(`/watches`);
+        }
+        else {
+            GA.event(`watch`, `watch delete fail`);
+            const messages = document.querySelector(`gwbw-messages`);
+            if (messages) {
+                messages.add({ message: `Failed to delete watch. Try again?`, type: `error` });
             }
         }
     }

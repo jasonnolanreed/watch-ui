@@ -1,7 +1,5 @@
 import {Preferences, Watch} from '../../types/api-data.js';
-import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
-import {Messages} from '../messages/messages.js';
 import {WatchApi} from '../../api-helpers/watch.js';
 import {PreferenceApi} from '../../api-helpers/preference.js';
 
@@ -15,7 +13,6 @@ export class Watches extends GWBWElement {
 		super();
 		this.attachShadow({mode: `open`});
 		this.setClickEvents([
-			{target: `.delete-watch`, handler: this.onDelete},
 			{target: `.toggle-buttons button`, handler: this.onChangeSort}
 		]);
 	}
@@ -47,25 +44,6 @@ export class Watches extends GWBWElement {
 		this.watches = data[0];
 		this.preferences = data[1];
 		this.render();
-	}
-
-	async onDelete(event: MouseEvent, target: HTMLElement) {
-		const watchId = target.getAttribute(`watch-id`);
-		const confirmDelete = window.confirm(`Do you really want to delete this watch and all its data?`);
-		if (!confirmDelete) { return; }
-		this.startWorking();
-		const deleteSuccessful = await WatchApi.delete({watchId});
-		this.stopWorking();
-		if (deleteSuccessful) {
-			GA.event(`watch`, `watch delete success`);
-			this.getData();
-		} else {
-			GA.event(`watch`, `watch delete fail`);
-			const messages: Messages = document.querySelector(`gwbw-messages`);
-			if (messages) {
-				messages.add({message: `Failed to delete watch. Try again?`, type: `error`});
-			}
-		}
 	}
 
 	onChangeSort(event: MouseEvent, target: HTMLElement) {

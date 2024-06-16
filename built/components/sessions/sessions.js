@@ -1,4 +1,3 @@
-import { GA } from '../../ga.js';
 import { router } from '../../router.js';
 import { GWBWElement } from '../../classes/gwbw-element.js';
 import { WatchApi } from '../../api-helpers/watch.js';
@@ -23,7 +22,6 @@ export class Sessions extends GWBWElement {
         this.setClickEvents([
             { target: `.previous-session`, handler: this.viewPreviousSession },
             { target: `.next-session`, handler: this.viewNextSession },
-            { target: `.delete-measure`, handler: this.removeMeasure },
             { target: `.interval`, handler: this.selectInterval },
             { target: `.toggle-buttons button:not(.selected)`, handler: this.onChangeSort },
         ]);
@@ -79,27 +77,6 @@ export class Sessions extends GWBWElement {
                 const measureTwo = this.currentSessionSorted[index]._id;
                 router.navigate(`/measure/interval/${measureOne}/${measureTwo}`);
             }
-        }
-    }
-    async removeMeasure(event, target) {
-        const measureId = target.getAttribute(`measure-id`);
-        const confirmDelete = window.confirm(`Do you really want to delete this measure?`);
-        if (!confirmDelete) {
-            return;
-        }
-        this.startWorking();
-        const didRemove = await MeasureApi.removeMeasure({ measureId });
-        this.stopWorking();
-        if (!didRemove) {
-            GA.event(`measure`, `measure delete fail`);
-            const messages = document.querySelector(`gwbw-messages`);
-            if (messages) {
-                messages.add({ message: `Failed to remove measure. Try again?`, type: `error` });
-            }
-        }
-        else {
-            GA.event(`measure`, `measure delete success`);
-            this.getData();
         }
     }
     async getData() {

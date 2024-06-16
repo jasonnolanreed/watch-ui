@@ -29,7 +29,7 @@ const makeHtml = (component) => (`
 		<textarea id="note" class="large" name="note" maxlength="500">${component.watch.note}</textarea>
 	</div>
 	<div class="form-controls">
-		<a class="button negative" href="#/watches">
+		<a class="button negative-inverse" href="#/watches">
 			<gwbw-icon name="do_not_disturb"></gwbw-icon>
 			Cancel
 		</a>
@@ -40,6 +40,11 @@ const makeHtml = (component) => (`
 	</div>
 	<input type="hidden" name="watchId" value="${component.watch._id}">
 </form>
+<hr>
+<button type="button" class="delete-watch button negative" watch-id="${component.watch._id}">
+	<gwbw-icon name="delete"></gwbw-icon>
+	Delete Watch
+</button>
 `);
 const makeCss = (component) => (`
 `);

@@ -21,7 +21,7 @@ const makeHtml = (component) => (`
 	<br/>
 	<br/>
 	<div class="feature-controls">
-		<a href="#/sessions/${component.watch._id}" class="button">
+		<a href="#/sessions/${component.watch._id}" class="button neutral">
 			<gwbw-icon name="insert_chart"></gwbw-icon>
 			Sessions
 		</a>
@@ -44,7 +44,7 @@ const makeHtml = (component) => (`
 		timegrapherresults="${encodeURI(JSON.stringify(component.latestTimegrapherResults))}"
 	></gwbw-timegrapher-table>
 	<div class="feature-controls">
-		<a href="#/timegrapher/${component.watch._id}" class="button">
+		<a href="#/timegrapher/${component.watch._id}" class="button neutral">
 			<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 			Results
 		</a>
