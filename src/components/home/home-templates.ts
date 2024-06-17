@@ -88,10 +88,10 @@ gwbw-icon.between-screenshots {
 			<span class="nowrap">Good Watch</span>
 			<span class="nowrap"">Bad Watch</span>
 		</h1>
-		<h4>
+		<h2>
 			<span class="nowrap">The Premium</span>
 			<span class="nowrap">Watch Timing App</span>
-		</h4>
+		</h2>
 	</div>
 </div>
 

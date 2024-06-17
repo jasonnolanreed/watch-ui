@@ -13,7 +13,7 @@ const makeHtml = (component: MeasureInterval) => (
 	<gwbw-icon name="straighten"></gwbw-icon>
 	<div>
 		<h1>Measure Interval</h1>
-		<h4>${component.watch.name}</h4>
+		<h2>${component.watch.name}</h2>
 	</div>
 </div>
 

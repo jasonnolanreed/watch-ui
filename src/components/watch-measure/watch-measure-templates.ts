@@ -6,7 +6,7 @@ const makeHtml = (component: WatchMeasure) => (
 	<gwbw-icon name="insert_chart"></gwbw-icon>
 	<div>
 		<h1>Add Measure</h1>
-		<h4>${component.watch.name}</h4>
+		<h2>${component.watch.name}</h2>
 	</div>
 </div>
 
