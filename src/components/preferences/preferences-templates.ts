@@ -9,7 +9,7 @@ const makeHtml = (component: Preferences) => (
 
 <div class="logged-in-box feature-box">
 	<div>
-		<b>Logged in as:</b>
+		<b>Logged in as</b>
 		<div>${component.user.email}</div>
 	</div>
 	<button type="button" class="logout button negative" href="javascript:void(0);">
@@ -23,7 +23,10 @@ const makeHtml = (component: Preferences) => (
 		<gwbw-icon name="account_circle"></gwbw-icon>
 		<h2>Custom Positions</h2>
 	</div>
-	<a href="/#/custom-positions">Manage custom preferences</a>
+	<a href="/#/custom-positions" class="button positive-inverse">
+		<gwbw-icon name="account_circle"></gwbw-icon>
+		<span>Manage custom preferences</span>
+	</a>
 </div>
 
 <hr/>

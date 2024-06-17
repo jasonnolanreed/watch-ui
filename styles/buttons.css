@@ -84,7 +84,6 @@
 }
 
 .button.button.neutral {
-	font-weight: bold;
 	color: var(--charcoal);
 	text-shadow: none;
 	background-color: #fff;
@@ -92,7 +91,6 @@
 }
 
 .button.button.positive-inverse {
-	font-weight: bold;
 	color: var(--good);
 	text-shadow: none;
 	background-color: #fff;
@@ -100,7 +98,6 @@
 }
 
 .button.button.negative-inverse {
-	font-weight: bold;
 	color: var(--bad);
 	text-shadow: none;
 	background-color: #fff;
@@ -186,7 +183,8 @@ button[disabled][disabled] {
 }
 
 .toggle-buttons button.selected {
-	color: var(--graphite);
+	color: var(--good);
+	text-shadow: 1px solid var(--good);
 	text-decoration: underline;
 	text-underline-offset: 0.24em;
 	text-decoration-color: color-mix(in srgb, currentColor 27%, transparent);
