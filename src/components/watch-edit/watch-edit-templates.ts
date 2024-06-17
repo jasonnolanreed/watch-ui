@@ -43,11 +43,20 @@ const makeHtml = (component: WatchEdit) => (
 	</div>
 	<input type="hidden" name="watchId" value="${component.watch._id}">
 </form>
-<hr>
-<button type="button" class="delete-watch button negative" watch-id="${component.watch._id}">
-	<gwbw-icon name="delete"></gwbw-icon>
-	Delete Watch
-</button>
+
+<br><br>
+
+<div class="feature-box">
+	<h3>Delete watch</h3>
+	<p>
+		<gwbw-icon name="warning" color="bad"></gwbw-icon>
+		<b class="color-bad">Warning:</b> deletion of this watch, and all its associated data, will not be reversible.
+	</p>
+	<button type="button" class="delete-watch button negative" watch-id="${component.watch._id}">
+		<gwbw-icon name="delete"></gwbw-icon>
+		Delete Watch
+	</button>
+</div>
 `
 );
 

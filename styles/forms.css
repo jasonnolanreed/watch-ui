@@ -94,13 +94,14 @@ textarea, .faux-input {
 	font-size: 1em;
 	font-family: var(--sans-font);
 	border: none;
+	border-left: 5px solid var(--gray);
 	border-radius: 2px;
 	outline: none;
 	background-color: var(--really-almost-white);
 	box-shadow: 0 0 0 1px var(--smoke);
 	appearance: none;
 	-webkit-appearance: none;
-	transition: box-shadow 0.15s ease;
+	transition: box-shadow 0.15s ease, border 0.15s ease;
 }
 
 .faux-input:after {
@@ -109,6 +110,7 @@ textarea, .faux-input {
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, textarea:focus {
+	border-left-color: var(--slate);
 	box-shadow: 0 0 0 1px var(--slate), 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.07);
 }
 

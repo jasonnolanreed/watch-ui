@@ -8,10 +8,8 @@ const makeHtml = (component) => (`
 	${showPositions(component)}
 </ul>
 
-<br/>
-
 <div class="form-controls">
-	<button class="add-position button positive">
+	<button class="add-position sneaky-button link-button big-link positive">
 		<gwbw-icon name="add_circle"></gwbw-icon>
 		Add Custom Position
 	</button>

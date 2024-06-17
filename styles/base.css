@@ -23,6 +23,14 @@
 	--midnight: #222;
 }
 
+.color-good {
+	color: var(--good);
+}
+
+.color-bad {
+	color: var(--bad);
+}
+
 html, body {
 	position: relative;
 	margin: 0;
@@ -52,7 +60,11 @@ img {
 	width: 100%;
 }
 
-a, a:visited {
+a,
+a:visited,
+.link-button,
+.link-button:visited {
+	font-family: var(--sans-font);
 	color: var(--charcoal);
 	text-decoration: underline;
 	text-underline-offset: 0.24em;
@@ -64,7 +76,7 @@ a, a:visited {
 	}
 }
 
-a.big-link {
+.big-link.big-link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -89,7 +101,7 @@ a.big-link {
 	}
 }
 
-a.big-link gwbw-icon {
+.big-link.big-link gwbw-icon {
 	font-size: 1.2em;
 	margin: -0.2em 0; /* offset height increase */
 }

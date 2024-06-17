@@ -7,7 +7,6 @@ const makeHtml = (component) => (`
 ${showSortControls(component)}
 <form>
 	${listWatches(component)}
-	<br>
 	<div class="form-controls">
 		<a href="#/watches/add" class="big-link positive">
 			<gwbw-icon name="add_circle"></gwbw-icon>

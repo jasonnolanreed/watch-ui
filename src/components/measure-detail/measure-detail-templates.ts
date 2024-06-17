@@ -40,11 +40,18 @@ const makeHtml = (component: MeasureDetail) => (
 			Save Measure
 		</button>
 	</div>
-	<hr>
-	<button type="button" class="button negative delete-button" measure-id="${component.measure._id}">
-		<gwbw-icon name="delete"></gwbw-icon>
-		Delete Measure
-	</button>
+	<br><br>
+	<div class="feature-box">
+		<h3>Delete measure</h3>
+		<p>
+			<gwbw-icon name="warning" color="bad"></gwbw-icon>
+			<b class="color-bad">Warning:</b> deletion of this measure will not be reversible.
+		</p>
+		<button type="button" class="button negative delete-button" measure-id="${component.measure._id}">
+			<gwbw-icon name="delete"></gwbw-icon>
+			Delete Measure
+		</button>
+	</div>
 </form>
 `
 );
