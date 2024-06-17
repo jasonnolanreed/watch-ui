@@ -84,6 +84,7 @@
 }
 
 .button.button.neutral {
+	font-weight: bold;
 	color: var(--charcoal);
 	text-shadow: none;
 	background-color: #fff;
@@ -91,6 +92,7 @@
 }
 
 .button.button.positive-inverse {
+	font-weight: bold;
 	color: var(--good);
 	text-shadow: none;
 	background-color: #fff;
@@ -98,6 +100,7 @@
 }
 
 .button.button.negative-inverse {
+	font-weight: bold;
 	color: var(--bad);
 	text-shadow: none;
 	background-color: #fff;

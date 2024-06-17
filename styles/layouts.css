@@ -40,10 +40,11 @@ layout.main .panel {
 	padding: var(--padding);
 	border-radius: 1rem;
 	box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.25), 0 0 0 0.9rem rgba(255, 255, 255, 0.35), 0 0.5rem 8rem 0 rgba(0, 0, 0, 0.6);
-	
-	footer {
-		margin-top: auto;
-	}
+}
+
+.edge-to-edge-container {
+	margin-left: calc(-1 * var(--layout-padding-large));
+	margin-right: calc(-1 * var(--layout-padding-large));
 }
 
 /* Keep in sync with .panel width */
@@ -63,6 +64,7 @@ layout.main .panel {
 
 
 layout.main footer {
+	margin-top: auto;
 	font-size: 0.9rem;
 	color: var(--slate);
 	padding-bottom: 1rem;
@@ -92,6 +94,11 @@ layout.main footer {
 		min-height: 100vh;
 		border-radius: 0;
 		box-shadow: none;
+	}
+
+	.edge-to-edge-container.edge-to-edge-container {
+		margin-left: calc(-1 * var(--layout-padding-xsmall));
+		margin-right: calc(-1 * var(--layout-padding-xsmall));
 	}
 
 	.sticky-inner.sticky {

@@ -4,7 +4,7 @@ const makeHtml = (component) => (`
 	<h1>${component.watch.name}</h1>
 </div>
 
-<div class="session feature-box">
+<div class="session feature-box edge-to-edge-container">
 	<div class="page-title page-subtitle">
 		<gwbw-icon name="insert_chart"/></gwbw-icon>
 		<h2>Latest Session</h2>
@@ -32,9 +32,9 @@ const makeHtml = (component) => (`
 	</div>
 </div>
 
-<br/>
+<hr class="semi-compact">
 
-<div class="timegrapher feature-box">
+<div class="timegrapher feature-box edge-to-edge-container">
 	<div class="page-title page-subtitle">
 		<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 		<h2>Timegrapher Results</h2>
@@ -56,7 +56,7 @@ const makeHtml = (component) => (`
 </div>
 
 
-<br/><br/>
+<hr class="semi-compact">
 
 
 <div class="details">
