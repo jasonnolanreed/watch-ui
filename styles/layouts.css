@@ -43,6 +43,7 @@ layout.main .panel {
 }
 
 .edge-to-edge-container {
+	padding: var(--padding) !important;
 	margin-left: calc(-1 * var(--layout-padding-large));
 	margin-right: calc(-1 * var(--layout-padding-large));
 }

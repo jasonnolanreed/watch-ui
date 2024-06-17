@@ -17,7 +17,7 @@ ${component.preferences.showTimegrapherFeatures ? `
 		<h2>${component.watch.name}</h2>
 	</div>
 </div>
-<div class="feature-box">
+<div class="feature-box edge-to-edge-container">
 	${showSessionsInfo(component)}
 	${showSessionsSelection(component)}
 	${showDeviationGraph(component)}
