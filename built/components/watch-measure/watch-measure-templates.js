@@ -76,18 +76,37 @@ const makeCss = (component) => (`
 	min-width: 10em;
 }
 
-@container cq-watch-measure (width < 500px) {
-	.form-controls {
-		display: flex;
+@supports (container-type: inline-size) {
+	@container cq-watch-measure (width < 500px) {
+		.form-controls {
+			display: flex;
+		}
+	
+		.form-controls .button {
+			font-size: 1.2em;
+			padding: 0.8em 1em;
+		}
+	
+		.now {
+			width: 100%;
+		}
 	}
+}
 
-	.form-controls .button {
-		font-size: 1.2em;
-		padding: 0.8em 1em;
-	}
-
-	.now {
-		width: 100%;
+@supports not (container-type: inline-size) {
+	@media (max-width: 529.9px) {
+		.form-controls {
+			display: flex;
+		}
+	
+		.form-controls .button {
+			font-size: 1.2em;
+			padding: 0.8em 1em;
+		}
+	
+		.now {
+			width: 100%;
+		}
 	}
 }
 </style>

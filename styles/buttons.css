@@ -23,20 +23,20 @@
 	cursor: pointer;
 	appearance: none;
 	-webkit-appearance: none;
+}
 
-	gwbw-icon {
-		font-size: 1.2em;
-		margin: -0.2em 0; /* offset height increase */
-	}
+.button.button:after {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background-color: transparent;
+	box-shadow: 0 1em 1.5em 0 rgba(0, 0, 0, 0.04);
+	transition: all 0.2s ease;
+}
 
-	&:after {
-		content: "";
-		position: absolute;
-		top: 0; right: 0; bottom: 0; left: 0;
-		background-color: transparent;
-		box-shadow: 0 1em 1.5em 0 rgba(0, 0, 0, 0.04);
-		transition: all 0.2s ease;
-	}
+.button.button gwbw-icon {
+	font-size: 1.2em;
+	margin: -0.2em 0; /* offset height increase */
 }
 
 @media (hover: hover) {
@@ -145,11 +145,11 @@ button[disabled][disabled] {
 	text-decoration: underline;
 	text-underline-offset: 0.24em;
 	text-decoration-color: color-mix(in srgb, currentColor 27%, transparent);
+}
 
-	&:hover {
-		text-decoration: underline;
-		color: var(--slate);
-	}
+.link-button:hover {
+	text-decoration: underline;
+	color: var(--slate);
 }
 
 .toggle-buttons {

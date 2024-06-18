@@ -20,49 +20,69 @@ header {
 nav {
 	display: flex;
 	gap: 0.75rem 1rem;
+}
 
-	a {
-		display: flex;
-		align-items: center;
-		gap: 0.2em;
-		color: var(--graphite) !important;
-		text-decoration: none !important;
+nav a {
+	display: flex;
+	align-items: center;
+	gap: 0.2em;
+	color: var(--graphite) !important;
+	text-decoration: none !important;
 
-		&[active] {
-			text-decoration: underline !important;
-		}
-	}
-
-	a:hover {
-		color: var(--charcoal) !important;
+	&[active] {
+		text-decoration: underline !important;
 	}
 }
 
-.logo-container {
-	img {
-		display: none;
-	}
+nav a:hover {
+	color: var(--charcoal) !important;
+}
+
+.logo-container img {
+	display: none;
 }
 
 hr {
 	margin: 1.5rem 0 2rem 0 !important;
 }
 
-@container cq-header (width < 650px) {
-	img.small-logo {
-		display: block;
-		width: 40px;
-		max-width: 100%;
-		height: auto;
+@supports (container-type: inline-size) {
+	@container cq-header (width < 650px) {
+		img.small-logo {
+			display: block;
+			width: 40px;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	@container cq-header (width >= 650px) {
+		img.large-logo {
+			display: block;
+			width: 300px;
+			max-width: 100%;
+			height: auto;
+		}
 	}
 }
 
-@container cq-header (width >= 650px) {
-	img.large-logo {
-		display: block;
-		width: 300px;
-		max-width: 100%;
-		height: auto;
+@supports not (container-type: inline-size) {
+	@media (max-width: 679.9px) {
+		img.small-logo {
+			display: block;
+			width: 40px;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	@media (min-width: 680px) {
+		img.large-logo {
+			display: block;
+			width: 300px;
+			max-width: 100%;
+			height: auto;
+		}
 	}
 }
 </style>

@@ -33,10 +33,10 @@ img.feature,
 
 .feature-photo {
 	position: relative;
+}
 
-	img {
-		border-radius: 1rem;
-	}
+.feature-photo img {
+	border-radius: 1rem;
 }
 
 .form-controls > * {
@@ -51,21 +51,37 @@ gwbw-icon.between-screenshots {
 	text-align: center;
 }
 
-@container cq-home (width < 500px) {
-	.page-title {
-		flex-wrap: wrap;
-		justify-content: center;
-		text-align: center;
-		margin-bottom: 3rem !important;
+@supports (container-type: inline-size) {
+	@container cq-home (width < 500px) {
+		.page-title {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			margin-bottom: 3rem !important;
+		}
 
-		> * {
-			width: 100%;
+		.jewel-logo {
+			width: 5rem;
+			margin: 0 auto;
 		}
 	}
+}
 
-	.jewel-logo {
-		width: 5rem;
-		margin: 0 auto;
+@supports not (container-type: inline-size) {
+	@media (width < 530px) {
+		.page-title {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			margin-bottom: 3rem !important;
+		}
+
+		.jewel-logo {
+			width: 5rem;
+			margin: 0 auto;
+		}
 	}
 }
 

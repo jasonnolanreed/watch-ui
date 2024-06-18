@@ -69,10 +69,10 @@ layout.main footer {
 	font-size: 0.9rem;
 	color: var(--slate);
 	padding-bottom: 1rem;
+}
 
-	hr {
-		margin-bottom: 2rem;
-	}
+layout.main footer hr {
+	margin-bottom: 2rem;
 }
 
 /* DEV NOTE: These media queries should stay in sync with messages-templates.ts */

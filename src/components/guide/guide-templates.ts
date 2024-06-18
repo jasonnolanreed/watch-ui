@@ -12,18 +12,18 @@ export const makeTemplate = (component: Guide) => (
 
 .topics-list {
 	margin-top: 0.5rem;
+}
 
-	li {
-		margin-bottom: 0.5rem;
-	}
+.topics-list li {
+	margin-bottom: 0.5rem;
 }
 
 [scroll-id] {
 	transition: 0.5s color ease;
+}
 
-	&.highlighted {
-		color: var(--good);
-	}
+[scroll-id].highlighted {
+	color: var(--good);
 }
 </style>
 

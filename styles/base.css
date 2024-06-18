@@ -69,11 +69,14 @@ a:visited,
 	text-decoration: underline;
 	text-underline-offset: 0.24em;
 	text-decoration-color: color-mix(in srgb, currentColor 27%, transparent);
+}
 
-	&:hover:not(.button) {
-		color: var(--slate);
-		text-decoration: underline;
-	}
+a:hover:not(.button),
+a:visited:hover:not(.button),
+.link-button:hover:not(.button),
+.link-button:visited:hover:not(.button) {
+	color: var(--slate);
+	text-decoration: underline;
 }
 
 .big-link.big-link {
@@ -84,20 +87,21 @@ a:visited,
 	position: relative;
 	font-size: 1.2rem;
 	font-weight: 600;
+}
 
-	&.positive {
-		color: var(--good);
-		&:hover {
-			color: var(--good) !important;
-			opacity: 0.8;
-		}
+.big-link.big-link.positive {
+	color: var(--good);
+	&:hover {
+		color: var(--good) !important;
+		opacity: 0.8;
 	}
-	&.negative {
-		color: var(--bad);
-		&:hover {
-			color: var(--bad) !important;
-			opacity: 0.8;
-		}
+}
+
+.big-link.big-link.negative {
+	color: var(--bad);
+	&:hover {
+		color: var(--bad) !important;
+		opacity: 0.8;
 	}
 }
 
@@ -174,10 +178,10 @@ hr.minimal {
 ul {
 	margin: 0;
 	padding-left: 1.25rem;
+}
 
-	li {
-		font-size: 1rem;
-	}
+ul li {
+	font-size: 1rem;
 }
 
 .block {
@@ -247,10 +251,10 @@ ul {
 	gap: 0.5rem;
 	margin-bottom: 1.75rem;
 	color: var(--slate) !important;
+}
 
-	&:hover {
-		opacity: 0.8;
-	}
+.back-link:hover {
+	opacity: 0.8;
 }
 
 .back-link gwbw-icon {

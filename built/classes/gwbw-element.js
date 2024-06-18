@@ -18,7 +18,7 @@ export class GWBWElement extends HTMLElement {
         this.classList.add(`block`);
         this.addEventListener(`click`, this._onClick);
         if (this.shadowRoot) {
-            this.shadowRoot.adoptedStyleSheets.push(globalStyleSheet);
+            this.shadowRoot.adoptedStyleSheets = [globalStyleSheet];
         }
     }
     disconnectedCallback() {
