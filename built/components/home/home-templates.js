@@ -6,11 +6,26 @@ export const makeTemplate = (component) => (`
 	container-type: inline-size;
 }
 
+.page-title {
+	justify-content: center !important;
+	margin-bottom: 1.5rem !important;
+}
+	
 .jewel-logo {
 	width: 5rem;
 	height: auto;
 	margin-right: 0.75rem;
 	animation: jewelspin 4s linear infinite;
+}
+
+p {
+	text-align: center;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+h2 {
+	text-align: center !important;
 }
 
 .feature-container {
@@ -34,6 +49,10 @@ img.feature,
 
 .feature-photo img {
 	border-radius: 1rem;
+}
+
+.form-controls {
+	justify-content: center !important;
 }
 
 .form-controls > * {
@@ -111,15 +130,15 @@ gwbw-icon.between-screenshots {
 <br>
 
 <p>
-	Welcome to the ultimate mechanical watch enthusiast app.
+	Welcome to the ultimate mechanical watch timing app.
 	<b class="nowrap">Good Watch Bad Watch</b> is a premium tool for tracking the performance of your watches.
 	Visualize the behavior of your watches in a way that is easy to understand, and learn how to get the best out of them.
 </p>
 
 <div>
-	<br><br>
+	<br>
 	<div class="feature-photo">
-		<img src="assets/images/photos/3879-table.jpg?v=1" alt="photo of chronograph watch" style="aspect-ratio: 2 / 1;">
+		<img src="assets/images/photos/3879-table.jpg?v=1" alt="photo of chronograph watch" style="aspect-ratio: 3 / 1; object-fit: cover;">
 	</div>
 	<br><br><br><br>
 </div>
