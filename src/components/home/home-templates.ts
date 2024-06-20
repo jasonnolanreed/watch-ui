@@ -134,7 +134,7 @@ gwbw-icon.between-screenshots {
 
 <p>
 	Welcome to the ultimate mechanical watch timing app.
-	<b class="nowrap">Good Watch Bad Watch</b> is a premium tool for tracking the performance of your watches.
+	<b class="nowrap">Good Watch Bad Watch</b> is a premium tool for tracking the accuracy of your watches.
 	Visualize the behavior of your watches in a way that is easy to understand, and learn how to get the best out of them.
 </p>
 

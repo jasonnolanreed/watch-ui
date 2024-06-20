@@ -67,6 +67,8 @@ export class Sessions extends GWBWElement {
             requestAnimationFrame(_ => {
                 this.shadowRoot.querySelector(`.measures-list`).classList.add(`interval-start`);
                 target.classList.add(`interval-start`);
+                target.classList.add(`positive-inverse`);
+                target.classList.remove(`positive`);
             });
         }
         else {
@@ -75,6 +77,8 @@ export class Sessions extends GWBWElement {
                 requestAnimationFrame(_ => {
                     this.shadowRoot.querySelector(`.measures-list`).classList.remove(`interval-start`);
                     target.classList.remove(`interval-start`);
+                    target.classList.remove(`positive-inverse`);
+                    target.classList.add(`positive`);
                 });
             }
             else {

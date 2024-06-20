@@ -118,7 +118,7 @@ const showMeasures = (component) => {
 			${measure.firstOfDay ? component.preferences.measuresSort.includes('Asc') ? `separation-above` : `separation-below` : ``}"
 			measure-id="${measure._id}"
 		>
-			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} sneaky-button" measure-index="${index}">
+			<button class="interval ${component.currentSession.length < 2 ? `invisible` : ``} button positive ultra-compact" measure-index="${index}">
 				<gwbw-icon class="interval-other" name="straighten" title="Select interval"></gwbw-icon>
 				<gwbw-icon class="interval-start" name="straighten" title="Deselect interval"></gwbw-icon>
 			</button>
@@ -193,7 +193,7 @@ button.next-session { margin-left: 0.35rem !important; }
 .header-deviation { margin-right: 4.2rem; }
 .good-bad-message h4 { margin-bottom: 0; }
 .measure-position { font-size: 1.5rem; color: var(--graphite); margin-right: 0.2rem; }
-.has-note { font-size: 1rem; color: var(--good); margin-left: 0.4rem; }
+.has-note { font-size: 1rem; color: var(--bad); margin-left: 0.4rem; }
 .session-interval-link, .session-interval-link > * { display: inline-flex; align-items: center; gap: 4px; }
 .session-interval-link, .session-interval-link:hover { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
@@ -207,6 +207,8 @@ button.next-session { margin-left: 0.35rem !important; }
 	flex-direction: column-reverse;
 
 }
+.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; }
+.sort-controls .toggle-buttons button.selected { pointer-events: none; }
 .measures-form {
 	width: 100%;
 	margin-bottom: 1em;
@@ -218,27 +220,16 @@ button.next-session { margin-left: 0.35rem !important; }
 	margin-left: auto;
 }
 .interval.interval {
-	font-size: 1.65em;
-	color: var(--charcoal);
-	margin-left: -0.6em;
-	padding: 0.125em 0.35em;
-	padding-right: 0.2em;
-	opacity: 0.35;
-	cursor: pointer;
-	z-index: 1;
-}
-.sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 1em 0 2em; }
-.sort-controls .toggle-buttons button.selected { pointer-events: none; }
-@media (hover: hover) {
-	.interval:hover { opacity: 1; }
+	min-width: 2.25rem !important;
+	width: 2.25rem !important;
+	height: 2.25rem !important;
+	margin-left: 0 !important;
+	margin-right: 0.5rem !important;
 }
 .interval gwbw-icon { transform: rotate(90deg); }
 .interval:not(.interval-start) .interval-start { display: none; }
 .interval.interval-start .interval-other { display: none; }
-.measures-list.interval-start .interval { opacity: 1; }
-.measures-list.interval-start .interval.interval-start gwbw-icon { color: var(--graphite); }
 .measures-list.interval-start .interval:not(.interval-start) gwbw-icon {
-	color: var(--good);
 	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
 }
 @keyframes entice {

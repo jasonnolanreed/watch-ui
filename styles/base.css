@@ -41,6 +41,8 @@ html, body {
 	font-family: var(--sans-font), sans-serif;
 	font-weight: 400;
 	color: var(--charcoal);
+	text-wrap: wrap;
+	text-wrap: pretty;
 }
 
 @media (max-width: 500px) {
