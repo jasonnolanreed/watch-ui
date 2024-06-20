@@ -145,7 +145,7 @@ const showMeasures = (component: Sessions) => {
 			<div class="controls nowrap ${getMomentDiffFromMeasure(measure) < 0 ? `slow` : `fast`}">
 				<span class="measure-deviation">${roundToOneDecimal(getMomentDiffFromMeasure(measure))}s</span>
 				<a
-					class="edit-button button neutral ultra-compact"
+					class="edit-button button positive-inverse ultra-compact"
 					href="#/measure/${measure._id}"
 				>
 					<gwbw-icon name="tune"></gwbw-icon>
@@ -206,7 +206,7 @@ button.next-session { margin-left: 0.35rem !important; }
 .header-deviation { margin-right: 4.2rem; }
 .good-bad-message h4 { margin-bottom: 0; }
 .measure-position { font-size: 1.5rem; color: var(--graphite); margin-right: 0.2rem; }
-.has-note { font-size: 1rem; color: var(--bad); margin-left: 0.4rem; }
+.has-note { font-size: 1.3rem; color: var(--bad); margin-left: 0.4rem; }
 .session-interval-link, .session-interval-link > * { display: inline-flex; align-items: center; gap: 4px; }
 .session-interval-link, .session-interval-link:hover { text-decoration: none; }
 .session-interval-link gwbw-icon[name="straighten"] { font-size: 1.4em; transform: rotate(90deg); }
@@ -235,28 +235,32 @@ button.next-session { margin-left: 0.35rem !important; }
 .interval.interval {
 	min-width: 2.25rem !important;
 	width: 2.25rem !important;
+	max-width: 2.25rem !important;
+	min-height: 2.25rem !important;
 	height: 2.25rem !important;
+	max-height: 2.25rem !important;
 	margin-left: 0 !important;
 	margin-right: 0.5rem !important;
+	overflow: hidden;
 }
-.interval gwbw-icon { transform: rotate(90deg); }
+.interval gwbw-icon { margin: 0 !important; transform: rotate(90deg); }
 .interval:not(.interval-start) .interval-start { display: none; }
 .interval.interval-start .interval-other { display: none; }
-.measures-list.interval-start .interval:not(.interval-start) gwbw-icon {
+.measures-list.interval-start .interval:not(.interval-start) gwbw-icon svg {
 	animation: entice 1.2s cubic-bezier(.36, .07, .19, .97) infinite;
 }
 @keyframes entice {
 	10%, 90% {
-		transform: rotate(93deg);
+		transform: rotate(3deg);
 	}
 	20%, 80% {
-		transform: rotate(85deg);
+		transform: rotate(-6deg);
 	}
 	30%, 50%, 70% {
-		transform: rotate(96deg);
+		transform: rotate(6deg);
 	}
 	40%, 60% {
-		transform: rotate(83deg);
+		transform: rotate(-3deg);
 	}
 }
 </style>
