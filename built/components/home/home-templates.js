@@ -1,5 +1,5 @@
 import { mockGoodToleranceMinus, mockGoodTolerancePlus, mockInterval, mockMeasures, mockPositions, mockPositionsInterval, mockSortedPositionNames, mockWatch } from "../../data/mock-watch.data.js";
-export const makeTemplate = (component) => (`
+export const makeTemplate = (component) => (String.raw `
 <style>
 :host {
 	container-name: cq-home;

@@ -2,7 +2,7 @@ import '../message/message.js';
 import {MessageOptions, Messages} from './messages.js';
 
 export const makeCss = (component: Messages) => (
-`
+String.raw`
 <style>
 :host {
 	position: fixed;

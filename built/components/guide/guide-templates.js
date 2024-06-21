@@ -1,4 +1,4 @@
-export const makeTemplate = (component) => (`
+export const makeTemplate = (component) => (String.raw `
 <style>
 :host {
 /*

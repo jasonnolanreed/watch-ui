@@ -1,5 +1,5 @@
 import '../message/message.js';
-export const makeCss = (component) => (`
+export const makeCss = (component) => (String.raw `
 <style>
 :host {
 	position: fixed;

@@ -1,4 +1,4 @@
-export const makeTemplate = (component) => (`
+export const makeTemplate = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="account_box"></gwbw-icon>
 	<h1>Register</h1>

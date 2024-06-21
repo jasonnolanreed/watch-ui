@@ -1,7 +1,7 @@
 import {Guide} from "./guide";
 
 export const makeTemplate = (component: Guide) => (
-`
+String.raw`
 <style>
 :host {
 /*

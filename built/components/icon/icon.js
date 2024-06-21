@@ -24,7 +24,7 @@ export class Icon extends HTMLElement {
             return;
         }
         const fillColor = this.color ? `var(--${this.color})` : `currentColor`;
-        this.innerHTML = `
+        this.innerHTML = String.raw `
 			<span id="${this.uniqueIconName}">
 				<style>
 				#${this.uniqueIconName} svg {

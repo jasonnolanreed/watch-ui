@@ -1,7 +1,7 @@
 import {Register} from "./register";
 
 export const makeTemplate = (component: Register) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="account_box"></gwbw-icon>
 	<h1>Register</h1>

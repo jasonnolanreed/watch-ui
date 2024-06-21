@@ -1,5 +1,5 @@
 import { Format } from '../../utilities/date-time.js';
-export const makeTemplate = (component) => (`
+export const makeTemplate = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
 	<h1>Stats</h1>
