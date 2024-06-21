@@ -20,6 +20,7 @@ const makeCss = (component) => (String.raw `
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
 .list-item { gap: 25px; cursor: default; }
 .watch-link { justify-content: flex-start !important; min-width: 60px; }
+.watch-link gwbw-icon { font-size: 1.4rem; color: var(--good); }
 .controls { display: flex; align-items: center; gap: 0.4rem; }
 </style>
 `);
@@ -33,14 +34,14 @@ const listWatches = (component) => {
 		<li class="list-item spacious" watch-id="${watch._id}">
 			<div class="watch-name expand">
 				<a class="watch-link link-button expand" href="#/watches/${watch._id}">
-					<gwbw-icon name="watch"></gwbw-icon>
+					<gwbw-icon name="exit_to_app"></gwbw-icon>
 					<span>${watch.name}</span>
 				</a>
 			</div>
 			<div class="controls nowrap">
 				<a
 					href="#/watches/edit/${watch._id}"
-					class="button neutral compact"
+					class="button positive-inverse compact"
 				>
 					<gwbw-icon name="tune"></gwbw-icon>
 					<span>Edit</span>

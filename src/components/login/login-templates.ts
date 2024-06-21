@@ -1,7 +1,7 @@
 import {Login} from "./login";
 
 export const makeTemplate = (component: Login) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="exit_to_app"></gwbw-icon>
 	<h1>Login</h1>
