@@ -1,12 +1,12 @@
 import {Verify} from "./verify";
 
 const makeCss = (component: Verify) => (
-`
+String.raw`
 `
 );
 
 const makeHtml = (component: Verify) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="email"></gwbw-icon>
 	<h1>Verifying Email Address...</h1>

@@ -1,4 +1,4 @@
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
 	<div>
@@ -37,11 +37,11 @@ const makeHtml = (component) => (`
 		</button>
 	</div>
 	${component.atomicOffset && +component.atomicOffset !== 0 ?
-    `<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>` :
+    String.raw `<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>` :
     ``}
 </form>
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 :host {
 	container-type: inline-size;

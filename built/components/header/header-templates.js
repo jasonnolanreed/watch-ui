@@ -1,4 +1,4 @@
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 header {
 	container-type: inline-size;
@@ -84,7 +84,7 @@ hr {
 }
 </style>
 `);
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <header>
 	<div class="header-container">
 		<nav>
@@ -116,7 +116,7 @@ const makeHtml = (component) => (`
 `);
 const getLinks = (component) => {
     if (!component.loggedIn) {
-        return `
+        return String.raw `
 		<a class="login click-zone-05" href="#/login" ${component.viewName === 'login' ? 'active' : ''}>
 			<gwbw-icon name="exit_to_app"></gwbw-icon>
 			<span>Login</span>
@@ -127,7 +127,7 @@ const getLinks = (component) => {
 		</a>
 		`;
     }
-    return `
+    return String.raw `
 	<a class="watches click-zone-05" href="#/watches" ${component.viewName === 'watches' ? 'active' : ''}>
 		<gwbw-icon name="watch"></gwbw-icon>
 		<span>Watches</span>

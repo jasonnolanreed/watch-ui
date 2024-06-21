@@ -1,6 +1,6 @@
 import { Format, Difference } from '../../utilities/date-time.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
 	<span class="label">Back to sessions<span>
@@ -67,7 +67,7 @@ const makeHtml = (component) => (`
 	></gwbw-positions-detail>
 </div>
 
-${component.expandSessionLink ? `
+${component.expandSessionLink ? String.raw `
 <br><br>
 <a class="session-interval-link nowrap" href="javascript:window.location.replace('${component.expandSessionLink}');">
 	<span>
@@ -81,7 +81,7 @@ ${component.expandSessionLink ? `
 </a>
 ` : ``}
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }

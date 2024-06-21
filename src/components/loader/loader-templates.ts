@@ -1,7 +1,7 @@
 import {Loader} from "./loader";
 
 const makeCss = (component: Loader) => (
-`
+String.raw`
 <style>
 :host {
 	position: fixed;
@@ -58,7 +58,7 @@ img {
 );
 
 const makeHtml = (component: Loader) => (
-`
+String.raw`
 <div class="loader-container hidden" inert>
 	<div class="panel">
 		<img src="assets/images/jewel.svg" alt="loading">

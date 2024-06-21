@@ -1,4 +1,4 @@
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
 	<h1>Add a Watch</h1>
@@ -37,7 +37,7 @@ const makeHtml = (component) => (`
 	</div>
 </form>
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 `);
 export const makeTemplate = (component) => {
     return makeCss(component) + makeHtml(component);

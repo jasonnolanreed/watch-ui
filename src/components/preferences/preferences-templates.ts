@@ -1,7 +1,7 @@
 import {Preferences} from "./preferences";
 
 const makeHtml = (component: Preferences) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="tune"></gwbw-icon>
 	<h1>Preferences</h1>
@@ -107,7 +107,7 @@ const makeHtml = (component: Preferences) => (
 );
 
 const makeCss = (component: Preferences) => (
-`
+String.raw`
 <style>
 .logged-in-box {
 	display: flex;

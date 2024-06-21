@@ -1,6 +1,6 @@
 import { Format } from '../../utilities/date-time.js';
 import { positionsMap } from '../../utilities/position.js';
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="straighten"></gwbw-icon>
 	<div>
@@ -55,7 +55,7 @@ const showPositionsRadios = (component) => {
     let html = ``;
     for (const customPosition of component.customPositions) {
         html +=
-            `
+            String.raw `
 		<label class="check">
 			<input class="custom" type="radio" name="position" value="customid:${customPosition._id}" ${component.measure.customPositionId === customPosition._id ? `checked` : ``}>
 			<gwbw-icon name="account_circle"></gwbw-icon> ${customPosition.name}
@@ -65,7 +65,7 @@ const showPositionsRadios = (component) => {
     }
     for (const position in positionsMap) {
         html +=
-            `
+            String.raw `
 		<label class="check">
 			<input type="radio" name="position" value="${position}" ${component.measure.position === position ? `checked` : ``}>
 			<gwbw-icon name="${positionsMap[position].icon}"></gwbw-icon> ${positionsMap[position].label}
@@ -73,7 +73,7 @@ const showPositionsRadios = (component) => {
 		<br/>
 		`;
     }
-    html += `
+    html += String.raw `
 	<br/>
 	<a href="/#/custom-positions">Manage custom positions</a>
 	<br/>
@@ -84,13 +84,13 @@ const makeHiddenFields = (component) => {
     if (component.mode !== `add`) {
         return ``;
     }
-    return `
+    return String.raw `
 	<input type="hidden" name="watchId" value="${component.measure.watchId}">
 	<input type="hidden" name="targetMoment" value="${component.measure.targetMoment}">
 	<input type="hidden" name="moment" value="${component.measure.moment}">
 	`;
 };
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .page-title gwbw-icon {
 	transform: rotate(90deg);

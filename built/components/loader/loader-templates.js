@@ -1,4 +1,4 @@
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 :host {
 	position: fixed;
@@ -52,7 +52,7 @@ img {
 }
 </style>
 `);
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="loader-container hidden" inert>
 	<div class="panel">
 		<img src="assets/images/jewel.svg" alt="loading">

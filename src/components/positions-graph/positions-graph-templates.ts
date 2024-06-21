@@ -1,7 +1,7 @@
 import {PositionsGraph} from "./positions-graph";
 
 const makeCss = (component: PositionsGraph) => (
-`
+String.raw`
 <style>
 gwbw-positions-graph[loading] {
 	background-color: var(--silver);
@@ -16,7 +16,7 @@ gwbw-positions-graph[loading] canvas {
 );
 
 const makeHtml = (component: PositionsGraph) => (
-`
+String.raw`
 <canvas></canvas>
 `
 );

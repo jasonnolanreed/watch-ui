@@ -2,7 +2,7 @@ import {Format} from "../../utilities/date-time.js";
 import {Timegrapher} from "./timegrapher.js";
 
 const makeHtml = (component: Timegrapher) => (
-`
+String.raw`
 <a class="back-link" href="#/watches/${component.watch._id}">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
 	<span class="label">Back to watch</span>
@@ -17,7 +17,7 @@ const makeHtml = (component: Timegrapher) => (
 </div>
 
 ${component?.currentResults?.moment &&
-`<h3>Results: ${Format.date(component.currentResults.moment)}</h3>`
+String.raw`<h3>Results: ${Format.date(component.currentResults.moment)}</h3>`
 ||
 ``
 }
@@ -30,7 +30,7 @@ ${showResultsSelection(component)}
 ></gwbw-timegrapher-table>
 
 ${component?.currentResults &&
-`
+String.raw`
 <div class="form-controls">
 	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button neutral" type="button">
 		<gwbw-icon name="tune"></gwbw-icon>
@@ -47,7 +47,7 @@ ${component?.currentResults &&
 }
 
 ${component?.currentResults?.note &&
-`
+String.raw`
 <br/>
 <div class="form-input">
 	<label>Note</label>
@@ -69,7 +69,7 @@ ${component?.currentResults?.note &&
 
 const showResultsSelection = (component: Timegrapher) => {
 	if (component.timegrapherResults.length < 2) { return ``; }
-	return `
+	return String.raw`
 	<p class="results-selection form-controls">
 		<button class="previous-results button compact low-priority" ${getPreviousDisabled(component)} title="Previous results"><gwbw-icon name="arrow_back"></gwbw-icon></button>
 		<button class="next-results button compact low-priority" ${getNextDisabled(component)}><gwbw-icon name="arrow_forward" title="Next results"></gwbw-icon></button>
@@ -82,7 +82,7 @@ const getPreviousDisabled = (component: Timegrapher) => component.currentResults
 const getNextDisabled = (component: Timegrapher) => component.currentResultsIndex === (component.timegrapherResults.length - 1) ? `disabled` : ``;
 
 const makeCss = (component: Timegrapher) => (
-`
+String.raw`
 <style>
 .results-selection.results-selection { display: flex; align-items: center; gap: 0.1rem; margin: -0.5em 0 2em 0; }
 .results-selection .pages { margin-left: 1em; }

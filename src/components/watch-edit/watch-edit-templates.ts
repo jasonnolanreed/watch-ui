@@ -1,7 +1,7 @@
 import {WatchEdit} from "./watch-edit";
 
 const makeHtml = (component: WatchEdit) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
 	<div>
@@ -61,7 +61,7 @@ const makeHtml = (component: WatchEdit) => (
 );
 
 const makeCss = (component: WatchEdit) => (
-`
+String.raw`
 `
 );
 

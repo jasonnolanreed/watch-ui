@@ -2,10 +2,10 @@ import { getIconNameForPosition } from "../../utilities/position.js";
 import { timegrapherPositions, timegrapherToStandardPositionMap } from "../../utilities/timegrapher.js";
 const makeHtml = (component) => {
     if (!component.timegrapherResultsData) {
-        return `<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
+        return String.raw `<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
     }
     else {
-        return `
+        return String.raw `
 	<table>
 		<tr>
 			<th>Position</th>
@@ -38,8 +38,8 @@ const renderRows = (component) => {
             component.timegrapherResultsData[position.id + "BeatError"] ||
             component.timegrapherResultsData[position.id + "Amplitude"]) {
             const rate = component.timegrapherResultsData[position.id + "Rate"];
-            let row = `<tr class="position">`;
-            row += `
+            let row = String.raw `<tr class="position">`;
+            row += String.raw `
 			<td class="ellipsis" style="max-width: 200px;">
 				<span title="${position.label}">
 					<gwbw-icon name="${getIconNameForPosition(timegrapherToStandardPositionMap[position.id])}"></gwbw-icon>
@@ -68,7 +68,7 @@ const getGoodBadClass = (component, rate) => {
         return `bad`;
     }
 };
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 table {
 	margin: 2rem 0;

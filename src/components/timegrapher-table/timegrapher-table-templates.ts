@@ -4,9 +4,9 @@ import {TimegrapherTable} from "./timegrapher-table.js";
 
 const makeHtml = (component: TimegrapherTable) => {
 if (!component.timegrapherResultsData) {
-	return `<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
+	return String.raw`<p style="margin: 0;">No results have been entered yet</p><br/><br/>`;
 } else {
-	return `
+	return String.raw`
 	<table>
 		<tr>
 			<th>Position</th>
@@ -42,8 +42,8 @@ const renderRows = (component: TimegrapherTable) => {
 			component.timegrapherResultsData[position.id + "Amplitude"]
 		) {
 			const rate = component.timegrapherResultsData[position.id + "Rate"];
-			let row = `<tr class="position">`;
-			row += `
+			let row = String.raw`<tr class="position">`;
+			row += String.raw`
 			<td class="ellipsis" style="max-width: 200px;">
 				<span title="${position.label}">
 					<gwbw-icon name="${getIconNameForPosition(timegrapherToStandardPositionMap[position.id])}"></gwbw-icon>
@@ -74,7 +74,7 @@ const getGoodBadClass = (component: TimegrapherTable, rate) => {
 };
 
 const makeCss = (component: TimegrapherTable) => (
-`
+String.raw`
 <style>
 table {
 	margin: 2rem 0;

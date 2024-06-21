@@ -3,7 +3,7 @@ import {roundToOneDecimal} from '../../utilities/number.js';
 import {MeasureInterval} from './measure-interval.js';
 
 const makeHtml = (component: MeasureInterval) => (
-`
+String.raw`
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
 	<span class="label">Back to sessions<span>
@@ -70,7 +70,7 @@ const makeHtml = (component: MeasureInterval) => (
 	></gwbw-positions-detail>
 </div>
 
-${component.expandSessionLink ? `
+${component.expandSessionLink ? String.raw`
 <br><br>
 <a class="session-interval-link nowrap" href="javascript:window.location.replace('${component.expandSessionLink}');">
 	<span>
@@ -87,7 +87,7 @@ ${component.expandSessionLink ? `
 );
 
 const makeCss = (component: MeasureInterval) => (
-`
+String.raw`
 <style>
 .page-title gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }

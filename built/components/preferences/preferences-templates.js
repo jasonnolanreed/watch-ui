@@ -1,4 +1,4 @@
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="tune"></gwbw-icon>
 	<h1>Preferences</h1>
@@ -101,7 +101,7 @@ const makeHtml = (component) => (`
 	</div>
 </form>
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .logged-in-box {
 	display: flex;

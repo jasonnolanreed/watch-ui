@@ -1,7 +1,7 @@
 import {Header} from "./header";
 
 const makeCss = (component: Header) => (
-`
+String.raw`
 <style>
 header {
 	container-type: inline-size;
@@ -90,7 +90,7 @@ hr {
 );
 
 const makeHtml = (component: Header) => (
-`
+String.raw`
 <header>
 	<div class="header-container">
 		<nav>
@@ -124,7 +124,7 @@ const makeHtml = (component: Header) => (
 
 const getLinks = (component: Header) => {
 	if (!component.loggedIn) {
-		return `
+		return String.raw`
 		<a class="login click-zone-05" href="#/login" ${component.viewName === 'login' ? 'active' : ''}>
 			<gwbw-icon name="exit_to_app"></gwbw-icon>
 			<span>Login</span>
@@ -135,7 +135,7 @@ const getLinks = (component: Header) => {
 		</a>
 		`;
 	}
-	return `
+	return String.raw`
 	<a class="watches click-zone-05" href="#/watches" ${component.viewName === 'watches' ? 'active' : ''}>
 		<gwbw-icon name="watch"></gwbw-icon>
 		<span>Watches</span>

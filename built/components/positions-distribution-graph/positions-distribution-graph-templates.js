@@ -1,4 +1,4 @@
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 gwbw-positions-distribution-graph[loading] {
 	background-color: var(--silver);
@@ -10,7 +10,7 @@ gwbw-positions-distribution-graph[loading] canvas {
 }
 </style>
 `);
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <canvas></canvas>
 `);
 export const makeTemplate = (component) => {

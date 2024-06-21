@@ -1,4 +1,4 @@
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
 	<h1>Watches</h1>
@@ -15,7 +15,7 @@ ${showSortControls(component)}
 	</div>
 </form>
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 2em; }
 .list-item { gap: 25px; cursor: default; }
@@ -29,7 +29,7 @@ const listWatches = (component) => {
     }
     let htmlString = `<ul class="list">`;
     for (const watch of component.watches) {
-        htmlString += `
+        htmlString += String.raw `
 		<li class="list-item spacious" watch-id="${watch._id}">
 			<div class="watch-name expand">
 				<a class="watch-link link-button expand" href="#/watches/${watch._id}">
@@ -56,7 +56,7 @@ const showSortControls = (component) => {
     if (!component.watches || component.watches.length < 2) {
         return ``;
     }
-    return `
+    return String.raw `
 	<div class="sort-controls">
 		<label><b>Sort:</b></label>
 		<nav class="toggle-buttons" aria-label="Sort watches">

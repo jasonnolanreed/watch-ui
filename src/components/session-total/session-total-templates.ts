@@ -5,18 +5,18 @@ const makeHtml = (component: SessionTotal) => {
 	if (!component.sessionData) { return ``; }
 	const sessionTotalData: SessionTotalData = getSessionTotalData(component.sessionData);
 	if (!sessionTotalData) {
-		return `<p style="margin: 0;">Average rate will be shown here when multiple measures are taken within this session</p>`;
+		return String.raw`<p style="margin: 0;">Average rate will be shown here when multiple measures are taken within this session</p>`;
 	}
 	const totalClasses = getTotalClasses(component, sessionTotalData);
 	const displayRate = (sessionTotalData.averageRate !== 0) ?
-		`<span class="number">${sessionTotalData.averageRate}</span> seconds/day` :
+		String.raw`<span class="number">${sessionTotalData.averageRate}</span> seconds/day` :
 		"Perfect";
 	let html =
-	`
+	String.raw`
 	<h3 class="total ${totalClasses}">Average: ${displayRate}</h3>
 	`;
 	if (sessionTotalData.sessionDistance < 0.5) {
-		html += `
+		html += String.raw`
 		<p class="short-session-alert">
 			<gwbw-icon name="warning"></gwbw-icon>
 			<span>This average is prone to inaccuracy because of the short session. Sessions of 12+ hours provide better results.</span>
@@ -24,7 +24,7 @@ const makeHtml = (component: SessionTotal) => {
 		`;
 	} else {
 		html +=
-		`
+		String.raw`
 		<div class="good-bad-message ${totalClasses}">
 			<h4 class="good"><gwbw-icon name="thumb_up"></gwbw-icon> Good watch</h4>
 			<h4 class="bad"><gwbw-icon name="thumb_down"></gwbw-icon> Bad watch</h4>
@@ -51,7 +51,7 @@ const getTotalClasses = (component: SessionTotal, sessionTotalData: SessionTotal
 };
 
 const makeCss = (component: SessionTotal) => (
-`
+String.raw`
 <style>
 .total.good-watch { color: var(--good); }
 .total.bad-watch { color: var(--bad); }

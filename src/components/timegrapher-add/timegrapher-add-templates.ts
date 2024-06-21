@@ -2,7 +2,7 @@ import {timegrapherPositions} from "../../utilities/timegrapher.js";
 import {TimegrapherAdd} from "./timegrapher-add.js";
 
 const makeHtml = (component: TimegrapherAdd) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 	<div>
@@ -64,7 +64,7 @@ const renderFields = (component: TimegrapherAdd) => {
 };
 
 const makeCss = (component: TimegrapherAdd) => (
-`
+String.raw`
 <style>
 .form-input {
 	margin-bottom: 0.75rem;

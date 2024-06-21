@@ -1,7 +1,7 @@
 import {WatchDetail} from "./watch-detail";
 
 const makeHtml = (component: WatchDetail) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
 	<h1>${component.watch.name}</h1>
@@ -78,7 +78,7 @@ const makeHtml = (component: WatchDetail) => (
 		</div>
 
 		${component.watch.note &&
-		`
+		String.raw`
 		<div class="form-input">
 			<label>Note</label>
 			<div class="faux-input" disabled>${component.watch.note.split(`\n`).join(`<br/>`)}</div>
@@ -100,7 +100,7 @@ const makeHtml = (component: WatchDetail) => (
 );
 
 const makeCss = (component: WatchDetail) => (
-`
+String.raw`
 <style>
 .feature-controls {
 	display: flex;

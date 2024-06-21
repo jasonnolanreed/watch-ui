@@ -1,6 +1,6 @@
 import { positionsMap, getIconNameForPosition } from '../../utilities/position.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <h2>Positions</h2>
 <div class="positions">
 	<table>
@@ -14,7 +14,7 @@ const makeHtml = (component) => (`
 	</table>
 </div>
 `);
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .positions {}
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--graphite); }
@@ -34,7 +34,7 @@ const renderPositionsRows = (component) => {
         const displayRate = (position.rate !== 0) ?
             `${position.rate}s/d` :
             "Perfect";
-        positionsHtml += `
+        positionsHtml += String.raw `
 		<tr class="position">
 			<td class="ellipsis" style="max-width: 200px;">
 				<span title="${positionLabel}">

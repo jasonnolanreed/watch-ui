@@ -1,6 +1,6 @@
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 `);
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="email"></gwbw-icon>
 	<h1>Verifying Email Address...</h1>

@@ -1,7 +1,7 @@
 import {Message} from "./message";
 
 const makeCss = (component: Message) => (
-`
+String.raw`
 <style>
 :host {
 	width: 100%;
@@ -43,7 +43,7 @@ const makeCss = (component: Message) => (
 );
 
 const makeHtml = (component: Message) => (
-`
+String.raw`
 <div class="message" role="alert">
 	${getTypeIcon(component)}${` `}
 	<span class="text">${component.getAttribute(`message`)}</span>
@@ -57,14 +57,14 @@ const getTypeIcon = (component: Message) => {
 	if (component.getAttribute(`type`) === `info`) { iconName = `info`; }
 	if (component.getAttribute(`type`) === `success`) { iconName = `check_circle`; }
 	if (component.getAttribute(`type`) === `error`) { iconName = `warning`; }
-	return `<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
+	return String.raw`<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
 };
 
 const getCloseIcon = (component: Message) => {
 	if (component.getAttribute(`dismissable`) !== `true`) {
 		return ``;
 	} else {
-		return `
+		return String.raw`
 			<button class="close sneaky-button" aria-label="Dismiss message">
 				<gwbw-icon name="cancel"></gwbw-icon>
 			</button>

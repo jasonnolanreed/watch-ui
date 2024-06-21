@@ -1,5 +1,5 @@
 import { timegrapherPositions } from "../../utilities/timegrapher.js";
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 	<div>
@@ -53,7 +53,7 @@ const renderFields = (component) => {
     });
     return html;
 };
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .form-input {
 	margin-bottom: 0.75rem;

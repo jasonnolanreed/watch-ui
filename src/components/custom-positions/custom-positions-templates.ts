@@ -1,7 +1,7 @@
 import {CustomPositions} from "./custom-positions";
 
 const makeHtml = (component: CustomPositions) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="account_circle"></gwbw-icon>
 	<h1>Custom Positions</h1>
@@ -23,7 +23,7 @@ const makeHtml = (component: CustomPositions) => (
 const showPositions = (component: CustomPositions) => {
 	let html = ``;
 	for (const position of component.customPositions) {
-		html += `
+		html += String.raw`
 		<li class="list-item spacious">
 			<div>${position.name}</div>
 			<div class="controls nowrap">

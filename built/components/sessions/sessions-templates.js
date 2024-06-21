@@ -2,8 +2,8 @@ import { Format } from '../../utilities/date-time.js';
 import { getMomentDiffFromMeasure } from '../../utilities/measure.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
 import { getIconNameForPosition, getPositionNameForMeasure } from '../../utilities/position.js';
-const makeHtml = (component) => (`
-${component.preferences.showTimegrapherFeatures ? `
+const makeHtml = (component) => (String.raw `
+${component.preferences.showTimegrapherFeatures ? String.raw `
 <a class="back-link" href="#/watches/${component.watch._id}">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
 	<span class="label">Back to watch</span>
@@ -62,7 +62,7 @@ const showSessionsSelection = (component) => {
     if (component.sessions.length < 2) {
         return ``;
     }
-    return `
+    return String.raw `
 	<p class="session-selection form-controls">
 		<button class="previous-session button compact low-priority" ${getPreviousDisabled(component)} title="Previous session"><gwbw-icon name="arrow_back"></gwbw-icon></button>
 		<button class="next-session button compact low-priority" ${getNextDisabled(component)} title="Next session"><gwbw-icon name="arrow_forward"></gwbw-icon></button>
@@ -70,7 +70,7 @@ const showSessionsSelection = (component) => {
 	</p>
 	`;
 };
-const showDeviationGraph = (component) => (`
+const showDeviationGraph = (component) => (String.raw `
 <gwbw-deviation-graph
 	measures="${encodeURI(JSON.stringify(component.currentSession))}"
 	watch="${encodeURI(JSON.stringify(component.watch))}"
@@ -82,7 +82,7 @@ const showSessionIntervalLink = (component) => {
     }
     const session = component.currentSession;
     const intervalHref = `#/measure/interval/${session[0]._id}/${session[session.length - 1]._id}`;
-    return `
+    return String.raw `
 	<br/>
 	<a href="${intervalHref}" class="session-interval-link">
 		<span>
@@ -105,15 +105,15 @@ const showMeasures = (component) => {
         return ``;
     }
     let html = ``;
-    html += `
+    html += String.raw `
 	<div class="list-headers">
 		<div class="header-date-time">Pos/Date/Time</div>
 		<div class="header-deviation">Deviation</div>
 	</div>
 	`;
-    html += `<ul class="list measures-list">`;
+    html += String.raw `<ul class="list measures-list">`;
     component.currentSessionSorted.forEach((measure, index) => {
-        html += `
+        html += String.raw `
 		<li class="list-item
 			${measure.firstOfDay ? component.preferences.measuresSort.includes('Asc') ? `separation-above` : `separation-below` : ``}"
 			measure-id="${measure._id}"
@@ -151,17 +151,17 @@ const showMeasures = (component) => {
 };
 const showPositionIcon = (measure) => {
     if (measure.customPositionId) {
-        return `<gwbw-icon name="account_circle"></gwbw-icon>`;
+        return String.raw `<gwbw-icon name="account_circle"></gwbw-icon>`;
     }
     else {
-        return `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
+        return String.raw `<gwbw-icon name="${getIconNameForPosition(measure.position)}"></gwbw-icon>`;
     }
 };
 const showSortControls = (component) => {
     if (!component.currentSessionSorted || component.currentSessionSorted.length < 2) {
         return ``;
     }
-    return `
+    return String.raw `
 	<div class="sort-controls">
 		<label><b>Sort:</b></label>
 		<nav class="toggle-buttons" aria-label="Sort measures">
@@ -183,7 +183,7 @@ const showSortControls = (component) => {
 	</div>
 	`;
 };
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 .session-selection.session-selection { display: flex; align-items: center; gap: 0.1rem; margin: -0.5em 0 1em 0; }
 .session-selection .pages { margin-left: 1rem; }

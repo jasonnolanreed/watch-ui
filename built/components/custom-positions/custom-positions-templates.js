@@ -1,4 +1,4 @@
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="page-title">
 	<gwbw-icon name="account_circle"></gwbw-icon>
 	<h1>Custom Positions</h1>
@@ -18,7 +18,7 @@ const makeHtml = (component) => (`
 const showPositions = (component) => {
     let html = ``;
     for (const position of component.customPositions) {
-        html += `
+        html += String.raw `
 		<li class="list-item spacious">
 			<div>${position.name}</div>
 			<div class="controls nowrap">

@@ -21,7 +21,7 @@ export const globalStyleSheet = constructedSheet;
 try {
     // gtag(`js`, new Date());
     // gtag(`config`, measurementId);
-    if (Sentry) {
+    if (Sentry && environment === `production`) {
         Sentry.init({
             environment,
             dsn: `https://4ec231e6bf774e5bbc2546a1d11f5578@sentry.io/1426110`

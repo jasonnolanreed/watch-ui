@@ -1,7 +1,7 @@
 import {WatchMeasure} from "./watch-measure";
 
 const makeHtml = (component: WatchMeasure) => (
-`
+String.raw`
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
 	<div>
@@ -40,7 +40,7 @@ const makeHtml = (component: WatchMeasure) => (
 		</button>
 	</div>
 	${component.atomicOffset && +component.atomicOffset !== 0 ?
-	`<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>` :
+	String.raw`<p><small>Atomic Offset: ${component.atomicOffset}s</small></p>` :
 	``
 	}
 </form>
@@ -48,7 +48,7 @@ const makeHtml = (component: WatchMeasure) => (
 );
 
 const makeCss = (component: WatchMeasure) => (
-`
+String.raw`
 <style>
 :host {
 	container-type: inline-size;

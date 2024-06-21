@@ -1,4 +1,4 @@
-const makeCss = (component) => (`
+const makeCss = (component) => (String.raw `
 <style>
 :host {
 	width: 100%;
@@ -37,7 +37,7 @@ const makeCss = (component) => (`
 .text { margin-right: 1em; }
 </style>
 `);
-const makeHtml = (component) => (`
+const makeHtml = (component) => (String.raw `
 <div class="message" role="alert">
 	${getTypeIcon(component)}${` `}
 	<span class="text">${component.getAttribute(`message`)}</span>
@@ -55,14 +55,14 @@ const getTypeIcon = (component) => {
     if (component.getAttribute(`type`) === `error`) {
         iconName = `warning`;
     }
-    return `<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
+    return String.raw `<gwbw-icon class="type" name="${iconName}"></gwbw-icon>`;
 };
 const getCloseIcon = (component) => {
     if (component.getAttribute(`dismissable`) !== `true`) {
         return ``;
     }
     else {
-        return `
+        return String.raw `
 			<button class="close sneaky-button" aria-label="Dismiss message">
 				<gwbw-icon name="cancel"></gwbw-icon>
 			</button>

@@ -4,7 +4,7 @@ import {roundToOneDecimal} from '../../utilities/number.js';
 import {PositionsDetail} from './positions-detail.js';
 
 const makeHtml = (component: PositionsDetail) => (
-`
+String.raw`
 <h2>Positions</h2>
 <div class="positions">
 	<table>
@@ -21,7 +21,7 @@ const makeHtml = (component: PositionsDetail) => (
 );
 
 const makeCss = (component: PositionsDetail) => (
-`
+String.raw`
 <style>
 .positions {}
 .position gwbw-icon { margin-right: 0.2em; transform: scale(1.5); color: var(--graphite); }
@@ -41,7 +41,7 @@ const renderPositionsRows = (component: PositionsDetail) => {
 		const displayRate = (position.rate !== 0) ?
 			`${position.rate}s/d` :
 			"Perfect";
-		positionsHtml += `
+		positionsHtml += String.raw`
 		<tr class="position">
 			<td class="ellipsis" style="max-width: 200px;">
 				<span title="${positionLabel}">
