@@ -2,15 +2,16 @@ import { router } from '../../router.js';
 import { GA } from '../../ga.js';
 import { GWBWElement } from '../../classes/gwbw-element.js';
 import { WatchApi } from '../../api-helpers/watch.js';
+import { PreferenceApi } from '../../api-helpers/preference.js';
 import { TimegrapherApi } from '../../api-helpers/timegrapher.js';
 import { makeTemplate } from './timegrapher-templates.js';
-import { PreferenceApi } from '../../api-helpers/preference.js';
 export class Timegrapher extends GWBWElement {
     currentResultsIndex;
     watch;
     preferences;
     timegrapherResults;
     currentResults;
+    stickyIntersectionObserver;
     constructor() {
         super();
         this.attachShadow({ mode: `open` });
@@ -25,6 +26,9 @@ export class Timegrapher extends GWBWElement {
         this.getData();
     }
     disconnectedCallback() {
+        if (this.stickyIntersectionObserver) {
+            this.stickyIntersectionObserver.disconnect();
+        }
         super.disconnectedCallback();
     }
     async getData() {
@@ -50,6 +54,7 @@ export class Timegrapher extends GWBWElement {
         super.render();
         try {
             this.shadowRoot.innerHTML = makeTemplate(this);
+            this.initStickyControls();
         }
         catch (error) {
             console.error(`Error rendering`, error);
@@ -80,6 +85,22 @@ export class Timegrapher extends GWBWElement {
             const messages = document.querySelector(`gwbw-messages`);
             if (messages) {
                 messages.add({ message: `Failed to delete timegrapher result. Try again?`, type: `error` });
+            }
+        }
+    }
+    initStickyControls() {
+        const $outer = this.shadowRoot.querySelector(`.sticky-outer`);
+        const $inner = this.shadowRoot.querySelector(`.sticky-inner`);
+        this.stickyIntersectionObserver = new IntersectionObserver(_onIntersect, {});
+        this.stickyIntersectionObserver.observe($outer);
+        function _onIntersect(entries) {
+            if (entries[0].isIntersecting) {
+                $inner.classList.remove(`sticky`);
+                $outer.style.height = `auto`;
+            }
+            else {
+                $outer.style.height = `${$outer.offsetHeight}px`;
+                $inner.classList.add(`sticky`);
             }
         }
     }

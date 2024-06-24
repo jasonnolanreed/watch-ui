@@ -43,7 +43,7 @@ const outputLineItem = (dataList) => {
         html += `
 			<div>
 				<b>${Format.dateAndTime(item.date)}:</b>
-				<a href="#/watches/${item.watchId}">${item.watch}</a>
+				<a href="#/sessions/${item.watchId}">${item.watch}</a>
 			</div>
 			<div>${item.user}</div>
 			<hr class="compact"/>

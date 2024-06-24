@@ -95,7 +95,6 @@ String.raw`
 	top: 0; right: 0; bottom: 0; left: 0;
 	background-color: var(--good);
 	opacity: 0;
-	transition: 0.4s opacity ease;
 }
 
 .tab:hover:before {

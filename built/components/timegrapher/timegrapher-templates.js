@@ -17,7 +17,12 @@ const makeHtml = (component) => (String.raw `
 <br><br>
 
 ${component?.currentResults?.moment &&
-    String.raw `<h3>Results: ${Format.date(component.currentResults.moment)}</h3>`
+    String.raw `
+<h3>
+	<gwbw-icon name="event" style="font-size: 1.2em;"></gwbw-icon>
+	${Format.date(component.currentResults.moment)}
+</h3>
+`
     ||
         ``}
 
@@ -55,11 +60,14 @@ ${component?.currentResults?.note &&
 `
     ||
         ``}
-<div class="controls">
-	<a href="#/timegrapher/add/${component.watch._id}" class="big-link positive">
-		<gwbw-icon name="add_circle"></gwbw-icon>
-		<span>Add New Results</span>
-	</a>
+
+<div class="sticky-outer">
+	<div class="sticky-inner">
+		<a href="#/timegrapher/add/${component.watch._id}" class="big-link positive">
+			<gwbw-icon name="add_circle"></gwbw-icon>
+			<span>Add New Results</span>
+		</a>
+	</div>
 </div>
 `);
 const showResultsSelection = (component) => {

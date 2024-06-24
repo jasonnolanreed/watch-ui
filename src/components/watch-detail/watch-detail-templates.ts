@@ -4,7 +4,10 @@ const makeHtml = (component: WatchDetail) => (
 String.raw`
 <div class="page-title">
 	<gwbw-icon name="watch"></gwbw-icon>
-	<h1>${component.watch.name}</h1>
+	<div>
+		<h1>Watch Details</h1>
+		<h2>${component.watch.name}</h2>
+	</div>
 </div>
 
 <gwbw-watch-tabs

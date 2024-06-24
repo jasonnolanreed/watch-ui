@@ -53,7 +53,7 @@ ${showSortControls(component)}
 
 const showSessionsInfo = (component: Sessions) => {
 	if (!component.measures || !component.measures.length) { return ``; }
-	let html = `<h3>Session: `;
+	let html = `<h3><gwbw-icon name="event" style="font-size: 1.2em;"></gwbw-icon> `;
 	const startDate = Format.date(component.currentSession[0].targetMoment);
 	const endDate = Format.date(component.currentSession[component.currentSession.length - 1].targetMoment);
 	html += `<span class="nowrap">${startDate}</span>`;
