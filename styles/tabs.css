@@ -1,0 +1,81 @@
+.tabs {
+	width: var(--width);
+	margin: 3rem var(--negative-margin) 0 var(--negative-margin);
+	box-shadow: 0 -1.5rem 1.5rem rgba(0, 0, 0, 0.12);
+	position: relative;
+	z-index: 4;
+
+	container-name: cq-tabs;
+	container-type: inline-size;
+
+	--width: calc(100% + (2 * var(--layout-padding-large)));
+	--negative-margin: calc(-1 * var(--layout-padding-large));
+}
+
+.tabs-inner {
+	display: flex;
+	justify-content: stretch;
+	overflow: hidden;
+	position: relative;
+	z-index: 4;
+}
+
+.tab {
+	position: relative;
+	flex: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+	padding: 1.5rem 0.2rem;
+	padding: 3cqw 0.2rem;
+	font-size: 0.9rem;
+	text-align: center;
+	text-wrap: nowrap;
+	background-color: var(--almost-white);
+	text-decoration: none !important;
+	z-index: 4;
+}
+
+.tab gwbw-icon {
+	font-size: 1.1rem;
+	color: var(--good);
+}
+
+.tab.selected {
+	background-color: #fff;
+	color: var(--charcoal) !important;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.18);
+	z-index: 5;
+	pointer-events: none;
+}
+
+.tab:after {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background-color: transparent;
+	transition: 0.2s background-color ease;
+}
+
+.tab:hover:after {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.tab + .tab {
+	border-left: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.tabs + .feature-box {
+	position: relative;
+	top: -1px;
+	z-index: 1;
+}
+
+/* DEV NOTE: These media queries should stay in sync with layouts.css */
+@media (max-width: 900px) {
+	.tabs {
+		--width: calc(100% + (2 * var(--layout-padding-xsmall))) !important;
+		--negative-margin: calc(-1 * var(--layout-padding-xsmall)) !important;
+	}
+}

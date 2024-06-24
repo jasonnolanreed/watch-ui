@@ -100,15 +100,8 @@ router
 	router[`params`] = params;
 	router[`query`] = formatQuery(query);
 	if (await AuthApi.isLoggedIn()) {
-		const preferences = await PreferenceApi.getPreferences();
-		if (preferences.showTimegrapherFeatures) {
-			LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
-			GA.view(`/watches/:watchId`, `Watch Details`);
-		} else {
-			// Prevent history for watch details page
-			history.replaceState({}, null, `/#/sessions/${params.watchId}`);
-			router.resolve();
-		}
+		GA.view(`/watches/:watchId`, `Watch Details`);
+		LoadView.layout($view, layouts.main, `views/watch-detail-view.html`);
 	} else {
 		router.navigate(`/login`);
 	}

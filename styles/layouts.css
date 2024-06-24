@@ -75,7 +75,10 @@ layout.main footer hr {
 	margin-bottom: 2rem;
 }
 
-/* DEV NOTE: These media queries should stay in sync with messages-templates.ts */
+/*
+DEV NOTE: These media queries should stay in sync with
+watch-tab-templates.ts and messages-templates.ts
+*/
 @media (max-width: 900px) {
 	html:has(layout.main) {
 		background-color: #fff;

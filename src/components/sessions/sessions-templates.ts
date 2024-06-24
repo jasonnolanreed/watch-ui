@@ -7,13 +7,6 @@ import {Sessions} from './sessions.js';
 
 const makeHtml = (component: Sessions) => (
 String.raw`
-${component.preferences.showTimegrapherFeatures ? String.raw`
-<a class="back-link" href="#/watches/${component.watch._id}">
-	<gwbw-icon name="arrow_back"></gwbw-icon>
-	<span class="label">Back to watch</span>
-</a>
-` : ``}
-
 <div class="page-title">
 	<gwbw-icon name="insert_chart"></gwbw-icon>
 	<div>
@@ -21,6 +14,13 @@ ${component.preferences.showTimegrapherFeatures ? String.raw`
 		<h2>${component.watch.name}</h2>
 	</div>
 </div>
+
+<gwbw-watch-tabs
+	watch="${encodeURI(JSON.stringify(component.watch))}"
+	preferences="${encodeURI(JSON.stringify(component.preferences))}"
+	selected="sessions"
+></gwbw-watch-tabs>
+
 <div class="feature-box edge-to-edge-container">
 	${showSessionsInfo(component)}
 	${showSessionsSelection(component)}
@@ -198,6 +198,7 @@ const showSortControls = (component: Sessions) => {
 const makeCss = (component: Sessions) => (
 String.raw`
 <style>
+.feature-box { position: relative; z-index: 1; top: -1px; }
 .session-selection.session-selection { display: flex; align-items: center; gap: 0.1rem; margin: -0.5em 0 1em 0; }
 .session-selection .pages { margin-left: 1rem; }
 .previous-session gwbw-icon, .next-session gwbw-icon { font-size: 1.4em; }

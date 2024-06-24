@@ -3,11 +3,6 @@ import {Timegrapher} from "./timegrapher.js";
 
 const makeHtml = (component: Timegrapher) => (
 String.raw`
-<a class="back-link" href="#/watches/${component.watch._id}">
-	<gwbw-icon name="arrow_back"></gwbw-icon>
-	<span class="label">Back to watch</span>
-</a>
-
 <div class="page-title">
 	<gwbw-icon name="precision_manufacturing"></gwbw-icon>
 	<div>
@@ -15,6 +10,14 @@ String.raw`
 		<h2>${component.watch.name}</h2>
 	</div>
 </div>
+
+<gwbw-watch-tabs
+	watch="${encodeURI(JSON.stringify(component.watch))}"
+	preferences="${encodeURI(JSON.stringify(component.preferences))}"
+	selected="timegrapher"
+></gwbw-watch-tabs>
+
+<br><br>
 
 ${component?.currentResults?.moment &&
 String.raw`<h3>Results: ${Format.date(component.currentResults.moment)}</h3>`
@@ -32,7 +35,7 @@ ${showResultsSelection(component)}
 ${component?.currentResults &&
 String.raw`
 <div class="form-controls">
-	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button neutral" type="button">
+	<a href="#/timegrapher/edit/${component.currentResults._id}" class="edit-button button positive-inverse" type="button">
 		<gwbw-icon name="tune"></gwbw-icon>
 		Edit
 	</a>

@@ -41,7 +41,7 @@ const listWatches = (component: Watches) => {
 		htmlString += String.raw`
 		<li class="list-item spacious" watch-id="${watch._id}">
 			<div class="watch-name expand">
-				<a class="watch-link link-button expand" href="#/watches/${watch._id}">
+				<a class="watch-link link-button expand" href="#/sessions/${watch._id}">
 					<gwbw-icon name="exit_to_app"></gwbw-icon>
 					<span>${watch.name}</span>
 				</a>

@@ -1,4 +1,4 @@
-import {TimegrapherResult, Watch} from '../../types/api-data.js';
+import {Preferences, TimegrapherResult, Watch} from '../../types/api-data.js';
 import {router} from '../../router.js';
 import {GA} from '../../ga.js';
 import {GWBWElement} from '../../classes/gwbw-element.js';
@@ -7,10 +7,12 @@ import {WatchApi} from '../../api-helpers/watch.js';
 import {TimegrapherApi} from '../../api-helpers/timegrapher.js';
 
 import {makeTemplate} from './timegrapher-templates.js';
+import { PreferenceApi } from '../../api-helpers/preference.js';
 
 export class Timegrapher extends GWBWElement {
 	currentResultsIndex: number;
 	watch: Watch;
+	preferences: Preferences;
 	timegrapherResults: TimegrapherResult[];
 	currentResults: TimegrapherResult;
 
@@ -37,9 +39,11 @@ export class Timegrapher extends GWBWElement {
 		const responses = await Promise.all([
 			WatchApi.getWatch(router[`params`][`watchId`]),
 			TimegrapherApi.getTimegrapherResults(router[`params`][`watchId`]),
+			PreferenceApi.getPreferences(),
 		]);
 		this.watch = responses[0];
 		this.timegrapherResults = responses[1];
+		this.preferences = responses[2];
 		this.currentResultsIndex = this.timegrapherResults.length - 1;
 		if (
 			router[`query`] &&

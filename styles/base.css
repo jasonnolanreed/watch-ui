@@ -300,11 +300,8 @@ ul li {
 }
 
 .page-title h1 + h2 {
-	font-size: 1.1rem;
-	font-family: var(--sans-font);
-	font-weight: 400;
+	font-size: 1.15rem;
 	color: var(--slate);
-	letter-spacing: 0.07em;
 	margin: 0;
 	padding-top: 0.1rem;
 	border-top: 1px solid var(--silver);
