@@ -1,5 +1,5 @@
 import {Measure} from '../../types/api-data.js';
-import {Format} from '../../utilities/date-time.js';
+import {Difference, Format} from '../../utilities/date-time.js';
 import {getMomentDiffFromMeasure} from '../../utilities/measure.js';
 import {roundToOneDecimal} from '../../utilities/number.js';
 import {getIconNameForPosition, getPositionNameForMeasure, positionsMap} from '../../utilities/position.js';
@@ -52,16 +52,33 @@ ${showSortControls(component)}
 );
 
 const showSessionsInfo = (component: Sessions) => {
-	if (!component.measures || !component.measures.length) { return ``; }
-	let html = `<h3><gwbw-icon name="event" style="font-size: 1.2em;"></gwbw-icon> `;
-	const startDate = Format.date(component.currentSession[0].targetMoment);
-	const endDate = Format.date(component.currentSession[component.currentSession.length - 1].targetMoment);
-	html += `<span class="nowrap">${startDate}</span>`;
-	if (startDate !== endDate) {
-		html += ` - <span class="nowrap">${endDate}</span>`;
+	if (!component.measures || !component.measures.length) {
+		return ``;
+	} else {
+		const firstMoment = component.currentSession[0].targetMoment;
+		const lastMoment = component.currentSession[component.currentSession.length - 1].targetMoment;
+		const startDate = Format.date(firstMoment);
+		const endDate = Format.date(lastMoment);
+		return String.raw`
+		<div class="page-title date-range">
+			<gwbw-icon name="event" style="font-size: 2rem; color: var(--charcoal)"></gwbw-icon>
+			<div>
+				<h3>
+					<span class="nowrap">${startDate}</span>
+					${startDate !== endDate ? String.raw`
+					<span> - </span>
+					<span class="nowrap">${endDate}</span>
+					` : ``}
+				</h3>
+				<h3>
+					<small class="session-duration-in-days nowrap" title="${Format.durationLong(firstMoment, lastMoment)}">
+						${roundToOneDecimal(Difference.days(firstMoment, lastMoment))} days
+					</small>
+				</h3>
+			</div>
+		</div>
+		`;
 	}
-	html += `</h3>`;
-	return html;
 };
 
 const showSessionsSelection = (component: Sessions) => {
