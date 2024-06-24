@@ -18,6 +18,7 @@ const makeHtml = (component) => (String.raw `
 ></gwbw-watch-tabs>
 
 <div class="feature-box edge-to-edge-container">
+	<br>
 	${showSessionsInfo(component)}
 	${showSessionsSelection(component)}
 	${showDeviationGraph(component)}

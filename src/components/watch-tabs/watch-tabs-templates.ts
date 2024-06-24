@@ -39,7 +39,7 @@ String.raw`
 .tabs {
 	width: var(--width);
 	margin: 3rem var(--negative-margin) 0 var(--negative-margin);
-	box-shadow: 0 -1.5rem 1.5rem rgba(0, 0, 0, 0.07);
+	box-shadow: 0 -1rem 1rem rgba(0, 0, 0, 0.05);
 	position: relative;
 	z-index: 4;
 
@@ -80,13 +80,13 @@ String.raw`
 .tab.selected {
 	background-color: #fff;
 	color: var(--charcoal) !important;
-	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.24);
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 	z-index: 5;
 	pointer-events: none;
 }
 
 .tab:not(.selected) {
-	box-shadow: inset 0 -0.5rem 1rem -0.75rem rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 -1rem 1rem -0.75rem rgba(0, 0, 0, 0.08);
 }
 
 .tab:after {
