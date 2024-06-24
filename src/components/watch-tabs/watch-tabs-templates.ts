@@ -39,7 +39,7 @@ String.raw`
 .tabs {
 	width: var(--width);
 	margin: 3rem var(--negative-margin) 0 var(--negative-margin);
-	box-shadow: 0 -1rem 1rem rgba(0, 0, 0, 0.07);
+	box-shadow: 0 -1.5rem 1.5rem rgba(0, 0, 0, 0.07);
 	position: relative;
 	z-index: 4;
 
@@ -67,6 +67,7 @@ String.raw`
 	text-align: center;
 	text-wrap: nowrap;
 	background-color: var(--almost-white);
+	border-top: 1px solid rgba(0, 0, 0, 0.05);
 	text-decoration: none !important;
 	z-index: 4;
 }
@@ -84,20 +85,25 @@ String.raw`
 	pointer-events: none;
 }
 
+.tab:not(.selected) {
+	box-shadow: inset 0 -0.5rem 1rem -0.75rem rgba(0, 0, 0, 0.2);
+}
+
 .tab:after {
 	content: "";
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
-	background-color: transparent;
-	transition: 0.2s background-color ease;
+	background-color: var(--good);
+	opacity: 0;
+	transition: 0.4s opacity ease;
 }
 
 .tab:hover:after {
-	background-color: rgba(0, 0, 0, 0.03);
+	opacity: 0.075;
 }
 
 .tab:not(.selected) + .tab:not(.selected) {
-	border-left: 1px solid rgba(0, 0, 0, 0.03);
+	border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* DEV NOTE: These media queries should stay in sync with layouts.css */
