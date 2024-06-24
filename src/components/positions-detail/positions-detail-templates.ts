@@ -5,7 +5,6 @@ import {PositionsDetail} from './positions-detail.js';
 
 const makeHtml = (component: PositionsDetail) => (
 String.raw`
-<h2>Positions</h2>
 <div class="positions">
 	<table>
 		<tr>

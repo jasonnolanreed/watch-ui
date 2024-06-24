@@ -1,7 +1,6 @@
 import { positionsMap, getIconNameForPosition } from '../../utilities/position.js';
 import { roundToOneDecimal } from '../../utilities/number.js';
 const makeHtml = (component) => (String.raw `
-<h2>Positions</h2>
 <div class="positions">
 	<table>
 		<tr>

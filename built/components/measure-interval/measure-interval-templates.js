@@ -3,7 +3,7 @@ import { roundToOneDecimal } from '../../utilities/number.js';
 const makeHtml = (component) => (String.raw `
 <a class="back-link" href="javascript:history.back();">
 	<gwbw-icon name="arrow_back"></gwbw-icon>
-	<span class="label">Back to sessions<span>
+	<span class="label">Back to session<span>
 </a>
 
 <div class="page-title">
@@ -15,14 +15,21 @@ const makeHtml = (component) => (String.raw `
 </div>
 
 <div class="feature-box edge-to-edge-container">
-	<h3>
-		<span class="session-days-range nowrap" title="${Format.dateAndTime(component.startMeasure.targetMoment) + ' - ' + Format.dateAndTime(component.endMeasure.targetMoment)}">
-			${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
-		</span>
-		<small class="session-duration-in-days nowrap" title="${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}">
-			(${roundToOneDecimal(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days)
-		</small>
-	</h3>
+	<div class="page-title date-range">
+		<gwbw-icon name="event" style="font-size: 2rem; color: var(--charcoal)"></gwbw-icon>
+		<div>
+			<h3>
+				<span class="session-days-range nowrap" title="${Format.dateAndTime(component.startMeasure.targetMoment) + ' - ' + Format.dateAndTime(component.endMeasure.targetMoment)}">
+					${Format.dateRange(component.startMeasure.targetMoment, component.endMeasure.targetMoment)}
+				</span>
+			</h3>
+			<h3>
+				<small class="session-duration-in-days nowrap" title="${Format.durationLong(component.endMeasure.targetMoment, component.startMeasure.targetMoment)}">
+					${roundToOneDecimal(Difference.days(component.startMeasure.targetMoment, component.endMeasure.targetMoment))} days
+				</small>
+			</h3>
+		</div>
+	</div>
 
 	<gwbw-session-total
 		session="${encodeURI(JSON.stringify([component.startMeasure, component.endMeasure]))}"
@@ -83,7 +90,7 @@ ${component.expandSessionLink ? String.raw `
 `);
 const makeCss = (component) => (String.raw `
 <style>
-.page-title gwbw-icon { transform: rotate(90deg); }
+.page-title:not(.date-range) gwbw-icon { transform: rotate(90deg); }
 .session-days-range { margin-right: .2em; }
 .sort-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin: 2em 0; }
 .sort-controls .toggle-buttons button.selected { pointer-events: none; }
