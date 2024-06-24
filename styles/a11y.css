@@ -17,3 +17,7 @@ button:focus:after,
 	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--good) !important;
 	border-radius: 3px;
 }
+
+.tabs .tab:focus:after {
+	top: 0.3rem; right: 0.3rem; bottom: 0.3rem; left: 0.3rem;
+}

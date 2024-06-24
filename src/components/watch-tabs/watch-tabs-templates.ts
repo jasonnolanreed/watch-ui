@@ -89,7 +89,7 @@ String.raw`
 	box-shadow: inset 0 -1rem 1rem -0.75rem rgba(0, 0, 0, 0.08);
 }
 
-.tab:after {
+.tab:before {
 	content: "";
 	position: absolute;
 	top: 0; right: 0; bottom: 0; left: 0;
@@ -98,7 +98,7 @@ String.raw`
 	transition: 0.4s opacity ease;
 }
 
-.tab:hover:after {
+.tab:hover:before {
 	opacity: 0.075;
 }
 
