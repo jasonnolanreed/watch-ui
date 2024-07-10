@@ -1,9 +1,6 @@
-// import {measurementId} from './ga.js';
 import {environment} from './utilities/network.js';
 import './router.js';
 import './components/icon/icon.js';
-
-declare const Sentry: any;
 
 // Convert all "global" styles into a constructed
 // style sheet to adopt into custom components
@@ -23,15 +20,11 @@ globalSheets.forEach(sheet => {
 export const globalStyleSheet = constructedSheet;
 
 try {
-	// gtag(`js`, new Date());
-	// gtag(`config`, measurementId);
-	
-
-	if (Sentry && environment === `production`) {
-		Sentry.init({
-			environment,
-			dsn: `https://4ec231e6bf774e5bbc2546a1d11f5578@sentry.io/1426110`
-		});
+	if (environment === `production`) {
+		const $script = document.createElement(`script`);
+		$script.src = `https://js.sentry-cdn.com/4ec231e6bf774e5bbc2546a1d11f5578.min.js`;
+		$script.setAttribute(`crossorigin`, `anonymous`);
+		document.body.appendChild($script);
 	}
 } catch(error) {
 	console.warn("Error initializing 3rd party services", error);

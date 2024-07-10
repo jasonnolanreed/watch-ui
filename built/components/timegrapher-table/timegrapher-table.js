@@ -39,13 +39,13 @@ export class TimegrapherTable extends GWBWElement {
         let amplitudes = [];
         let beatErrors = [];
         timegrapherPositions.forEach(position => {
-            if (this.timegrapherResultsData[position.id + "Rate"]) {
+            if (typeof this.timegrapherResultsData[position.id + "Rate"] === `number`) {
                 rates.push(Number(this.timegrapherResultsData[position.id + "Rate"]));
             }
-            if (this.timegrapherResultsData[position.id + "BeatError"]) {
+            if (typeof this.timegrapherResultsData[position.id + "BeatError"] === `number`) {
                 beatErrors.push(Number(this.timegrapherResultsData[position.id + "BeatError"]));
             }
-            if (this.timegrapherResultsData[position.id + "Amplitude"]) {
+            if (typeof this.timegrapherResultsData[position.id + "Amplitude"] === `number`) {
                 amplitudes.push(Number(this.timegrapherResultsData[position.id + "Amplitude"]));
             }
         });
