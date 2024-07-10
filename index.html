@@ -21,33 +21,22 @@
 	<link href="styles/fonts.css" rel="stylesheet" title="gwbwglobal">
 	<link href="styles/a11y.css" rel="stylesheet" title="gwbwglobal">
 	<link href="styles/base.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/buttons.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/dialogs.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/forms.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/layouts.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/lists.css" rel="stylesheet" title="gwbwglobal">
+	<link href="styles/tables.css" rel="stylesheet" title="gwbwglobal">
 </head>
 <body>
-	<style>
-	body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		padding: 60px 20px;
-		line-height: 1.4;
-		text-align: center !important;
-	}
-	body > * {
-		max-width: 700px;
-	}
-	img {
-		display: block;
-		width: 80%;
-		margin: 1em 0 1.5em 0;
-	}
-	</style>
-	<img
-		src="./assets/images/logo.svg"
-		alt="Good Watch Bad Watch Logo"
-		style="aspect-ratio: 700 / 105;"
-	>
-	<h2>All watches are good watches.</h2>
-	<p>GWBW is currently down for maintenance. Hopefully it goes smoothly enough for the app to be back up soon. If you have any questions, please direct them to goodwatchbadwatch@gmail.com</p>
+	<gwbw-messages></gwbw-messages>
+	<div id="view"></div>
+	<dialog></dialog>
+	<gwbw-loader id="gwbw-loader" inert></gwbw-loader>
+	<link rel="preload" href="assets/images/jewel.svg" as="image" type="image/svg+xml">
+	<script src="built/components/loader/loader.js" type="module"></script>
+	<script src="https://js.sentry-cdn.com/4ec231e6bf774e5bbc2546a1d11f5578.min.js" crossorigin="anonymous"></script>
+	<script defer src="built/app.js" type="module"></script>
+	<script src="built/components/messages/messages.js" type="module"></script>
 </body>
 </html>
